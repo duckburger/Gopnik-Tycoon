@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6242364787588623719}
   - component: {fileID: 3177951110702963878}
-  - component: {fileID: 1261003068881729244}
+  - component: {fileID: 4497283968044228983}
   m_Layer: 0
   m_Name: GopnikNest
   m_TagString: Untagged
@@ -79,7 +79,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1261003068881729244
+--- !u!114 &4497283968044228983
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -88,6 +88,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4033165153851696517}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 968bfa0084852da4e8a41f1f938fe5b9, type: 3}
+  m_Script: {fileID: 11500000, guid: 5aa5a12b0818e0d44a85057b6e605631, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mapParentTag: GopnikNestParent

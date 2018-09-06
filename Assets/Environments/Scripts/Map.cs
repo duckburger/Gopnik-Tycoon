@@ -6,9 +6,6 @@ public class Map : MonoBehaviour {
 
     public static Map Instance;
 
-    [Header("Building placement parents")]
-    public Transform gopnikNestParent;
-
 	// Use this for initialization
 	void Start () {
         if (Instance == null)

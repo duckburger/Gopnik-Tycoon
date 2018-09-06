@@ -38,28 +38,28 @@ public class CameraArm : MonoBehaviour
         if (Input.GetAxisRaw("Horizontal") > 0)
         {
             camPos.x += cameraSpeed * Time.deltaTime * 2;
-            camPos.x = Mathf.Clamp(camPos.x, -10, 10);
+            camPos.x = Mathf.Clamp(camPos.x, -16, 16);
             transform.position = camPos;
 
         }
         else if (Input.GetAxisRaw("Horizontal") < 0)
         {
             camPos.x -= cameraSpeed * Time.deltaTime * 2;
-            camPos.x = Mathf.Clamp(camPos.x, -10, 10);
+            camPos.x = Mathf.Clamp(camPos.x, -16, 16);
             transform.position = camPos;
         }
 
         if (Input.GetAxisRaw("Vertical") > 0)
         {
             camPos.y += cameraSpeed * Time.deltaTime * 2;
-            camPos.y = Mathf.Clamp(camPos.y, -10, 10);
+            camPos.y = Mathf.Clamp(camPos.y, -16, 16);
             transform.position = camPos;
 
         }
         else if (Input.GetAxisRaw("Vertical") < 0)
         {
             camPos.y -= cameraSpeed * Time.deltaTime * 2;
-            camPos.y = Mathf.Clamp(camPos.y, -10, 10);
+            camPos.y = Mathf.Clamp(camPos.y, -16, 16);
             transform.position = camPos;
         }
 
