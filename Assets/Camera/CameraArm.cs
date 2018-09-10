@@ -34,7 +34,6 @@ public class CameraArm : MonoBehaviour
         Vector3 camPos = transform.position;
 
 
-
         if (Input.GetAxisRaw("Horizontal") > 0)
         {
             camPos.x += cameraSpeed * Time.deltaTime * 2;
@@ -63,6 +62,7 @@ public class CameraArm : MonoBehaviour
             transform.position = camPos;
         }
 
+        ZoomCamera();
 
 
         /* //TODO reenable the mouse camera movement
@@ -99,6 +99,11 @@ public class CameraArm : MonoBehaviour
 
 		}
 		*/
+
+    }
+
+    private void ZoomCamera()
+    {
         float camZoom = Camera.main.orthographicSize;
 
 
@@ -108,9 +113,5 @@ public class CameraArm : MonoBehaviour
 
 
         Camera.main.orthographicSize = camZoom;
-
-
-
     }
-
 }

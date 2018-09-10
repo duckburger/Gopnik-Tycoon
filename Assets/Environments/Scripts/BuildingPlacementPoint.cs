@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class BuildingPlacementPoint : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    bool isOccupied;
+
+	public void SetOccupied(bool status)
+    {
+        isOccupied = status;
+    }
+
+    public bool GetOccupancyStatus()
+    {
+        return isOccupied;
+    }
 }

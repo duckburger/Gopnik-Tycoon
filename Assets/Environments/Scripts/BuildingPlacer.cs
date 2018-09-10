@@ -15,6 +15,7 @@ public class BuildingPlacer : MonoBehaviour {
     Camera mainCam;
     bool isPlacingBuilding;
     bool canPlaceNow;
+    Transform mouseoverPlacementPoint;
 
     private void Start()
     {
@@ -41,6 +42,7 @@ public class BuildingPlacer : MonoBehaviour {
                         selectedBuilding.transform.localScale = new Vector3(1f, 1f, 1f);
                         ColorBuildingGreen();
                         canPlaceNow = true;
+                        mouseoverPlacementPoint = placementPoint;
                         ClickToPlace();
                         return;
                     }
@@ -49,22 +51,32 @@ public class BuildingPlacer : MonoBehaviour {
                 selectedBuilding.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
                 ColorBuildingRed();
                 canPlaceNow = false;
+                mouseoverPlacementPoint = null;
                 ClickToPlace();
             }
         }
 	}
 
+    #region Handling Clicks
+
     private void ClickToPlace()
     {
         if (Input.GetMouseButtonDown(0) && canPlaceNow)
         {
-            // Place building
+            // Place building and turn off the silhouettes on all items
+            if (mouseoverPlacementPoint != null)
+            {
+                this.selectedBuilding.transform.parent = mouseoverPlacementPoint;
+                selectedBuilding.GetComponent<IBuildingSetup>().InitialSetup();
+                ResetToOccupied();
+                return;
+            }
 
         }
         else if (Input.GetMouseButtonDown(1))
         {
             // Cancel placement
-            Reset();
+            ResetToEmpty();
         }
 
         if (Input.GetMouseButtonDown(0) && !canPlaceNow)
@@ -77,15 +89,26 @@ public class BuildingPlacer : MonoBehaviour {
         
     }
 
-    private void Reset()
+    #endregion
+
+    #region Reset Methods
+
+    private void ResetToEmpty()
     {
         // Cancel the placement
         isPlacingBuilding = false;
         canPlaceNow = false;
-        Destroy(selectedBuilding);
+        mouseoverPlacementPoint = null;
+        if (selectedBuilding != null)
+        {
+            Destroy(selectedBuilding);
+        }
         selectedBuilding = null;
-        buildingSpriteRenderer.color = Color.white;
-        buildingSpriteRenderer = null;
+        if (buildingSpriteRenderer != null)
+        {
+            buildingSpriteRenderer.color = Color.white;
+            buildingSpriteRenderer = null;
+        }
         for (int i = buildingPlacementPoints.Count - 1; i >= 0; i--)
         {
             buildingPlacementPoints[i].GetComponent<SpriteRenderer>().enabled = false;
@@ -93,9 +116,27 @@ public class BuildingPlacer : MonoBehaviour {
         }
     }
 
+    private void ResetToOccupied()
+    {
+        // Cancel the placement
+        isPlacingBuilding = false;
+        canPlaceNow = false;
+        mouseoverPlacementPoint = null;
+        selectedBuilding = null;
+        buildingSpriteRenderer = null;
+        buildingMapParent = null;
+        for (int i = buildingPlacementPoints.Count - 1; i >= 0; i--)
+        {
+            buildingPlacementPoints[i].GetComponent<SpriteRenderer>().enabled = false;
+            buildingPlacementPoints.Remove(buildingPlacementPoints[i]);
+        }
+    }
+
+    #endregion
+
     #region Placing the building
 
-    public void PlaceBuilding(GameObject buildingToPlace)
+    public void PrepareToPlaceBuilding(GameObject buildingToPlace)
     {
         string mapParentTag = buildingToPlace.GetComponent<BuildingData>().GetMapParentTag();
         CollectPlacementPoints(mapParentTag);
@@ -129,8 +170,11 @@ public class BuildingPlacer : MonoBehaviour {
             // Find all the possible placement points on the map
             foreach (Transform child in buildingMapParent)
             {
-                buildingPlacementPoints.Add(child);
-                child.GetComponent<SpriteRenderer>().enabled = true;
+                if (!child.GetComponent<BuildingPlacementPoint>().GetOccupancyStatus())
+                {
+                    buildingPlacementPoints.Add(child);
+                    child.GetComponent<SpriteRenderer>().enabled = true;
+                }
             }
         }
     }
