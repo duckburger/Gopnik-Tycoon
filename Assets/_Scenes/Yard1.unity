@@ -15,10 +15,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 53282913}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 307ca5cd8da74254ab5d892306f74dc6, type: 3}
+  m_Script: {fileID: 11500000, guid: 797c7f2dae4acf14d83d69cf7cb68e0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &53282919
+  currentHealth: 0
+  maxHealth: 100
+--- !u!114 &53282920
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -27,36 +29,43 @@ MonoBehaviour:
   m_GameObject: {fileID: 53282913}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 93cc6a4987f7c684798156c56d545838, type: 3}
+  m_Script: {fileID: 11500000, guid: 38b4b91f00591f640becc03e645322e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _map: {fileID: 0}
-  maxSpeed: 5
-  mass: 20
-  stoppingDistance: 0.2
-  slowingDistance: 1
-  accelerationRate: 2
-  decelerationRate: 2
-  lookAheadDistance: 1
-  avoidRadius: 0
-  avoidanceConsiderStuckedTime: 3
-  avoidanceConsiderReachedDistance: 1
-  rotateTransform: 0
-  rotateSpeed: 350
-  centerOffset: {x: 0, y: 0}
-  repath: 1
-  restrict: 0
-  closerPointOnInvalid: 1
-  debugPath: 1
+  huntTarget: {fileID: 0}
+  fightTarget: {fileID: 0}
+  myNest: {fileID: 0}
+--- !u!114 &53282921
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 53282913}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9a07630984c23e48a79079359aca64c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &53282914
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 53282913}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc32a75b293167f4a825775c1fa8a9f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  name: No Name
+  cost: 1
+  target: {fileID: 0}
+  actionDuration: 0
 --- !u!4 &1182255632 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4248171447029754259, guid: ee252a5d55df2d348b5b3f81dff29e05,
-    type: 3}
-  m_PrefabInstance: {fileID: 4248171445925815171}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &854259419 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 854259419, guid: ee252a5d55df2d348b5b3f81dff29e05,
     type: 3}
   m_PrefabInstance: {fileID: 4248171445925815171}
   m_PrefabAsset: {fileID: 0}
@@ -243,7 +252,7 @@ PrefabInstance:
         type: 3}
       propertyPath: target
       value: 
-      objectReference: {fileID: 854259419}
+      objectReference: {fileID: 0}
     - target: {fileID: 2084183076782633536, guid: daf8e30f0749de74fbded1cc29d98602,
         type: 3}
       propertyPath: movementSpeed
@@ -322,12 +331,7 @@ PrefabInstance:
       propertyPath: m_Name
       value: Gopnik1
       objectReference: {fileID: 0}
-    - target: {fileID: 518376569, guid: ab15910f8e478b840b0b8d6b80313824, type: 3}
-      propertyPath: m_Simulated
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 518376570, guid: ab15910f8e478b840b0b8d6b80313824, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ab15910f8e478b840b0b8d6b80313824, type: 3}
 --- !u!1001 &4248171445925815171
 PrefabInstance:
@@ -394,6 +398,15 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Yard
+      objectReference: {fileID: 0}
+    - target: {fileID: 2025983008, guid: ee252a5d55df2d348b5b3f81dff29e05, type: 3}
+      propertyPath: m_Name
+      value: NavMesh_Yard
+      objectReference: {fileID: 0}
+    - target: {fileID: 4248171446702197672, guid: ee252a5d55df2d348b5b3f81dff29e05,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ee252a5d55df2d348b5b3f81dff29e05, type: 3}
@@ -517,11 +530,6 @@ PrefabInstance:
       propertyPath: yard
       value: 
       objectReference: {fileID: 1182255632}
-    - target: {fileID: 7700756278047702359, guid: 07ab45785356a7c46aad34d1f64c7911,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 07ab45785356a7c46aad34d1f64c7911, type: 3}
 --- !u!1001 &8614001839222035962

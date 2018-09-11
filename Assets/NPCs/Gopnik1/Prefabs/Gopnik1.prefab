@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3739902497023657730}
   - component: {fileID: 518376569}
   - component: {fileID: 518376568}
-  - component: {fileID: 518376570}
+  - component: {fileID: 53282919}
   m_Layer: 8
   m_Name: Gopnik1
   m_TagString: Untagged
@@ -90,7 +90,7 @@ Rigidbody2D:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3739902497023657731}
   m_BodyType: 0
-  m_Simulated: 1
+  m_Simulated: 0
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
@@ -118,7 +118,7 @@ CapsuleCollider2D:
   m_Offset: {x: -0.00000047683716, y: 0.01006937}
   m_Size: {x: 0.5902996, y: 1.5943518}
   m_Direction: 0
---- !u!114 &518376570
+--- !u!114 &53282919
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -127,8 +127,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 3739902497023657731}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2c65dfab3ede63c449bb200acf03ba97, type: 3}
+  m_Script: {fileID: 11500000, guid: 93cc6a4987f7c684798156c56d545838, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 4
-  target: {fileID: 0}
+  _map: {fileID: 0}
+  maxSpeed: 5.5
+  mass: 25
+  stoppingDistance: 0.05
+  slowingDistance: 0.35
+  accelerationRate: 5
+  decelerationRate: 5
+  lookAheadDistance: 1
+  avoidRadius: 0
+  avoidanceConsiderStuckedTime: 3
+  avoidanceConsiderReachedDistance: 1
+  rotateTransform: 0
+  rotateSpeed: 1500
+  centerOffset: {x: 0, y: -0.65}
+  repath: 1
+  restrict: 0
+  closerPointOnInvalid: 1
+  debugPath: 1

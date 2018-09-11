@@ -5,6 +5,14 @@ using UnityEngine;
 public class Map : MonoBehaviour {
 
     public static Map Instance;
+    [SerializeField] List<Transform> activeCivs = new List<Transform>();
+    public List<Transform> ActiveCivs
+    {
+        get
+        {
+            return activeCivs;
+        }
+    }
 
 	// Use this for initialization
 	void Start () {
@@ -18,8 +26,19 @@ public class Map : MonoBehaviour {
         }
 	}
 	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+	public void AddCivToActiveList(Transform newCiv)
+    {
+        if (!activeCivs.Contains(newCiv))
+        {
+            activeCivs.Add(newCiv);
+        }
+    }
+
+    public void DeleteCivFromActiveList(Transform civToDelete)
+    {
+        if (activeCivs.Contains(civToDelete))
+        {
+            activeCivs.Remove(civToDelete);
+        }
+    }
 }
