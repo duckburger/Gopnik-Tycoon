@@ -44,10 +44,11 @@ public class GopnikAI : MonoBehaviour, IGoap {
     public HashSet<KeyValuePair<string, object>> GetWorldState()
     {
         HashSet<KeyValuePair<string, object>> worldData = new HashSet<KeyValuePair<string, object>>();
-        worldData.Add(new KeyValuePair<string, object>("isIdling", (huntTarget == null)));
+        worldData.Add(new KeyValuePair<string, object>("isFree", (huntTarget == null && fightTarget == null)));
+
         //worldData.Add(new KeyValuePair<string, object>("hasHuntTarget", (huntTarget != null)));
         //worldData.Add(new KeyValuePair<string, object>("isFightingTarget", (fightTarget != null)));
-        
+
 
         return worldData;
     }
@@ -84,22 +85,23 @@ public class GopnikAI : MonoBehaviour, IGoap {
 
     public void ActionsFinished()
     {
-        throw new System.NotImplementedException();
+        
     }
 
     public void PlanAborted(GoapAction aborter)
     {
-        throw new System.NotImplementedException();
+        
     }
 
     public void PlanFailed(HashSet<KeyValuePair<string, object>> failedGoal)
     {
-        throw new System.NotImplementedException();
+        
     }
 
     public void PlanFound(HashSet<KeyValuePair<string, object>> goal, Queue<GoapAction> actions)
     {
-        throw new System.NotImplementedException();
+        Debug.Log("Found a plan for " + this.gameObject.name);
+
     }
 
     

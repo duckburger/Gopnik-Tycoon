@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2084183076782633539}
   - component: {fileID: 2084183076782633538}
   - component: {fileID: 2084183076782633536}
+  - component: {fileID: 1702984486}
   m_Layer: 8
   m_Name: Pedestrian (1)
   m_TagString: Untagged
@@ -115,7 +116,7 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.00000047683716, y: 0.01006937}
+  m_Offset: {x: -0.00000047683716, y: 0.78}
   m_Size: {x: 0.5902996, y: 1.5943518}
   m_Direction: 0
 --- !u!114 &2084183076782633536
@@ -130,5 +131,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c65dfab3ede63c449bb200acf03ba97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 3
+  movementSpeed: 0
   target: {fileID: 0}
+--- !u!114 &1702984486
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3389606292381677881}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec4eef2083fd0af47b362c4f21fec5b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isAgressive: 0

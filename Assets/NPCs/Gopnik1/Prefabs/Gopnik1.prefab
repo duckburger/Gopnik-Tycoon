@@ -13,6 +13,10 @@ GameObject:
   - component: {fileID: 518376569}
   - component: {fileID: 518376568}
   - component: {fileID: 53282919}
+  - component: {fileID: 53282918}
+  - component: {fileID: 53282920}
+  - component: {fileID: 53282921}
+  - component: {fileID: 53282914}
   m_Layer: 8
   m_Name: Gopnik1
   m_TagString: Untagged
@@ -115,7 +119,7 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.00000047683716, y: 0.01006937}
+  m_Offset: {x: -0.00000047683716, y: 0.8}
   m_Size: {x: 0.5902996, y: 1.5943518}
   m_Direction: 0
 --- !u!114 &53282919
@@ -133,7 +137,7 @@ MonoBehaviour:
   _map: {fileID: 0}
   maxSpeed: 5.5
   mass: 25
-  stoppingDistance: 0.05
+  stoppingDistance: 0.07
   slowingDistance: 0.35
   accelerationRate: 5
   decelerationRate: 5
@@ -143,8 +147,66 @@ MonoBehaviour:
   avoidanceConsiderReachedDistance: 1
   rotateTransform: 0
   rotateSpeed: 1500
-  centerOffset: {x: 0, y: -0.65}
+  centerOffset: {x: 0, y: 0}
   repath: 1
   restrict: 0
   closerPointOnInvalid: 1
   debugPath: 1
+--- !u!114 &53282918
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3739902497023657731}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 797c7f2dae4acf14d83d69cf7cb68e0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentHealth: 0
+  maxHealth: 100
+--- !u!114 &53282920
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3739902497023657731}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38b4b91f00591f640becc03e645322e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  huntTarget: {fileID: 0}
+  fightTarget: {fileID: 0}
+  myNest: {fileID: 0}
+--- !u!114 &53282921
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3739902497023657731}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9a07630984c23e48a79079359aca64c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &53282914
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3739902497023657731}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc32a75b293167f4a825775c1fa8a9f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  name: IdleAtNest
+  cost: 1
+  target: {fileID: 0}
+  actionDuration: 1
+  detectionDistance: 3

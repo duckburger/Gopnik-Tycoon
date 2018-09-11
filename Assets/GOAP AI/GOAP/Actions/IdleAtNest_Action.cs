@@ -13,10 +13,20 @@ public class IdleAtNest_Action : GoapAction
     public IdleAtNest_Action()
     {
         addPrecondition("isFree", true);
-        addPrecondition("isAtBase", true);
         addEffect("hasHuntTarget", true);
+        addEffect("makeMoney", true);
         name = "IdleAtNest";
     }
+
+    #region Gizmos
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(this.transform.position, detectionDistance);
+    }
+
+    #endregion
 
     private void Start()
     {
@@ -48,7 +58,24 @@ public class IdleAtNest_Action : GoapAction
         {
             Debug.Log("Finished action" + name);
             Debug.Log("Checking whether there is a civilian target in the vicinity of " + detectionDistance + " units");
-            completed = true;
+            if (CheckForAvailableTargets() == null)
+            {
+                completed = false;
+                startTime = 0;
+                return completed;
+            }
+
+            target = CheckForAvailableTargets().gameObject;
+            if (target != null)
+            {
+                completed = true;
+                return completed;
+            }
+            else
+            {
+                completed = false;
+                startTime = 0;
+            }
         }
         return true;
     }
@@ -58,9 +85,17 @@ public class IdleAtNest_Action : GoapAction
         foreach (Transform civ in Map.Instance.ActiveCivs)
         {
             float distanceToCiv = Vector2.Distance(this.transform.position, civ.transform.position);
-            
+            CivStates civStates = civ.GetComponent<CivStates>();
+            if (distanceToCiv <= detectionDistance && !civStates.IsAgressive)
+            {
+                // Set this as the target
+                return civ;
+            }
+           
+
         }
-   }
+        return null;
+    }
 
     public override bool requiresInRange()
     {

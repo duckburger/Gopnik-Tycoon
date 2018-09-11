@@ -32,9 +32,9 @@ public class GopnikNest : MonoBehaviour, IBuildingSetup {
         GameObject gopnikOne = Instantiate(gopnikPrefab_LevelOne, idlePoints[0].transform.position, Quaternion.identity, idlePoints[0]);
         GopnikAI firstGopAI = gopnikOne.GetComponent<GopnikAI>();
         firstGopAI.AssingNest(this.gameObject);
-        GameObject gopnikTwo = Instantiate(gopnikPrefab_LevelOne, idlePoints[1].transform.position, Quaternion.identity, idlePoints[1]);
-        GopnikAI secondGopAI = gopnikTwo.GetComponent<GopnikAI>();
-        secondGopAI.AssingNest(this.gameObject);
+        //GameObject gopnikTwo = Instantiate(gopnikPrefab_LevelOne, idlePoints[1].transform.position, Quaternion.identity, idlePoints[1]);
+        //GopnikAI secondGopAI = gopnikTwo.GetComponent<GopnikAI>();
+        //secondGopAI.AssingNest(this.gameObject);
     }
 
   
