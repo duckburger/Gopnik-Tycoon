@@ -7,15 +7,20 @@ public class IdleAtNest_Action : GoapAction
 
     bool completed = false;
     float startTime = 0;
-    [SerializeField] float actionDuration = 2;
-    [SerializeField] float detectionDistance;
+    [SerializeField] GopnikAI gopAI;
+    [SerializeField] float actionDuration = 8;
+    [SerializeField] float detectionDistance = 4;
 
     public IdleAtNest_Action()
     {
         addPrecondition("isFree", true);
         addEffect("hasHuntTarget", true);
-        addEffect("makeMoney", true);
         name = "IdleAtNest";
+        if (gopAI != null)
+        {
+            target = gopAI.HuntTarget;
+        }
+       
     }
 
     #region Gizmos
@@ -30,13 +35,29 @@ public class IdleAtNest_Action : GoapAction
 
     private void Start()
     {
-        // Getting the nest off the gopnik AI, this nest gets assigned when the the gopniks are first spawned
-        target = this.GetComponent<GopnikAI>().Nest;
+        // First target is in the vicinity of the nest, but not in its exact position
+        GetNewIdlingTarget();
+    }
+
+    private void GetNewIdlingTarget()
+    {
+        GopnikNest myNest = this.GetComponent<GopnikAI>().Nest;
+        target = myNest.SpawnAndGetRandomIdlePoint();
     }
 
     public override bool checkProceduralPrecondition(GameObject agent)
     {
-        return true;
+        if (CheckForAvailableTargets() == null)
+        {
+            return true;
+        }
+        else
+        {
+            Debug.Log("Found a лох nearby! (Procedural precondition)");
+            completed = true;
+            startTime = 0;
+            return completed;
+        }
     }
 
     public override bool isDone()
@@ -53,6 +74,16 @@ public class IdleAtNest_Action : GoapAction
             startTime = Time.time;
         }
 
+        target = CheckForAvailableTargets();
+        if (target != null)
+        {
+            Debug.Log(name + " - Success! Found a лох nearby!");
+            gopAI.HuntTarget = target;
+            completed = true;
+            startTime = 0;
+            return completed;
+        }
+
         // If the work has been completed
         if (Time.time - startTime > actionDuration)
         {
@@ -60,27 +91,41 @@ public class IdleAtNest_Action : GoapAction
             Debug.Log("Checking whether there is a civilian target in the vicinity of " + detectionDistance + " units");
             if (CheckForAvailableTargets() == null)
             {
+                Debug.Log(name + " - Couldn't find a лох nearby. Rerouting to a different idle spot");
                 completed = false;
                 startTime = 0;
+                if (target != null)
+                {
+                    target.SetActive(false);
+                    target = null;
+                }
+                GetNewIdlingTarget();
                 return completed;
             }
 
-            target = CheckForAvailableTargets().gameObject;
+            target = CheckForAvailableTargets();
             if (target != null)
             {
+                Debug.Log(name + " - Success! Found a лох nearby!");
+                gopAI.HuntTarget = target;
                 completed = true;
+                startTime = 0;
                 return completed;
             }
             else
             {
+                Debug.Log(name + " - Couldn't find a лох nearby. Rerouting to a different idle spot");
                 completed = false;
+                target.SetActive(false);
+                target = null;
+                GetNewIdlingTarget();
                 startTime = 0;
             }
         }
         return true;
     }
 
-   Transform CheckForAvailableTargets()
+   GameObject CheckForAvailableTargets()
    {
         foreach (Transform civ in Map.Instance.ActiveCivs)
         {
@@ -89,7 +134,7 @@ public class IdleAtNest_Action : GoapAction
             if (distanceToCiv <= detectionDistance && !civStates.IsAgressive)
             {
                 // Set this as the target
-                return civ;
+                return civ.gameObject;
             }
            
 

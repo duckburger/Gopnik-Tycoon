@@ -1,5 +1,7 @@
 fileFormatVersion: 2
-guid: ab15910f8e478b840b0b8d6b80313824
+guid: daf8e30f0749de74fbded1cc29d98602
+labels:
+- Npc
 PrefabImporter:
   externalObjects: {}
   addedAssetObjects: []

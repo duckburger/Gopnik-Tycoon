@@ -8,14 +8,44 @@ public class GopnikAI : MonoBehaviour, IGoap {
 
     [Header("Targets")]
     [SerializeField] Transform huntTarget;
-    [SerializeField] Transform fightTarget;
-    [Space(5)]
-    [SerializeField] GameObject myNest;
-    public GameObject Nest
+    public GameObject HuntTarget
     {
         get
         {
-            return myNest;
+            if (huntTarget != null)
+            {
+                return huntTarget.gameObject;
+            }
+            else
+            {
+                return null;
+            }
+        }
+        set
+        {
+            huntTarget = value.transform;
+        }
+    }
+    [SerializeField] Transform fightTarget;
+    public GameObject FightTarget
+    {
+        get
+        {
+            return fightTarget.gameObject;
+        }
+        set
+        {
+            fightTarget = value.transform;
+        }
+    }
+    [Space(5)]
+    [SerializeField] GameObject myNest;
+
+    public GopnikNest Nest
+    {
+        get
+        {
+            return myNest.GetComponent<GopnikNest>();
         }
     }
 
@@ -45,9 +75,8 @@ public class GopnikAI : MonoBehaviour, IGoap {
     {
         HashSet<KeyValuePair<string, object>> worldData = new HashSet<KeyValuePair<string, object>>();
         worldData.Add(new KeyValuePair<string, object>("isFree", (huntTarget == null && fightTarget == null)));
-
-        //worldData.Add(new KeyValuePair<string, object>("hasHuntTarget", (huntTarget != null)));
-        //worldData.Add(new KeyValuePair<string, object>("isFightingTarget", (fightTarget != null)));
+        worldData.Add(new KeyValuePair<string, object>("hasHuntTarget", (huntTarget != null)));
+        worldData.Add(new KeyValuePair<string, object>("isFightingTarget", (fightTarget != null)));
 
 
         return worldData;

@@ -17,8 +17,9 @@ GameObject:
   - component: {fileID: 53282920}
   - component: {fileID: 53282921}
   - component: {fileID: 53282914}
+  - component: {fileID: 2187749711077502387}
   m_Layer: 8
-  m_Name: Gopnik1
+  m_Name: Gopnik_def
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -137,7 +138,7 @@ MonoBehaviour:
   _map: {fileID: 0}
   maxSpeed: 5.5
   mass: 25
-  stoppingDistance: 0.07
+  stoppingDistance: 0.5
   slowingDistance: 0.35
   accelerationRate: 5
   decelerationRate: 5
@@ -208,5 +209,22 @@ MonoBehaviour:
   name: IdleAtNest
   cost: 1
   target: {fileID: 0}
-  actionDuration: 1
+  gopAI: {fileID: 53282920}
+  actionDuration: 6
   detectionDistance: 3
+--- !u!114 &2187749711077502387
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3739902497023657731}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19356ebc1dceda24da762ced63e93e33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  name: ChatWithLokh
+  cost: 1
+  target: {fileID: 0}
+  actionDuration: 5
