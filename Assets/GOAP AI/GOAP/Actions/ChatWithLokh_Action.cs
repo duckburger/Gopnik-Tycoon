@@ -6,6 +6,7 @@ public class ChatWithLokh_Action : GoapAction
 {
     bool completed = false;
     float startTime = 0;
+    [SerializeField] ICharStats gopStats;
     [SerializeField] float actionDuration = 2;
 
     public ChatWithLokh_Action()
@@ -47,10 +48,18 @@ public class ChatWithLokh_Action : GoapAction
         if (Time.time - startTime > actionDuration)
         {
             Debug.Log("Finished action" + name);
-           
+            float myIntimidation = gopStats.GetStat_Intimidation();
+            float targetIntimidation = target.GetComponent<ICharStats>().GetStat_Intimidation();
+
+            if (myIntimidation > targetIntimidation)
+            {
+                Debug.Log("Successful intimidation: " + gameObject.name);
+                Wallet targetWalet = target.GetComponent<Wallet>();
+                targetWalet.Rob();
                 completed = true;
-                return completed;
                 startTime = 0;
+                return completed;
+            }
             
         }
         return true;

@@ -41,7 +41,7 @@ public class IdleAtNest_Action : GoapAction
 
     private void GetNewIdlingTarget()
     {
-        GopnikNest myNest = this.GetComponent<GopnikAI>().Nest;
+        GopnikNest myNest = this.GetComponent<GopnikAI>().MyNest;
         target = myNest.SpawnAndGetRandomIdlePoint();
     }
 
@@ -130,8 +130,8 @@ public class IdleAtNest_Action : GoapAction
         foreach (Transform civ in Map.Instance.ActiveCivs)
         {
             float distanceToCiv = Vector2.Distance(this.transform.position, civ.transform.position);
-            CivStates civStates = civ.GetComponent<CivStates>();
-            if (distanceToCiv <= detectionDistance && !civStates.IsAgressive)
+            CivStats civStates = civ.GetComponent<CivStats>();
+            if (distanceToCiv <= detectionDistance)
             {
                 // Set this as the target
                 return civ.gameObject;

@@ -13,11 +13,11 @@ GameObject:
   - component: {fileID: 518376569}
   - component: {fileID: 518376568}
   - component: {fileID: 53282919}
-  - component: {fileID: 53282918}
-  - component: {fileID: 53282920}
   - component: {fileID: 53282921}
+  - component: {fileID: 53282920}
   - component: {fileID: 53282914}
   - component: {fileID: 2187749711077502387}
+  - component: {fileID: 53282918}
   m_Layer: 8
   m_Name: Gopnik_def
   m_TagString: Untagged
@@ -153,7 +153,7 @@ MonoBehaviour:
   restrict: 0
   closerPointOnInvalid: 1
   debugPath: 1
---- !u!114 &53282918
+--- !u!114 &53282921
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -162,11 +162,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 3739902497023657731}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 797c7f2dae4acf14d83d69cf7cb68e0a, type: 3}
+  m_Script: {fileID: 11500000, guid: a9a07630984c23e48a79079359aca64c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentHealth: 0
-  maxHealth: 100
 --- !u!114 &53282920
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -182,18 +180,7 @@ MonoBehaviour:
   huntTarget: {fileID: 0}
   fightTarget: {fileID: 0}
   myNest: {fileID: 0}
---- !u!114 &53282921
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3739902497023657731}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a9a07630984c23e48a79079359aca64c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  stat_intimidation: 6
 --- !u!114 &53282914
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -228,3 +215,17 @@ MonoBehaviour:
   cost: 1
   target: {fileID: 0}
   actionDuration: 5
+--- !u!114 &53282918
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3739902497023657731}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 797c7f2dae4acf14d83d69cf7cb68e0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentHealth: 0
+  maxHealth: 100

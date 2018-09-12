@@ -1,64 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &529607907
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 529607909}
-  - component: {fileID: 529607908}
-  - component: {fileID: 529607910}
-  m_Layer: 0
-  m_Name: ScreenStateController
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &529607909
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 529607907}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -826.8506, y: -636.119, z: 1.3707902}
-  m_LocalScale: {x: 0.9856409, y: 0.9856409, z: 0.9856409}
-  m_Children: []
-  m_Father: {fileID: 7700756278047702355}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &529607908
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 529607907}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 463b8a05cdcf43d42a059d7902ece7c3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &529607910
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 529607907}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a90a61ee66f1efd4fbe9559c407c0143, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  selectedBuilding: {fileID: 0}
-  minDistToCursorToPlace: 1
-  yard: {fileID: 0}
 --- !u!1 &760133408
 GameObject:
   m_ObjectHideFlags: 0
@@ -70,7 +11,7 @@ GameObject:
   - component: {fileID: 760133409}
   - component: {fileID: 760133411}
   - component: {fileID: 760133410}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: EventSystem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -89,7 +30,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7700756278047702355}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &760133411
 MonoBehaviour:
@@ -139,7 +80,7 @@ GameObject:
   - component: {fileID: 1160069916}
   - component: {fileID: 1160069920}
   - component: {fileID: 1160069919}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: BuyGopnikNest
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -242,7 +183,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 529607910}
+      - m_Target: {fileID: 0}
         m_MethodName: PrepareToPlaceBuilding
         m_Mode: 2
         m_Arguments:
@@ -305,7 +246,7 @@ GameObject:
   - component: {fileID: 1891898288}
   - component: {fileID: 1891898290}
   - component: {fileID: 1891898289}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Title
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -464,7 +405,7 @@ GameObject:
   - component: {fileID: 7700756277091531474}
   - component: {fileID: 7700756277091531472}
   - component: {fileID: 7700756277091531473}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: TopBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -540,7 +481,7 @@ GameObject:
   - component: {fileID: 7700756277718089070}
   - component: {fileID: 7700756277718089067}
   - component: {fileID: 7700756277718089068}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Money
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -741,7 +682,7 @@ GameObject:
   - component: {fileID: 7700756278047702356}
   - component: {fileID: 7700756278047702357}
   - component: {fileID: 7700756278047702358}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: UI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -761,7 +702,6 @@ RectTransform:
   m_Children:
   - {fileID: 7700756277091531474}
   - {fileID: 7700756278084641099}
-  - {fileID: 529607909}
   - {fileID: 760133409}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -842,7 +782,7 @@ GameObject:
   - component: {fileID: 7700756278084641099}
   - component: {fileID: 7700756278084641097}
   - component: {fileID: 7700756278084641098}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: BottomBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}

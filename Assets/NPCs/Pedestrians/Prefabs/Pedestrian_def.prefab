@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 2084183076782633539}
   - component: {fileID: 2084183076782633538}
   - component: {fileID: 2084183076782633536}
-  - component: {fileID: 1702984486}
+  - component: {fileID: 7446133877586695586}
   m_Layer: 8
-  m_Name: Pedestrian (1)
+  m_Name: Pedestrian_def
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -133,7 +133,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementSpeed: 0
   target: {fileID: 0}
---- !u!114 &1702984486
+--- !u!114 &7446133877586695586
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -146,3 +146,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isAgressive: 0
+  stat_intimidation: 5

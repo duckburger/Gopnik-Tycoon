@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using PolyNav;
 
-public class GopnikAI : MonoBehaviour, IGoap {
+public class GopnikAI : MonoBehaviour, IGoap, ICharStats {
 
     [Header("Targets")]
     [SerializeField] Transform huntTarget;
@@ -38,17 +38,22 @@ public class GopnikAI : MonoBehaviour, IGoap {
             fightTarget = value.transform;
         }
     }
-    [Space(5)]
+    [Space(10)]
+    [Header("Assigned Nest")]
     [SerializeField] GameObject myNest;
-
-    public GopnikNest Nest
+    public GopnikNest MyNest
     {
         get
         {
             return myNest.GetComponent<GopnikNest>();
         }
     }
-
+    [Header("Stats")]
+    [SerializeField] float stat_intimidation;
+    public float GetStat_Intimidation()
+    {
+        return stat_intimidation;
+    }
 
     PolyNavAgent navAgent;
     Vector2 previousDestination;
@@ -70,6 +75,7 @@ public class GopnikAI : MonoBehaviour, IGoap {
 
     #endregion
 
+    #region GOAP Methods
     // Is run constantly to determine the state of the world in the agent's understanding
     public HashSet<KeyValuePair<string, object>> GetWorldState()
     {
@@ -133,7 +139,7 @@ public class GopnikAI : MonoBehaviour, IGoap {
 
     }
 
-    
-	
-	
+    #endregion
+
+
 }
