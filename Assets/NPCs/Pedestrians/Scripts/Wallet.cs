@@ -15,13 +15,18 @@ public class Wallet : MonoBehaviour {
 
     public void AdjustBalance(float amount)
     {
-        currentBalance -= currentBalance;
+        currentBalance += currentBalance;
     }
 	
     public float Rob()
     {
         // TODO: Make this stat dependent
+        if (currentBalance <= 0)
+        {
+            return 0;
+        }
         float amtToSteal = Random.Range(1, currentBalance);
+        Mathf.Round(amtToSteal);
         AdjustBalance(-amtToSteal);
         return amtToSteal;
     }

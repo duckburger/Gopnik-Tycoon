@@ -19,6 +19,7 @@ public class ChatWithLokh_Action : GoapAction
     private void Start()
     {
         target = this.GetComponent<GopnikAI>().HuntTarget;
+        gopStats = this.GetComponent<ICharStats>();
     }
 
     public override bool checkProceduralPrecondition(GameObject agent)
@@ -55,7 +56,8 @@ public class ChatWithLokh_Action : GoapAction
             {
                 Debug.Log("Successful intimidation: " + gameObject.name);
                 Wallet targetWalet = target.GetComponent<Wallet>();
-                targetWalet.Rob();
+                float stolenAmount = targetWalet.Rob();
+                PlayerCashController.Instance.AdjustBalance(stolenAmount);
                 completed = true;
                 startTime = 0;
                 return completed;

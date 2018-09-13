@@ -12,8 +12,12 @@ GameObject:
   - component: {fileID: 3389606292381677880}
   - component: {fileID: 2084183076782633539}
   - component: {fileID: 2084183076782633538}
+  - component: {fileID: 4086454611381580232}
   - component: {fileID: 2084183076782633536}
   - component: {fileID: 7446133877586695586}
+  - component: {fileID: 1702984481}
+  - component: {fileID: 1702984482}
+  - component: {fileID: 5362470427454308043}
   m_Layer: 8
   m_Name: Pedestrian_def
   m_TagString: Untagged
@@ -119,6 +123,21 @@ CapsuleCollider2D:
   m_Offset: {x: -0.00000047683716, y: 0.78}
   m_Size: {x: 0.5902996, y: 1.5943518}
   m_Direction: 0
+--- !u!114 &4086454611381580232
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3389606292381677881}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e667484d7c843a4fbb0584212d03cac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  runOnce: 0
+  baseSortNumber: 5000
+  refreshRateInSecs: 0.3
 --- !u!114 &2084183076782633536
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -147,3 +166,44 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isAgressive: 0
   stat_intimidation: 5
+--- !u!114 &1702984481
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3389606292381677881}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec4eef2083fd0af47b362c4f21fec5b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isAgressive: 0
+  stat_intimidation: 0
+--- !u!114 &1702984482
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3389606292381677881}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 797c7f2dae4acf14d83d69cf7cb68e0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentHealth: 0
+  maxHealth: 100
+--- !u!114 &5362470427454308043
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3389606292381677881}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cf186eb0bb01eb468955fd706fce91f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentBalance: 25
