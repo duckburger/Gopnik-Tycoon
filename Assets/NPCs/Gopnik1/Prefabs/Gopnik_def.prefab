@@ -16,9 +16,11 @@ GameObject:
   - component: {fileID: 5335771928255225310}
   - component: {fileID: 53282921}
   - component: {fileID: 53282920}
-  - component: {fileID: 53282914}
-  - component: {fileID: 2187749711077502387}
   - component: {fileID: 53282918}
+  - component: {fileID: 3187065647499378444}
+  - component: {fileID: 53282914}
+  - component: {fileID: 7765807504518853116}
+  - component: {fileID: 2187749711077502387}
   m_Layer: 8
   m_Name: Gopnik_def
   m_TagString: Untagged
@@ -55,6 +57,7 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
+  m_RendererPriority: 0
   m_Materials:
   - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
@@ -197,6 +200,34 @@ MonoBehaviour:
   fightTarget: {fileID: 0}
   myNest: {fileID: 0}
   stat_intimidation: 6
+  free: 1
+--- !u!114 &53282918
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3739902497023657731}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 797c7f2dae4acf14d83d69cf7cb68e0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentHealth: 0
+  maxHealth: 100
+--- !u!114 &3187065647499378444
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3739902497023657731}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3133e87d52a84d54aaff7b061fffdc6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  detectionDistance: 5
 --- !u!114 &53282914
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -213,8 +244,26 @@ MonoBehaviour:
   cost: 1
   target: {fileID: 0}
   gopAI: {fileID: 53282920}
-  actionDuration: 6
-  detectionDistance: 3
+  actionDuration: 3
+  targetSensor: {fileID: 0}
+--- !u!114 &7765807504518853116
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3739902497023657731}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b85951a90a0bddb418afecd91f25fc1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  name: CheckForHuntTarget
+  cost: 1
+  target: {fileID: 0}
+  gopAI: {fileID: 0}
+  actionDuration: 0.1
+  targetSensor: {fileID: 0}
 --- !u!114 &2187749711077502387
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -231,17 +280,4 @@ MonoBehaviour:
   cost: 1
   target: {fileID: 0}
   actionDuration: 5
---- !u!114 &53282918
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3739902497023657731}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 797c7f2dae4acf14d83d69cf7cb68e0a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentHealth: 0
-  maxHealth: 100
+  targetSensor: {fileID: 0}

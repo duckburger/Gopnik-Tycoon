@@ -23,9 +23,17 @@ public class GopnikAI : MonoBehaviour, IGoap, ICharStats {
         }
         set
         {
-            huntTarget = value.transform;
+            if (value != null)
+            {
+                huntTarget = value.transform;
+            }
+            else
+            {
+                huntTarget = null;
+            }
         }
     }
+
     [SerializeField] Transform fightTarget;
     public GameObject FightTarget
     {
@@ -38,6 +46,7 @@ public class GopnikAI : MonoBehaviour, IGoap, ICharStats {
             fightTarget = value.transform;
         }
     }
+
     [Space(10)]
     [Header("Assigned Nest")]
     [SerializeField] GameObject myNest;
@@ -48,14 +57,17 @@ public class GopnikAI : MonoBehaviour, IGoap, ICharStats {
             return myNest.GetComponent<GopnikNest>();
         }
     }
+
     [Header("Stats")]
     [SerializeField] float stat_intimidation;
     public float GetStat_Intimidation()
     {
         return stat_intimidation;
     }
+   
 
     PolyNavAgent navAgent;
+    HuntTargetSensor targetSensor;
     Vector2 previousDestination;
     Health health;
 
@@ -64,6 +76,7 @@ public class GopnikAI : MonoBehaviour, IGoap, ICharStats {
     {
         navAgent = this.GetComponent<PolyNavAgent>();
         health = this.GetComponent<Health>();
+        targetSensor = this.GetComponent<HuntTargetSensor>();
     }
 
     #region OnSpawn Methods
@@ -79,19 +92,24 @@ public class GopnikAI : MonoBehaviour, IGoap, ICharStats {
     // Is run constantly to determine the state of the world in the agent's understanding
     public HashSet<KeyValuePair<string, object>> GetWorldState()
     {
+        // Need to have the exact starting preconditions for the first action, otherwise it won't run
         HashSet<KeyValuePair<string, object>> worldData = new HashSet<KeyValuePair<string, object>>();
-        worldData.Add(new KeyValuePair<string, object>("isFree", (huntTarget == null && fightTarget == null)));
         worldData.Add(new KeyValuePair<string, object>("hasHuntTarget", (huntTarget != null)));
         worldData.Add(new KeyValuePair<string, object>("isFightingTarget", (fightTarget != null)));
-
-
         return worldData;
     }
 
     public HashSet<KeyValuePair<string, object>> CreateGoalState()
     {
         HashSet<KeyValuePair<string, object>> goals = new HashSet<KeyValuePair<string, object>>();
-        goals.Add(new KeyValuePair<string, object>("makeMoney", true));
+        if (targetSensor.CheckForAvailableTargets() == null)
+        {
+            goals.Add(new KeyValuePair<string, object>("patrolArea", true));
+        }
+        else
+        {
+            goals.Add((new KeyValuePair<string, object>("makeMoney", true)));
+        }
         return goals;
     }
 
@@ -112,6 +130,7 @@ public class GopnikAI : MonoBehaviour, IGoap, ICharStats {
 
         if (navAgent.remainingDistance < 1)
         {
+            nextAction.setInRange(true);
             return true;
         }
         else
@@ -136,6 +155,10 @@ public class GopnikAI : MonoBehaviour, IGoap, ICharStats {
     public void PlanFound(HashSet<KeyValuePair<string, object>> goal, Queue<GoapAction> actions)
     {
         Debug.Log("Found a plan for " + this.gameObject.name);
+        for (int i = 0; i < actions.Count; i++)
+        {
+            Debug.Log("The action #" + i.ToString() + " for the plan is: " + actions.ToArray()[i]);
+        }
 
     }
 

@@ -7,17 +7,22 @@ public class ChatWithLokh_Action : GoapAction
     bool completed = false;
     float startTime = 0;
     [SerializeField] ICharStats gopStats;
-    [SerializeField] float actionDuration = 2;
+    [SerializeField] float actionDuration = 3;
+    [SerializeField] HuntTargetSensor targetSensor;
 
     public ChatWithLokh_Action()
     {
         addPrecondition("hasHuntTarget", true);
+        addPrecondition("isIdling", true);
+        addPrecondition("isFightingTarget", false);
         addEffect("makeMoney", true);
         name = "ChatWithLokh";
+        cost = 30;
     }
 
     private void Start()
     {
+        targetSensor = this.GetComponent<HuntTargetSensor>();
         target = this.GetComponent<GopnikAI>().HuntTarget;
         gopStats = this.GetComponent<ICharStats>();
     }
@@ -26,9 +31,19 @@ public class ChatWithLokh_Action : GoapAction
     {
         if (target == null)
         {
-            target = this.GetComponent<GopnikAI>().HuntTarget;
+            if (this.GetComponent<GopnikAI>().HuntTarget != null)
+            {
+                target = this.GetComponent<GopnikAI>().HuntTarget;
+            }
+            else
+            {
+                this.GetComponent<GopnikAI>().HuntTarget = targetSensor.CheckForAvailableTargets();
+                target = this.GetComponent<GopnikAI>().HuntTarget;
+            }
         }
-        return true;
+        return target != null;
+        //target = this.GetComponent<GopnikAI>().HuntTarget;
+        //return true;
     }
 
     public override bool isDone()
@@ -57,7 +72,24 @@ public class ChatWithLokh_Action : GoapAction
                 Debug.Log("Successful intimidation: " + gameObject.name);
                 Wallet targetWalet = target.GetComponent<Wallet>();
                 float stolenAmount = targetWalet.Rob();
-                PlayerCashController.Instance.AdjustBalance(stolenAmount);
+                if (stolenAmount > 0)
+                {
+                    PlayerCashController.Instance.AdjustBalance(stolenAmount);
+                    completed = true;
+                    startTime = 0;
+                    return completed;
+                }
+                else
+                {
+                    Debug.Log("What the fuck!? This лох had no money. What a waste of a gopnik's time!");
+                }                
+            }
+            else
+            {
+                Debug.Log("Failed intimidation: " + gameObject.name);
+                removeEffect("makeMoney");
+                this.GetComponent<GopnikAI>().FightTarget = target;
+                addEffect("isFightingTarget", true);
                 completed = true;
                 startTime = 0;
                 return completed;

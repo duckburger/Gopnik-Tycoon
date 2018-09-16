@@ -29,7 +29,7 @@ public class GoapPlanner
 			if ( a.checkProceduralPrecondition(agent) )
 			{
 				usableActions.Add(a);
-				//Debug.Log("Action: " + a.name);
+				Debug.Log("Action: " + a.name + " added to usabled actions");
 			}
 		}
 		
@@ -75,12 +75,12 @@ public class GoapPlanner
 			queue.Enqueue(a);
 		}
 
-		// hooray we have a plan!
-		//foreach(GoapAction a in queue)
-		//{
-		//	Debug.Log("Q: " + a.name);
-		//}
-		return queue;
+        // hooray we have a plan!
+        foreach (GoapAction a in queue)
+        {
+            Debug.Log("Q: " + a.name);
+        }
+        return queue;
 	}
 
 	/**

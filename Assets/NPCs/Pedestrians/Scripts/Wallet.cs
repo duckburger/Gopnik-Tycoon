@@ -15,7 +15,7 @@ public class Wallet : MonoBehaviour {
 
     public void AdjustBalance(float amount)
     {
-        currentBalance += currentBalance;
+        currentBalance += amount;
     }
 	
     public float Rob()
