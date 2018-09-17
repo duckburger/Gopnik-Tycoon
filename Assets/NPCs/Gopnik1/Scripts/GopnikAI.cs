@@ -64,9 +64,11 @@ public class GopnikAI : MonoBehaviour, IGoap, ICharStats {
     {
         return stat_intimidation;
     }
-   
+    [Space(10)]
 
+    public ScriptableFloatVar globalBalance;
     PolyNavAgent navAgent;
+    Animator myAnimator;
     HuntTargetSensor targetSensor;
     Vector2 previousDestination;
     Health health;
@@ -77,6 +79,7 @@ public class GopnikAI : MonoBehaviour, IGoap, ICharStats {
         navAgent = this.GetComponent<PolyNavAgent>();
         health = this.GetComponent<Health>();
         targetSensor = this.GetComponent<HuntTargetSensor>();
+        myAnimator = this.GetComponent<Animator>();
     }
 
     #region OnSpawn Methods
@@ -101,6 +104,7 @@ public class GopnikAI : MonoBehaviour, IGoap, ICharStats {
 
     public HashSet<KeyValuePair<string, object>> CreateGoalState()
     {
+        // Dynamically setting the goals!
         HashSet<KeyValuePair<string, object>> goals = new HashSet<KeyValuePair<string, object>>();
         if (targetSensor.CheckForAvailableTargets() == null)
         {
@@ -139,7 +143,7 @@ public class GopnikAI : MonoBehaviour, IGoap, ICharStats {
 
     public void ActionsFinished()
     {
-        
+        Debug.Log(name + " has completed its goal!");
     }
 
     public void PlanAborted(GoapAction aborter)

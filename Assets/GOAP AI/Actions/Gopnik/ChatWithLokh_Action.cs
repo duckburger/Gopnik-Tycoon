@@ -74,7 +74,8 @@ public class ChatWithLokh_Action : GoapAction
                 float stolenAmount = targetWalet.Rob();
                 if (stolenAmount > 0)
                 {
-                    PlayerCashController.Instance.AdjustBalance(stolenAmount);
+                    //PlayerCashController.Instance.AdjustBalance(stolenAmount);
+                    this.GetComponent<GopnikAI>().globalBalance.AddToFloatValue(stolenAmount);
                     completed = true;
                     startTime = 0;
                     return completed;
@@ -107,6 +108,9 @@ public class ChatWithLokh_Action : GoapAction
 
     public override void reset()
     {
+        removeEffect("makeMoney");
+        removeEffect("isFightingTarget");
+        addEffect("makeMoney", true);
         completed = false;
         startTime = 0;
     }

@@ -9,7 +9,7 @@ public class MoneyDisplay : MonoBehaviour {
 
     public void UpdateMoneyUIText(float newValue)
     {
-        moneyText.text = "$" + newValue.ToString("C0");
+        moneyText.text = newValue.ToString("C0");
     }
 	
 }

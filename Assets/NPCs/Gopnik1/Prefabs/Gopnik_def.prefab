@@ -21,6 +21,8 @@ GameObject:
   - component: {fileID: 53282914}
   - component: {fileID: 7765807504518853116}
   - component: {fileID: 2187749711077502387}
+  - component: {fileID: 2242091896544251282}
+  - component: {fileID: 6226526553411930877}
   m_Layer: 8
   m_Name: Gopnik_def
   m_TagString: Untagged
@@ -200,7 +202,7 @@ MonoBehaviour:
   fightTarget: {fileID: 0}
   myNest: {fileID: 0}
   stat_intimidation: 6
-  free: 1
+  globalBalance: {fileID: 11400000, guid: fc85fcfda1ea83540b06fc8ece01a3b1, type: 2}
 --- !u!114 &53282918
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -281,3 +283,39 @@ MonoBehaviour:
   target: {fileID: 0}
   actionDuration: 5
   targetSensor: {fileID: 0}
+--- !u!114 &2242091896544251282
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3739902497023657731}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbcbf135c8e55674bbd54f1218793773, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  name: PunchTarget
+  cost: 2
+  target: {fileID: 0}
+  actionDuration: 0.5
+  targetSensor: {fileID: 0}
+--- !u!95 &6226526553411930877
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3739902497023657731}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: c5a37e929e9cdea4caf33d9c457440f6, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

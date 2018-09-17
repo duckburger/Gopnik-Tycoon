@@ -7,13 +7,13 @@ public class PunchTarget_Action : GoapAction
     bool completed = false;
     float startTime = 0;
     [SerializeField] ICharStats gopStats;
-    [SerializeField] float actionDuration = 3;
+    [SerializeField] float actionDuration = 0.5f;
     [SerializeField] HuntTargetSensor targetSensor;
 
     public PunchTarget_Action()
     {
         addPrecondition("isFightingTarget", true);
-        addEffect("patrolArea", true);
+        addEffect("makeMoney", true);
         name = "PunchTarget";
         cost = 0;
     }
@@ -27,20 +27,19 @@ public class PunchTarget_Action : GoapAction
 
     public override bool checkProceduralPrecondition(GameObject agent)
     {
-        //if (target == null)
-        //{
-        //    if (this.GetComponent<GopnikAI>().HuntTarget != null)
-        //    {
-        //        target = this.GetComponent<GopnikAI>().HuntTarget;
-        //    }
-        //    else
-        //    {
-        //        target = targetSensor.CheckForAvailableTargets();
-        //    }
-        //}
-        //return target != null;
-        target = this.GetComponent<GopnikAI>().HuntTarget;
-        return true;
+        if (target == null)
+        {
+            if (this.GetComponent<GopnikAI>().HuntTarget != null)
+            {
+                target = this.GetComponent<GopnikAI>().HuntTarget;
+            }
+            else
+            {
+                this.GetComponent<GopnikAI>().HuntTarget = targetSensor.CheckForAvailableTargets();
+                target = this.GetComponent<GopnikAI>().HuntTarget;
+            }
+        }
+        return target != null;
     }
 
     public override bool isDone()
@@ -56,6 +55,8 @@ public class PunchTarget_Action : GoapAction
             Debug.Log("Starting action" + name);
             startTime = Time.time;
         }
+
+        // TODO: Play punch animation
 
         // If the work has been completed
         if (Time.time - startTime > actionDuration)
