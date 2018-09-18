@@ -66,7 +66,9 @@ public class GopnikAI : MonoBehaviour, IGoap, ICharStats {
     }
     [Space(10)]
 
+    [Header("Float Vars")]
     public ScriptableFloatVar globalBalance;
+    [Space(10)]
     PolyNavAgent navAgent;
     Animator myAnimator;
     HuntTargetSensor targetSensor;

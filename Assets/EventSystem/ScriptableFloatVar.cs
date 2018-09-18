@@ -11,6 +11,11 @@ public class ScriptableFloatVar : ScriptableObject
     public float value;
     public List<ScriptableFloatListener> myListeners = new List<ScriptableFloatListener>();
 
+    private void Awake()
+    {
+        Reset();
+    }
+
     #region Adding/Remove Listeners
 
     public void RegisterANewListerner(ScriptableFloatListener newListener)
