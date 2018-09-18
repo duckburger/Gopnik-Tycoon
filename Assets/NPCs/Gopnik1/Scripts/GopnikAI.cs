@@ -72,6 +72,7 @@ public class GopnikAI : MonoBehaviour, IGoap, ICharStats {
     HuntTargetSensor targetSensor;
     Vector2 previousDestination;
     Health health;
+    Vector2 lastDir;
 
     // Use this for initialization
     void Start()
@@ -122,18 +123,24 @@ public class GopnikAI : MonoBehaviour, IGoap, ICharStats {
         //if we don't need to move anywhere
         if (previousDestination == (Vector2)nextAction.target.transform.position)
         {
+            myAnimator.Play("Idle");
             nextAction.setInRange(true);
             return true;
         }
 
+        myAnimator.Play("Walk");
         navAgent.SetDestination(nextAction.target.transform.position, (bool reachedDestination) =>
         {
             nextAction.setInRange(reachedDestination);
             previousDestination = nextAction.target.transform.position;
         });
 
+        myAnimator.SetFloat("xInput", navAgent.movingDirection.x);
+        myAnimator.SetFloat("yInput", navAgent.movingDirection.y);
+
         if (navAgent.remainingDistance < 1)
         {
+            myAnimator.Play("Idle");
             nextAction.setInRange(true);
             return true;
         }

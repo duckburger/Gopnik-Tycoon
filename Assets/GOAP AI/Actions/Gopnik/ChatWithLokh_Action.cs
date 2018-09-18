@@ -74,7 +74,7 @@ public class ChatWithLokh_Action : GoapAction
                 float stolenAmount = targetWalet.Rob();
                 if (stolenAmount > 0)
                 {
-                    //PlayerCashController.Instance.AdjustBalance(stolenAmount);
+                    targetWalet.HasBeenMugged = true;
                     this.GetComponent<GopnikAI>().globalBalance.AddToFloatValue(stolenAmount);
                     completed = true;
                     startTime = 0;

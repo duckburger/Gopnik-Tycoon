@@ -7,6 +7,22 @@ public class Wallet : MonoBehaviour {
     [SerializeField] float currentBalance;
 
     ICharStats charStats;
+    bool hasBeenMugged;
+    public bool HasBeenMugged
+    {
+        get
+        {
+            return hasBeenMugged;
+        }
+        set
+        {
+            if (value.GetType() == typeof(bool))
+            {
+                hasBeenMugged = value;
+            }
+        }
+    }
+
 
     private void Start()
     {

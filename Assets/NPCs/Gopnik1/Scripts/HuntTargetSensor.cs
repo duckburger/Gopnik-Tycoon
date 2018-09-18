@@ -30,8 +30,8 @@ public class HuntTargetSensor : MonoBehaviour
         foreach (Transform civ in Map.Instance.ActiveCivs)
         {
             float distanceToCiv = Vector2.Distance(this.transform.position, civ.transform.position);
-            CivStats civStates = civ.GetComponent<CivStats>();
-            if (distanceToCiv <= detectionDistance)
+            CivStats civStats = civ.GetComponent<CivStats>();
+            if (distanceToCiv <= detectionDistance && !civ.GetComponent<Wallet>().HasBeenMugged)
             {
                 // Set this as the target
                 return civ.gameObject;
