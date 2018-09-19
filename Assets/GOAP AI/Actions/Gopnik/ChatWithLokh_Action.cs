@@ -64,8 +64,8 @@ public class ChatWithLokh_Action : GoapAction
         if (Time.time - startTime > actionDuration)
         {
             Debug.Log("Finished action" + name);
-            float myIntimidation = gopStats.GetStat_Intimidation();
-            float targetIntimidation = target.GetComponent<ICharStats>().GetStat_Intimidation();
+            float myIntimidation = gopStats.GetStat_Strength();
+            float targetIntimidation = target.GetComponent<ICharStats>().GetStat_Strength();
 
             if (myIntimidation > targetIntimidation)
             {

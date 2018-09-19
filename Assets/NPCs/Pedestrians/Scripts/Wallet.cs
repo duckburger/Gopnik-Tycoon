@@ -5,6 +5,10 @@ using UnityEngine;
 public class Wallet : MonoBehaviour {
 
     [SerializeField] float currentBalance;
+    public float CurrentBalance()
+    {
+        return currentBalance;
+    }
 
     ICharStats charStats;
     bool hasBeenMugged;

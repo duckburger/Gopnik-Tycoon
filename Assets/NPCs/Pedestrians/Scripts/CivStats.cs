@@ -12,9 +12,23 @@ public class CivStats : MonoBehaviour, ICharStats {
             return isAgressive;
         }
     }
-    [SerializeField] float stat_intimidation;
-    public float GetStat_Intimidation()
+    [SerializeField] float stat_strength;
+    public float GetStat_Strength()
     {
-        return stat_intimidation;
+        return stat_strength;
+    }
+    [SerializeField] float stat_charisma;
+    public float GetStat_Charisma()
+    {
+        return stat_charisma;
+    }
+    [SerializeField] float stat_cunning;
+    public float GetStat_Cunning()
+    {
+        return stat_cunning;
+    }
+    public float GetWalletBalance()
+    {
+        return this.GetComponent<Wallet>().CurrentBalance();
     }
 }
