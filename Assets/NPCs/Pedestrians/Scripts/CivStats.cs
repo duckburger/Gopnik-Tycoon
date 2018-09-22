@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class CivStats : MonoBehaviour, ICharStats {
 
+    [SerializeField] string name;
+    public string GetCharName()
+    {
+        return name;
+    }
     [SerializeField] bool isAgressive;
 	public bool IsAgressive
     {

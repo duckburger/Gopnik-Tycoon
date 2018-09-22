@@ -6,12 +6,13 @@ public class SelectionController : MonoBehaviour
 {
     public static SelectionController Instance;
 
-    [SerializeField] GameObject displayedPanel; // Replace with IPanel
-    [SerializeField] GameObject selectedObj;
+    [SerializeField] ScriptableEvent somethingSelected;
+    [SerializeField] GameObject selectionArrow;
     [Space(10)]
-    [Header("Tooltips")]
-    [SerializeField] CivTooltip civillianTooltip;
-    public GameObject SelectedObj
+    [SerializeField] UIPanel currPanel; 
+   
+    [SerializeField] SelectableObject selectedObj;
+    public SelectableObject SelectedObj
     {
         get
         {
@@ -21,17 +22,26 @@ public class SelectionController : MonoBehaviour
         {
             if (value == selectedObj)
             {
-                selectedObj = null;
                 // Deselect object
+                this.selectedObj = null;
+                this.selectionArrow.SetActive(false);
+                this.currPanel.Clear();
+                this.currPanel.Close();
             }
             else
             {
                 // Assign new selected obj and return
                 SelectNewObj(value);
             }
-
         }
     }
+
+    [Space(10)]
+    [Header("Tooltips")]
+    [SerializeField] CivTooltip civillianTooltip;
+    // BUildingTooltip currBuildingTooltip;
+    // Etc etc tooltip
+   
 
     private void Awake()
     {
@@ -46,34 +56,69 @@ public class SelectionController : MonoBehaviour
         }
     }
 
-    GameObject SelectNewObj(GameObject newObj)
+    void SelectNewObj(SelectableObject newObj)
     {
-        if (selectedObj)
+        switch (newObj.GetSelectableType())
         {
-            // displayedPanel.Close();
-            selectedObj = null;
+            case SelectableType.NPC:
+                ICharStats charStats = newObj.GetComponent<ICharStats>();
+                // Open and populate the civ tooltip
+                this.currPanel = civillianTooltip;
+                this.currPanel.Open();
+                this.currPanel.Populate(charStats);
+                break;
+            case SelectableType.Building:
+
+                break;
+            case SelectableType.Item:
+
+                break;
+            default:
+                break;
         }
-        // Decide what type of object is being selected and whether there is an object already selected
-        ICharStats charStats = newObj.GetComponent<ICharStats>();
-        if (charStats != null)
-        {
-            // Open and populate the civ tooltip
-            civillianTooltip.Open();
-            civillianTooltip.Populate(charStats);
-        }
+        
+        newObj.GetComponent<SelectableNPC>().isSelected = true;
         selectedObj = newObj;
-        return null;
+        AssignArrowToNew(selectedObj.transform);
     }
 
-    // Start is called before the first frame update
-    void Start()
+    void AssignArrowToNew(Transform newObj)
     {
-        
-    }
+        if (!this.selectionArrow.activeSelf)
+        {
+            this.selectionArrow.SetActive(true);
+        }
+        this.selectionArrow.transform.parent = newObj;
+        float vertOffset = (newObj.GetComponent<SpriteRenderer>().sprite.bounds.size.y * 100 / 64) / 2 + 1; // Getting the vertical size of the sprite
+        this.selectionArrow.transform.localPosition = new Vector2(0, vertOffset);
 
-    // Update is called once per frame
-    void Update()
+        if (this.somethingSelected)
+        {
+            this.somethingSelected.Open();
+        }
+        else
+        {
+            Debug.LogError("No selection event attached to " + this.name);
+        }
+    }
+   
+    public void DeselectAll()
     {
-        
+        if (this.selectedObj != null)
+        {
+            // Clear and then go ahead
+            this.selectedObj = null;
+            this.selectionArrow.SetActive(false);
+            this.currPanel.Clear();
+            this.currPanel.Close();
+            if (this.somethingSelected)
+            {
+                this.somethingSelected.Close();
+            }
+            else
+            {
+                Debug.LogError("No selection event attached to " + this.name);
+            }
+        }
     }
 }

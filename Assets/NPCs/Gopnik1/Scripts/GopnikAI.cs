@@ -6,6 +6,12 @@ using PolyNav;
 
 public class GopnikAI : MonoBehaviour, IGoap, ICharStats {
 
+    [SerializeField] string charName;
+    public string GetCharName()
+    {
+        return charName;
+    }
+
     [Header("Targets")]
     [SerializeField] Transform huntTarget;
     public GameObject HuntTarget

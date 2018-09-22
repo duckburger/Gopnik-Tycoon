@@ -2,12 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SelectableNPC : MonoBehaviour
+public class SelectableNPC : SelectableObject
 {
-    bool isSelected;
+    public bool isSelected;
+
+    public override SelectableType GetSelectableType()
+    {
+        return SelectableType.NPC;
+    }
 
     private void OnMouseDown()
     {
-        SelectionController.Instance.SelectedObj = this.gameObject;
+        SelectionController.Instance.SelectedObj = this;
     }
 }

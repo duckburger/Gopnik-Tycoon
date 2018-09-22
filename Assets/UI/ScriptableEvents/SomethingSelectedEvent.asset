@@ -9,8 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 27b3fdb1a4eccbb47938b6dbb4134800, type: 3}
-  m_Name: CashData
+  m_Script: {fileID: 11500000, guid: 0c122ddbc62c75c4e86b8cd6aa5dc12a, type: 3}
+  m_Name: SomethingSelectedEvent
   m_EditorClassIdentifier: 
-  currentBalance: 0
-  defBalance: 0

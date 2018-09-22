@@ -4,17 +4,21 @@ using UnityEngine;
 using System;
 
 [Serializable]
-[CreateAssetMenu (menuName = "Gopnik/ScriptableFloatVar")]
-public class ScriptableFloatVar : ScriptableObject 
+[CreateAssetMenu (menuName = "Gopnik/Scriptable Float Var")]
+public class ScriptableFloatVar : ScriptableObject, ISerializationCallbackReceiver
 {
-    public float defaultValue;
     public float value;
+    [NonSerialized]
+    public float runtimeValue;
+
     public List<ScriptableFloatListener> myListeners = new List<ScriptableFloatListener>();
 
-    private void Awake()
+    public void OnAfterDeserialize()
     {
-        Reset();
+        this.runtimeValue = value;
     }
+    public void OnBeforeSerialize() { }
+   
 
     #region Adding/Remove Listeners
 
@@ -43,10 +47,6 @@ public class ScriptableFloatVar : ScriptableObject
         SendMessageToAllListeners();
     }
    
-    public void Reset()
-    {
-        this.value = this.defaultValue;
-    }
 
     #endregion
 

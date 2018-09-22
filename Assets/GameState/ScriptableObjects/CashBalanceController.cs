@@ -4,7 +4,7 @@ using UnityEngine;
 using System;
 
 [Serializable]
-[CreateAssetMenu(menuName = "Gopnik/CashBalanceController")]
+[CreateAssetMenu(menuName = "Gopnik/Cash Balance Controller")]
 public class CashBalanceController : ScriptableObject
 {
     [SerializeField] float currentBalance;
