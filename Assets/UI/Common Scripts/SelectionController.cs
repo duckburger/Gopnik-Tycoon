@@ -27,6 +27,7 @@ public class SelectionController : MonoBehaviour
                 this.selectionArrow.SetActive(false);
                 this.currPanel.Clear();
                 this.currPanel.Close();
+                this.somethingSelected.Close();
             }
             else
             {
