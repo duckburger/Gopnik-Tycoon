@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b048ace817747264daa14727fe56d5d9, type: 3}
+  m_Name: DefaultGopnikData
+  m_EditorClassIdentifier: 
+  idleStateSprite: {fileID: 21300000, guid: 9b7dbe15c4c537e4384f4c56cfa224c9, type: 3}
+  fightingStateSprite: {fileID: 21300000, guid: 67d44fb0eeb5d9c41bd68420c5dbc492, type: 3}
+  chattingStateSprite: {fileID: 21300000, guid: fe19f13d616525d4a9eddff710ab48d5, type: 3}
+  razvodStateSprite: {fileID: 21300000, guid: fb07bc2cbaa03a64c88e2828cbc16f91, type: 3}

@@ -142,6 +142,7 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
+  m_RendererPriority: 0
   m_Materials:
   - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
@@ -199,12 +200,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed8d39d44cc047f49b344cbea71362e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gopnikPrefab_LevelOne: {fileID: 3739902497023657731, guid: ab15910f8e478b840b0b8d6b80313824,
-    type: 3}
+  gopnikPrefab_LevelOne: {fileID: 3739902497023657731, guid: ab15910f8e478b840b0b8d6b80313824, type: 3}
   idlePoints:
   - {fileID: 5594842741548870215}
   - {fileID: 8469688952070746338}
   mySpriteRenderer: {fileID: 3177951110702963878}
+  onGopSpawnedEvent: {fileID: 11400000, guid: bf01e1ccd2f90ee4991f65ee6b13c75c, type: 2}
   randomizedIdlingSpots:
   - {fileID: 1204809551795363300}
   - {fileID: 162682996667937056}

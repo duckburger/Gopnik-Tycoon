@@ -9,12 +9,12 @@ public class IdleAtNest_Action : GoapAction
     float startTime = 0;
     [SerializeField] GopnikAI gopAI;
     [SerializeField] float actionDuration = 3;
-    [SerializeField] HuntTargetSensor targetSensor;
 
     public IdleAtNest_Action()
     {
         addPrecondition("isFightingTarget", false);
-        addEffect("isIdling", true);
+        addPrecondition("isChattingTarget", false);
+        addPrecondition("isRazvoditTarget", false);
         addEffect("patrolArea", true);
         name = "IdleAtNest";
         cost = 60;
@@ -23,7 +23,6 @@ public class IdleAtNest_Action : GoapAction
     private void Start()
     {
         // First target is in the vicinity of the nest, but not in its exact position
-        targetSensor = this.GetComponent<HuntTargetSensor>();
         gopAI = this.GetComponent<GopnikAI>();
     }
 
@@ -72,7 +71,6 @@ public class IdleAtNest_Action : GoapAction
         {
             // We just stand in the idle spot for now, later on gotta animate or something
             Debug.Log("Finished action" + name);
-            gopAI.HuntTarget = targetSensor.CheckForAvailableTargets();
             completed = true;
         }
         return true;

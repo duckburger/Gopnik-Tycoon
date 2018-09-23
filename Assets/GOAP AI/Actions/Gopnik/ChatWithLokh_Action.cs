@@ -12,8 +12,8 @@ public class ChatWithLokh_Action : GoapAction
 
     public ChatWithLokh_Action()
     {
-        addPrecondition("hasHuntTarget", true);
-        addPrecondition("isIdling", true);
+        addPrecondition("isHuntingTarget", false);
+        addPrecondition("isChattingTarget", false);
         addPrecondition("isFightingTarget", false);
         addEffect("makeMoney", true);
         name = "ChatWithLokh";
@@ -23,24 +23,12 @@ public class ChatWithLokh_Action : GoapAction
     private void Start()
     {
         targetSensor = this.GetComponent<HuntTargetSensor>();
-        target = this.GetComponent<GopnikAI>().HuntTarget;
+        target = this.GetComponent<GopnikAI>().ChatTarget;
         gopStats = this.GetComponent<ICharStats>();
     }
 
     public override bool checkProceduralPrecondition(GameObject agent)
     {
-        if (target == null)
-        {
-            if (this.GetComponent<GopnikAI>().HuntTarget != null)
-            {
-                target = this.GetComponent<GopnikAI>().HuntTarget;
-            }
-            else
-            {
-                this.GetComponent<GopnikAI>().HuntTarget = targetSensor.CheckForAvailableTargets();
-                target = this.GetComponent<GopnikAI>().HuntTarget;
-            }
-        }
         return target != null;
         //target = this.GetComponent<GopnikAI>().HuntTarget;
         //return true;

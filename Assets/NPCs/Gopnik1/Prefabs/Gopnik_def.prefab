@@ -17,9 +17,7 @@ GameObject:
   - component: {fileID: 53282921}
   - component: {fileID: 53282920}
   - component: {fileID: 53282918}
-  - component: {fileID: 3187065647499378444}
   - component: {fileID: 53282914}
-  - component: {fileID: 7765807504518853116}
   - component: {fileID: 2187749711077502387}
   - component: {fileID: 2242091896544251282}
   - component: {fileID: 6226526553411930877}
@@ -198,10 +196,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38b4b91f00591f640becc03e645322e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  huntTarget: {fileID: 0}
+  charName: 
+  chatTarget: {fileID: 0}
   fightTarget: {fileID: 0}
+  razvodTarget: {fileID: 0}
   myNest: {fileID: 0}
-  stat_intimidation: 6
+  stat_strength: 0
+  stat_charisma: 0
+  stat_cunning: 0
+  myPortrait: {fileID: 21300000, guid: 1980e7437a088d847b8b60b2ff41c07d, type: 3}
   globalBalance: {fileID: 11400000, guid: fc85fcfda1ea83540b06fc8ece01a3b1, type: 2}
 --- !u!114 &53282918
 MonoBehaviour:
@@ -217,19 +220,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentHealth: 0
   maxHealth: 100
---- !u!114 &3187065647499378444
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3739902497023657731}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3133e87d52a84d54aaff7b061fffdc6e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  detectionDistance: 5
 --- !u!114 &53282914
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -247,25 +237,6 @@ MonoBehaviour:
   target: {fileID: 0}
   gopAI: {fileID: 53282920}
   actionDuration: 3
-  targetSensor: {fileID: 0}
---- !u!114 &7765807504518853116
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3739902497023657731}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b85951a90a0bddb418afecd91f25fc1d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  name: CheckForHuntTarget
-  cost: 1
-  target: {fileID: 0}
-  gopAI: {fileID: 0}
-  actionDuration: 0.1
-  targetSensor: {fileID: 0}
 --- !u!114 &2187749711077502387
 MonoBehaviour:
   m_ObjectHideFlags: 0

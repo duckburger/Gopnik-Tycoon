@@ -21,24 +21,12 @@ public class PunchTarget_Action : GoapAction
     private void Start()
     {
         targetSensor = this.GetComponent<HuntTargetSensor>();
-        target = this.GetComponent<GopnikAI>().HuntTarget;
+        target = this.GetComponent<GopnikAI>().ChatTarget;
         gopStats = this.GetComponent<ICharStats>();
     }
 
     public override bool checkProceduralPrecondition(GameObject agent)
     {
-        if (target == null)
-        {
-            if (this.GetComponent<GopnikAI>().HuntTarget != null)
-            {
-                target = this.GetComponent<GopnikAI>().HuntTarget;
-            }
-            else
-            {
-                this.GetComponent<GopnikAI>().HuntTarget = targetSensor.CheckForAvailableTargets();
-                target = this.GetComponent<GopnikAI>().HuntTarget;
-            }
-        }
         return target != null;
     }
 

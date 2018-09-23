@@ -4,6 +4,14 @@ using UnityEngine;
 using UnityEngine.AI;
 using PolyNav;
 
+public enum GopnikActionType
+{ 
+    Idling,
+    Force,
+    Chat,
+    Razvod
+}
+
 public class GopnikAI : MonoBehaviour, IGoap, ICharStats {
 
     [SerializeField] string charName;
@@ -13,14 +21,14 @@ public class GopnikAI : MonoBehaviour, IGoap, ICharStats {
     }
 
     [Header("Targets")]
-    [SerializeField] Transform huntTarget;
-    public GameObject HuntTarget
+    [SerializeField] Transform chatTarget;
+    public GameObject ChatTarget
     {
         get
         {
-            if (huntTarget != null)
+            if (chatTarget != null)
             {
-                return huntTarget.gameObject;
+                return this.chatTarget.gameObject;
             }
             else
             {
@@ -31,11 +39,11 @@ public class GopnikAI : MonoBehaviour, IGoap, ICharStats {
         {
             if (value != null)
             {
-                huntTarget = value.transform;
+                this.chatTarget = value.transform;
             }
             else
             {
-                huntTarget = null;
+                this.chatTarget = null;
             }
         }
     }
@@ -45,11 +53,24 @@ public class GopnikAI : MonoBehaviour, IGoap, ICharStats {
     {
         get
         {
-            return fightTarget.gameObject;
+            return this.fightTarget.gameObject;
         }
         set
         {
-            fightTarget = value.transform;
+            this.fightTarget = value.transform;
+        }
+    }
+
+    [SerializeField] Transform razvodTarget;
+    public GameObject RazvodTarget
+    {
+        get
+        {
+            return this.razvodTarget.gameObject;
+        }
+        set
+        {
+            this.razvodTarget = value.transform;
         }
     }
 
@@ -84,6 +105,19 @@ public class GopnikAI : MonoBehaviour, IGoap, ICharStats {
     {
         return this.GetComponent<Wallet>().CurrentBalance();
     }
+    [SerializeField] Sprite myPortrait;
+    public Sprite GetPortrait()
+    {
+        return myPortrait;
+    }
+    public bool IsBusy
+    {
+        get
+        {
+            return isBusy;
+        } 
+    }
+    bool isBusy;
 
     [Space(10)]
     [Header("Float Vars")]
@@ -114,14 +148,62 @@ public class GopnikAI : MonoBehaviour, IGoap, ICharStats {
 
     #endregion
 
+    #region External Access
+
+    public void AssignTarget(GameObject target, GopnikActionType actionType)
+    {
+        switch (actionType)
+        {
+            case GopnikActionType.Force:
+                this.FightTarget = target;
+                this.ChatTarget = null;
+                this.RazvodTarget = null;
+                break;
+            case GopnikActionType.Chat:
+                this.ChatTarget = target;
+                this.FightTarget = null;
+                this.RazvodTarget = null;
+                break;
+            case GopnikActionType.Razvod:
+                this.RazvodTarget = target;
+                this.FightTarget = null;
+                this.ChatTarget = null;
+                break;
+            default:
+                break;
+        }
+        GetWorldState();
+        CreateGoalState();
+    }
+
+    public GopnikActionType GetCurrentAction()
+    {
+        if (fightTarget != null)
+        {
+            return GopnikActionType.Force;
+        }
+        else if (chatTarget != null)
+        {
+            return GopnikActionType.Chat;
+        }
+        else if (razvodTarget != null)
+        {
+            return GopnikActionType.Razvod;
+        }
+        return GopnikActionType.Idling;
+    }
+
+    #endregion
+
     #region GOAP Methods
     // Is run constantly to determine the state of the world in the agent's understanding
     public HashSet<KeyValuePair<string, object>> GetWorldState()
     {
         // Need to have the exact starting preconditions for the first action, otherwise it won't run
         HashSet<KeyValuePair<string, object>> worldData = new HashSet<KeyValuePair<string, object>>();
-        worldData.Add(new KeyValuePair<string, object>("hasHuntTarget", (huntTarget != null)));
+        worldData.Add(new KeyValuePair<string, object>("isChattingTarget", (chatTarget != null)));
         worldData.Add(new KeyValuePair<string, object>("isFightingTarget", (fightTarget != null)));
+        worldData.Add(new KeyValuePair<string, object>("isRazvoditTarget", (razvodTarget != null)));
         return worldData;
     }
 
@@ -129,14 +211,7 @@ public class GopnikAI : MonoBehaviour, IGoap, ICharStats {
     {
         // Dynamically setting the goals!
         HashSet<KeyValuePair<string, object>> goals = new HashSet<KeyValuePair<string, object>>();
-        if (targetSensor.CheckForAvailableTargets() == null)
-        {
-            goals.Add(new KeyValuePair<string, object>("patrolArea", true));
-        }
-        else
-        {
-            goals.Add((new KeyValuePair<string, object>("makeMoney", true)));
-        }
+        goals.Add(new KeyValuePair<string, object>("patrolArea", true));
         return goals;
     }
 

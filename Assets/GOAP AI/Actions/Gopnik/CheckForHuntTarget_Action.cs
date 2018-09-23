@@ -12,9 +12,9 @@ public class CheckForHuntTarget_Action : GoapAction
 
     public CheckForHuntTarget_Action()
     {
-        addPrecondition("hasHuntTarget", false);
+        addPrecondition("isHuntingTarget", false);
         addPrecondition("isIdling", true);
-        addEffect("hasHuntTarget", true);
+        addEffect("isHuntTarget", true);
         name = "CheckForHuntTarget";
         cost = 10;
     }
@@ -59,7 +59,7 @@ public class CheckForHuntTarget_Action : GoapAction
             if (huntTarget != null)
             {
                 Debug.Log(name + " - Success! Found a лох nearby!");
-                gopAI.HuntTarget = huntTarget;
+                gopAI.ChatTarget = huntTarget;
                 completed = true;
                 startTime = 0;
                 return completed;

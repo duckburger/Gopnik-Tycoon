@@ -36,4 +36,9 @@ public class CivStats : MonoBehaviour, ICharStats {
     {
         return this.GetComponent<Wallet>().CurrentBalance();
     }
+    [SerializeField] Sprite myPortrait;
+    public Sprite GetPortrait()
+    {
+        return myPortrait;
+    }
 }

@@ -9,4 +9,5 @@ public interface ICharStats
     float GetStat_Charisma();
     float GetStat_Cunning();
     float GetWalletBalance();
+    Sprite GetPortrait();
 }
