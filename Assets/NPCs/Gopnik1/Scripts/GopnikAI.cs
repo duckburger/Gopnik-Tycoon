@@ -37,14 +37,11 @@ public class GopnikAI : MonoBehaviour, IGoap, ICharStats {
         }
         set
         {
-            if (value != null)
+            if (value == null)
             {
-                this.chatTarget = value.transform;
+                return;
             }
-            else
-            {
-                this.chatTarget = null;
-            }
+            this.chatTarget = value.transform;
         }
     }
 
@@ -56,7 +53,11 @@ public class GopnikAI : MonoBehaviour, IGoap, ICharStats {
             return this.fightTarget.gameObject;
         }
         set
-        {
+        {   
+            if (value == null)
+            {
+                return;
+            }
             this.fightTarget = value.transform;
         }
     }
@@ -70,6 +71,10 @@ public class GopnikAI : MonoBehaviour, IGoap, ICharStats {
         }
         set
         {
+            if (value == null)
+            {
+                return;
+            }
             this.razvodTarget = value.transform;
         }
     }
@@ -172,6 +177,7 @@ public class GopnikAI : MonoBehaviour, IGoap, ICharStats {
             default:
                 break;
         }
+        Debug.Log("Changed gopnik's goal by assigning new target");
         GetWorldState();
         CreateGoalState();
     }

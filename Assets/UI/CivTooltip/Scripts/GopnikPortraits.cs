@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GopnikPortraits : MonoBehaviour
 {
@@ -11,7 +12,7 @@ public class GopnikPortraits : MonoBehaviour
 
     List<GameObject> gopIcons = new List<GameObject>();
 
-   public void Populate()
+   public void Populate(GopnikActionType gopIconAction)
     {
         if (this.npcController != null)
         {
@@ -21,6 +22,21 @@ public class GopnikPortraits : MonoBehaviour
                 GopUIIcon newPortrait = Instantiate(this.gopnikPortraitPrefab, this.portraitParent).GetComponent<GopUIIcon>();
                 // Assign main icon as well as the current state icon
                 newPortrait.Populate(gopnik);
+                Button portraitButton = newPortrait.GetComponent<Button>();
+                switch (gopIconAction)
+                {
+                    case GopnikActionType.Force:
+                    portraitButton.onClick.AddListener(() => gopnik.AssignTarget(SelectionController.Instance.SelectedObj.gameObject, GopnikActionType.Force));
+                        break;
+                    case GopnikActionType.Chat:
+                    portraitButton.onClick.AddListener(() => gopnik.AssignTarget(SelectionController.Instance.SelectedObj.gameObject, GopnikActionType.Chat));
+                        break;
+                    case GopnikActionType.Razvod:
+                    portraitButton.onClick.AddListener(() => gopnik.AssignTarget(SelectionController.Instance.SelectedObj.gameObject, GopnikActionType.Razvod));
+                        break;
+                    default:
+                        break;
+                }
                 this.gopIcons.Add(newPortrait.gameObject);
             }
         }

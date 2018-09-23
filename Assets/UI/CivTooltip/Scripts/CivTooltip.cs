@@ -33,7 +33,8 @@ public class CivTooltip : UIPanel
     [SerializeField] Button chatActionButton;
     [SerializeField] Button razvodActionButton;
 
-    List<Button> actionButtons = new List<Button>();
+    Dictionary<Button, GopnikActionType> buttonsWithFunctions = new Dictionary<Button, GopnikActionType>();
+
 
     RectTransform thisRect;
     CanvasGroup mainCanvasGroup;
@@ -46,11 +47,13 @@ public class CivTooltip : UIPanel
     {
         this.thisRect = this.GetComponent<RectTransform>();
         this.mainCanvasGroup = this.GetComponent<CanvasGroup>();
-        if (this.actionButtons.Count <= 0)
+        if (this.buttonsWithFunctions.Count <= 0)
         {
             foreach (Transform button in actionsParent)
             {
-                this.actionButtons.Add(button.GetComponent<Button>());
+                Button butt = button.GetComponent<Button>();
+                GopnikActionType actionType = button.GetComponent<GopActionButton>().MyActionType;
+                this.buttonsWithFunctions[butt] = actionType;
             }
         }
         AssignButtonFunctions();
@@ -58,10 +61,12 @@ public class CivTooltip : UIPanel
 
     void AssignButtonFunctions()
     {
-        foreach(Button button in this.actionButtons)
+        foreach(Button button in this.buttonsWithFunctions.Keys)
         {
+            
             button.onClick.AddListener(() => 
             {
+               
                 ToggleGopPanel(button);
             });
         }
@@ -69,7 +74,7 @@ public class CivTooltip : UIPanel
 
     void TurnOffOtherButtons(Button dontTouch)
     {
-        foreach (Button button in this.actionButtons)
+        foreach (Button button in this.buttonsWithFunctions.Keys)
         {
             if (button != dontTouch)
             {
@@ -80,7 +85,7 @@ public class CivTooltip : UIPanel
 
     void TurnOnAllButtons()
     {
-        foreach (Button button in this.actionButtons)
+        foreach (Button button in this.buttonsWithFunctions.Keys)
         {
             button.interactable = true;
         }
@@ -120,7 +125,7 @@ public class CivTooltip : UIPanel
     {
         if (!this.gopPanelIsOpen)
         {
-            OpenGopPanel();
+            OpenGopPanel(this.buttonsWithFunctions[buttonActivated]);
             if (buttonActivated != null)
             {
                 TurnOffOtherButtons(buttonActivated);
@@ -133,7 +138,7 @@ public class CivTooltip : UIPanel
         }
     }
 
-    void OpenGopPanel()
+    void OpenGopPanel(GopnikActionType actionToPass)
     {
         if (!this.gopPanelIsOpen)
         {
@@ -144,7 +149,7 @@ public class CivTooltip : UIPanel
                
                 cg.interactable = true;
                 cg.blocksRaycasts = true;
-                this.gopPortraitsPanel.GetComponent<GopnikPortraits>().Populate();
+                this.gopPortraitsPanel.GetComponent<GopnikPortraits>().Populate(actionToPass);
             });
             this.gopPanelIsOpen = true;
         }

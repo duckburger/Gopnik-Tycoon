@@ -13,7 +13,7 @@ public class ChatWithLokh_Action : GoapAction
     public ChatWithLokh_Action()
     {
         addPrecondition("isHuntingTarget", false);
-        addPrecondition("isChattingTarget", false);
+        addPrecondition("isChattingTarget", true);
         addPrecondition("isFightingTarget", false);
         addEffect("makeMoney", true);
         name = "ChatWithLokh";
