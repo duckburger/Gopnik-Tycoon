@@ -122,7 +122,7 @@ public class BuildingPlacer : MonoBehaviour {
         isPlacingBuilding = false;
         canPlaceNow = false;
         mouseoverPlacementPoint = null;
-        selectedBuilding = null;
+        this.selectedBuilding = null;
         buildingSpriteRenderer = null;
         buildingMapParent = null;
         for (int i = buildingPlacementPoints.Count - 1; i >= 0; i--)
@@ -146,13 +146,18 @@ public class BuildingPlacer : MonoBehaviour {
             Debug.LogError("Couldn't find any placement points on the map, not proceeding with the placement");
             return;
         }
+        if (this.selectedBuilding != null)
+        {
+            Debug.LogError("Already got a building in hand, not spawning another one");
+            return;
+        }
 
         Debug.Log("Placing a " + buildingToPlace.name + " in the scene");
         isPlacingBuilding = true;
         Vector3 mouseWorldPos = mainCam.ScreenToWorldPoint(Input.mousePosition);
-        selectedBuilding = Instantiate(buildingToPlace, mouseWorldPos, Quaternion.identity, yard);
+        this.selectedBuilding = Instantiate(buildingToPlace, mouseWorldPos, Quaternion.identity, yard);
         buildingSpriteRenderer = selectedBuilding.GetComponent<SpriteRenderer>();
-        selectedBuilding.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);      
+        this.selectedBuilding.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);      
     }
 
     #endregion

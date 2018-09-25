@@ -6,6 +6,12 @@ public class Health : MonoBehaviour {
 
     [SerializeField] float currentHealth;
     [SerializeField] float maxHealth = 100;
+    [Space(10)]
+    [Header("Death related")]
+    [SerializeField] GameObject deadBody;
+    [SerializeField] AudioSource myAudioSource;
+    [SerializeField] List<AudioClip> deathSounds = new List<AudioClip>();
+
 
     public int CurrHealthPercentage
     {
@@ -18,7 +24,8 @@ public class Health : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
-        currentHealth = maxHealth;
+        this.currentHealth = this.maxHealth;
+        this.myAudioSource = this.GetComponent<AudioSource>();
     }
 
     public float GetCurrentHealth()
@@ -28,17 +35,24 @@ public class Health : MonoBehaviour {
 
 	public void AdjustHealth(float amount)
     {
-        if (amount > currentHealth)
+        if (Mathf.Abs(amount) > currentHealth)
         {
             Die();
             return;
         }
-        currentHealth -= amount;
+        currentHealth += amount;
     }
 
     void Die()
     {
-        // TODO: Make a death script
+        // Play a sound then spawnt the dead body
+        int soundIndex = Random.Range(0, deathSounds.Count);
+        AudioSource bodyAudiosource = Instantiate(this.deadBody, this.transform.position, Quaternion.identity, this.transform.parent).GetComponent<AudioSource>();
+        bodyAudiosource.clip = this.deathSounds[soundIndex];
+        bodyAudiosource.Play();
+        Destroy(this.gameObject);
     }
+
+
 	
 }

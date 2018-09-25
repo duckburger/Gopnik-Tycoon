@@ -12,10 +12,10 @@ public class ChatWithLokh_Action : GoapAction
 
     public ChatWithLokh_Action()
     {
-        addPrecondition("isHuntingTarget", false);
-        addPrecondition("isChattingTarget", true);
-        addPrecondition("isFightingTarget", false);
-        addEffect("makeMoney", true);
+        //addPrecondition("isHuntingTarget", false);
+        //addPrecondition("isChattingTarget", true);
+        //addPrecondition("isFightingTarget", false);
+        addEffect("patrolArea", true);
         name = "ChatWithLokh";
         cost = 30;
     }
@@ -29,8 +29,8 @@ public class ChatWithLokh_Action : GoapAction
 
     public override bool checkProceduralPrecondition(GameObject agent)
     {
+        target = this.GetComponent<GopnikAI>().ChatTarget;
         return target != null;
-        //target = this.GetComponent<GopnikAI>().HuntTarget;
         //return true;
     }
 
@@ -68,20 +68,22 @@ public class ChatWithLokh_Action : GoapAction
                     FloatingTextDisplay.Instance.SpawnFloatingText(thisScreenPos, "+" + stolenAmount.ToString("C0"));
                     completed = true;
                     startTime = 0;
+                    this.target = null;
+                    this.GetComponent<GopnikAI>().ChatTarget = null;
                     return completed;
                 }
                 else
                 {
                     Debug.Log("What the fuck!? This лох had no money. What a waste of a gopnik's time!");
+                    completed = false;
+                    startTime = 0;
+                    return completed;
                 }                
             }
             else
             {
                 Debug.Log("Failed intimidation: " + gameObject.name);
-                removeEffect("makeMoney");
-                this.GetComponent<GopnikAI>().FightTarget = target;
-                addEffect("isFightingTarget", true);
-                completed = true;
+                completed = false;
                 startTime = 0;
                 return completed;
             }

@@ -42,6 +42,25 @@ TextureImporter:
     21300074: Gopnik1 30
     21300076: Gopnik1 31
     21300078: Gopnik1 32
+    21300080: Gopnik1 33
+    21300082: Gopnik1 34
+    21300084: Gopnik1 35
+    21300086: Gopnik1 36
+    21300088: Gopnik1 37
+    21300090: Gopnik1 38
+    21300092: Gopnik1 39
+    21300094: Gopnik1 40
+    21300096: Gopnik1 41
+    21300098: Gopnik1 42
+    21300100: Gopnik1 43
+    21300102: Gopnik1 44
+    21300104: Gopnik1 45
+    21300106: Gopnik1 46
+    21300108: Gopnik1 47
+    21300110: Gopnik1 48
+    21300112: Gopnik1 49
+    21300114: Gopnik1 50
+    21300116: Gopnik1 51
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -127,7 +146,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 94623bfb67bb1c44f92db625c9df25a3
+      spriteID: 66cf1e97044aae442bd267717d6d67ba
       vertices: []
       indices: 
       edges: []
@@ -147,7 +166,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: f07c6d4225c58b642be0a20a77e8c373
+      spriteID: 821b0de2675f10942a49043a407e7394
       vertices: []
       indices: 
       edges: []
@@ -167,7 +186,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 4084af5178865f842b4a454ee31f25c5
+      spriteID: 9edf3401fe3c60b4db017109cd161cbb
       vertices: []
       indices: 
       edges: []
@@ -187,7 +206,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 2eb9f165119fc4a4b9c8e71b7d52f26c
+      spriteID: af923b680d26e0f49a710af116b1631c
       vertices: []
       indices: 
       edges: []
@@ -207,7 +226,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 4a0d27d0eca2d1b40b6fde75b5e553a1
+      spriteID: 57d6f9856abe255479638c81cd1e7af2
       vertices: []
       indices: 
       edges: []
@@ -227,7 +246,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 5a89c9d78d618ca40bd4a56968aab9f9
+      spriteID: e16fe5b49bfe6e343851704edad391c3
       vertices: []
       indices: 
       edges: []
@@ -247,7 +266,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: bd786d5bff7d204479dabe3d5af2a6ac
+      spriteID: 603ea569e98fa3047961d7800f7c9376
       vertices: []
       indices: 
       edges: []
@@ -267,7 +286,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: b15b560d226c95643af2e8383a66d940
+      spriteID: 1b26edccd68992a4182d0482387a3c6b
       vertices: []
       indices: 
       edges: []
@@ -287,7 +306,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: aa4191537dadffd49b5b5c695e380d19
+      spriteID: 71a871b111afcca49a04a99e6e6223f3
       vertices: []
       indices: 
       edges: []
@@ -307,7 +326,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 0575780b57d22d44592982a0ef0ad80d
+      spriteID: 8cce867f8fbaeee46975e5c3472773be
       vertices: []
       indices: 
       edges: []
@@ -327,7 +346,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: b72095d6de375e5478a460e26cd13d70
+      spriteID: b05f659ac2230e1448d4de87d74d37ad
       vertices: []
       indices: 
       edges: []
@@ -347,7 +366,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: b648feb61f2767d44bdcd2de08ded919
+      spriteID: 2b122ba749a26d04992bd8f6041b3900
       vertices: []
       indices: 
       edges: []
@@ -367,7 +386,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 1441f5afbef656d42bd95237abd5b039
+      spriteID: 8f7dea70f848189409d20c8508626589
       vertices: []
       indices: 
       edges: []
@@ -387,7 +406,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 8f41a19b2f8dfee419d5b58e358a705b
+      spriteID: 2f9fc877f9953a849b747dc48720e9f2
       vertices: []
       indices: 
       edges: []
@@ -407,7 +426,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 4179335e2bb91ca409ea6176ced03d28
+      spriteID: c490970da5dd8a647a486f71d933a7e1
       vertices: []
       indices: 
       edges: []
@@ -427,7 +446,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 6db6a4f6cfbc12e488a119aeefe2b90a
+      spriteID: bb1ebca01a645b24b9ca01e480baeafb
       vertices: []
       indices: 
       edges: []
@@ -447,7 +466,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 1bf82c0f1c4f29d429a2646236061d4d
+      spriteID: 87f3f05806da03a44a4f483dbad07e22
       vertices: []
       indices: 
       edges: []
@@ -467,7 +486,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 5d84455b105e0244c9c6053f45fad167
+      spriteID: 8dea61129dd50d242ab7678b8e67500e
       vertices: []
       indices: 
       edges: []
@@ -487,7 +506,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 12546f61570d7554e8e24b198a45166a
+      spriteID: 89c6e39233926c84c92fed4b3d09a075
       vertices: []
       indices: 
       edges: []
@@ -507,7 +526,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 89be0b49145430e4d9ce56d015833a3d
+      spriteID: 99d9cdf852201ea418c87434fe22b1e7
       vertices: []
       indices: 
       edges: []
@@ -527,7 +546,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 88a4528506e90224dbedb519a0774dd6
+      spriteID: 0d1821a89c68d954b8bca0f5ccacf691
       vertices: []
       indices: 
       edges: []
@@ -547,7 +566,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 67bda08b365be004eb0e4cd92530d051
+      spriteID: 128ac42fa7e06fc43adeac8d57bdd014
       vertices: []
       indices: 
       edges: []
@@ -567,7 +586,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: cf795c6a119592b43958036bfe489b68
+      spriteID: 39b758fde23eaaf44b64237591dd46b5
       vertices: []
       indices: 
       edges: []
@@ -587,7 +606,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 67b025694978d494a9a59acf40ca84ff
+      spriteID: b25f07c7b400484469d17bacf421b37c
       vertices: []
       indices: 
       edges: []
@@ -607,7 +626,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: f1815a7cd17b93c418a5bb75a896a53f
+      spriteID: 30d704ac164709941adc95dfe36a9397
       vertices: []
       indices: 
       edges: []
@@ -627,7 +646,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: e8fe0eeaf74ae20489aa39f332e8eda7
+      spriteID: be90c13ba246174419fddb36dfcf1661
       vertices: []
       indices: 
       edges: []
@@ -647,7 +666,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 978fa145fc914fc438bfb9b9f86b05c3
+      spriteID: 865a0eedae8a71e4fbe0091b3c851331
       vertices: []
       indices: 
       edges: []
@@ -667,7 +686,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 6367b298046ef5743b95fc1df3184348
+      spriteID: aedc11c5234efd342bec669b7902674b
       vertices: []
       indices: 
       edges: []
@@ -687,7 +706,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 02a7dce6e24e4e347ac991a2cea5d8f3
+      spriteID: 2efae5925c3d9ad4bb9fc4a51f1cca94
       vertices: []
       indices: 
       edges: []
@@ -707,7 +726,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: cbe88964633ff3041a05721c127a0e86
+      spriteID: e01974d1335a1de45ba3d518c04c7151
       vertices: []
       indices: 
       edges: []
@@ -727,7 +746,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: d8ad98210e459a24c9d9a1d3f7b3c3c6
+      spriteID: ac698f595bca24d4f9721d0df590e555
       vertices: []
       indices: 
       edges: []
@@ -747,7 +766,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 623f5b5cd3d412e41a0f4d197a2fe2be
+      spriteID: c5a4298cb48cb29438f5eeeae116a1e6
       vertices: []
       indices: 
       edges: []
@@ -767,7 +786,387 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 2a4b170579c001142a625b9f854a6a1b
+      spriteID: 693acc231a69f3144abfcc82215d6c9e
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gopnik1 33
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 384
+        width: 128
+        height: 128
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a3c3f0e75a12a2342975c2d0c3d88366
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gopnik1 34
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 384
+        width: 128
+        height: 128
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c2d46484b3b1da94fbe32a0c1fd7641f
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gopnik1 35
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 384
+        width: 128
+        height: 128
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8924ef0d219ec6c4da0fe7e8cd55e8a5
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gopnik1 36
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 384
+        width: 128
+        height: 128
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2aaf1a2f8c6d3164a8faf7d89866408e
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gopnik1 37
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 384
+        width: 128
+        height: 128
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 666e5b82985236046a722ad725ccd6b9
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gopnik1 38
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 384
+        width: 128
+        height: 128
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c7bf4bef76201fe4dabed6111ab50c10
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gopnik1 39
+      rect:
+        serializedVersion: 2
+        x: 896
+        y: 384
+        width: 128
+        height: 128
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7fb8e3ef9872ab943bf2e33bae8009f4
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gopnik1 40
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 256
+        width: 128
+        height: 128
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 504f7a0a85f2ef74d99c4dee2044accd
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gopnik1 41
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 256
+        width: 128
+        height: 128
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3c0252d9ba6e73e4593fc1a76ba9e2c2
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gopnik1 42
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 256
+        width: 128
+        height: 128
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 13ddd1217936f854996241ec8b21a14c
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gopnik1 43
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 256
+        width: 128
+        height: 128
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fb9828f6a132a5e488295f4619683bd4
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gopnik1 44
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 256
+        width: 128
+        height: 128
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 882a11c32c7ce8d45aeaeaaad2d97335
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gopnik1 45
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 256
+        width: 128
+        height: 128
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f441013609d934543b209d83c159f8b4
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gopnik1 46
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 256
+        width: 128
+        height: 128
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3cf33ff37ecabeb40a9203fb2f385a24
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gopnik1 47
+      rect:
+        serializedVersion: 2
+        x: 896
+        y: 256
+        width: 128
+        height: 128
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ac6f95dc17638ed4883cfd7f8a36fd07
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gopnik1 48
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 128
+        width: 128
+        height: 128
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b611609a6fe8e754c843745597ec0def
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gopnik1 49
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 128
+        width: 128
+        height: 128
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b279a2b667a2bd742a37382b0b0ccb34
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gopnik1 50
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 128
+        width: 128
+        height: 128
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 65c2d82c6cf22cb45929ac8a001165f0
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gopnik1 51
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 128
+        width: 128
+        height: 128
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a43b859948ac9fa498096215d1455860
       vertices: []
       indices: 
       edges: []

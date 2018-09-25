@@ -201,9 +201,9 @@ MonoBehaviour:
   fightTarget: {fileID: 0}
   razvodTarget: {fileID: 0}
   myNest: {fileID: 0}
-  stat_strength: 0
-  stat_charisma: 0
-  stat_cunning: 0
+  stat_strength: 100
+  stat_charisma: 100
+  stat_cunning: 100
   myPortrait: {fileID: 21300000, guid: 1980e7437a088d847b8b60b2ff41c07d, type: 3}
   globalBalance: {fileID: 11400000, guid: fc85fcfda1ea83540b06fc8ece01a3b1, type: 2}
 --- !u!114 &53282918

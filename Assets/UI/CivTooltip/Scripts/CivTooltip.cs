@@ -98,7 +98,7 @@ public class CivTooltip : UIPanel
         if (!isOpen)
         {
             // Populate window as well
-            LeanTween.alphaCanvas(this.mainCanvasGroup, 1, 0.1f).setOnComplete(() =>
+            LeanTween.alphaCanvas(this.mainCanvasGroup, 1, 0.02f).setOnComplete(() =>
             {
                 this.mainCanvasGroup.interactable = true;
                 this.mainCanvasGroup.blocksRaycasts = true;
@@ -112,11 +112,12 @@ public class CivTooltip : UIPanel
         if (isOpen)
         {
             // Clear window
-            LeanTween.alphaCanvas(this.mainCanvasGroup, 0, 0.1f).setOnComplete(() =>
+            LeanTween.alphaCanvas(this.mainCanvasGroup, 0, 0.02f).setOnComplete(() =>
             {
                 this.mainCanvasGroup.interactable = false;
                 this.mainCanvasGroup.blocksRaycasts = false;
             });
+            CloseGopPanel();
             this.isOpen = false;
         }
     }
@@ -144,7 +145,7 @@ public class CivTooltip : UIPanel
         {
             CanvasGroup cg = this.gopPortraitsPanel.GetComponent<CanvasGroup>();
             LeanTween.alphaCanvas(cg, 1, animSpeed * 1.25f);
-            LeanTween.moveY(gopPortraitsPanel, -(this.gopPortraitsPanel.rect.height / 2), animSpeed).setEase(easeIn).setOnComplete(() => 
+            LeanTween.moveY(gopPortraitsPanel, -(this.gopPortraitsPanel.rect.height / 2), animSpeed / 2).setEase(easeIn).setOnComplete(() => 
             {
                
                 cg.interactable = true;
@@ -161,12 +162,13 @@ public class CivTooltip : UIPanel
         {
             CanvasGroup cg = this.gopPortraitsPanel.GetComponent<CanvasGroup>();
             LeanTween.alphaCanvas(cg, 0, animSpeed * 1.25f);
-            LeanTween.moveY(gopPortraitsPanel, this.gopPortraitsPanel.rect.height / 2, animSpeed).setEase(easeOut).setOnComplete(() =>
+            LeanTween.moveY(gopPortraitsPanel, this.gopPortraitsPanel.rect.height / 2, animSpeed / 2).setEase(easeOut).setOnComplete(() =>
             {
                 cg.interactable = false;
                 cg.blocksRaycasts = false;
                 this.gopPortraitsPanel.GetComponent<GopnikPortraits>().Clear();
             });
+            TurnOnAllButtons();
             this.gopPanelIsOpen = false;
         }
         

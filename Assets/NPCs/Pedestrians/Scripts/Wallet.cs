@@ -40,12 +40,12 @@ public class Wallet : MonoBehaviour {
 	
     public float Rob()
     {
-        // TODO: Make this stat dependent
-        if (currentBalance <= 0)
+        // TODO: Make this stat dependent so gopnik with higher intimidation will 
+        if (currentBalance <= 3)
         {
             return 0;
         }
-        float amtToSteal = Random.Range(1, currentBalance);
+        float amtToSteal = Random.Range(3, currentBalance);
         Mathf.Round(amtToSteal);
         AdjustBalance(-amtToSteal);
         return amtToSteal;

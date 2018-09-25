@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using PolyNav;
 
+
 public enum GopnikActionType
 { 
     Idling,
@@ -26,19 +27,17 @@ public class GopnikAI : MonoBehaviour, IGoap, ICharStats {
     {
         get
         {
-            if (chatTarget != null)
-            {
-                return this.chatTarget.gameObject;
-            }
-            else
+            if (chatTarget == null)
             {
                 return null;
             }
+            return this.chatTarget.gameObject;
         }
         set
         {
             if (value == null)
             {
+                this.chatTarget = null;
                 return;
             }
             this.chatTarget = value.transform;
@@ -50,12 +49,17 @@ public class GopnikAI : MonoBehaviour, IGoap, ICharStats {
     {
         get
         {
+            if (this.fightTarget == null)
+            {
+                return null;
+            }
             return this.fightTarget.gameObject;
         }
         set
         {   
             if (value == null)
             {
+                this.fightTarget = null;
                 return;
             }
             this.fightTarget = value.transform;
@@ -67,6 +71,10 @@ public class GopnikAI : MonoBehaviour, IGoap, ICharStats {
     {
         get
         {
+            if (this.razvodTarget == null)
+            {
+                return null;
+            }
             return this.razvodTarget.gameObject;
         }
         set
@@ -213,11 +221,19 @@ public class GopnikAI : MonoBehaviour, IGoap, ICharStats {
         return worldData;
     }
 
-    public HashSet<KeyValuePair<string, object>> CreateGoalState()
+    public HashSet<KeyValuePair<string, object>> CreateGoalState(string customGoal = "")
     {
         // Dynamically setting the goals!
         HashSet<KeyValuePair<string, object>> goals = new HashSet<KeyValuePair<string, object>>();
-        goals.Add(new KeyValuePair<string, object>("patrolArea", true));
+        if (string.IsNullOrEmpty(customGoal))
+        {
+            goals.Add(new KeyValuePair<string, object>("patrolArea", true));
+            //sgoals.Add(new KeyValuePair<string, object>("makeMoney", true));
+        }
+        else
+        {
+
+        }
         return goals;
     }
 
@@ -226,20 +242,20 @@ public class GopnikAI : MonoBehaviour, IGoap, ICharStats {
         //if we don't need to move anywhere
         if (previousDestination == (Vector2)nextAction.target.transform.position)
         {
-            myAnimator.Play("Idle");
+            this.myAnimator.Play("Idle");
             nextAction.setInRange(true);
             return true;
         }
 
-        myAnimator.Play("Walk");
+        this.myAnimator.Play("Walk");
         navAgent.SetDestination(nextAction.target.transform.position, (bool reachedDestination) =>
         {
             nextAction.setInRange(reachedDestination);
             previousDestination = nextAction.target.transform.position;
         });
 
-        myAnimator.SetFloat("xInput", navAgent.movingDirection.x);
-        myAnimator.SetFloat("yInput", navAgent.movingDirection.y);
+       this.myAnimator.SetFloat("xInput", navAgent.movingDirection.x);
+       this.myAnimator.SetFloat("yInput", navAgent.movingDirection.y);
 
         if (navAgent.remainingDistance < 1)
         {

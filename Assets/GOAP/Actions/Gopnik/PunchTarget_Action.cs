@@ -13,7 +13,7 @@ public class PunchTarget_Action : GoapAction
     public PunchTarget_Action()
     {
         addPrecondition("isFightingTarget", true);
-        addEffect("makeMoney", true);
+        addEffect("patrolArea", true);
         name = "PunchTarget";
         cost = 0;
     }
@@ -27,6 +27,7 @@ public class PunchTarget_Action : GoapAction
 
     public override bool checkProceduralPrecondition(GameObject agent)
     {
+        target = this.GetComponent<GopnikAI>().FightTarget;
         return target != null;
     }
 
@@ -44,24 +45,38 @@ public class PunchTarget_Action : GoapAction
             startTime = Time.time;
         }
 
-        // TODO: Play punch animation
+        this.GetComponent<Animator>().Play("Punch");
 
         // If the work has been completed
         if (Time.time - startTime > actionDuration)
         {
             Debug.Log("Finished action" + name);
-            float myIntimidation = gopStats.GetStat_Strength();
-            float targetIntimidation = target.GetComponent<ICharStats>().GetStat_Strength();
-
-            if (myIntimidation > targetIntimidation)
+            float targetHealth = 0;
+            if (target != null)
             {
-                Debug.Log("Successful intimidation: " + gameObject.name);
+                Health targetHealthController = target.GetComponent<Health>();
+                targetHealthController.AdjustHealth(-15f);
+                targetHealth = targetHealthController.GetCurrentHealth();
+            }
+            else
+            {
+                this.GetComponent<GopnikAI>().FightTarget = null;
+                startTime = 0;
+                return completed;
+            }
+            
+
+            if (20 > targetHealth)
+            {
+                Debug.Log("Successful intimidation by force: " + gameObject.name);
                 Wallet targetWalet = target.GetComponent<Wallet>();
                 float stolenAmount = targetWalet.Rob();
                 if (stolenAmount > 0)
                 {
                     PlayerCashController.Instance.AdjustBalance(stolenAmount);
                     completed = true;
+                    this.target = null;
+                    this.GetComponent<GopnikAI>().FightTarget = null;
                     startTime = 0;
                     return completed;
                 }
@@ -72,10 +87,7 @@ public class PunchTarget_Action : GoapAction
             }
             else
             {
-                Debug.Log("Failed intimidation: " + gameObject.name);
-                removeEffect("makeMoney");
-                this.GetComponent<GopnikAI>().FightTarget = target;
-                addEffect("isFightingTarget", true);
+                Debug.Log("Still got health left: " + gameObject.name);
                 completed = true;
                 startTime = 0;
                 return completed;

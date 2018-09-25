@@ -54,7 +54,7 @@ public class GopnikNest : MonoBehaviour, IBuildingSetup {
     public GameObject SpawnAndGetRandomIdlePoint()
     {
         Transform chosenTransform = idlePoints[Random.Range(0, 1)];
-        Vector2 randomizedPos = new Vector2(chosenTransform.position.x + Random.Range(-3f, 3f), chosenTransform.position.y + Random.Range(-3f, 3f));
+        Vector2 randomizedPos = new Vector2(chosenTransform.position.x + Random.Range(-2.2f, 2.2f), chosenTransform.position.y + Random.Range(-2.2f, 2.2f));
         GameObject spotToUse = randomizedIdlingSpots[Random.Range(0, randomizedIdlingSpots.Count - 1)];
         spotToUse.transform.position = randomizedPos;
         spotToUse.SetActive(true);
