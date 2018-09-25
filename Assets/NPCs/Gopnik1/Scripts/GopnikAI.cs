@@ -3,7 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using PolyNav;
+using UnityEngine.Events;
+using System;
 
+[Serializable]
+public class OnStateChanged_Event : UnityEvent<GopnikActionType>
+{
+
+}
 
 public enum GopnikActionType
 { 
@@ -142,6 +149,10 @@ public class GopnikAI : MonoBehaviour, IGoap, ICharStats {
     Vector2 previousDestination;
     Health health;
     Vector2 lastDir;
+    [Space(10)]
+    [Header("Events")]
+    public OnStateChanged_Event stateChangedEvent;
+
 
     // Use this for initialization
     void Start()
@@ -188,6 +199,7 @@ public class GopnikAI : MonoBehaviour, IGoap, ICharStats {
         Debug.Log("Changed gopnik's goal by assigning new target");
         GetWorldState();
         CreateGoalState();
+        this.stateChangedEvent.Invoke(actionType);
     }
 
     public GopnikActionType GetCurrentAction()
@@ -218,6 +230,7 @@ public class GopnikAI : MonoBehaviour, IGoap, ICharStats {
         worldData.Add(new KeyValuePair<string, object>("isChattingTarget", (chatTarget != null)));
         worldData.Add(new KeyValuePair<string, object>("isFightingTarget", (fightTarget != null)));
         worldData.Add(new KeyValuePair<string, object>("isRazvoditTarget", (razvodTarget != null)));
+        stateChangedEvent.Invoke(GetCurrentAction());
         return worldData;
     }
 

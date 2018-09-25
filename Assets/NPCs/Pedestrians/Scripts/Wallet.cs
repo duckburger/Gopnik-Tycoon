@@ -1,10 +1,21 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
+using System;
+
+[Serializable]
+public class WalletBalanceChanged_Event : UnityEvent<float>
+{
+
+}
 
 public class Wallet : MonoBehaviour {
 
     [SerializeField] float currentBalance;
+
+    public WalletBalanceChanged_Event balanceChagedEvent;
+
     public float CurrentBalance()
     {
         return currentBalance;
@@ -30,12 +41,18 @@ public class Wallet : MonoBehaviour {
 
     private void Start()
     {
-        charStats = this.GetComponent<ICharStats>();
+        this.charStats = this.GetComponent<ICharStats>();
     }
 
     public void AdjustBalance(float amount)
     {
-        currentBalance += amount;
+        if ((this.currentBalance += amount) < 0)
+        {
+            Debug.LogError("Cannot take this much, there isn't enough in this wallet");
+            return;
+        }
+        this.currentBalance += amount;
+        this.balanceChagedEvent.Invoke(this.currentBalance);
     }
 	
     public float Rob()
@@ -45,7 +62,7 @@ public class Wallet : MonoBehaviour {
         {
             return 0;
         }
-        float amtToSteal = Random.Range(3, currentBalance);
+        float amtToSteal = UnityEngine.Random.Range(3, currentBalance);
         Mathf.Round(amtToSteal);
         AdjustBalance(-amtToSteal);
         return amtToSteal;

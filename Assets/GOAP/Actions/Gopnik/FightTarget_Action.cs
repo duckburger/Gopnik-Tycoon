@@ -2,7 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PunchTarget_Action : GoapAction
+public enum AttackSide
+{
+    Left,
+    Right,
+    Top,
+    Bottom
+}
+
+public class FightTarget_Action : GoapAction
 {
     bool completed = false;
     float startTime = 0;
@@ -10,19 +18,22 @@ public class PunchTarget_Action : GoapAction
     [SerializeField] float actionDuration = 0.5f;
     [SerializeField] HuntTargetSensor targetSensor;
 
-    public PunchTarget_Action()
+    Stamina myStamina;
+
+    public FightTarget_Action()
     {
         addPrecondition("isFightingTarget", true);
         addEffect("patrolArea", true);
-        name = "PunchTarget";
+        name = "FightTarget";
         cost = 0;
     }
 
     private void Start()
     {
-        targetSensor = this.GetComponent<HuntTargetSensor>();
-        target = this.GetComponent<GopnikAI>().ChatTarget;
-        gopStats = this.GetComponent<ICharStats>();
+        this.targetSensor = this.GetComponent<HuntTargetSensor>();
+        this.target = this.GetComponent<GopnikAI>().ChatTarget;
+        this.gopStats = this.GetComponent<ICharStats>();
+        this.myStamina = this.GetComponent<Stamina>();
     }
 
     public override bool checkProceduralPrecondition(GameObject agent)
@@ -96,6 +107,50 @@ public class PunchTarget_Action : GoapAction
         }
         return true;
     }
+
+    public void CheckPunchCollision(AttackSide sideToCheck)
+    {
+        switch (sideToCheck)
+        {
+            case AttackSide.Left:
+
+                break;
+            case AttackSide.Right:
+
+                break;
+            case AttackSide.Top:
+
+                break;
+            case AttackSide.Bottom:
+
+                break;
+            default:
+                break;
+        }
+    }
+
+    public void CheckKickCollision(AttackSide sideToCheck)
+    {
+        switch (sideToCheck)
+        {
+            case AttackSide.Left:
+
+                break;
+            case AttackSide.Right:
+
+                break;
+            case AttackSide.Top:
+
+                break;
+            case AttackSide.Bottom:
+
+                break;
+            default:
+                break;
+        }
+    }
+
+
 
 
     public override bool requiresInRange()

@@ -1,5 +1,6 @@
 ﻿using UnityEngine.UI;
 using UnityEngine;
+using System.Collections;
 using TMPro;
 using System.Collections.Generic;
 
@@ -34,7 +35,6 @@ public class CivTooltip : UIPanel
     [SerializeField] Button razvodActionButton;
 
     Dictionary<Button, GopnikActionType> buttonsWithFunctions = new Dictionary<Button, GopnikActionType>();
-
 
     RectTransform thisRect;
     CanvasGroup mainCanvasGroup;
@@ -120,6 +120,7 @@ public class CivTooltip : UIPanel
             CloseGopPanel();
             this.isOpen = false;
         }
+       
     }
 
     void ToggleGopPanel(Button buttonActivated = null)
@@ -210,10 +211,21 @@ public class CivTooltip : UIPanel
         this.cunningBar.fillAmount = cunFillAmt;
         // Cash
         this.walletBalance.text = stats.GetWalletBalance().ToString("$0");
+        StopAllCoroutines();
+        StartCoroutine(WaitThenAssignDelegate());
     }
 
     #endregion
 
+    IEnumerator WaitThenAssignDelegate()
+    {
+        do
+        {
+            yield return new WaitForSeconds(0.5f);
+        } while (SelectionController.Instance.SelectedObj == null);
+        SelectionController.Instance.SelectedObj.gameObject.GetComponent<Wallet>().balanceChagedEvent.AddListener(UpdateWalletBalanceText);
+        yield break;
+    }
 
     public void Clear()
     {
@@ -230,5 +242,11 @@ public class CivTooltip : UIPanel
         this.cunTextAmt.text = "";
         cunningBar.fillAmount = maxStatAmt.value;
 
+    }
+
+
+    void UpdateWalletBalanceText(float newBalance)
+    {
+        this.walletBalance.text = newBalance.ToString("$0");
     }
 }
