@@ -50,7 +50,17 @@ public class Health : MonoBehaviour {
         AudioSource bodyAudiosource = Instantiate(this.deadBody, this.transform.position, Quaternion.identity, this.transform.parent).GetComponent<AudioSource>();
         bodyAudiosource.clip = this.deathSounds[soundIndex];
         bodyAudiosource.Play();
+        DeseletMyself();
         Destroy(this.gameObject);
+    }
+
+    void DeseletMyself()
+    {
+        SelectableObject me = this.GetComponent<SelectableObject>();
+        if (SelectionController.Instance.SelectedObj == me)
+        {
+            SelectionController.Instance.SelectedObj = null;
+        }
     }
 
 

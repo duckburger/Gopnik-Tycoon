@@ -3,6 +3,7 @@ using UnityEngine;
 using System.Collections;
 using TMPro;
 using System.Collections.Generic;
+using System;
 
 public class CivTooltip : UIPanel
 {
@@ -66,8 +67,16 @@ public class CivTooltip : UIPanel
             
             button.onClick.AddListener(() => 
             {
-               
-                ToggleGopPanel(button);
+                if (!gopPanelIsOpen)
+                {
+                    ToggleGopPanel(button);
+                }
+                else
+                {
+                    // Close panel, then reopen with the new function
+                    CloseGopPanel(() => OpenGopPanel(this.buttonsWithFunctions[button]));
+                }
+                
             });
         }
     }
@@ -128,10 +137,10 @@ public class CivTooltip : UIPanel
         if (!this.gopPanelIsOpen)
         {
             OpenGopPanel(this.buttonsWithFunctions[buttonActivated]);
-            if (buttonActivated != null)
-            {
-                TurnOffOtherButtons(buttonActivated);
-            }
+            //if (buttonActivated != null)
+            //{
+            //    TurnOffOtherButtons(buttonActivated);
+            //}
         }
         else
         {
@@ -157,7 +166,7 @@ public class CivTooltip : UIPanel
         }
     }
 
-    void CloseGopPanel()
+    void CloseGopPanel(Action callback = null)
     {
         if (this.gopPanelIsOpen)
         {
@@ -168,8 +177,12 @@ public class CivTooltip : UIPanel
                 cg.interactable = false;
                 cg.blocksRaycasts = false;
                 this.gopPortraitsPanel.GetComponent<GopnikPortraits>().Clear();
+                if (callback != null)
+                {
+                    callback();
+                }
             });
-            TurnOnAllButtons();
+            //TurnOnAllButtons();
             this.gopPanelIsOpen = false;
         }
         

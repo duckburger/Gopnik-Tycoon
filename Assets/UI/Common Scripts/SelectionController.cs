@@ -20,7 +20,7 @@ public class SelectionController : MonoBehaviour
         }
         set
         {
-            if (value == selectedObj)
+            if (value == selectedObj || value == null)
             {
                 // Deselect object
                 this.selectedObj = null;
