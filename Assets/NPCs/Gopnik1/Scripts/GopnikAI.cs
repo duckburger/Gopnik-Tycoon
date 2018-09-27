@@ -197,8 +197,7 @@ public class GopnikAI : MonoBehaviour, IGoap, ICharStats {
                 break;
         }
         Debug.Log("Changed gopnik's goal by assigning new target");
-        GetWorldState();
-        CreateGoalState();
+        this.GetComponent<GoapAgent>().PushIdleState();
         this.stateChangedEvent.Invoke(actionType);
     }
 

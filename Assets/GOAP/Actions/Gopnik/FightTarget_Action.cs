@@ -15,10 +15,12 @@ public class FightTarget_Action : GoapAction
     bool completed = false;
     float startTime = 0;
     [SerializeField] ICharStats gopStats;
-    [SerializeField] float actionDuration = 0.5f;
-    [SerializeField] HuntTargetSensor targetSensor;
+    [SerializeField] float actionDuration = 0.7f;
 
     Stamina myStamina;
+    bool isAttacking = false;
+    bool doingAction = false;
+    Animator myAnimator;
 
     public FightTarget_Action()
     {
@@ -30,10 +32,10 @@ public class FightTarget_Action : GoapAction
 
     private void Start()
     {
-        this.targetSensor = this.GetComponent<HuntTargetSensor>();
         this.target = this.GetComponent<GopnikAI>().ChatTarget;
         this.gopStats = this.GetComponent<ICharStats>();
         this.myStamina = this.GetComponent<Stamina>();
+        this.myAnimator = this.GetComponent<Animator>();
     }
 
     public override bool checkProceduralPrecondition(GameObject agent)
@@ -54,28 +56,39 @@ public class FightTarget_Action : GoapAction
         {
             Debug.Log("Starting action" + name);
             startTime = Time.time;
-        }
+            if (this.myStamina.CurrStaminaPercentage > 70)
+            {
+                Debug.Log("Starting kick animation");
+                this.myAnimator.Play("Kick");
+                this.myStamina.AdjustStamina(-30);
+                Invoke("Kick", 0.5f);
+            }
+            else
+            {
+                Debug.Log("Starting Punch animation");
+                this.myAnimator.Play("Punch");
+                this.myStamina.AdjustStamina(-15);
+                Invoke("Punch", 0.5f);
 
-        this.GetComponent<Animator>().Play("Punch");
+            }
+        }
 
         // If the work has been completed
         if (Time.time - startTime > actionDuration)
         {
-            Debug.Log("Finished action" + name);
-            float targetHealth = 0;
+            Debug.Log("Completing action " + name);
+            float targetHealth = 100;
             if (target != null)
             {
                 Health targetHealthController = target.GetComponent<Health>();
-                targetHealthController.AdjustHealth(-15f);
                 targetHealth = targetHealthController.GetCurrentHealth();
             }
             else
             {
                 this.GetComponent<GopnikAI>().FightTarget = null;
                 startTime = 0;
-                return completed;
+                return true;
             }
-            
 
             if (20 > targetHealth)
             {
@@ -84,7 +97,12 @@ public class FightTarget_Action : GoapAction
                 float stolenAmount = targetWalet.Rob();
                 if (stolenAmount > 0)
                 {
-                    PlayerCashController.Instance.AdjustBalance(stolenAmount);
+                    targetWalet.HasBeenMugged = true;
+                    this.GetComponent<GopnikAI>().globalBalance.AddToFloatValue(stolenAmount);
+
+                    Vector2 thisScreenPos = Camera.main.WorldToScreenPoint(this.transform.position);
+                    FloatingTextDisplay.Instance.SpawnFloatingText(thisScreenPos, "+" + stolenAmount.ToString("C0"));
+
                     completed = true;
                     this.target = null;
                     this.GetComponent<GopnikAI>().FightTarget = null;
@@ -94,60 +112,46 @@ public class FightTarget_Action : GoapAction
                 else
                 {
                     Debug.Log("What the fuck!? This лох had no money. What a waste of a gopnik's time!");
-                }                
+                    startTime = 0;
+                    completed = false;
+                    return true;
+                }
             }
             else
             {
                 Debug.Log("Still got health left: " + gameObject.name);
-                completed = true;
                 startTime = 0;
-                return completed;
+                return true;
             }
-            
         }
         return true;
+
+
+
     }
 
-    public void CheckPunchCollision(AttackSide sideToCheck)
+    public void Punch()
     {
-        switch (sideToCheck)
+        if (target != null)
         {
-            case AttackSide.Left:
-
-                break;
-            case AttackSide.Right:
-
-                break;
-            case AttackSide.Top:
-
-                break;
-            case AttackSide.Bottom:
-
-                break;
-            default:
-                break;
+            Health targetHealthController = target.GetComponent<Health>();
+            targetHealthController.AdjustHealth(-15f);
+            Debug.Log("Punching!");
+            return;
         }
+
     }
 
-    public void CheckKickCollision(AttackSide sideToCheck)
+    public void Kick()
     {
-        switch (sideToCheck)
+        if (target != null)
         {
-            case AttackSide.Left:
-
-                break;
-            case AttackSide.Right:
-
-                break;
-            case AttackSide.Top:
-
-                break;
-            case AttackSide.Bottom:
-
-                break;
-            default:
-                break;
+            Health targetHealthController = target.GetComponent<Health>();
+            targetHealthController.AdjustHealth(-30f);
+            Debug.Log("Kicking!");
+            return;
         }
+
     }
 
 

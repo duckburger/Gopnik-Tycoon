@@ -35,6 +35,10 @@ public class Health : MonoBehaviour {
 
 	public void AdjustHealth(float amount)
     {
+        if (amount < 0)
+        {
+            Debug.Log(this.gameObject.name + " is hurt for " + Mathf.Abs(amount) + " health!");
+        }
         if (Mathf.Abs(amount) > currentHealth)
         {
             Die();

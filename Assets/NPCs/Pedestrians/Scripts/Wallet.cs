@@ -62,8 +62,9 @@ public class Wallet : MonoBehaviour {
         {
             return 0;
         }
-        float amtToSteal = UnityEngine.Random.Range(3, currentBalance);
-        Mathf.Round(amtToSteal);
+        int amtToSteal = (int)UnityEngine.Random.Range(3, currentBalance);
+        Mathf.RoundToInt(amtToSteal);
+        Debug.Log("Successful robbery for " + amtToSteal);
         AdjustBalance(-amtToSteal);
         return amtToSteal;
     }

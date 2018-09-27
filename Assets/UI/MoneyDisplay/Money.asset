@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09dae67a9760f6643ac6d18a6bc13420, type: 3}
   m_Name: Money
   m_EditorClassIdentifier: 
-  defaultValue: 0
-  value: 0
+  value: 15
+  defValue: 0
   myListeners: []

@@ -64,8 +64,10 @@ public class ChatWithLokh_Action : GoapAction
                 {
                     targetWalet.HasBeenMugged = true;
                     this.GetComponent<GopnikAI>().globalBalance.AddToFloatValue(stolenAmount);
+
                     Vector2 thisScreenPos = Camera.main.WorldToScreenPoint(this.transform.position);
                     FloatingTextDisplay.Instance.SpawnFloatingText(thisScreenPos, "+" + stolenAmount.ToString("C0"));
+
                     completed = true;
                     startTime = 0;
                     this.target = null;

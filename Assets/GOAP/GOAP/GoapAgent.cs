@@ -35,6 +35,12 @@ public sealed class GoapAgent : MonoBehaviour
         loadActions();
     }
 
+    // Used for instantly stopping the agent and passing a new action in
+    public void PushIdleState()
+    {
+        this.stateMachine.pushState(idleState);
+    }
+
 
     void Update()
     {
@@ -222,6 +228,9 @@ public sealed class GoapAgent : MonoBehaviour
         Debug.Log("Found actions: " + prettyPrint(actions));
     }
 
+
+    #region Printing Methods
+
     public static string prettyPrint(HashSet<KeyValuePair<string, object>> state)
     {
         String s = "";
@@ -261,4 +270,7 @@ public sealed class GoapAgent : MonoBehaviour
         String s = "" + action.GetType().Name;
         return s;
     }
+
+    #endregion
+
 }

@@ -5,20 +5,17 @@ using System;
 
 [Serializable]
 [CreateAssetMenu (menuName = "Gopnik/Scriptable Float Var")]
-public class ScriptableFloatVar : ScriptableObject, ISerializationCallbackReceiver
+public class ScriptableFloatVar : ScriptableObject
 {
     public float value;
-    [NonSerialized]
-    public float runtimeValue;
+    public float defValue = 0;
 
     public List<ScriptableFloatListener> myListeners = new List<ScriptableFloatListener>();
 
-    public void OnAfterDeserialize()
+    public void Reset()
     {
-        this.runtimeValue = value;
+        this.value = this.defValue;
     }
-    public void OnBeforeSerialize() { }
-   
 
     #region Adding/Remove Listeners
 

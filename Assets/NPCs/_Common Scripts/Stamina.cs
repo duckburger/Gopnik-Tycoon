@@ -11,7 +11,7 @@ public class Stamina : MonoBehaviour
     {
         get
         {
-            return (int)(currentStamina / maxStamina);
+            return (int)(currentStamina / maxStamina) * 100;
         }
     }
 
@@ -21,7 +21,7 @@ public class Stamina : MonoBehaviour
         this.currentStamina = this.maxStamina;
     }
 
-    public float GetCurrentHealth()
+    public float GetCurrentStamina()
     {
         return currentStamina;
     }
