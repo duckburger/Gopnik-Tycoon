@@ -17,26 +17,26 @@ public class GopnikPortraits : MonoBehaviour
         if (this.npcController != null)
         {
             // Add all the portraits to the bar with appropriate action icon, one by one
-            foreach (GopnikAI gopnik in this.npcController.GetAllGopniks())
+            foreach (AI_CharController gopnik in this.npcController.GetAllGopniks())
             {
                 GopUIIcon newPortrait = Instantiate(this.gopnikPortraitPrefab, this.portraitParent).GetComponent<GopUIIcon>();
                 // Assign main icon as well as the current state icon
                 newPortrait.Populate(gopnik);
                 Button portraitButton = newPortrait.GetComponent<Button>();
-                switch (gopIconAction)
-                {
-                    case GopnikActionType.Force:
-                    portraitButton.onClick.AddListener(() => gopnik.AssignTarget(SelectionController.Instance.SelectedObj.gameObject, GopnikActionType.Force));
-                        break;
-                    case GopnikActionType.Chat:
-                    portraitButton.onClick.AddListener(() => gopnik.AssignTarget(SelectionController.Instance.SelectedObj.gameObject, GopnikActionType.Chat));
-                        break;
-                    case GopnikActionType.Razvod:
-                    portraitButton.onClick.AddListener(() => gopnik.AssignTarget(SelectionController.Instance.SelectedObj.gameObject, GopnikActionType.Razvod));
-                        break;
-                    default:
-                        break;
-                }
+                //switch (gopIconAction)
+                //{
+                //    case GopnikActionType.Force:
+                //    portraitButton.onClick.AddListener(() => gopnik.AssignTarget(SelectionController.Instance.SelectedObj.gameObject, GopnikActionType.Force));
+                //        break;
+                //    case GopnikActionType.Chat:
+                //    portraitButton.onClick.AddListener(() => gopnik.AssignTarget(SelectionController.Instance.SelectedObj.gameObject, GopnikActionType.Chat));
+                //        break;
+                //    case GopnikActionType.Razvod:
+                //    portraitButton.onClick.AddListener(() => gopnik.AssignTarget(SelectionController.Instance.SelectedObj.gameObject, GopnikActionType.Razvod));
+                //        break;
+                //    default:
+                //        break;
+                //}
                 this.gopIcons.Add(newPortrait.gameObject);
             }
         }

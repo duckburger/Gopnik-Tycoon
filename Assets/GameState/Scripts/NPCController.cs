@@ -4,9 +4,31 @@ using UnityEngine;
 
 public class NPCController : MonoBehaviour
 {
-    List<GopnikAI> allGopniks = new List<GopnikAI>();
+    public static NPCController Instance;
 
-    public void AddNewGopnik(GopnikAI newGopnik)
+    [SerializeField] Transform npcParent;
+    public Transform NpcParent
+    {
+        get
+        {
+            return this.npcParent;
+        }
+    }
+    List<AI_CharController> allGopniks = new List<AI_CharController>();
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else if (Instance != this)
+        {
+            Destroy(this.gameObject);
+        }
+    }
+
+    public void AddNewGopnik(AI_CharController newGopnik)
     {
         if (!this.allGopniks.Contains(newGopnik))
         {
@@ -14,7 +36,7 @@ public class NPCController : MonoBehaviour
         }
     }
 
-    public List<GopnikAI> GetAllGopniks()
+    public List<AI_CharController> GetAllGopniks()
     {
         return allGopniks;
     }

@@ -3,10 +3,7 @@ using UnityEngine;
 using System;
 
 [Serializable]
-public class GopSpwndEvnt : UnityEvent<GopnikAI>
-{
-}
-
+public class GopSpwndEvnt : UnityEvent<AI_CharController> { }
 
 public class GopnikSpawnedEventListener : MonoBehaviour
 {
@@ -44,7 +41,7 @@ public class GopnikSpawnedEventListener : MonoBehaviour
 
     #endregion
 
-    public void Raise(GopnikAI newGopnik)
+    public void Raise(AI_CharController newGopnik)
     {
         this.raiseResponse.Invoke(newGopnik);
     }

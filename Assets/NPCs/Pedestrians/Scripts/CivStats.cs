@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CivStats : MonoBehaviour, ICharStats {
+public class CivStats : MonoBehaviour /*ICharStats*/ {
 
     [SerializeField] string name;
     public string GetCharName()
@@ -34,7 +34,7 @@ public class CivStats : MonoBehaviour, ICharStats {
     }
     public float GetWalletBalance()
     {
-        return this.GetComponent<Wallet>().CurrentBalance();
+        return this.GetComponent<Wallet>().CurrentBalance;
     }
     [SerializeField] Sprite myPortrait;
     public Sprite GetPortrait()

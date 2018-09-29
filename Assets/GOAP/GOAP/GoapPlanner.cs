@@ -29,7 +29,7 @@ public class GoapPlanner
 			if ( a.checkProceduralPrecondition(agent) )
 			{
 				usableActions.Add(a);
-				Debug.Log("Action: " + a.name + " added to usabled actions");
+				//Debug.Log("Action: " + a.name + " added to usabled actions");
 			}
 		}
 		
@@ -78,7 +78,7 @@ public class GoapPlanner
         // hooray we have a plan!
         foreach (GoapAction a in queue)
         {
-            Debug.Log("Q: " + a.name);
+            //Debug.Log("Q: " + a.name);
         }
         return queue;
 	}

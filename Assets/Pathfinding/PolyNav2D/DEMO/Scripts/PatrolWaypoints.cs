@@ -33,7 +33,7 @@ public class PatrolWaypoints : MonoBehaviour {
 
 	void MoveNext(){
 		currentIndex = (int)Mathf.Repeat(currentIndex + 1, WPoints.Count);
-		agent.SetDestination(WPoints[currentIndex]);
+		agent.SetDestination(WPoints[currentIndex], null);
 	}
 
 	void OnDrawGizmosSelected(){

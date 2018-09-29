@@ -29,7 +29,7 @@ public class IdleAtNest_Action : GoapAction
     private bool GetNewIdlingTarget()
     {
         GopnikNest myNest = this.GetComponent<GopnikAI>().MyNest;
-        target = myNest.SpawnAndGetRandomIdlePoint();
+        target = myNest.GetIdlingTarget();
         if (target != null)
         {
             return true;

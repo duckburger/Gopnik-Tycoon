@@ -16,9 +16,13 @@ public class Wallet : MonoBehaviour {
 
     public WalletBalanceChanged_Event balanceChagedEvent;
 
-    public float CurrentBalance()
+    public float CurrentBalance
     {
-        return currentBalance;
+        get
+        {
+            return currentBalance;
+        }
+        
     }
 
     ICharStats charStats;
@@ -57,12 +61,13 @@ public class Wallet : MonoBehaviour {
 	
     public float Rob()
     {
-        // TODO: Make this stat dependent so gopnik with higher intimidation will 
-        if (currentBalance <= 3)
+        // TODO: Make this stat dependent so gopnik with higher intimidation will rob people for more
+        int amtToSteal = (int)UnityEngine.Random.Range(3, currentBalance - 2);
+        if (amtToSteal > this.currentBalance)
         {
+            Debug.Log("Cannot steal more than the character has in the wallet!");
             return 0;
         }
-        int amtToSteal = (int)UnityEngine.Random.Range(3, currentBalance);
         Mathf.RoundToInt(amtToSteal);
         Debug.Log("Successful robbery for " + amtToSteal);
         AdjustBalance(-amtToSteal);

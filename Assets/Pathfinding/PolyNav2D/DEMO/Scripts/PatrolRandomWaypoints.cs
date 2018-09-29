@@ -40,7 +40,7 @@ public class PatrolRandomWaypoints : MonoBehaviour{
 
 	IEnumerator WaitAndMove(){
 		yield return new WaitForSeconds(delayBetweenPoints);
-		agent.SetDestination( WPoints[Random.Range(0, WPoints.Count)] );
+		agent.SetDestination( WPoints[Random.Range(0, WPoints.Count)], null );
 	}
 
 	void OnDrawGizmosSelected(){

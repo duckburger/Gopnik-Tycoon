@@ -20,7 +20,7 @@ public enum GopnikActionType
     Razvod
 }
 
-public class GopnikAI : MonoBehaviour, IGoap, ICharStats {
+public class GopnikAI : MonoBehaviour, IGoap/*, ICharStats*/ {
 
     [SerializeField] string charName;
     public string GetCharName()
@@ -123,7 +123,7 @@ public class GopnikAI : MonoBehaviour, IGoap, ICharStats {
     }
     public float GetWalletBalance()
     {
-        return this.GetComponent<Wallet>().CurrentBalance();
+        return this.GetComponent<Wallet>().CurrentBalance;
     }
     [SerializeField] Sprite myPortrait;
     public Sprite GetPortrait()
@@ -296,10 +296,10 @@ public class GopnikAI : MonoBehaviour, IGoap, ICharStats {
 
     public void PlanFound(HashSet<KeyValuePair<string, object>> goal, Queue<GoapAction> actions)
     {
-        Debug.Log("Found a plan for " + this.gameObject.name);
+        //Debug.Log("Found a plan for " + this.gameObject.name);
         for (int i = 0; i < actions.Count; i++)
         {
-            Debug.Log("The action #" + i.ToString() + " for the plan is: " + actions.ToArray()[i]);
+            //Debug.Log("The action #" + i.ToString() + " for the plan is: " + actions.ToArray()[i]);
         }
 
     }

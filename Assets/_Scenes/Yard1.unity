@@ -375,7 +375,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3389606292381677883, guid: daf8e30f0749de74fbded1cc29d98602, type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3389606292381677883, guid: daf8e30f0749de74fbded1cc29d98602, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -890,7 +890,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7700756278071792763, guid: 07ab45785356a7c46aad34d1f64c7911, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 119.54987
+      value: 119.549904
       objectReference: {fileID: 0}
     - target: {fileID: 7700756278412479283, guid: 07ab45785356a7c46aad34d1f64c7911, type: 3}
       propertyPath: m_Colors.m_DisabledColor.r
@@ -993,6 +993,10 @@ PrefabInstance:
       propertyPath: civillianTooltip
       value: 
       objectReference: {fileID: 956121340}
+    - target: {fileID: 8449182838241617646, guid: 3f6811492a5cc6e49b79fec7adb2ec79, type: 3}
+      propertyPath: npcParent
+      value: 
+      objectReference: {fileID: 453237860}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3f6811492a5cc6e49b79fec7adb2ec79, type: 3}
 --- !u!1001 &8614001839222035962

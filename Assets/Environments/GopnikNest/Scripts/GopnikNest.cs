@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GopnikNest : MonoBehaviour, IBuildingSetup {
+public class GopnikNest : MonoBehaviour, IBuildingSetup, AI_IdleSpot {
 
     [SerializeField] GameObject gopnikPrefab_LevelOne;
     [SerializeField] List<Transform> idlePoints = new List<Transform>();
     [SerializeField] SpriteRenderer mySpriteRenderer;
     [SerializeField] GopnikSpawnedEvent onGopSpawnedEvent;
+    [SerializeField] float reqAIIdleProximity = 1.7f;
 
     [SerializeField] List<GameObject> randomizedIdlingSpots = new List<GameObject>();
 
@@ -26,13 +27,13 @@ public class GopnikNest : MonoBehaviour, IBuildingSetup {
     void SpawnGopniks()
     {
         // Spawn 2 gopniks each in his spot
-        GameObject gopnikOne = Instantiate(gopnikPrefab_LevelOne, idlePoints[0].transform.position, Quaternion.identity, idlePoints[0]);
-        GopnikAI firstGopAI = gopnikOne.GetComponent<GopnikAI>();
+        GameObject gopnikOne = Instantiate(gopnikPrefab_LevelOne, idlePoints[0].transform.position, Quaternion.identity, NPCController.Instance.NpcParent);
+        AI_CharController aiController = gopnikOne.GetComponent<AI_CharController>();
         if (onGopSpawnedEvent != null)
         {
-            onGopSpawnedEvent.Raise(firstGopAI);
+            onGopSpawnedEvent.Raise(aiController); // WHAT IS THIS EVENT??
         }
-        firstGopAI.AssingNest(this.gameObject);
+        aiController.CurrentIdleSpot = this;
 
         // TODO: Reactivate the second gopnik
         //GameObject gopnikTwo = Instantiate(gopnikPrefab_LevelOne, idlePoints[1].transform.position, Quaternion.identity, idlePoints[1]);
@@ -51,7 +52,7 @@ public class GopnikNest : MonoBehaviour, IBuildingSetup {
 
     // Used for the gopniks to choose a random idling spot in the area of the nest
     // The Idling Goap Action will take care of disabling the used spot when the gopnik arrives there
-    public GameObject SpawnAndGetRandomIdlePoint()
+    public GameObject GetIdlingTarget()
     {
         Transform chosenTransform = idlePoints[Random.Range(0, 1)];
         Vector2 randomizedPos = new Vector2(chosenTransform.position.x + Random.Range(-2.2f, 2.2f), chosenTransform.position.y + Random.Range(-2.2f, 2.2f));
@@ -61,6 +62,8 @@ public class GopnikNest : MonoBehaviour, IBuildingSetup {
         return spotToUse;
     }
 
-   
-  
+    public float GetReqIdleProximity()
+    {
+        return this.reqAIIdleProximity;
+    }
 }

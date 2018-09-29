@@ -29,7 +29,7 @@ public class GopnikSpawnedEvent : ScriptableObject
 
     #endregion
 
-    public void Raise(GopnikAI newGopnik)
+    public void Raise(AI_CharController newGopnik)
     {
         if (listeners.Count <= 0)
         {

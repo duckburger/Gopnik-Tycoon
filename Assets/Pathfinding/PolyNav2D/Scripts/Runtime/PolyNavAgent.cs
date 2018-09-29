@@ -144,7 +144,7 @@ namespace PolyNav{
 
 		///The moving direction of the agent
 		public Vector2 movingDirection{
-			get { return hasPath? velocity.normalized : Vector2.zero; }
+			get { return hasPath ? new Vector2( Mathf.RoundToInt(velocity.normalized.x), Mathf.RoundToInt(velocity.normalized.y) ) : Vector2.zero; }
 		}
 
 		///The current speed of the agent
@@ -170,7 +170,7 @@ namespace PolyNav{
 		}
 
 		///Set the destination for the agent. As a result the agent starts moving
-		public bool SetDestination(Vector2 goal){ return SetDestination(goal, null); }
+		public bool SetDestination(Vector3 position, Vector2 goal){ return SetDestination(goal, null); }
 
 		///Set the destination for the agent. As a result the agent starts moving. Only the callback from the last SetDestination will be called upon arrival
 		public bool SetDestination(Vector2 goal, Action<bool> callback){

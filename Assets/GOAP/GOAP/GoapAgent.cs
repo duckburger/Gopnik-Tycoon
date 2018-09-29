@@ -225,7 +225,7 @@ public sealed class GoapAgent : MonoBehaviour
         {
             availableActions.Add(a);
         }
-        Debug.Log("Found actions: " + prettyPrint(actions));
+        //Debug.Log("Found actions: " + prettyPrint(actions));
     }
 
 

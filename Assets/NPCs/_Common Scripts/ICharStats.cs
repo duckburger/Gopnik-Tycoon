@@ -5,9 +5,9 @@ using UnityEngine;
 public interface ICharStats
 {
     string GetCharName();
-    float GetStat_Strength();
-    float GetStat_Charisma();
-    float GetStat_Cunning();
+    int GetStat_Strength();
+    int GetStat_Charisma();
+    int GetStat_Cunning();
     float GetWalletBalance();
-    Sprite GetPortrait();
+    Texture2D GetPortrait();
 }

@@ -15,7 +15,7 @@ public class FollowTarget : MonoBehaviour{
 
 	void Update() {
 		if (target != null){
-			agent.SetDestination( target.position );
+			agent.SetDestination( target.position, null );
 		}
 	}
 }
