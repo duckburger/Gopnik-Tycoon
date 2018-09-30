@@ -9,5 +9,5 @@ public interface ICharStats
     int GetStat_Charisma();
     int GetStat_Cunning();
     float GetWalletBalance();
-    Texture2D GetPortrait();
+    Sprite GetPortrait();
 }

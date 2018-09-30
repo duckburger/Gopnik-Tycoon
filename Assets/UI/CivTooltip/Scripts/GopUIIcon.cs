@@ -5,7 +5,7 @@ public class GopUIIcon : MonoBehaviour
 {
     public AI_CharController myGopnik;
     [Space(10)]
-    [SerializeField] RawImage mainIcon;
+    [SerializeField] Image mainIcon;
     [SerializeField] Image currStateIcon;
     [SerializeField] Button myButton;
     [SerializeField] ScriptableGopnikData gopStateSprites;
@@ -19,7 +19,7 @@ public class GopUIIcon : MonoBehaviour
     public void Populate(AI_CharController gopnik)
     {
         this.myGopnik = gopnik;
-        this.mainIcon.texture = this.myGopnik.GetPortrait();
+        this.mainIcon.sprite = this.myGopnik.GetPortrait();
         //switch (this.myGopnik.GetCurrentAction())
         //{
         //    case GopnikActionType.Idling:

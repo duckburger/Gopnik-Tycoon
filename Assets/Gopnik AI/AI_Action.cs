@@ -37,6 +37,34 @@ public class AI_Action : MonoBehaviour
             return this.agressiveStance;
         }
     }
+    protected string actionAnimState;
+    public string ActionAnimState
+    {
+        get
+        {
+            return this.actionAnimState;
+        }
+    }
+
+    [SerializeField] Sprite actionIcon;
+    public Sprite ActionIcon
+    {
+        get
+        {
+            return this.actionIcon;
+        }
+    }
+
+    [Space(10)]
+    [Header("Dialogue")]
+    [SerializeField] Dial_PhrasePack phrasePack;
+    public Dial_PhrasePack PhrasePack
+    {
+        get
+        {
+            return this.phrasePack;
+        }
+    }
 
     protected float staminaCost = 0;
     public float StaminaCost

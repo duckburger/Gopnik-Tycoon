@@ -24,8 +24,8 @@ public class AI_CharController : MonoBehaviour, ICharStats
     {
         return this.charName;
     }
-    [SerializeField] Texture2D charPortrait;
-    public Texture2D GetPortrait()
+    [SerializeField] Sprite charPortrait;
+    public Sprite GetPortrait()
     {
         return this.charPortrait;
     }
@@ -57,6 +57,8 @@ public class AI_CharController : MonoBehaviour, ICharStats
     [Space(10)]
     [Header("Behaviour")]
     [SerializeField] bool fightToDeath;
+
+    
 
     bool inDialogue = false;
     bool isBusy = false;
