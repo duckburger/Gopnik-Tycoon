@@ -48,7 +48,7 @@ MonoBehaviour:
   actionName: Idle
   actionIcon: {fileID: 0}
   phrasePack: {fileID: 0}
-  reqTargetProximity: 0.7
+  reqTargetProximity: 0.2
   waitTime: 3
 --- !u!114 &1451006100625170182
 MonoBehaviour:
@@ -66,7 +66,7 @@ MonoBehaviour:
   actionName: ForceMug
   actionIcon: {fileID: 0}
   phrasePack: {fileID: 11400000, guid: 3f4aafb7490f11f4e96ca6f90c0de00f, type: 2}
-  reqTargetProximity: 0
+  reqTargetProximity: 0.2
 --- !u!1 &3739902497023657731
 GameObject:
   m_ObjectHideFlags: 0
@@ -228,7 +228,7 @@ MonoBehaviour:
   _map: {fileID: 0}
   maxSpeed: 5.5
   mass: 25
-  stoppingDistance: 0.5
+  stoppingDistance: 0.2
   slowingDistance: 0.35
   accelerationRate: 5
   decelerationRate: 5

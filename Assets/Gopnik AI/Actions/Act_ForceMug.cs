@@ -7,6 +7,10 @@ using PolyNav;
 
 public class Act_ForceMug : AI_Action
 {
+
+    bool isWaiting = false;
+    int attacksCompleted = 0;
+
     // Initializing action
     private void Awake()
     {
@@ -15,22 +19,30 @@ public class Act_ForceMug : AI_Action
 
     public override void Reset()
     {
+        // Base
         this.started = false;
         this.completed = false;
         this.highPriority = true;
         this.agressiveStance = true;
         this.staminaCost = 0; // For this the stamina cost actually depends on attacks themeselves
-        this.reqTargetProximity = 0.5f;
+        this.reqTargetProximity = 0.2f;
         this.mainCharController = this.transform.parent.GetComponent<AI_CharController>();
         this.charStats = this.transform.parent.GetComponent<ICharStats>();
         this.navAgent = this.transform.parent.GetComponent<PolyNavAgent>();
         this.target = null;
+        
+        // Additional
+        this.isWaiting = false;
+        this.attacksCompleted = 0;
     }
 
     // Will be called from the main char controller
     public override void DoAction()
     {
-        base.DoAction(); // Returns if the action has started
+        if (isWaiting)
+        {
+            return;
+        }
         if (this.target == null)
         {
             Debug.Log("No target for the Force Mug action!");
@@ -63,7 +75,7 @@ public class Act_ForceMug : AI_Action
         {
             // Produce dialogue if there is any
             bool hasPreActionText = !string.IsNullOrEmpty(this.phrasePack.GetRandomPhrase(PhraseType.preAction));
-            if (this.phrasePack != null && hasPreActionText)
+            if (this.attacksCompleted == 0 && this.phrasePack != null && hasPreActionText)
             {
                 // Show the the dialogue bubble
                 string preActionPhrase = this.phrasePack.GetRandomPhrase(PhraseType.preAction);
@@ -102,7 +114,7 @@ public class Act_ForceMug : AI_Action
                 default:
                     break;
             }
-
+            this.attacksCompleted++;
             float targetHealthPercentage = targetHealth.CurrHealthPercentage;
             if (targetHealthPercentage < 30)
             {
@@ -132,6 +144,15 @@ public class Act_ForceMug : AI_Action
         if (this.mainCharController != null)
         {
             this.mainCharController.myAnimator.Play("Idle");
+            this.isWaiting = true;
+            StopAllCoroutines();
+            StartCoroutine(AttackDelay());
         }
+    }
+
+    IEnumerator AttackDelay()
+    {
+        yield return new WaitForSeconds(1.0f);
+        this.isWaiting = false;
     }
 }

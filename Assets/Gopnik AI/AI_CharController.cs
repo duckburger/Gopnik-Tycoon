@@ -161,6 +161,7 @@ public class AI_CharController : MonoBehaviour, ICharStats
         if (this.actionQueue.Count > 0)
         {
             this.currentAction = this.actionQueue.Dequeue();
+            this.navAgent.stoppingDistance = this.currentAction.ReqTargetProximity;
             stateChangedEvent.Invoke(this.currentAction.ActionType);
             return;
         }
@@ -251,6 +252,7 @@ public class AI_CharController : MonoBehaviour, ICharStats
         }
         if (this.currentAction != null)
         {
+            Debug.Log("Animation finished triggered once");
             this.currentAction.OnAnimationFinished();
         }
         

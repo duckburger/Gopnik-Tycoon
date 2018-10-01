@@ -15,6 +15,7 @@ public class DialogueBubbleDisplayer : MonoBehaviour
 
     public void ShowDialogue(string phrase)
     {
+        Debug.Log("Called show dialogue once");
         if (this.currentBubbleCG != null)
         {
             this.currentBubble.SetActive(true);
@@ -24,6 +25,7 @@ public class DialogueBubbleDisplayer : MonoBehaviour
                 {
                     this.currentBubbleText.text = phrase;
                     LeanTween.alphaCanvas(this.currentBubbleCG, 1, 0.2f);
+                    StartCoroutine(Timer());
                 } );
             return;
         }
@@ -43,6 +45,7 @@ public class DialogueBubbleDisplayer : MonoBehaviour
                .setOnComplete(() =>
                {
                    this.currentBubble.SetActive(false);
+                   Debug.Log("Finished fading out bubble canvas");
                });
     }
 
