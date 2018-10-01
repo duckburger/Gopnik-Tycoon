@@ -13,11 +13,11 @@ public class Health : MonoBehaviour {
     [SerializeField] List<AudioClip> deathSounds = new List<AudioClip>();
 
 
-    public int CurrHealthPercentage
+    public float CurrHealthPercentage
     {
         get
         {
-            return (int)(currentHealth / maxHealth);
+            return (currentHealth / maxHealth) * 100;
         }
     }
 

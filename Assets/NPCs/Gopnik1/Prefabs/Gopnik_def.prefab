@@ -44,8 +44,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b941fdbcfad80d4191774227903f58a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  actionType: 0
+  actionName: Idle
   actionIcon: {fileID: 0}
   phrasePack: {fileID: 0}
+  reqTargetProximity: 0.7
   waitTime: 3
 --- !u!114 &1451006100625170182
 MonoBehaviour:
@@ -59,8 +62,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25b4a7d38530b804b82c1f5af775e896, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  actionType: 1
+  actionName: ForceMug
   actionIcon: {fileID: 0}
   phrasePack: {fileID: 11400000, guid: 3f4aafb7490f11f4e96ca6f90c0de00f, type: 2}
+  reqTargetProximity: 0
 --- !u!1 &3739902497023657731
 GameObject:
   m_ObjectHideFlags: 0
@@ -79,6 +85,8 @@ GameObject:
   - component: {fileID: 53282918}
   - component: {fileID: 1040904058110601876}
   - component: {fileID: 1130647004543232310}
+  - component: {fileID: 660823054488631920}
+  - component: {fileID: 617253741}
   m_Layer: 8
   m_Name: Gopnik_def
   m_TagString: Untagged
@@ -295,12 +303,49 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actionParent: {fileID: 1640840019184372938}
   healthController: {fileID: 53282918}
-  walletController: {fileID: 0}
+  walletController: {fileID: 617253741}
   staminaController: {fileID: 1040904058110601876}
+  globalBalance: {fileID: 11400000, guid: fc85fcfda1ea83540b06fc8ece01a3b1, type: 2}
   navAgent: {fileID: 53282919}
   charName: Vlad
-  charPortrait: {fileID: 0}
+  charPortrait: {fileID: 21300000, guid: 1980e7437a088d847b8b60b2ff41c07d, type: 3}
   charisma: 50
   cunning: 50
   strength: 50
   fightToDeath: 0
+  stateChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: OnStateChanged_Event, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  myAnimator: {fileID: 0}
+  dialBubbleDisplay: {fileID: 660823054488631920}
+--- !u!114 &660823054488631920
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3739902497023657731}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c083ef5215133f41af9c033c72905a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bubblePrefab: {fileID: 5053888229733043055, guid: be48c270d2245be4a824b7054896d65a, type: 3}
+--- !u!114 &617253741
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3739902497023657731}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cf186eb0bb01eb468955fd706fce91f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentBalance: 0
+  balanceChagedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: WalletBalanceChanged_Event, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null

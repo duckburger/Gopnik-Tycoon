@@ -90,6 +90,7 @@ MonoBehaviour:
   myGopnik: {fileID: 0}
   mainIcon: {fileID: 1832777868905089062}
   currStateIcon: {fileID: 1662647776145923673}
+  myButton: {fileID: 8860450100245553242}
   gopStateSprites: {fileID: 11400000, guid: b8d317680e9e99e488f7b66e8bffb6a7, type: 2}
 --- !u!114 &8860450100245553242
 MonoBehaviour:

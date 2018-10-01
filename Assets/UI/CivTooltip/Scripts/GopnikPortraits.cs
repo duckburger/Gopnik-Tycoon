@@ -12,7 +12,7 @@ public class GopnikPortraits : MonoBehaviour
 
     List<GameObject> gopIcons = new List<GameObject>();
 
-   public void Populate(GopnikActionType gopIconAction)
+   public void Populate(ActionType gopIconAction)
     {
         if (this.npcController != null)
         {
@@ -23,20 +23,25 @@ public class GopnikPortraits : MonoBehaviour
                 // Assign main icon as well as the current state icon
                 newPortrait.Populate(gopnik);
                 Button portraitButton = newPortrait.GetComponent<Button>();
-                //switch (gopIconAction)
-                //{
-                //    case GopnikActionType.Force:
-                //    portraitButton.onClick.AddListener(() => gopnik.AssignTarget(SelectionController.Instance.SelectedObj.gameObject, GopnikActionType.Force));
-                //        break;
-                //    case GopnikActionType.Chat:
-                //    portraitButton.onClick.AddListener(() => gopnik.AssignTarget(SelectionController.Instance.SelectedObj.gameObject, GopnikActionType.Chat));
-                //        break;
-                //    case GopnikActionType.Razvod:
-                //    portraitButton.onClick.AddListener(() => gopnik.AssignTarget(SelectionController.Instance.SelectedObj.gameObject, GopnikActionType.Razvod));
-                //        break;
-                //    default:
-                //        break;
-                //}
+                switch (gopIconAction)
+                {
+                    case ActionType.Force:
+                        portraitButton.onClick.AddListener(() => 
+                        {
+                            Act_ForceMug forceMugAction = gopnik.ActionParent.GetComponent<Act_ForceMug>();
+                            forceMugAction.Target = SelectionController.Instance.SelectedObj.gameObject;
+                            gopnik.AddAction(forceMugAction, false);
+                        });
+                        break;
+                    case ActionType.Chat:
+                        portraitButton.onClick.AddListener(() => gopnik.AddAction(null, false));
+                        break;
+                    case ActionType.Razvod:
+                        portraitButton.onClick.AddListener(() => gopnik.AddAction(null, false));
+                        break;
+                    default:
+                        break;
+                }
                 this.gopIcons.Add(newPortrait.gameObject);
             }
         }

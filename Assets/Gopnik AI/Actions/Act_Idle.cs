@@ -20,7 +20,7 @@ public class Act_Idle : AI_Action
         this.highPriority = false;
         this.agressiveStance = false;
         this.staminaCost = 0;
-        this.reqTargetProximity = 1.7f;
+        this.reqTargetProximity = 0.5f;
         this.mainCharController = this.transform.parent.GetComponent<AI_CharController>();
         this.charStats = this.transform.parent.GetComponent<ICharStats>();
         this.navAgent = this.transform.parent.GetComponent<PolyNavAgent>();
@@ -30,14 +30,19 @@ public class Act_Idle : AI_Action
     // Will be called from the main char controller
     public override void DoAction()
     {
-        base.DoAction(); // Returns if the action has started
+        //base.DoAction(); // Returns if the action has started
+        if (this.started || this.completed)
+        {
+            return;
+        }
         // Get the target from the main AI controller
         if (this.mainCharController != null)
         {
             this.started = true;
-            Debug.Log("Starting action " + this.name);
+            Debug.Log("Starting action " + this.actionName);
             Dictionary<GameObject, float> targetAndProximity = new Dictionary<GameObject, float>();
             this.mainCharController.GetIdlingTarget(out this.target, out this.reqTargetProximity); // Asigning target and proximity
+            this.mainCharController.myAnimator.Play("Walk");
         }
         else
         {
@@ -48,6 +53,7 @@ public class Act_Idle : AI_Action
     }
 
 
+    // Moves the character to the target
     void IdleAtTarget()
     {
         if (this.target != null && this.navAgent != null)
@@ -64,6 +70,7 @@ public class Act_Idle : AI_Action
         {
             StopAllCoroutines();
             StartCoroutine(WaitAtTarget());
+            this.mainCharController.myAnimator.Play("Idle");
         }
     }
 

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CivStats : MonoBehaviour /*ICharStats*/ {
+public class CivStats : MonoBehaviour, ICharStats {
 
     [SerializeField] string name;
     public string GetCharName()
@@ -17,18 +17,18 @@ public class CivStats : MonoBehaviour /*ICharStats*/ {
             return isAgressive;
         }
     }
-    [SerializeField] float stat_strength;
-    public float GetStat_Strength()
+    [SerializeField] int stat_strength;
+    public int GetStat_Strength()
     {
         return stat_strength;
     }
-    [SerializeField] float stat_charisma;
-    public float GetStat_Charisma()
+    [SerializeField] int stat_charisma;
+    public int GetStat_Charisma()
     {
         return stat_charisma;
     }
-    [SerializeField] float stat_cunning;
-    public float GetStat_Cunning()
+    [SerializeField] int stat_cunning;
+    public int GetStat_Cunning()
     {
         return stat_cunning;
     }

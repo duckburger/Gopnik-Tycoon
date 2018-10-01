@@ -6,19 +6,7 @@ using PolyNav;
 using UnityEngine.Events;
 using System;
 
-[Serializable]
-public class OnStateChanged_Event : UnityEvent<GopnikActionType>
-{
 
-}
-
-public enum GopnikActionType
-{ 
-    Idling,
-    Force,
-    Chat,
-    Razvod
-}
 
 public class GopnikAI : MonoBehaviour, IGoap/*, ICharStats*/ {
 
@@ -149,9 +137,7 @@ public class GopnikAI : MonoBehaviour, IGoap/*, ICharStats*/ {
     Vector2 previousDestination;
     Health health;
     Vector2 lastDir;
-    [Space(10)]
-    [Header("Events")]
-    public OnStateChanged_Event stateChangedEvent;
+    
 
 
     // Use this for initialization
@@ -174,21 +160,21 @@ public class GopnikAI : MonoBehaviour, IGoap/*, ICharStats*/ {
 
     #region External Access
 
-    public void AssignTarget(GameObject target, GopnikActionType actionType)
+    public void AssignTarget(GameObject target, ActionType actionType)
     {
         switch (actionType)
         {
-            case GopnikActionType.Force:
+            case ActionType.Force:
                 this.FightTarget = target;
                 this.ChatTarget = null;
                 this.RazvodTarget = null;
                 break;
-            case GopnikActionType.Chat:
+            case ActionType.Chat:
                 this.ChatTarget = target;
                 this.FightTarget = null;
                 this.RazvodTarget = null;
                 break;
-            case GopnikActionType.Razvod:
+            case ActionType.Razvod:
                 this.RazvodTarget = target;
                 this.FightTarget = null;
                 this.ChatTarget = null;
@@ -198,24 +184,23 @@ public class GopnikAI : MonoBehaviour, IGoap/*, ICharStats*/ {
         }
         Debug.Log("Changed gopnik's goal by assigning new target");
         this.GetComponent<GoapAgent>().PushIdleState();
-        this.stateChangedEvent.Invoke(actionType);
     }
 
-    public GopnikActionType GetCurrentAction()
+    public ActionType GetCurrentAction()
     {
         if (fightTarget != null)
         {
-            return GopnikActionType.Force;
+            return ActionType.Force;
         }
         else if (chatTarget != null)
         {
-            return GopnikActionType.Chat;
+            return ActionType.Chat;
         }
         else if (razvodTarget != null)
         {
-            return GopnikActionType.Razvod;
+            return ActionType.Razvod;
         }
-        return GopnikActionType.Idling;
+        return ActionType.Idling;
     }
 
     #endregion
@@ -229,7 +214,6 @@ public class GopnikAI : MonoBehaviour, IGoap/*, ICharStats*/ {
         worldData.Add(new KeyValuePair<string, object>("isChattingTarget", (chatTarget != null)));
         worldData.Add(new KeyValuePair<string, object>("isFightingTarget", (fightTarget != null)));
         worldData.Add(new KeyValuePair<string, object>("isRazvoditTarget", (razvodTarget != null)));
-        stateChangedEvent.Invoke(GetCurrentAction());
         return worldData;
     }
 

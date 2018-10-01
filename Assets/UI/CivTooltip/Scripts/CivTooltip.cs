@@ -35,7 +35,7 @@ public class CivTooltip : UIPanel
     [SerializeField] Button chatActionButton;
     [SerializeField] Button razvodActionButton;
 
-    Dictionary<Button, GopnikActionType> buttonsWithFunctions = new Dictionary<Button, GopnikActionType>();
+    Dictionary<Button, ActionType> buttonsWithFunctions = new Dictionary<Button, ActionType>();
 
     RectTransform thisRect;
     CanvasGroup mainCanvasGroup;
@@ -53,7 +53,7 @@ public class CivTooltip : UIPanel
             foreach (Transform button in actionsParent)
             {
                 Button butt = button.GetComponent<Button>();
-                GopnikActionType actionType = button.GetComponent<GopActionButton>().MyActionType;
+                ActionType actionType = button.GetComponent<GopActionButton>().MyActionType;
                 this.buttonsWithFunctions[butt] = actionType;
             }
         }
@@ -137,10 +137,6 @@ public class CivTooltip : UIPanel
         if (!this.gopPanelIsOpen)
         {
             OpenGopPanel(this.buttonsWithFunctions[buttonActivated]);
-            //if (buttonActivated != null)
-            //{
-            //    TurnOffOtherButtons(buttonActivated);
-            //}
         }
         else
         {
@@ -149,7 +145,7 @@ public class CivTooltip : UIPanel
         }
     }
 
-    void OpenGopPanel(GopnikActionType actionToPass)
+    void OpenGopPanel(ActionType actionToPass)
     {
         if (!this.gopPanelIsOpen)
         {

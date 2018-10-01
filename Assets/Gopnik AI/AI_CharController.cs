@@ -2,16 +2,38 @@
 using System.Collections.Generic;
 using UnityEngine;
 using PolyNav;
+using System;
+using UnityEngine.Events;
+
+[Serializable]
+public class OnStateChanged_Event : UnityEvent<ActionType> { }
+
+public enum ActionType
+{
+    Idling,
+    Force,
+    Chat,
+    Razvod
+}
 
 public class AI_CharController : MonoBehaviour, ICharStats
 {
     [Header("Action Parent")]
     [SerializeField] GameObject actionParent;
+    public GameObject ActionParent
+    {
+        get
+        {
+            return this.actionParent;
+        }
+    }
     [Space(10)]
     [Header("Plug-in modules")]
     [SerializeField] Health healthController;
     [SerializeField] Wallet walletController;
-    [SerializeField] Stamina staminaController;
+    public Stamina staminaController;
+    public ScriptableFloatVar globalBalance;
+    
     [Header("Nav Agent")]
     [SerializeField] PolyNavAgent navAgent;
     [Header("Actions")]
@@ -58,7 +80,9 @@ public class AI_CharController : MonoBehaviour, ICharStats
     [Header("Behaviour")]
     [SerializeField] bool fightToDeath;
 
-    
+    [Header("Events")]
+    public OnStateChanged_Event stateChangedEvent;
+
 
     bool inDialogue = false;
     bool isBusy = false;
@@ -76,11 +100,41 @@ public class AI_CharController : MonoBehaviour, ICharStats
         }
     }
 
+    [HideInInspector]
+    public Animator myAnimator;
+    public DialogueBubbleDisplayer dialBubbleDisplay;
+
+    [Header("Temp")]
+    AttackType currentAttack;
+    public AttackType CurrentAttack
+    {
+        get
+        {
+            return this.currentAttack;
+        }
+        set
+        {
+            this.currentAttack = value;
+        }
+    }
+
+    void Awake()
+    {
+        this.myAnimator = this.GetComponent<Animator>();
+        this.dialBubbleDisplay = this.GetComponent<DialogueBubbleDisplayer>();
+    }
 
     #region Main Update Loop
 
     private void Update()
     {
+        if (this.navAgent.hasPath)
+        {
+            this.myAnimator.SetFloat("xInput", this.navAgent.movingDirection.x);
+            this.myAnimator.SetFloat("yInput", this.navAgent.movingDirection.y);
+        }
+        
+
         if (currentAction != null && !currentAction.Started)
         {
             this.isBusy = true;
@@ -94,7 +148,12 @@ public class AI_CharController : MonoBehaviour, ICharStats
             PickNewAction();
             return;
         }
-        PickNewAction();
+        if (this.currentAction == null)
+        {
+            PickNewAction();
+            return;
+        }
+        this.currentAction.DoAction();
     }
 
     private void PickNewAction()
@@ -102,6 +161,7 @@ public class AI_CharController : MonoBehaviour, ICharStats
         if (this.actionQueue.Count > 0)
         {
             this.currentAction = this.actionQueue.Dequeue();
+            stateChangedEvent.Invoke(this.currentAction.ActionType);
             return;
         }
         StartIdlingAction();
@@ -111,6 +171,10 @@ public class AI_CharController : MonoBehaviour, ICharStats
 
     public void AddAction(AI_Action newAction, bool flushAllActions)
     {
+        if (newAction == null)
+        {
+            return;
+        }
         if (newAction.HighPriority || flushAllActions)
         {
             DeleteAllActions();
@@ -118,6 +182,11 @@ public class AI_CharController : MonoBehaviour, ICharStats
             return;
         }
         this.actionQueue.Enqueue(newAction);
+    }
+
+    public ActionType GetCurrentActionType()
+    {
+        return this.currentAction.ActionType;
     }
 
     void DeleteAllActions()
@@ -144,6 +213,8 @@ public class AI_CharController : MonoBehaviour, ICharStats
             }
             Debug.Log("Setting current action to Idle");
             this.currentAction = idlingAction;
+            stateChangedEvent.Invoke(this.currentAction.ActionType);
+
         }
     }
 
@@ -157,6 +228,32 @@ public class AI_CharController : MonoBehaviour, ICharStats
         }
         target = null;
         reqProximity = 0;
+    }
+
+    public void OnAttackConnected(AnimationEvent evt)
+    {
+        if (evt.animatorClipInfo.weight < 0.5f)
+        {
+            return;
+        }
+        Debug.Log("Attack connected event triggered once");
+        if (this.currentAction != null && this.currentAction.ActionType == ActionType.Force)
+        {
+            this.currentAction.OnAttackConnected(this.currentAttack);
+        }
+    }
+
+    public void OnAnimationFinished(AnimationEvent evt)
+    {
+        if (evt.animatorClipInfo.weight < 0.5f)
+        {
+            return;
+        }
+        if (this.currentAction != null)
+        {
+            this.currentAction.OnAnimationFinished();
+        }
+        
     }
 
     

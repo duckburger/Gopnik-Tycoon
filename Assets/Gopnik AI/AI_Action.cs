@@ -3,8 +3,24 @@ using System.Collections.Generic;
 using UnityEngine;
 using PolyNav;
 
+public enum AttackType
+{
+    Punch,
+    Kick
+}
+
 public class AI_Action : MonoBehaviour
 {
+    [SerializeField] protected ActionType actionType;
+    public ActionType ActionType
+    {
+        get
+        {
+            return this.actionType;
+        }
+    }
+
+    [SerializeField] protected string actionName;
     protected bool started = false;
     public bool Started
     {
@@ -57,7 +73,7 @@ public class AI_Action : MonoBehaviour
 
     [Space(10)]
     [Header("Dialogue")]
-    [SerializeField] Dial_PhrasePack phrasePack;
+    [SerializeField] protected Dial_PhrasePack phrasePack;
     public Dial_PhrasePack PhrasePack
     {
         get
@@ -82,8 +98,15 @@ public class AI_Action : MonoBehaviour
         {
             return this.target;
         }
+        set
+        {
+            if (value.GetType() == typeof(GameObject))
+            {
+                this.target = value;
+            }
+        }
     }
-    protected float reqTargetProximity;
+    [SerializeField] protected float reqTargetProximity;
     public float ReqTargetProximity
     {
         get
@@ -102,8 +125,16 @@ public class AI_Action : MonoBehaviour
         {
             return;
         }
+        if (phrasePack != null)
+        {
+
+        }
         // Action logic
     }
+
+    public virtual void OnAttackConnected(AttackType type) { }
+    
+    public virtual void OnAnimationFinished() { }
 
     public virtual void Reset() { }
    
