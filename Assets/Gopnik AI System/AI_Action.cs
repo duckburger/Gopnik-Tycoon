@@ -2,11 +2,36 @@
 using System.Collections.Generic;
 using UnityEngine;
 using PolyNav;
+using System;
+using UnityEngine.Events;
 
+[Serializable]
+public class Ai_Attack
+{
+    public string name;
+    public float staminaCost;
+    public string animStateName; // Used to pass to the animator
+    public float damage;
+    public AttackType type;
+}
+
+[Serializable]
 public enum AttackType
 {
     Punch,
     Kick
+}
+
+[Serializable]
+public class OnStateChanged_Event : UnityEvent<ActionType> { }
+
+[Serializable]
+public enum ActionType
+{
+    Idling,
+    Force,
+    Chat,
+    Razvod
 }
 
 public class AI_Action : MonoBehaviour

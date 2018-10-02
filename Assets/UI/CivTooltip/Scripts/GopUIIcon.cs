@@ -42,9 +42,10 @@ public class GopUIIcon : MonoBehaviour
                 break;
         }
         gopnik.stateChangedEvent.AddListener(UpdateStateIcon);
+        UpdateStateIcon(this.myGopnik.GetCurrentActionType());
     }
 
-    void UpdateStateIcon(ActionType newState)
+    public void UpdateStateIcon(ActionType newState)
     {
         switch (newState)
         {

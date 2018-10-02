@@ -1,6 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
+using System;
+
+[Serializable]
+public class OnCharAttacked : UnityEvent<GameObject> { }
+
 
 public class Health : MonoBehaviour {
 
@@ -11,6 +17,9 @@ public class Health : MonoBehaviour {
     [SerializeField] GameObject deadBody;
     [SerializeField] AudioSource myAudioSource;
     [SerializeField] List<AudioClip> deathSounds = new List<AudioClip>();
+
+    [Header("Events")]
+    public OnCharAttacked onAttacked;
 
 
     public float CurrHealthPercentage
@@ -33,7 +42,7 @@ public class Health : MonoBehaviour {
         return currentHealth;
     }
 
-	public void AdjustHealth(float amount)
+	public void AdjustHealth(float amount, bool aggression, GameObject attacker = null)
     {
         if (amount < 0)
         {
@@ -45,12 +54,16 @@ public class Health : MonoBehaviour {
             return;
         }
         currentHealth += amount;
+        if (aggression && attacker != null)
+        {
+            this.onAttacked.Invoke(attacker);
+        }
     }
 
     void Die()
     {
         // Play a sound then spawnt the dead body
-        int soundIndex = Random.Range(0, deathSounds.Count);
+        int soundIndex = UnityEngine.Random.Range(0, deathSounds.Count);
         AudioSource bodyAudiosource = Instantiate(this.deadBody, this.transform.position, Quaternion.identity, this.transform.parent).GetComponent<AudioSource>();
         bodyAudiosource.clip = this.deathSounds[soundIndex];
         bodyAudiosource.Play();

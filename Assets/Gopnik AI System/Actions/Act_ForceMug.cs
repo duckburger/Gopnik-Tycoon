@@ -25,7 +25,7 @@ public class Act_ForceMug : AI_Action
         this.highPriority = true;
         this.agressiveStance = true;
         this.staminaCost = 0; // For this the stamina cost actually depends on attacks themeselves
-        this.reqTargetProximity = 0.2f;
+        this.reqTargetProximity = 0.7f;
         this.mainCharController = this.transform.parent.GetComponent<AI_CharController>();
         this.charStats = this.transform.parent.GetComponent<ICharStats>();
         this.navAgent = this.transform.parent.GetComponent<PolyNavAgent>();
@@ -52,7 +52,9 @@ public class Act_ForceMug : AI_Action
         }
         if (this.mainCharController != null)
         {
-            if (this.started && this.navAgent.remainingDistance < reqTargetProximity)
+            float dist = Vector2.Distance(this.transform.position, this.target.transform.position);
+            Debug.Log("Distance is " + dist);
+            if (this.started && dist <= reqTargetProximity)
             {
                 OnReachedTarget(true);
                 return;
@@ -106,14 +108,18 @@ public class Act_ForceMug : AI_Action
             switch (type)
             {
                 case AttackType.Punch:
-                    targetHealth.AdjustHealth(-15);
+                    targetHealth.AdjustHealth(-15, true);
                     break;
                 case AttackType.Kick:
-                    targetHealth.AdjustHealth(-25);
+                    targetHealth.AdjustHealth(-25, true);
                     break;
                 default:
                     break;
             }
+            // Push the enemy back
+            Rigidbody2D targetRB = this.target.GetComponent<Rigidbody2D>();
+            Vector2 hitVector = this.target.transform.position - this.transform.position;
+            targetRB.AddForce(hitVector * 2, ForceMode2D.Impulse);
             this.attacksCompleted++;
             float targetHealthPercentage = targetHealth.CurrHealthPercentage;
             if (targetHealthPercentage < 30)

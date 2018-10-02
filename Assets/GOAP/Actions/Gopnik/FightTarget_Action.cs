@@ -194,33 +194,33 @@ public class FightTarget_Action : GoapAction
         #endregion
     }
 
-    public void Punch()
-    {
-        if (target != null)
-        {
-            Health targetHealthController = target.GetComponent<Health>();
-            targetHealthController.AdjustHealth(-15f);
-            Debug.Log("Finished punching!");
-            this.hasAttacked = true;
-            this.isAttacking = false;
-            return;
-        }
+    //public void Punch()
+    //{
+    //    if (target != null)
+    //    {
+    //        Health targetHealthController = target.GetComponent<Health>();
+    //        targetHealthController.AdjustHealth(-15f);
+    //        Debug.Log("Finished punching!");
+    //        this.hasAttacked = true;
+    //        this.isAttacking = false;
+    //        return;
+    //    }
 
-    }
+    //}
 
-    public void Kick()
-    {
-        if (target != null)
-        {
-            Health targetHealthController = target.GetComponent<Health>();
-            targetHealthController.AdjustHealth(-30f);
-            Debug.Log("Finished kicking!");
-            this.hasAttacked = true;
-            this.isAttacking = false;
-            return;
-        }
+    //public void Kick()
+    //{
+    //    if (target != null)
+    //    {
+    //        Health targetHealthController = target.GetComponent<Health>();
+    //        targetHealthController.AdjustHealth(-30f);
+    //        Debug.Log("Finished kicking!");
+    //        this.hasAttacked = true;
+    //        this.isAttacking = false;
+    //        return;
+    //    }
 
-    }
+    //}
 
 
 

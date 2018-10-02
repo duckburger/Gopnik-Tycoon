@@ -20,7 +20,7 @@ public class Act_Idle : AI_Action
         this.highPriority = false;
         this.agressiveStance = false;
         this.staminaCost = 0;
-        this.reqTargetProximity = 0.2f;
+        this.reqTargetProximity = 0.7f;
         this.mainCharController = this.transform.parent.GetComponent<AI_CharController>();
         this.charStats = this.transform.parent.GetComponent<ICharStats>();
         this.navAgent = this.transform.parent.GetComponent<PolyNavAgent>();

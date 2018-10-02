@@ -30,14 +30,15 @@ public class GopnikPortraits : MonoBehaviour
                         {
                             Act_ForceMug forceMugAction = gopnik.ActionParent.GetComponent<Act_ForceMug>();
                             forceMugAction.Target = SelectionController.Instance.SelectedObj.gameObject;
-                            gopnik.AddAction(forceMugAction, false);
+                            gopnik.QueueAction(forceMugAction, false);
+                            newPortrait.UpdateStateIcon(ActionType.Force);
                         });
                         break;
                     case ActionType.Chat:
-                        portraitButton.onClick.AddListener(() => gopnik.AddAction(null, false));
+                        portraitButton.onClick.AddListener(() => gopnik.QueueAction(null, false));
                         break;
                     case ActionType.Razvod:
-                        portraitButton.onClick.AddListener(() => gopnik.AddAction(null, false));
+                        portraitButton.onClick.AddListener(() => gopnik.QueueAction(null, false));
                         break;
                     default:
                         break;

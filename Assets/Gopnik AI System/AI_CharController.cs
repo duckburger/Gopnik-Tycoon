@@ -5,16 +5,6 @@ using PolyNav;
 using System;
 using UnityEngine.Events;
 
-[Serializable]
-public class OnStateChanged_Event : UnityEvent<ActionType> { }
-
-public enum ActionType
-{
-    Idling,
-    Force,
-    Chat,
-    Razvod
-}
 
 public class AI_CharController : MonoBehaviour, ICharStats
 {
@@ -170,7 +160,7 @@ public class AI_CharController : MonoBehaviour, ICharStats
 
     #endregion
 
-    public void AddAction(AI_Action newAction, bool flushAllActions)
+    public void QueueAction(AI_Action newAction, bool flushAllActions)
     {
         if (newAction == null)
         {
@@ -258,5 +248,10 @@ public class AI_CharController : MonoBehaviour, ICharStats
         
     }
 
+
+    public void ReactToAttack(GameObject attacker)
+    {
+        
+    }
     
 }
