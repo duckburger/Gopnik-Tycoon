@@ -76,8 +76,8 @@ public class AI_CharController : MonoBehaviour, ICharStats
 
     bool inDialogue = false;
     bool isBusy = false;
-    AI_Action currentAction = null;
-    AI_IdleSpot currentIdleSpot = null;
+    [SerializeField] AI_Action currentAction = null;
+    [SerializeField] AI_IdleSpot currentIdleSpot = null;
     public AI_IdleSpot CurrentIdleSpot
     {
         get
@@ -118,6 +118,7 @@ public class AI_CharController : MonoBehaviour, ICharStats
 
     private void Update()
     {
+        // If moving - update direction vars in the animator
         if (this.navAgent.hasPath)
         {
             this.myAnimator.SetFloat("xInput", this.navAgent.movingDirection.x);
@@ -202,7 +203,7 @@ public class AI_CharController : MonoBehaviour, ICharStats
                 Debug.LogError("No action parent connected!");
                 return;
             }
-            Debug.Log("Setting current action to Idle");
+            //Debug.Log("Setting current action to Idle");
             this.currentAction = idlingAction;
             stateChangedEvent.Invoke(this.currentAction.ActionType);
 
@@ -220,37 +221,17 @@ public class AI_CharController : MonoBehaviour, ICharStats
         target = null;
         reqProximity = 0;
     }
-
-    public void OnAttackConnected(AnimationEvent evt)
-    {
-        if (evt.animatorClipInfo.weight < 0.5f)
-        {
-            return;
-        }
-        Debug.Log("Attack connected event triggered once");
-        if (this.currentAction != null && this.currentAction.ActionType == ActionType.Force)
-        {
-            this.currentAction.OnAttackConnected(this.currentAttack);
-        }
-    }
-
-    public void OnAnimationFinished(AnimationEvent evt)
-    {
-        if (evt.animatorClipInfo.weight < 0.5f)
-        {
-            return;
-        }
-        if (this.currentAction != null)
-        {
-            Debug.Log("Animation finished triggered once");
-            this.currentAction.OnAnimationFinished();
-        }
-        
-    }
-
-
+   
+    // Used to determine the actions of the character in relation to the external attack
     public void ReactToAttack(GameObject attacker)
     {
+        // TODO: Add a check to decide whether the character fights back or runs
+        Act_Fight fightAction = this.actionParent.GetComponent<Act_Fight>();
+        if (fightAction != null)
+        {
+            fightAction.Target = attacker;
+            QueueAction(fightAction, false);
+        }
         
     }
     

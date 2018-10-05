@@ -7,6 +7,7 @@ using PolyNav;
 
 public class Act_ForceMug : AI_Action
 {
+    [SerializeField] List<AttackData> availableAttacks = new List<AttackData>();
 
     bool isWaiting = false;
     int attacksCompleted = 0;
@@ -53,8 +54,8 @@ public class Act_ForceMug : AI_Action
         if (this.mainCharController != null)
         {
             float dist = Vector2.Distance(this.transform.position, this.target.transform.position);
-            Debug.Log("Distance is " + dist);
-            if (this.started && dist <= reqTargetProximity)
+            // Debug.Log("Distance is " + dist);
+            if (this.started && dist <= reqTargetProximity && !this.isWaiting)
             {
                 OnReachedTarget(true);
                 return;
@@ -73,7 +74,7 @@ public class Act_ForceMug : AI_Action
 
     void OnReachedTarget(bool reachedTarget)
     {
-        if (reachedTarget)
+        if (reachedTarget && !this.isWaiting)
         {
             // Produce dialogue if there is any
             bool hasPreActionText = !string.IsNullOrEmpty(this.phrasePack.GetRandomPhrase(PhraseType.preAction));
@@ -84,34 +85,49 @@ public class Act_ForceMug : AI_Action
                 this.mainCharController.dialBubbleDisplay.ShowDialogue(preActionPhrase);
             }
             // Choose attack
-            if (this.mainCharController.staminaController.CurrStaminaPercentage > 70)
+            if (this.availableAttacks == null || this.availableAttacks.Count <= 0)
             {
-                this.mainCharController.myAnimator.Play("Kick");
-                this.mainCharController.CurrentAttack = AttackType.Kick;
-                this.mainCharController.staminaController.AdjustStamina(-25);
+                Debug.LogError(this.name + " couldn't find any attacks to use");
+                return;
             }
-            else
+            int attackIndex = Random.Range(0, this.availableAttacks.Count);
+            AttackData attackToApply = this.availableAttacks[attackIndex];
+
+            float stamCost = attackToApply.staminaCost;
+            float currentStam = this.mainCharController.staminaController.GetCurrentStamina();
+            if ((currentStam - stamCost) > 0)
             {
-                this.mainCharController.myAnimator.Play("Punch");
-                this.mainCharController.CurrentAttack = AttackType.Punch;
-                this.mainCharController.staminaController.AdjustStamina(-10);        
+                this.mainCharController.myAnimator.Play(attackToApply.animStateName);
+                this.mainCharController.CurrentAttack = attackToApply.type;
+                this.mainCharController.staminaController.AdjustStamina(-attackToApply.staminaCost);
+                this.isWaiting = true;
+                StopAllCoroutines();
+                StartCoroutine(AttackTimer(attackToApply.type));
             }
         }
     }
 
+    IEnumerator AttackTimer(AttackType type)
+    {
+        // Wait for animation to finish
+        float timeToWait = this.mainCharController.myAnimator.GetCurrentAnimatorStateInfo(0).length;
+        yield return new WaitForSeconds(timeToWait);
+        OnAttackConnected(type);
+    }
+
     public override void OnAttackConnected(AttackType type)
     {
-        Health targetHealth = this.target.GetComponent<Health>();
         if (target != null)
         {
-            Debug.Log("Registering damage from a " + type);
+            Health targetHealth = this.target.GetComponent<Health>();
+            //Debug.Log("Registering damage from a " + type);
             switch (type)
             {
                 case AttackType.Punch:
-                    targetHealth.AdjustHealth(-15, true);
+                    targetHealth.AdjustHealth(-10, true, this.mainCharController.gameObject);
                     break;
                 case AttackType.Kick:
-                    targetHealth.AdjustHealth(-25, true);
+                    targetHealth.AdjustHealth(-10, true, this.mainCharController.gameObject);
                     break;
                 default:
                     break;
@@ -131,34 +147,17 @@ public class Act_ForceMug : AI_Action
 
                 Vector2 thisScreenPos = Camera.main.WorldToScreenPoint(this.transform.position);
                 FloatingTextDisplay.Instance.SpawnFloatingText(thisScreenPos, "+" + amtToSteal.ToString("C0"));
-                Debug.Log("Robbed the target for " + amtToSteal + ". Finishing the action");
+                //Debug.Log("Robbed the target for " + amtToSteal + ". Finishing the action");
                 this.completed = true;
             }
 
-            if(target == null)
-            {
-                // Target died after this hit, complete this action
-                Debug.Log("No target, cancelling the action");
-                this.completed = true;
-            }
+            
+            this.isWaiting = false;
         }
     }
 
    
-    public override void OnAnimationFinished()
-    {
-        if (this.mainCharController != null)
-        {
-            this.mainCharController.myAnimator.Play("Idle");
-            this.isWaiting = true;
-            StopAllCoroutines();
-            StartCoroutine(AttackDelay());
-        }
-    }
+    
 
-    IEnumerator AttackDelay()
-    {
-        yield return new WaitForSeconds(1.0f);
-        this.isWaiting = false;
-    }
+    
 }

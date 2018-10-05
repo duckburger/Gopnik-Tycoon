@@ -19,6 +19,21 @@ public class Stamina : MonoBehaviour
     void Start()
     {
         this.currentStamina = this.maxStamina;
+        StartCoroutine(Regen());
+    }
+
+    IEnumerator Regen()
+    {
+        while(true)
+        {
+            if (this.currentStamina < 30)
+            {
+                this.currentStamina += 5;
+                yield return new WaitForSeconds(1f);
+            }
+            yield return new WaitForSeconds(1f);
+        }
+
     }
 
     public float GetCurrentStamina()

@@ -7,11 +7,11 @@ using PolyNav;
 public class Act_Fight : AI_Action
 {
 
-    [SerializeField] List<Ai_Attack> availableAttacks = new List<Ai_Attack>();
+    [SerializeField] List<AttackData> availableAttacks = new List<AttackData>();
 
     bool isWaiting = false;
     int attacksCompleted = 0;
-
+    float additionalRange = 0.1f;
     // Initializing action
     private void Awake()
     {
@@ -40,7 +40,7 @@ public class Act_Fight : AI_Action
     // Will be called from the main char controller
     public override void DoAction()
     {
-        if (isWaiting)
+        if (this.isWaiting)
         {
             return;
         }
@@ -53,9 +53,9 @@ public class Act_Fight : AI_Action
         }
         if (this.mainCharController != null)
         {
-            float dist = Vector2.Distance(this.transform.position, this.target.transform.position);
-            Debug.Log("Distance is " + dist);
-            if (this.started && dist <= reqTargetProximity)
+            float dist = Vector2.Distance(this.transform.position, this.target.transform.position) + this.additionalRange;
+
+            if (this.started && dist <= reqTargetProximity && !this.isWaiting)
             {
                 OnReachedTarget(true);
                 return;
@@ -74,7 +74,7 @@ public class Act_Fight : AI_Action
 
     void OnReachedTarget(bool reachedTarget)
     {
-        if (reachedTarget)
+        if (reachedTarget && !this.isWaiting)
         {
             // Produce dialogue if there is any
             bool hasPreActionText = !string.IsNullOrEmpty(this.phrasePack.GetRandomPhrase(PhraseType.preAction));
@@ -92,7 +92,7 @@ public class Act_Fight : AI_Action
                 return;
             }
             int attackIndex = Random.Range(0, this.availableAttacks.Count);
-            Ai_Attack attackToApply = this.availableAttacks[attackIndex];
+            AttackData attackToApply = this.availableAttacks[attackIndex];
             float stamCost = attackToApply.staminaCost;
             float currentStam = this.mainCharController.staminaController.GetCurrentStamina();
             if ((currentStam - stamCost) > 0)
@@ -100,24 +100,40 @@ public class Act_Fight : AI_Action
                 this.mainCharController.myAnimator.Play(attackToApply.animStateName);
                 this.mainCharController.CurrentAttack = attackToApply.type;
                 this.mainCharController.staminaController.AdjustStamina(-attackToApply.staminaCost);
+                OnAttackConnected(attackToApply.type);
+
+                this.isWaiting = true;
+                StopAllCoroutines();
+                StartCoroutine(AttackTimer(attackToApply.type));
             }
-            
         }
+    }
+
+    IEnumerator AttackTimer(AttackType type)
+    {
+        // Wait for animation to finish
+        float timeToWait = this.mainCharController.myAnimator.GetCurrentAnimatorStateInfo(0).length;
+        yield return new WaitForSeconds(timeToWait);
+        OnAttackConnected(type);
     }
 
     public override void OnAttackConnected(AttackType type)
     {
-        Health targetHealth = this.target.GetComponent<Health>();
         if (target != null)
         {
+            Health targetHealth = this.target.GetComponent<Health>();
             Debug.Log("Registering damage from a " + type);
+            Vector2 thisScreenPos = Camera.main.WorldToScreenPoint(this.transform.position);
             switch (type)
             {
                 case AttackType.Punch:
-                    targetHealth.AdjustHealth(-15, true); // TODO: remove the hardcoded values here
+                    targetHealth.AdjustHealth(-10, true); // TODO: remove the hardcoded values here
+                    
+                    FloatingTextDisplay.Instance.SpawnFloatingText(thisScreenPos, "-10");
                     break;
                 case AttackType.Kick:
-                    targetHealth.AdjustHealth(-25, true);
+                    targetHealth.AdjustHealth(-10, true);
+                    FloatingTextDisplay.Instance.SpawnFloatingText(thisScreenPos, "-10");
                     break;
                 default:
                     break;
@@ -140,23 +156,8 @@ public class Act_Fight : AI_Action
                 this.completed = true;
             }
         }
-    }
-
-
-    public override void OnAnimationFinished()
-    {
-        if (this.mainCharController != null)
-        {
-            this.mainCharController.myAnimator.Play("Idle");
-            this.isWaiting = true;
-            StopAllCoroutines();
-            StartCoroutine(AttackDelay());
-        }
-    }
-
-    IEnumerator AttackDelay()
-    {
-        yield return new WaitForSeconds(1.0f);
         this.isWaiting = false;
     }
+
+
 }

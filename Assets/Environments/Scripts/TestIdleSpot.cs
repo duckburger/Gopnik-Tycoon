@@ -11,6 +11,6 @@ public class TestIdleSpot : MonoBehaviour, AI_IdleSpot
 
     public float GetReqIdleProximity()
     {
-        return 0.7f
+        return 0.7f;
     }
 }

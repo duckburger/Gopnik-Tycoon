@@ -48,8 +48,9 @@ public class Health : MonoBehaviour {
         {
             Debug.Log(this.gameObject.name + " is hurt for " + Mathf.Abs(amount) + " health!");
         }
-        if (Mathf.Abs(amount) > currentHealth)
+        if (Mathf.Abs(amount) >= currentHealth)
         {
+            currentHealth += amount;
             Die();
             return;
         }

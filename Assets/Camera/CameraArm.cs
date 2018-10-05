@@ -9,8 +9,8 @@ public class CameraArm : MonoBehaviour
     public float zoomSenstitivity;
     public bool cameraMovementOn = true;
 
-    private float minCameraZoom = 4.45f;
-    private float maxCameraZoom = 9f;
+    private float minCameraZoom = 2f;
+    private float maxCameraZoom = 10f;
 
 
     // Update is called once per frame

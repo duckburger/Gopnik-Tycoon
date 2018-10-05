@@ -39,7 +39,7 @@ public class Act_Idle : AI_Action
         if (this.mainCharController != null)
         {
             this.started = true;
-            Debug.Log("Starting action " + this.actionName);
+            //Debug.Log("Starting action " + this.actionName);
             Dictionary<GameObject, float> targetAndProximity = new Dictionary<GameObject, float>();
             this.mainCharController.GetIdlingTarget(out this.target, out this.reqTargetProximity); // Asigning target and proximity
             this.mainCharController.myAnimator.Play("Walk");

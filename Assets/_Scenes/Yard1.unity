@@ -112,39 +112,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &28387438 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7487866590672392856, guid: daf8e30f0749de74fbded1cc29d98602, type: 3}
-  m_PrefabInstance: {fileID: 1353477541}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &28387439
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 28387438}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b5c9ca2b4dc307d4c818af7f27bbeecf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  actionType: 1
-  actionName: Fight
-  actionIcon: {fileID: 21300000, guid: 67d44fb0eeb5d9c41bd68420c5dbc492, type: 3}
-  phrasePack: {fileID: 0}
-  reqTargetProximity: 0.7
-  availableAttacks:
-  - name: Punch
-    staminaCost: 10
-    animStateName: Punch
-    damage: 15
-    type: 0
-  - name: Kick
-    staminaCost: 25
-    animStateName: Kick
-    damage: 25
-    type: 0
 --- !u!1 &108703799 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7700756278348457892, guid: 07ab45785356a7c46aad34d1f64c7911, type: 3}
@@ -342,6 +309,14 @@ PrefabInstance:
     - target: {fileID: 3389606292381677881, guid: daf8e30f0749de74fbded1cc29d98602, type: 3}
       propertyPath: m_Name
       value: Civilian
+      objectReference: {fileID: 0}
+    - target: {fileID: 3904262080169948190, guid: daf8e30f0749de74fbded1cc29d98602, type: 3}
+      propertyPath: phrasePack
+      value: 
+      objectReference: {fileID: 11400000, guid: 3f4aafb7490f11f4e96ca6f90c0de00f, type: 2}
+    - target: {fileID: 5728930657587322491, guid: daf8e30f0749de74fbded1cc29d98602, type: 3}
+      propertyPath: stoppingDistance
+      value: 0.01
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: daf8e30f0749de74fbded1cc29d98602, type: 3}
@@ -877,7 +852,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7700756278071792763, guid: 07ab45785356a7c46aad34d1f64c7911, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 119.54998
+      value: 119.55001
       objectReference: {fileID: 0}
     - target: {fileID: 7700756278412479283, guid: 07ab45785356a7c46aad34d1f64c7911, type: 3}
       propertyPath: m_Colors.m_DisabledColor.r

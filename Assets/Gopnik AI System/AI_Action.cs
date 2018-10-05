@@ -5,15 +5,6 @@ using PolyNav;
 using System;
 using UnityEngine.Events;
 
-[Serializable]
-public class Ai_Attack
-{
-    public string name;
-    public float staminaCost;
-    public string animStateName; // Used to pass to the animator
-    public float damage;
-    public AttackType type;
-}
 
 [Serializable]
 public enum AttackType
