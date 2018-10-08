@@ -11,6 +11,7 @@ public class Act_ForceMug : AI_Action
 
     bool isWaiting = false;
     int attacksCompleted = 0;
+    float additionalRange = 0.1f;
 
     // Initializing action
     private void Awake()
@@ -53,7 +54,7 @@ public class Act_ForceMug : AI_Action
         }
         if (this.mainCharController != null)
         {
-            float dist = Vector2.Distance(this.transform.position, this.target.transform.position);
+            float dist = Vector2.Distance(this.transform.position, this.target.transform.position) + this.additionalRange;
             // Debug.Log("Distance is " + dist);
             if (this.started && dist <= reqTargetProximity && !this.isWaiting)
             {
