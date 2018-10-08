@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class MCharAttack : MonoBehaviour
 {
+    [SerializeField] Transform meleePoint;
+    [SerializeField] float attRadius;
+    [SerializeField] float attackForce;
+
     [SerializeField] List<AttackData> availableAttacks = new List<AttackData>();
     Animator myAnimator;
     Rigidbody2D myRB;
@@ -51,6 +55,22 @@ public class MCharAttack : MonoBehaviour
         float animDuration = this.myAnimator.GetCurrentAnimatorStateInfo(0).length;
         yield return new WaitForSeconds(animDuration);
         this.isAttacking = false;
+        Collider2D[] hits = Physics2D.OverlapCircleAll(this.meleePoint.position, this.attRadius);
+        Debug.Log("Hit " + hits.Length + " objects");
+        foreach (Collider2D collider in hits)
+        {
+            Debug.Log("Hit " + collider.gameObject.name);
+            Health healthController = collider.gameObject.GetComponent<Health>();
+            if (collider.gameObject != this.gameObject )
+            {
+                if (healthController != null)
+                {
+                    healthController.AdjustHealth(-15, true);
+                    Vector2 attackDir = collider.gameObject.transform.position - this.gameObject.transform.position;
+                    collider.gameObject.GetComponent<Rigidbody2D>().AddForce(attackDir * this.attackForce, ForceMode2D.Impulse);
+                }
+            }
+        }
     }
 
 }
