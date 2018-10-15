@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StoreShelf : MonoBehaviour
+public class StoreShelf : Building
 {
     [SerializeField] protected List<Transform> shelves;
 
