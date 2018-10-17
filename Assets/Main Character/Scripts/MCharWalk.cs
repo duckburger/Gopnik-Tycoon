@@ -11,6 +11,21 @@ public class MCharWalk : MonoBehaviour
     float inputY;
     MCharAttack attackController;
 
+    bool isActive = true;
+    public bool IsActive
+    {
+      get
+        {
+            return this.isActive;
+        }
+
+      set
+        {
+            this.isActive = value;
+        }
+    }
+
+
     private void Start()
     {
         this.myAnimator = this.GetComponent<Animator>();
@@ -20,7 +35,7 @@ public class MCharWalk : MonoBehaviour
 
     private void Update()
     {
-        if (!this.attackController.IsAttacking)
+        if (!this.attackController.IsAttacking && isActive)
         {
             HandleMovement();
         }

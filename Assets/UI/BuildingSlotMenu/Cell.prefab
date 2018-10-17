@@ -243,6 +243,7 @@ GameObject:
   - component: {fileID: 4795736370307027137}
   - component: {fileID: 4795736370307027136}
   - component: {fileID: 4040964082360256745}
+  - component: {fileID: 6683086190297851743}
   m_Layer: 5
   m_Name: Cell
   m_TagString: Untagged
@@ -325,6 +326,34 @@ MonoBehaviour:
   mainIcon: {fileID: 5972419230123979856}
   purchaseButton: {fileID: 1639044661966957632}
   menuController: {fileID: 0}
+--- !u!114 &6683086190297851743
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4795736370307027142}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ce3413056d9f4248923860d5947b27b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  varToTrack: {fileID: 11400000, guid: fc85fcfda1ea83540b06fc8ece01a3b1, type: 2}
+  onFloatUpdated:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4040964082360256745}
+        m_MethodName: UpdateButtonStatus
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: onFloatUpdatedEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
 --- !u!1 &4795736370520557652
 GameObject:
   m_ObjectHideFlags: 0

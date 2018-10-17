@@ -6,6 +6,12 @@ using TMPro;
 public class MoneyDisplay : MonoBehaviour {
 
     [SerializeField] TextMeshProUGUI moneyText;
+    [SerializeField] ScriptableFloatVar moneyVar;
+
+    private void Start()
+    {
+        this.moneyVar.Reset();
+    }
 
     public void UpdateMoneyUIText(float newValue)
     {

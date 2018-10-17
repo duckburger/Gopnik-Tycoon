@@ -11,6 +11,13 @@ public class onFloatUpdatedEvent: UnityEvent<float> {}
 public class ScriptableFloatListener : MonoBehaviour {
 
     [SerializeField] ScriptableFloatVar varToTrack;
+    public ScriptableFloatVar VarToTrack
+    {
+        get
+        {
+            return this.varToTrack;
+        }
+    }
     public onFloatUpdatedEvent onFloatUpdated;
 
     private void OnEnable()

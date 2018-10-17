@@ -29,7 +29,8 @@ public class SlotBuildMenu : Menu
         foreach (GameObject building in slotToShow.AvailableBuildings)
         {
             BuildingSlotUICell newCell = Instantiate(this.itemPrefab, this.itemParent).GetComponent<BuildingSlotUICell>();
-            newCell.Populate(building.GetComponent<Building>());
+            newCell.menuController = this;
+            newCell.Populate(building);
         }
     }
 
@@ -37,5 +38,9 @@ public class SlotBuildMenu : Menu
     {
         this.titleText.text = "";
         this.gameObject.SetActive(false);
+        for (int i = itemParent.childCount - 1; i >= 0; i--)
+        {
+            Destroy(this.itemParent.GetChild(i).gameObject);
+        }
     }
 }

@@ -12,6 +12,8 @@ public class ScriptableFloatVar : ScriptableObject
 
     public List<ScriptableFloatListener> myListeners = new List<ScriptableFloatListener>();
 
+   
+
     public void Reset()
     {
         this.value = this.defValue;

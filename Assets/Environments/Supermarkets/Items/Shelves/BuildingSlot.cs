@@ -16,11 +16,28 @@ public class BuildingSlot : MonoBehaviour
         }
     }
 
+    bool isOccupied = false;
+    public bool IsOccupied
+    {
+        get
+        {
+            return this.isOccupied;
+        }
+        set
+        {
+            this.isOccupied = value;
+        }
+    }
+
     [SerializeField] ScriptableBuildingMenuEvent buildingMenuEvent;
 
     // This will take over the screen
     public void ShowBuildingMenu()
     {
+        if (this.isOccupied)
+        {
+            return;
+        }
         Debug.Log("Showing the building menu on command!");
         if (this.buildingMenuEvent != null)
         {
