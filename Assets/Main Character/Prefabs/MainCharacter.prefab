@@ -30,6 +30,36 @@ Transform:
   m_Father: {fileID: 6438291085347544587}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1793026263281579951
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7601900647152654133}
+  m_Layer: 8
+  m_Name: ItemCarrySpot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7601900647152654133
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1793026263281579951}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.64, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 6438291085347544587}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6438291085347544585
 GameObject:
   m_ObjectHideFlags: 0
@@ -51,7 +81,7 @@ GameObject:
   - component: {fileID: 456176441}
   m_Layer: 8
   m_Name: MainCharacter
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -68,6 +98,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1820401831}
+  - {fileID: 7601900647152654133}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -268,8 +299,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.00000047683716, y: 0.8}
-  m_Size: {x: 0.5902996, y: 1.5943518}
+  m_Offset: {x: -0.00000047683716, y: 0.9092592}
+  m_Size: {x: 0.5902996, y: 1.3758333}
   m_Direction: 0
 --- !u!114 &2356458393643910356
 MonoBehaviour:
@@ -333,7 +364,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 582e47ca888840e4d99226a708a04c47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 2
+  movementSpeed: 5
 --- !u!114 &456176441
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -347,6 +378,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   meleePoint: {fileID: 1820401831}
+  attRadius: 1
+  attackForce: 15
   availableAttacks:
   - {fileID: 11400000, guid: 0514b91b948326742845f2ded6fe5a92, type: 2}
   - {fileID: 11400000, guid: c05eeb10c59625c47a5fd4e4a48f3427, type: 2}
