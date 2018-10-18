@@ -25,7 +25,7 @@ public class PlayerCashController : MonoBehaviour {
     {
         if (this.cashDataFile != null)
         {
-            this.cashDataFile.AddToFloatValue(amount);
+            this.cashDataFile.AdjustFloatValue(amount);
         }
     }
 

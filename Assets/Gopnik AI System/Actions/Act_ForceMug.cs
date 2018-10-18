@@ -144,7 +144,7 @@ public class Act_ForceMug : AI_Action
                 Wallet targetWallet = this.target.GetComponent<Wallet>();
                 float amtToSteal = targetWallet.Rob();
                 targetWallet.HasBeenMugged = true;
-                this.mainCharController.globalBalance.AddToFloatValue(amtToSteal);
+                this.mainCharController.globalBalance.AdjustFloatValue(amtToSteal);
 
                 Vector2 thisScreenPos = Camera.main.WorldToScreenPoint(this.transform.position);
                 FloatingTextDisplay.Instance.SpawnFloatingText(thisScreenPos, "+" + amtToSteal.ToString("C0"));

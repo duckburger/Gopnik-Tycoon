@@ -402,8 +402,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1644607350}
-        m_MethodName: Close
+      - m_Target: {fileID: 469389088}
+        m_MethodName: CloseSlotBuildingMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -984,6 +984,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   availableBuildings:
   - {fileID: 7758700385183420044, guid: 9eb466bdf436eef48bb9f5ff252847ee, type: 3}
+  - {fileID: 7758700385183420044, guid: c16c57d3b5564284288b9d8fa2f491ed, type: 3}
   buildingMenuEvent: {fileID: 11400000, guid: e484a4a17d6aadf499ebd80cfc1984bb, type: 2}
 --- !u!1 &977589878
 GameObject:
@@ -1215,6 +1216,10 @@ PrefabInstance:
     - target: {fileID: 1001610285638596093, guid: 2199209b7b0d2db46a70201a317a9621, type: 3}
       propertyPath: m_Points.m_Paths.Array.data[0].Array.data[5].y
       value: -0.22747648
+      objectReference: {fileID: 0}
+    - target: {fileID: 2070420837871960075, guid: 2199209b7b0d2db46a70201a317a9621, type: 3}
+      propertyPath: toggleAction
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2199209b7b0d2db46a70201a317a9621, type: 3}
@@ -1670,6 +1675,7 @@ GameObject:
   - component: {fileID: 1676498244}
   - component: {fileID: 1676498243}
   - component: {fileID: 1676498242}
+  - component: {fileID: 1676498246}
   m_Layer: 5
   m_Name: MainCanvas
   m_TagString: Untagged
@@ -1757,6 +1763,20 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1676498246
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1676498241}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8d63bcfec2418446b022bf89aaa7039, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerAttackController: {fileID: 0}
+  playerWalkController: {fileID: 0}
 --- !u!1 &1684086912
 GameObject:
   m_ObjectHideFlags: 0
@@ -1940,6 +1960,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   availableBuildings:
   - {fileID: 7758700385183420044, guid: 9eb466bdf436eef48bb9f5ff252847ee, type: 3}
+  - {fileID: 7758700385183420044, guid: c16c57d3b5564284288b9d8fa2f491ed, type: 3}
   buildingMenuEvent: {fileID: 11400000, guid: e484a4a17d6aadf499ebd80cfc1984bb, type: 2}
 --- !u!61 &1927352331 stripped
 BoxCollider2D:
@@ -2118,6 +2139,10 @@ PrefabInstance:
     - target: {fileID: 1001610285638596093, guid: 2199209b7b0d2db46a70201a317a9621, type: 3}
       propertyPath: m_Points.m_Paths.Array.data[0].Array.data[2].y
       value: -0.28705633
+      objectReference: {fileID: 0}
+    - target: {fileID: 2070420837871960075, guid: 2199209b7b0d2db46a70201a317a9621, type: 3}
+      propertyPath: toggleAction
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2199209b7b0d2db46a70201a317a9621, type: 3}

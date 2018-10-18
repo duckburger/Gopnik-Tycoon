@@ -5,25 +5,8 @@ using UnityEngine;
 public class MenuControlLayer : MonoBehaviour
 {
 
-    MCharWalk mainCharWalkController;
-
-    private void Awake()
-    {
-        mainCharWalkController = GameObject.FindGameObjectWithTag("Player").GetComponent<MCharWalk>();
-    }
 
     [SerializeField] GameObject slotBuildingMenu;
-
-    public void TurnOffPLayerMovement()
-    {       
-        mainCharWalkController.IsActive = false;
-    }
-
-    public void TurnOnPlayerMovement()
-    {
-        mainCharWalkController.IsActive = true;
-    }
-
 
 
     public void OpenSlotBuildingMenu(BuildingSlot slotToShow)
@@ -32,7 +15,7 @@ public class MenuControlLayer : MonoBehaviour
         {
             this.slotBuildingMenu.SetActive(true);
             this.slotBuildingMenu.SendMessage("Populate", slotToShow);
-            TurnOffPLayerMovement();
+            ExternalPlayerController.Instance.PlayerWalkController.IsActive = false;
         }
     }
 
@@ -41,7 +24,7 @@ public class MenuControlLayer : MonoBehaviour
         if (this.slotBuildingMenu != null)
         {
             this.slotBuildingMenu.SendMessage("Close", SendMessageOptions.DontRequireReceiver);
-            TurnOnPlayerMovement();
+            ExternalPlayerController.Instance.PlayerWalkController.IsActive = true;
         }
     }
 

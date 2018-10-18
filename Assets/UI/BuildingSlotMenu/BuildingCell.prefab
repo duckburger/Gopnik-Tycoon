@@ -245,7 +245,7 @@ GameObject:
   - component: {fileID: 4040964082360256745}
   - component: {fileID: 6683086190297851743}
   m_Layer: 5
-  m_Name: Cell
+  m_Name: BuildingCell
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -325,6 +325,7 @@ MonoBehaviour:
   priceText: {fileID: 4795736370625386314}
   mainIcon: {fileID: 5972419230123979856}
   purchaseButton: {fileID: 1639044661966957632}
+  buildButtonText: {fileID: 7224609537219258162}
   menuController: {fileID: 0}
 --- !u!114 &6683086190297851743
 MonoBehaviour:

@@ -11,8 +11,24 @@ public class ButtonBadgeDisplayer : MonoBehaviour
     [SerializeField] KeyCode actionKey;
 
     [SerializeField] UnityEvent actionResponder;
+    [SerializeField] bool toggleAction;
 
+    bool isOn = false;
+    public bool IsOn
+    {
+        get
+        {
+            return this.isOn;
+        }
+        set
+        {
+            this.isOn = value;
+        }
+    }
     bool isActive = false;
+
+    
+
 
     public void DisplayButtonBadge()
     {
@@ -37,7 +53,16 @@ public class ButtonBadgeDisplayer : MonoBehaviour
     {
         if (this.isActive && Input.GetKeyDown(this.actionKey))
         {
-            this.actionResponder.Invoke();
+            if (this.toggleAction && !this.isOn)
+            {
+                this.actionResponder.Invoke();
+                this.isOn = true;
+                return;
+            }
+            else if (!this.toggleAction)
+            {
+                this.actionResponder.Invoke();
+            }
         }
     }
 

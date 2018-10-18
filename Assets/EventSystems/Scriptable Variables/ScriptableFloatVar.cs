@@ -40,7 +40,7 @@ public class ScriptableFloatVar : ScriptableObject
     #endregion
 
     #region Modifying Value
-    public void AddToFloatValue(float adjustment)
+    public void AdjustFloatValue(float adjustment)
     {
         value += adjustment;
         SendMessageToAllListeners();

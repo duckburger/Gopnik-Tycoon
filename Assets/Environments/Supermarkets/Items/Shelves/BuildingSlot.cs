@@ -16,16 +16,16 @@ public class BuildingSlot : MonoBehaviour
         }
     }
 
-    bool isOccupied = false;
-    public bool IsOccupied
+    Building currentBuilding;
+    public Building CurrentBuilding
     {
         get
         {
-            return this.isOccupied;
+            return this.currentBuilding;
         }
         set
         {
-            this.isOccupied = value;
+            this.currentBuilding = value;
         }
     }
 
@@ -34,10 +34,6 @@ public class BuildingSlot : MonoBehaviour
     // This will take over the screen
     public void ShowBuildingMenu()
     {
-        if (this.isOccupied)
-        {
-            return;
-        }
         Debug.Log("Showing the building menu on command!");
         if (this.buildingMenuEvent != null)
         {

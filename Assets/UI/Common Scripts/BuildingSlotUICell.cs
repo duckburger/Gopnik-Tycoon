@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using System;
 
 public class BuildingSlotUICell : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class BuildingSlotUICell : MonoBehaviour
     [SerializeField] TextMeshProUGUI priceText;
     [SerializeField] Image mainIcon;
     [SerializeField] Button purchaseButton;
+    [SerializeField] TextMeshProUGUI buildButtonText;
 
     Building myBuilding;
 
@@ -37,31 +39,84 @@ public class BuildingSlotUICell : MonoBehaviour
 
     public void Populate(GameObject buildingToDisplay)
     {
-        
-        Building buildingScript = buildingToDisplay.GetComponent<Building>();
+        BuildingSlot currentSlot = this.menuController.SelectedSlot.GetComponent<BuildingSlot>();
+        Building buildingData = buildingToDisplay.GetComponent<Building>();
         ScriptableFloatVar money = this.GetComponent<ScriptableFloatListener>().VarToTrack;
-        this.myBuilding = buildingScript;
+
+        if (currentSlot.CurrentBuilding == buildingData)
+        {
+            // Turn off this slot and set it to current, because this is an already owned building
+            // All the previous buildings should be marked as off as well
+            MarkAsCurrent(buildingToDisplay, currentSlot, buildingData, money);
+            return;
+        }
+
+        ActivateButton(buildingToDisplay, currentSlot, buildingData, money);
+    }
+
+    private void MarkAsCurrent(GameObject buildingToDisplay, BuildingSlot currentSlot, Building buildingData, ScriptableFloatVar money)
+    {
+        this.myBuilding = buildingData;
         if (this.titleText != null)
         {
-            this.titleText.text = buildingScript.buildingName;
+            this.titleText.text = buildingData.buildingName;
         }
         if (this.priceText != null)
         {
-            this.priceText.text = "$" + buildingScript.purchasePrice.ToString();
+            this.priceText.text = "$" + buildingData.purchasePrice.ToString();
         }
         if (this.mainIcon != null)
         {
-            this.mainIcon.sprite = buildingScript.mainUIImage;
+            this.mainIcon.sprite = buildingData.mainUIImage;
+        }
+        if (this.purchaseButton != null)
+        {
+            if (this.buildButtonText != null)
+            {
+                this.buildButtonText.text = "owned";
+            }
+            this.purchaseButton.interactable = false;
+        }
+    }
+
+    private void ActivateButton(GameObject buildingToDisplay, BuildingSlot currentSlot, Building buildingData, ScriptableFloatVar money)
+    {
+        this.myBuilding = buildingData;
+        if (this.titleText != null)
+        {
+            this.titleText.text = buildingData.buildingName;
+        }
+        if (this.priceText != null)
+        {
+            this.priceText.text = "$" + buildingData.purchasePrice.ToString();
+        }
+        if (this.mainIcon != null)
+        {
+            this.mainIcon.sprite = buildingData.mainUIImage;
         }
         if (this.purchaseButton != null)
         {
             this.purchaseButton.onClick.AddListener(() =>
             {
-                // Spawn the prefab of the building into the slot
-                Instantiate(buildingToDisplay, this.menuController.SelectedSlot.transform.position, Quaternion.identity, this.menuController.SelectedSlot);
-                money.AddToFloatValue(-this.myBuilding.purchasePrice);
-                this.menuController.SelectedSlot.GetComponent<BuildingSlot>().IsOccupied = true;
-                this.menuController.Close();
+                if (currentSlot.CurrentBuilding == null)
+                {
+                    // Spawn the prefab of the building into the slot
+                    Instantiate(buildingToDisplay, this.menuController.SelectedSlot.transform.position, Quaternion.identity, this.menuController.SelectedSlot);
+                    money.AdjustFloatValue(-this.myBuilding.purchasePrice);
+                    currentSlot.CurrentBuilding = buildingData;
+                    this.menuController.Close();
+                }
+                else
+                {
+                    Destroy(currentSlot.CurrentBuilding.gameObject);
+                    currentSlot.CurrentBuilding = null;
+
+                    Instantiate(buildingToDisplay, this.menuController.SelectedSlot.transform.position, Quaternion.identity, this.menuController.SelectedSlot);
+                    money.AdjustFloatValue(-this.myBuilding.purchasePrice);
+                    currentSlot.CurrentBuilding = buildingData;
+                    this.menuController.Close();
+                }
+               
             });
         }
         UpdateButtonStatus(money.value);

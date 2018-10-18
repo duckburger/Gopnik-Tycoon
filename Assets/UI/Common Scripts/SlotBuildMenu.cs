@@ -36,6 +36,9 @@ public class SlotBuildMenu : Menu
 
     public override void Close()
     {
+        ExternalPlayerController.Instance.PlayerWalkController.IsActive = true;
+        this.selectedSlot.GetComponentInChildren<ButtonBadgeDisplayer>().IsOn = false;
+        this.selectedSlot = null;
         this.titleText.text = "";
         this.gameObject.SetActive(false);
         for (int i = itemParent.childCount - 1; i >= 0; i--)

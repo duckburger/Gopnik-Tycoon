@@ -323,9 +323,9 @@ GameObject:
   m_Component:
   - component: {fileID: 7758700385183420047}
   - component: {fileID: 7758700385183420046}
-  - component: {fileID: 7575714439033799923}
+  - component: {fileID: 8932061342821926541}
   m_Layer: 0
-  m_Name: WoodenShelf
+  m_Name: SteelShelf
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -386,7 +386,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 080018650ff877c4db31e71138b18d95, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f6ded450380ceb044aa6bce1fdc0f516, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -397,7 +397,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &7575714439033799923
+--- !u!114 &8932061342821926541
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -406,25 +406,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 7758700385183420044}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d17688265a9e7c4a8335037773897da, type: 3}
+  m_Script: {fileID: 11500000, guid: 5f4ef489b27af164ba5239e6fc9a7f72, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buildingName: Wooden Shelf
+  buildingName: Steel Shelf
   mainUIImage: {fileID: 21300000, guid: 2917023b4d09ac24fa05241620c3148b, type: 3}
-  purchasePrice: 400
-  shelves:
-  - {fileID: 5112000414956942821}
-  - {fileID: 9144022408910909938}
-  - {fileID: 5182453930565849313}
-  - {fileID: 4814938400532438737}
-  - {fileID: 3827872823054978276}
-  - {fileID: 6747408610501653412}
-  - {fileID: 4230531431570945844}
-  - {fileID: 2310738883026901149}
-  - {fileID: 1876768217977372385}
-  - {fileID: 5147269041584815023}
-  - {fileID: 4370219369305428701}
-  - {fileID: 7245181713397004910}
+  purchasePrice: 1200
+  shelves: []
 --- !u!1 &7759335855249074625
 GameObject:
   m_ObjectHideFlags: 0
