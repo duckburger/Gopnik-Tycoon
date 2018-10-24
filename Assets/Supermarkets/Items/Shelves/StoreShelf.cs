@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StoreShelf : Building
+public abstract class StoreShelf : Building
 {
     [SerializeField] protected List<Transform> shelves;
 
-    public virtual void Restock() { }
+    public abstract void Restock();
+    public abstract void DepleteStock();
 }

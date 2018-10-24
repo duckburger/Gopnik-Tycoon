@@ -16,6 +16,19 @@ public class BuildingSlot : MonoBehaviour
         }
     }
 
+    bool isOccupied = false;
+    public bool IsOccupied
+    {
+        get
+        {
+            return isOccupied;
+        }
+        set
+        {
+            this.isOccupied = value;
+        }
+    }
+
     Building currentBuilding;
     public Building CurrentBuilding
     {
@@ -40,4 +53,5 @@ public class BuildingSlot : MonoBehaviour
             this.buildingMenuEvent.Open(this);
         }
     }
+
 }

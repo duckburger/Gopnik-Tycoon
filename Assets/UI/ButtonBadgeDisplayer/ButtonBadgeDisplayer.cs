@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.Events;
+using System;
 
 public class ButtonBadgeDisplayer : MonoBehaviour
 {
@@ -12,6 +13,21 @@ public class ButtonBadgeDisplayer : MonoBehaviour
 
     [SerializeField] UnityEvent actionResponder;
     [SerializeField] bool toggleAction;
+
+    [SerializeField] List<MonoBehaviour> triggerItemList = new List<MonoBehaviour>();
+    
+    bool IsTriggeredByItemType(Type type)
+    {
+        foreach (MonoBehaviour item in triggerItemList)
+        {
+            if (item.GetType() == type)
+            {
+                return true;
+            }
+        }
+        return false;
+
+    }
 
     bool isOn = false;
     public bool IsOn
@@ -27,7 +43,65 @@ public class ButtonBadgeDisplayer : MonoBehaviour
     }
     bool isActive = false;
 
-    
+
+    #region OnTriggerEvents
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (this.triggerItemList != null && this.triggerItemList.Count > 0)
+        {
+            Type itemType = ExternalPlayerController.Instance.PlayerCarryController.CurrentItem.GetType();
+            bool hasItem = IsTriggeredByItemType(itemType);
+            bool playerNear = collision.gameObject.tag.Equals("Player");
+            Debug.Log("InTriggerList: " + hasItem + " PlayerNear: " + playerNear);
+            if (hasItem && playerNear)
+            {
+                DisplayButtonBadge();
+                return;
+            }
+            return;
+        }
+        
+  
+        if (collision.gameObject.tag.Equals("Player"))
+        {
+            DisplayButtonBadge();
+        }
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+
+        if (this.triggerItemList == null || this.triggerItemList.Count <= 0)
+        {
+            return;
+        }
+        if (collision.gameObject.tag.Equals("Player"))
+        {
+            Type itemType = ExternalPlayerController.Instance.PlayerCarryController.CurrentItem.GetType();
+            bool hasItem = IsTriggeredByItemType(itemType);
+            if (hasItem)
+            {
+                DisplayButtonBadge();
+                return;
+            }
+            else
+            {
+                HideButtonBadge();
+            }
+        }
+
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag.Equals("Player"))
+        {
+            HideButtonBadge();
+        }
+    }
+
+    #endregion
 
 
     public void DisplayButtonBadge()
@@ -66,23 +140,5 @@ public class ButtonBadgeDisplayer : MonoBehaviour
         }
     }
 
-    #region OnTriggerEvents
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag.Equals("Player"))
-        {
-            DisplayButtonBadge();
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag.Equals("Player"))
-        {
-            HideButtonBadge();
-        }
-    }
-
-    #endregion
+   
 }

@@ -26,6 +26,15 @@ public class ExternalPlayerController : MonoBehaviour
         }
     }
 
+    [SerializeField] MCharCarry playerCarryController;
+    public MCharCarry PlayerCarryController
+    {
+        get
+        {
+            return this.playerCarryController;
+        }
+    }
+
     GameObject playerGO;
 
     private void Awake()
@@ -44,6 +53,21 @@ public class ExternalPlayerController : MonoBehaviour
         {
             this.playerAttackController = this.playerGO.GetComponent<MCharAttack>();
             this.playerWalkController = this.playerGO.GetComponent<MCharWalk>();
+            this.playerCarryController = this.playerGO.GetComponent<MCharCarry>();
         }
+    }
+
+    public void TurnOffAllPlayerSystems()
+    {
+        this.playerAttackController.enabled = false;
+        this.playerWalkController.enabled = false;
+        this.playerCarryController.enabled = false;
+    }
+
+    public void TurnOnAllPlayerSystems()
+    {
+        this.playerAttackController.enabled = true;
+        this.playerWalkController.enabled = true;
+        this.playerCarryController.enabled = true;
     }
 }

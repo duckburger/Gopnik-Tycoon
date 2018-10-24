@@ -30,12 +30,13 @@ public class MCharAttack : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0) && !this.isAttacking)
         {
-            HandleAttack();
+            Attack();
         }
     }
 
-    void HandleAttack()
+    void Attack()
     {
+        this.GetComponent<MCharCarry>().DropItem();
         // Choose attack
         if (this.availableAttacks == null || this.availableAttacks.Count <= 0)
         {

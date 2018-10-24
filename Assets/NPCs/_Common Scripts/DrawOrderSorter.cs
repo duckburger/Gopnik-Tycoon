@@ -11,25 +11,25 @@ public class DrawOrderSorter : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        myRenderer = GetComponent<Renderer>();
+        this.myRenderer = GetComponent<Renderer>();
         StartCoroutine(ChangeRenderOrder());
 	}
 	
 	IEnumerator ChangeRenderOrder()
     {
-        if (myRenderer != null)
+        if (this.myRenderer != null)
         {
-            if (!runOnce)
+            if (!this.runOnce)
             {
                 while (true)
                 {
-                    myRenderer.sortingOrder = (int)(baseSortNumber - this.transform.position.y);
+                    this.myRenderer.sortingOrder = (int)(baseSortNumber - this.transform.position.y);
                     yield return new WaitForSeconds(refreshRateInSecs);
                 }
             }
             else
             {
-                myRenderer.sortingOrder = (int)(baseSortNumber - this.transform.position.y);
+                this.myRenderer.sortingOrder = (int)(baseSortNumber - this.transform.position.y);
                 yield break;
             }
             

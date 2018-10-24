@@ -15,7 +15,7 @@ public class MenuControlLayer : MonoBehaviour
         {
             this.slotBuildingMenu.SetActive(true);
             this.slotBuildingMenu.SendMessage("Populate", slotToShow);
-            ExternalPlayerController.Instance.PlayerWalkController.IsActive = false;
+            ExternalPlayerController.Instance.TurnOffAllPlayerSystems();
         }
     }
 
@@ -24,7 +24,8 @@ public class MenuControlLayer : MonoBehaviour
         if (this.slotBuildingMenu != null)
         {
             this.slotBuildingMenu.SendMessage("Close", SendMessageOptions.DontRequireReceiver);
-            ExternalPlayerController.Instance.PlayerWalkController.IsActive = true;
+            ExternalPlayerController.Instance.TurnOnAllPlayerSystems();
+
         }
     }
 
