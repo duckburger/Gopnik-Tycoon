@@ -18,9 +18,9 @@ public class FloatingTextObj : MonoBehaviour
 
     IEnumerator Animate()
     {
-        LeanTween.moveLocalY(this.gameObject, this.transform.position.y + 5f, 5.5f).setEase(LeanTweenType.easeOutQuart);
+        LeanTween.moveLocalY(this.gameObject, this.transform.position.y + 2f, 5.5f).setEase(LeanTweenType.easeOutQuart);
         yield return new WaitForSeconds(0.2f);
-        LeanTween.alphaCanvas(myCanvasGroup, 0, 0.5f).setOnComplete(() => Destroy(this.gameObject)); 
+        LeanTween.alphaCanvas(myCanvasGroup, 0, 3.5f).setOnComplete(() => Destroy(this.gameObject)); 
     }
 
 }

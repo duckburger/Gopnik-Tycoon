@@ -15,16 +15,16 @@ public class FloatingTextDisplay : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(this.gameObject);
-        } else if (Instance != this)
+        }
+        else if (Instance != this)
         {
             Destroy(this.gameObject);
         }
     }
 
-    
-   public void SpawnFloatingText(Vector2 screenPos, string textToInclude)
+   public static void SpawnFloatingText(Vector2 screenPos, string textToInclude)
    {
-        GameObject newText = Instantiate(textObjPrefab, screenPos, Quaternion.identity, this.transform);
+        GameObject newText = Instantiate(FloatingTextDisplay.Instance.textObjPrefab, screenPos, Quaternion.identity, FloatingTextDisplay.Instance.transform);
         newText.GetComponent<FloatingTextObj>().text.text = textToInclude;
    }
 }

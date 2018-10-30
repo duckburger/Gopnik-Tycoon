@@ -93,7 +93,7 @@ public class FightTarget_Action : GoapAction
                     this.GetComponent<GopnikAI>().globalBalance.AdjustFloatValue(stolenAmount);
 
                     Vector2 thisScreenPos = Camera.main.WorldToScreenPoint(this.transform.position);
-                    FloatingTextDisplay.Instance.SpawnFloatingText(thisScreenPos, "+" + stolenAmount.ToString("C0"));
+                    FloatingTextDisplay.SpawnFloatingText(thisScreenPos, "+" + stolenAmount.ToString("C0"));
 
                     completed = true;
                     this.target = null;

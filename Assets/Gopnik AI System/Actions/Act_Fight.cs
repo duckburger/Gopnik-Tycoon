@@ -129,11 +129,11 @@ public class Act_Fight : AI_Action
                 case AttackType.Punch:
                     targetHealth.AdjustHealth(-10, true); // TODO: remove the hardcoded values here
                     
-                    FloatingTextDisplay.Instance.SpawnFloatingText(thisScreenPos, "-10");
+                    FloatingTextDisplay.SpawnFloatingText(thisScreenPos, "-10");
                     break;
                 case AttackType.Kick:
                     targetHealth.AdjustHealth(-10, true);
-                    FloatingTextDisplay.Instance.SpawnFloatingText(thisScreenPos, "-10");
+                    FloatingTextDisplay.SpawnFloatingText(thisScreenPos, "-10");
                     break;
                 default:
                     break;

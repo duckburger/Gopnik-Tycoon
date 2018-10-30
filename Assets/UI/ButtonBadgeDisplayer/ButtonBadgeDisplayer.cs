@@ -48,8 +48,12 @@ public class ButtonBadgeDisplayer : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (this.triggerItemList != null && this.triggerItemList.Count > 0)
+        if (this.triggerItemList != null && this.triggerItemList.Count > 0 )
         {
+            if (ExternalPlayerController.Instance.PlayerCarryController.CurrentItem == null)
+            {
+                return;
+            }
             Type itemType = ExternalPlayerController.Instance.PlayerCarryController.CurrentItem.GetType();
             bool hasItem = IsTriggeredByItemType(itemType);
             bool playerNear = collision.gameObject.tag.Equals("Player");
@@ -72,7 +76,7 @@ public class ButtonBadgeDisplayer : MonoBehaviour
     private void OnTriggerStay2D(Collider2D collision)
     {
 
-        if (this.triggerItemList == null || this.triggerItemList.Count <= 0)
+        if (this.triggerItemList == null || this.triggerItemList.Count <= 0 || ExternalPlayerController.Instance.PlayerCarryController.CurrentItem == null)
         {
             return;
         }

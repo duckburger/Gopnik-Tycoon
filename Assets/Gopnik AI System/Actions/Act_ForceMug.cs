@@ -147,7 +147,7 @@ public class Act_ForceMug : AI_Action
                 this.mainCharController.globalBalance.AdjustFloatValue(amtToSteal);
 
                 Vector2 thisScreenPos = Camera.main.WorldToScreenPoint(this.transform.position);
-                FloatingTextDisplay.Instance.SpawnFloatingText(thisScreenPos, "+" + amtToSteal.ToString("C0"));
+                FloatingTextDisplay.SpawnFloatingText(thisScreenPos, "+" + amtToSteal.ToString("C0"));
                 //Debug.Log("Robbed the target for " + amtToSteal + ". Finishing the action");
                 this.completed = true;
             }

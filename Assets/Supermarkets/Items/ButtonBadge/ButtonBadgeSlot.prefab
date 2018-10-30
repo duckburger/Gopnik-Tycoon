@@ -91,7 +91,7 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
 --- !u!114 &5984581580373844132
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -265,12 +265,12 @@ PolygonCollider2D:
   m_Points:
     m_Paths:
     - - {x: -0.59537363, y: 0.13529032}
-      - {x: -2.4040527, y: 0.13182229}
-      - {x: -1.9273758, y: -0.2986964}
+      - {x: -1.7696462, y: 0.16092366}
+      - {x: -1.729487, y: -0.28705633}
       - {x: 0.45311737, y: -0.37666214}
       - {x: 1.4476547, y: -0.3246168}
-      - {x: 2.347888, y: -0.19255531}
-      - {x: 2.6804757, y: 0.15308589}
+      - {x: 2.2082024, y: -0.3147806}
+      - {x: 2.2148561, y: 0.1996476}
 --- !u!114 &2070420837871960075
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -301,8 +301,8 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-  toggleAction: 0
-  reverseActivation: 0
+  toggleAction: 1
+  triggerItemList: []
 --- !u!1 &8573411650744431273
 GameObject:
   m_ObjectHideFlags: 0

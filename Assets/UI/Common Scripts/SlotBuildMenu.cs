@@ -26,6 +26,7 @@ public class SlotBuildMenu : Menu
     {
         // Spawn enough buttons into the parent to show all the available buildings
         this.selectedSlot = slotToShow.transform;
+        this.titleText.text = slotToShow.name;
         foreach (GameObject building in slotToShow.AvailableBuildings)
         {
             BuildingSlotUICell newCell = Instantiate(this.itemPrefab, this.itemParent).GetComponent<BuildingSlotUICell>();

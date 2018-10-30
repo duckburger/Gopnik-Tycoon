@@ -10,6 +10,8 @@ public class MCharCarry : MonoBehaviour
     [SerializeField] float throwDistance;
 
     [SerializeField] Pickuppable currentItem;
+
+    bool isPlayer = false;
     public Pickuppable CurrentItem
     {
         get
@@ -20,6 +22,14 @@ public class MCharCarry : MonoBehaviour
 
     List<Pickuppable> nearItems = new List<Pickuppable>();
 
+
+    private void Start()
+    {
+        if (this.gameObject.tag == "Player")
+        {
+            this.isPlayer = true;
+        }
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -61,10 +71,15 @@ public class MCharCarry : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        if (this.isPlayer && Input.GetKeyDown(KeyCode.E))
         {
             PickUpNearestItem(); 
         }
+        if (this.isPlayer && ExternalPlayerController.Instance.PlayerCarryController.currentItem != null && Input.GetKeyDown(KeyCode.G))
+        {
+            DropItem();
+        }
+
     }
 
 
@@ -73,7 +88,6 @@ public class MCharCarry : MonoBehaviour
         if (this.currentItem != null)
         {
             DropItem();
-            return;
         }
         if (this.nearItems.Count <= 0)
         {
