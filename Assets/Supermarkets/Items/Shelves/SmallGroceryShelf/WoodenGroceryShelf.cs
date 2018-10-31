@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WoodenShelf : StoreShelf
+public class WoodenGroceryShelf : StoreShelf
 {
-
     // Only works if shelves are dragged in through the inspector
     public override void InitializeStockAmount()
     {
@@ -49,17 +48,17 @@ public class WoodenShelf : StoreShelf
 
     public void ApplyPlayerCarriedItem()
     {
-       if (!this.listOfNearbyChars.Contains(ExternalPlayerController.Instance.PlayerCarryController.gameObject))
-       {
-           return;
-       }
-       if (this.currentFoodStock == this.maxStockAmount)
+        if (!this.listOfNearbyChars.Contains(ExternalPlayerController.Instance.PlayerCarryController.gameObject))
+        {
+            return;
+        }
+        if (this.currentFoodStock == this.maxStockAmount)
         {
             Vector2 floatingTextScreenPos = Camera.main.WorldToScreenPoint(this.transform.position);
             FloatingTextDisplay.SpawnFloatingText(floatingTextScreenPos, "The " + this.gameObject.name + " is already full.");
             return;
         }
-        
+
         if (ExternalPlayerController.Instance.PlayerCarryController.CurrentItem != null && ExternalPlayerController.Instance.PlayerCarryController.CurrentItem.GetType().BaseType == typeof(FoodItem))
         {
             FoodItem carriedFoodItem = ExternalPlayerController.Instance.PlayerCarryController.CurrentItem.GetComponent<FoodItem>();
@@ -72,7 +71,7 @@ public class WoodenShelf : StoreShelf
                 return;
             }
             this.lastStockedItem = carriedFoodItem;
-            Restock(amtToStock);  
+            Restock(amtToStock);
         }
     }
 
@@ -132,8 +131,6 @@ public class WoodenShelf : StoreShelf
                 }
             }
         }
-       
+
     }
-
-
 }

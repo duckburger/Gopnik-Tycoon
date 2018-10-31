@@ -8,10 +8,15 @@ public class DrawOrderSorter : MonoBehaviour {
     [SerializeField] float baseSortNumber = 5000;
     [SerializeField] float refreshRateInSecs = 0.3f;
     Renderer myRenderer;
+    Canvas myCanvas;
+
+    int currentSortingLayer = 0;
 
 	// Use this for initialization
 	void Start () {
         this.myRenderer = GetComponent<Renderer>();
+        this.myCanvas = GetComponent<Canvas>();
+
         StartCoroutine(ChangeRenderOrder());
 	}
 	
@@ -23,16 +28,40 @@ public class DrawOrderSorter : MonoBehaviour {
             {
                 while (true)
                 {
-                    this.myRenderer.sortingOrder = (int)(baseSortNumber - this.transform.position.y);
+                    currentSortingLayer = (int)(baseSortNumber - this.transform.position.y);
+                    this.myRenderer.sortingOrder = currentSortingLayer;
                     yield return new WaitForSeconds(refreshRateInSecs);
                 }
             }
             else
             {
-                this.myRenderer.sortingOrder = (int)(baseSortNumber - this.transform.position.y);
+                currentSortingLayer = (int)(baseSortNumber - this.transform.position.y);
+                this.myRenderer.sortingOrder = currentSortingLayer;
                 yield break;
             }
             
         }
+        else if (this.myCanvas != null)
+        {
+            if (!this.runOnce)
+            {
+                while (true)
+                {
+                    this.myCanvas.overrideSorting = true;
+                    currentSortingLayer = (int)(baseSortNumber - this.transform.position.y);
+                    this.myCanvas.sortingOrder = currentSortingLayer;
+                    yield return new WaitForSeconds(refreshRateInSecs);
+                }
+            }
+            else
+            {
+                this.myCanvas.overrideSorting = true;
+                currentSortingLayer = (int)(baseSortNumber - this.transform.position.y);
+                this.myCanvas.sortingOrder = currentSortingLayer;
+                yield break;
+            }
+            
+        }
+       
     }
 }

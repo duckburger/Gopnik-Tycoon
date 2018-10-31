@@ -126,6 +126,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myShelfItems: []
+  isOccupied: 0
 --- !u!1 &290234890789385251
 GameObject:
   m_ObjectHideFlags: 0
@@ -612,6 +613,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myShelfItems: []
+  isOccupied: 0
 --- !u!1 &1392346973004804736
 GameObject:
   m_ObjectHideFlags: 0
@@ -843,6 +845,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myShelfItems: []
+  isOccupied: 0
 --- !u!1 &2395555531396012378
 GameObject:
   m_ObjectHideFlags: 0
@@ -1127,6 +1130,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myShelfItems: []
+  isOccupied: 0
 --- !u!1 &3072642979280722954
 GameObject:
   m_ObjectHideFlags: 0
@@ -1253,6 +1257,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myShelfItems: []
+  isOccupied: 0
 --- !u!1 &3479422770632480609
 GameObject:
   m_ObjectHideFlags: 0
@@ -1424,6 +1429,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myShelfItems: []
+  isOccupied: 0
 --- !u!1 &3593145187386908022
 GameObject:
   m_ObjectHideFlags: 0
@@ -2024,6 +2030,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myShelfItems: []
+  isOccupied: 0
 --- !u!1 &5591929827549423760
 GameObject:
   m_ObjectHideFlags: 0
@@ -2071,6 +2078,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myShelfItems: []
+  isOccupied: 0
 --- !u!1 &5762909825004477175
 GameObject:
   m_ObjectHideFlags: 0
@@ -3348,6 +3356,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myShelfItems: []
+  isOccupied: 0
 --- !u!1 &7842637947268196314
 GameObject:
   m_ObjectHideFlags: 0
@@ -3745,6 +3754,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myShelfItems: []
+  isOccupied: 0
 --- !u!1 &8831361413915086415
 GameObject:
   m_ObjectHideFlags: 0
@@ -3950,6 +3960,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myShelfItems: []
+  isOccupied: 0
 --- !u!1 &8930121478967252447
 GameObject:
   m_ObjectHideFlags: 0
@@ -4487,6 +4498,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myShelfItems: []
+  isOccupied: 0
 --- !u!1 &9162847472698140576
 GameObject:
   m_ObjectHideFlags: 0
