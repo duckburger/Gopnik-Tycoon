@@ -31,6 +31,13 @@ public class FoodItem : Pickuppable
     [Space(10)]
     [SerializeField] protected FoodQuality containedQuality;
     [SerializeField] protected FoodType containedType;
+    public FoodType ContainedType
+    {
+        get
+        {
+            return this.containedType;
+        }
+    }
     [Range(3, 25)]
     [SerializeField] protected int foodQuantity; // 3 - little, 6 - medium, 12 - large, 25 - huge(?)
 
