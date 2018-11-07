@@ -33,7 +33,7 @@ public class GopnikNest : MonoBehaviour, IBuildingSetup, AI_IdleSpot {
         {
             onGopSpawnedEvent.Raise(aiController); // WHAT IS THIS EVENT??
         }
-        aiController.CurrentIdleSpot = this;
+        // aiController.CurrentIdleSpot = this;
 
         // TODO: Reactivate the second gopnik
         //GameObject gopnikTwo = Instantiate(gopnikPrefab_LevelOne, idlePoints[1].transform.position, Quaternion.identity, idlePoints[1]);

@@ -16,7 +16,7 @@ public class BuildingSlot : MonoBehaviour
         }
     }
 
-    bool isOccupied = false;
+    [SerializeField] bool isOccupied = false;
     public bool IsOccupied
     {
         get
@@ -43,6 +43,12 @@ public class BuildingSlot : MonoBehaviour
     }
 
     [SerializeField] ScriptableBuildingMenuEvent buildingMenuEvent;
+
+
+    private void Start()
+    {
+        BuildingTracker.Instance.AddBuildingSlotToTracker(this);
+    }
 
     // This will take over the screen
     public void ShowBuildingMenu()

@@ -25,7 +25,7 @@ public enum ActionType
     Razvod
 }
 
-public class AI_Action : MonoBehaviour
+public abstract class AI_Action : MonoBehaviour
 {
     [SerializeField] protected ActionType actionType;
     public ActionType ActionType
@@ -135,23 +135,12 @@ public class AI_Action : MonoBehaviour
     protected AI_CharController mainCharController;
     protected PolyNavAgent navAgent;
 
-    public virtual void DoAction()
-    {
-        if (this.started || this.completed)
-        {
-            return;
-        }
-        if (phrasePack != null)
-        {
-
-        }
-        // Action logic
-    }
+    public abstract void DoAction();
 
     public virtual void OnAttackConnected(AttackType type) { }
     
     public virtual void OnAnimationFinished() { }
 
-    public virtual void Reset() { }
+    public abstract void Reset();
    
 }

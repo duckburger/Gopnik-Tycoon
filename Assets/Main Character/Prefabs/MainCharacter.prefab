@@ -79,6 +79,7 @@ GameObject:
   - component: {fileID: 7175392206443488122}
   - component: {fileID: 1630325108234581934}
   - component: {fileID: 456176441}
+  - component: {fileID: 676445930}
   m_Layer: 8
   m_Name: MainCharacter
   m_TagString: Player
@@ -378,8 +379,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   meleePoint: {fileID: 1820401831}
-  attRadius: 1
+  attRadius: 0.5
   attackForce: 15
   availableAttacks:
   - {fileID: 11400000, guid: 0514b91b948326742845f2ded6fe5a92, type: 2}
   - {fileID: 11400000, guid: c05eeb10c59625c47a5fd4e4a48f3427, type: 2}
+--- !u!114 &676445930
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6438291085347544585}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a89f89395b7a92a48a5453772d3c68c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  carryTransform: {fileID: 7601900647152654133}
+  throwDistance: 2
+  currentItem: {fileID: 0}

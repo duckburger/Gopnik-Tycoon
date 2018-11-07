@@ -28,6 +28,7 @@ public class StoreShelf : Building
             return;
         }
 
+        this.maxStockAmount = 0;
         foreach (Transform item in shelves)
         {
             this.maxStockAmount += this.perShelfCapacity;

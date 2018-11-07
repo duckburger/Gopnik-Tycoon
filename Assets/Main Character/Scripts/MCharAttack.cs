@@ -56,6 +56,7 @@ public class MCharAttack : MonoBehaviour
         float animDuration = this.myAnimator.GetCurrentAnimatorStateInfo(0).length;
         yield return new WaitForSeconds(animDuration);
         this.isAttacking = false;
+
         Collider2D[] hits = Physics2D.OverlapCircleAll(this.meleePoint.position, this.attRadius);
         Debug.Log("Hit " + hits.Length + " objects");
         foreach (Collider2D collider in hits)

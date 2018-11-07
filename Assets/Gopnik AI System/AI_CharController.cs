@@ -29,6 +29,8 @@ public class AI_CharController : MonoBehaviour, ICharStats
     [Header("Actions")]
     [SerializeField] Queue<AI_Action> actionQueue = new Queue<AI_Action>();
 
+    public ActivityType currentObjective;
+
     [Space(10)]
     [Header("ICharStats")]
     [SerializeField] string charName;
@@ -77,18 +79,6 @@ public class AI_CharController : MonoBehaviour, ICharStats
     bool inDialogue = false;
     bool isBusy = false;
     [SerializeField] AI_Action currentAction = null;
-    [SerializeField] AI_IdleSpot currentIdleSpot = null;
-    public AI_IdleSpot CurrentIdleSpot
-    {
-        get
-        {
-            return this.currentIdleSpot;
-        }
-        set
-        {
-            this.currentIdleSpot = value;
-        }
-    }
 
     [HideInInspector]
     public Animator myAnimator;
@@ -132,6 +122,7 @@ public class AI_CharController : MonoBehaviour, ICharStats
             this.currentAction.DoAction();
             return;
         }
+
         if (currentAction != null && this.currentAction.Completed)
         {
             this.currentAction.Reset();
@@ -139,11 +130,13 @@ public class AI_CharController : MonoBehaviour, ICharStats
             PickNewAction();
             return;
         }
+
         if (this.currentAction == null)
         {
             PickNewAction();
             return;
         }
+        // Perform the current action
         this.currentAction.DoAction();
     }
 
@@ -190,38 +183,9 @@ public class AI_CharController : MonoBehaviour, ICharStats
 
     void StartIdlingAction()
     {
-        if (this.currentIdleSpot != null)
-        {
-            // Add idling action here
-            Act_Idle idlingAction = null;
-            if (this.actionParent != null)
-            {
-                idlingAction = this.actionParent.GetComponent<Act_Idle>();
-            }
-            else
-            {
-                Debug.LogError("No action parent connected!");
-                return;
-            }
-            //Debug.Log("Setting current action to Idle");
-            this.currentAction = idlingAction;
-            stateChangedEvent.Invoke(this.currentAction.ActionType);
-
-        }
+       
     }
 
-    public void GetIdlingTarget(out GameObject target, out float reqProximity)
-    {
-        if (this.currentIdleSpot != null)
-        {
-            target = this.currentIdleSpot.GetIdlingTarget();
-            reqProximity = this.currentIdleSpot.GetReqIdleProximity();
-            return;
-        }
-        target = null;
-        reqProximity = 0;
-    }
-   
     // Used to determine the actions of the character in relation to the external attack
     public void ReactToAttack(GameObject attacker)
     {
