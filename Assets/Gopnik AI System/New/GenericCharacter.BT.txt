@@ -1,8 +1,19 @@
 tree("Root")
 	sequence
-		ChooseIntentions
-		ChooseRandomPointNearAShelf
-		GoToTarget
-		GoIdle
-		WaitRandom(2.0, 5.0)
+		repeat 2
+			ChooseIntentions
+			ChooseRandomPointNearAShelf
+			GoToTarget
+			GoIdle
+			WaitRandom(2.0, 5.0)
+			random (3,1)
+				sequence
+					ChooseIntentions
+					ChooseRandomPointNearAShelf
+					GoToTarget
+					GoIdle
+					WaitRandom(2.0, 5.0)
+				sequence
 
+			
+			

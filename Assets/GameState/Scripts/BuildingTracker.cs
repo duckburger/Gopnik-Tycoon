@@ -7,7 +7,7 @@ public class BuildingTracker : MonoBehaviour
 
     public static BuildingTracker Instance;
 
-    public List<StoreShelf> allShelves = new List<StoreShelf>();
+    public List<Building> allShelves = new List<Building>();
     public List<BuildingSlot> allBuildingSlots = new List<BuildingSlot>();
 
 
@@ -33,7 +33,7 @@ public class BuildingTracker : MonoBehaviour
         }
     }
 
-    public void AddBuildingToTracker(StoreShelf newBuilding)
+    public void AddBuildingToTracker(Building newBuilding)
     {
        if (!this.allShelves.Contains(newBuilding))
         {
@@ -54,8 +54,8 @@ public class BuildingTracker : MonoBehaviour
             {
                 int randomSlotIndex = Random.Range(0, this.allBuildingSlots.Count - 1);
                 pos = new Vector2(this.allBuildingSlots[randomSlotIndex].transform.position.x + xAdjustment, this.allBuildingSlots[randomSlotIndex].transform.position.y + yADjustment);
-                RaycastHit2D[] hits = Physics2D.RaycastAll(pos, Vector3.forward, 1000);
-                foreach (RaycastHit2D hit in hits)
+                RaycastHit2D[] hitList = Physics2D.RaycastAll(pos, Vector3.forward, 1000);
+                foreach (RaycastHit2D hit in hitList)
                 {
                     if (hit.collider.gameObject.GetComponent<PolyNav.PolyNavObstacle>())
                     {
@@ -63,7 +63,7 @@ public class BuildingTracker : MonoBehaviour
                         pos = new Vector2(pos.x + xAdjustment, pos.y + yADjustment);
                     }
                 }
-                Debug.Log("Picked a spot: " + pos);
+                //Debug.Log("Picked a spot: " + pos);
                 return pos;
             }
             else
@@ -75,7 +75,35 @@ public class BuildingTracker : MonoBehaviour
 
         int randomShelfIndex = Random.Range(0, this.allShelves.Count - 1);
         pos = new Vector2(this.allShelves[randomShelfIndex].transform.position.x + xAdjustment, this.allShelves[randomShelfIndex].transform.position.y + yADjustment);
+
+        RaycastHit2D[] hits = Physics2D.RaycastAll(pos, Vector3.forward, 1000);
+        foreach (RaycastHit2D hit in hits)
+        {
+            if (hit.collider.gameObject.GetComponent<PolyNav.PolyNavObstacle>())
+            {
+                // Recalculate the pos
+                pos = new Vector2(pos.x + xAdjustment, pos.y + yADjustment);
+            }
+        }
         return pos;
     }
 
+    public Shelf FindShelfByFoodQuality(FoodQuality qualityToCheck)
+    {
+        if (this.allShelves == null || this.allShelves.Count <= 0)
+        {
+            return null;
+        }
+
+        List<Building> eligibleBuildings = new List<Building>();
+        foreach (Building building in this.allShelves)
+        {
+            Shelf shelfController = building.gameObject.GetComponent<Shelf>();
+            if (shelfController != null && shelfController.CheckIfContainsFoodQuality(qualityToCheck))
+            {
+                return shelfController;
+            }
+        }
+        return null;
+    }
 }

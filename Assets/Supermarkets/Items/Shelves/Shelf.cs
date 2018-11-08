@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class Shelf : MonoBehaviour
 {
-    public List<SpriteRenderer> myShelfItems = new List<SpriteRenderer>();
+    public List<ShelfItemSlot> myShelfItems = new List<ShelfItemSlot>();
     public bool isOccupied = false;
 
     private void Start()
@@ -15,27 +15,37 @@ public class Shelf : MonoBehaviour
             SpriteRenderer renderer = obj.GetComponent<SpriteRenderer>();
             if (renderer != null)
             {
-                this.myShelfItems.Add(renderer);
+                this.myShelfItems.Add(obj.gameObject.GetComponent<ShelfItemSlot>());
             }
         }
     }
 
-    public void Occupy(Sprite spriteToApply)
+    public bool CheckIfContainsFoodQuality(FoodQuality qualityToCheck)
     {
-        foreach (SpriteRenderer renderer in this.myShelfItems)
+        foreach (ShelfItemSlot slot in this.myShelfItems)
         {
-            renderer.enabled = true;
-            renderer.sprite = spriteToApply;
+            if (slot.MyItemQuality == qualityToCheck)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void Occupy(FoodItem item)
+    {
+        foreach (ShelfItemSlot shelfItemSlot in this.myShelfItems)
+        {
+            shelfItemSlot.Populate(item);
         }
         this.isOccupied = true;
     }
 
     public void Clear()
     {
-        foreach (SpriteRenderer renderer in this.myShelfItems)
+        foreach (ShelfItemSlot shelfSlot in this.myShelfItems)
         {
-            renderer.sprite = null;
-            renderer.enabled = false;
+            shelfSlot.Clear();
         }
         this.isOccupied = false;
     }

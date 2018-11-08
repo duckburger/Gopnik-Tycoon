@@ -104,6 +104,7 @@ public class BuildingSlotUICell : MonoBehaviour
                     Instantiate(buildingToDisplay, this.menuController.SelectedSlot.transform.position, Quaternion.identity, this.menuController.SelectedSlot);
                     money.AdjustFloatValue(-this.myBuilding.purchasePrice);
                     currentSlot.CurrentBuilding = buildingData;
+                    
                     this.menuController.Close();
                 }
                 else
@@ -116,6 +117,7 @@ public class BuildingSlotUICell : MonoBehaviour
                     currentSlot.CurrentBuilding = buildingData;
                     this.menuController.Close();
                 }
+                BuildingTracker.Instance.AddBuildingToTracker(buildingData);
                
             });
         }

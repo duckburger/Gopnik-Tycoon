@@ -132,6 +132,7 @@ public class StoreShelf : Building
             {
                 this.currentFoodStock = this.maxStockAmount;
             }
+
             UpdateStockUI();
             UpdateShelfAppearance(true);
             ShowStockCount();
@@ -155,7 +156,7 @@ public class StoreShelf : Building
                 Shelf shelfController = shelves[i].GetComponent<Shelf>();
                 if (shelfController != null && !shelfController.isOccupied)
                 {
-                    shelfController.Occupy(this.lastStockedItem.GetRandomShelfAppearanceSprite());
+                    shelfController.Occupy(this.lastStockedItem);
                     return;
                 }
             }

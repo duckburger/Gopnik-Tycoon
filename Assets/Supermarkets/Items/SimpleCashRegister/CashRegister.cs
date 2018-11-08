@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CashRegister : MonoBehaviour
+public class CashRegister : Building
 {
 
     public void CountCurrentShopper()

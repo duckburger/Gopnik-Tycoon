@@ -29,7 +29,7 @@ public class BuildingSlot : MonoBehaviour
         }
     }
 
-    Building currentBuilding;
+    [SerializeField] Building currentBuilding;
     public Building CurrentBuilding
     {
         get

@@ -30,6 +30,13 @@ public class FoodItem : Pickuppable
 
     [Space(10)]
     [SerializeField] protected FoodQuality containedQuality;
+    public FoodQuality ContainedQuality
+    {
+        get
+        {
+            return this.containedQuality;
+        }
+    }
     [SerializeField] protected FoodType containedType;
     public FoodType ContainedType
     {

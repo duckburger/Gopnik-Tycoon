@@ -15,6 +15,7 @@ public enum CharacterIntentions
 
 public class AI_Generic : MonoBehaviour
 {
+    // Add character data
     [SerializeField] Vector2 target;
     [SerializeField] CharacterIntentions myIntentions;
 
@@ -53,6 +54,13 @@ public class AI_Generic : MonoBehaviour
         this.navAgent.SetDestination(target, null);
         this.animator.Play("Walk");
         Task.current.Succeed();
+    }
+
+    [Task]
+    void ChooseFullShelfToShopAt()
+    {
+        // Choosing a product to buy logic goes here
+        // BuildingTracker.Instance.FindShelfByFoodQuality();
     }
 
 
