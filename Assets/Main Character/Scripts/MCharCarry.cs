@@ -103,6 +103,24 @@ public class MCharCarry : MonoBehaviour
         this.currentItem.transform.localPosition = Vector2.zero;
     }
 
+    public void PickUpSpecificItem(Pickuppable itemToPickUp)
+    {
+        if (itemToPickUp == null)
+        {
+            Debug.Log("No pickuppable item specified");
+            return;
+        }
+        if (this.currentItem != null)
+        {
+            DropItem();
+        }
+           
+        itemToPickUp.transform.parent = this.carryTransform;
+        this.currentItem = itemToPickUp;
+        this.currentItem.transform.localPosition = Vector2.zero;
+    }
+    
+
     public void DropItem()
     {
         if (this.currentItem != null)

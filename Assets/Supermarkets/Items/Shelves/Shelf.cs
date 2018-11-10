@@ -7,6 +7,7 @@ public class Shelf : MonoBehaviour
 {
     public List<ShelfItemSlot> myShelfItems = new List<ShelfItemSlot>();
     public bool isOccupied = false;
+    
 
     private void Start()
     {
@@ -30,6 +31,18 @@ public class Shelf : MonoBehaviour
             }
         }
         return false;
+    }
+
+    public ShelfItemSlot GetSlotWithItemQuality(FoodQuality qualityToCheck)
+    {
+        for (int i = 0; i < this.myShelfItems.Count; i++)
+        {
+            if (this.myShelfItems[i].MyItemQuality == qualityToCheck)
+            {
+                return this.myShelfItems[i];
+            }
+        }
+        return null;
     }
 
     public void Occupy(FoodItem item)

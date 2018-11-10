@@ -17,10 +17,13 @@ public class AI_Generic : MonoBehaviour
 {
     // Add character data
     [SerializeField] Vector2 target;
+    StoreShelf myTargetShelf;
     [SerializeField] CharacterIntentions myIntentions;
+    [SerializeField] FoodQuality myPreferredFoodQuality;
 
     PolyNavAgent navAgent;
     Animator animator;
+    
 
     private void Start()
     {
@@ -50,7 +53,7 @@ public class AI_Generic : MonoBehaviour
     [Task]
     void ChooseRandomPointNearAShelf()
     {
-        target = BuildingTracker.Instance.GetRandomNearShelfLocation();
+        this.target = BuildingTracker.Instance.GetRandomNearShelfLocation();
         this.navAgent.SetDestination(target, null);
         this.animator.Play("Walk");
         Task.current.Succeed();
@@ -60,7 +63,19 @@ public class AI_Generic : MonoBehaviour
     void ChooseFullShelfToShopAt()
     {
         // Choosing a product to buy logic goes here
-        // BuildingTracker.Instance.FindShelfByFoodQuality();
+        StoreShelf shelfToShop = BuildingTracker.Instance.FindShelfByFoodQuality(myPreferredFoodQuality);
+        if (shelfToShop != null)
+        {
+            this.myTargetShelf = shelfToShop;
+        }
+        else
+        {
+            Task.current.Fail();
+            return;
+        }
+        this.target = new Vector2(shelfToShop.gameObject.transform.position.x, shelfToShop.gameObject.transform.position.y - 1.5f);
+        Task.current.Succeed();
+        return;
     }
 
 
@@ -84,5 +99,14 @@ public class AI_Generic : MonoBehaviour
     {
         this.animator.Play("Idle");
         Task.current.Succeed();
+    }
+
+    [Task]
+    void PickUpItemFromShelf()
+    {
+        if (this.myTargetShelf != null && this.myTargetShelf.CheckIfContainsFoodQuality(myPreferredFoodQuality))
+        {
+            this.myTargetShelf.TakeFoodOut(this.gameObject, myPreferredFoodQuality);
+        }
     }
 }

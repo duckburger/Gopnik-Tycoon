@@ -57,6 +57,22 @@ public class StoreShelf : Building
         this.stockAmtText.enabled = false;
     }
 
+    public bool CheckIfContainsFoodQuality(FoodQuality qualityToCheck)
+    {
+        for (int i = 0; i < this.shelves.Count; i++)
+        {
+            Shelf shelfController = this.shelves[i].GetComponent<Shelf>();
+            if (shelfController != null)
+            {
+                if (shelfController.CheckIfContainsFoodQuality(qualityToCheck))
+                {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
     public virtual void ApplyCarriedItem(GameObject character)
     {
         MCharCarry carryController = character.GetComponent<MCharCarry>();
@@ -77,6 +93,33 @@ public class StoreShelf : Building
             }
            
         }
+    }
+
+    public void TakeFoodOut(GameObject character, FoodQuality preferredQuality)
+    {
+        MCharCarry carryController = character.GetComponent<MCharCarry>();
+        AI_Generic charAIController = character.GetComponent<AI_Generic>();
+        if (carryController != null && charAIController != null)
+        {
+            ShowStockCount();
+            ShelfItemSlot slotWithItem = FindItemOnShelf(preferredQuality);
+            carryController.PickUpSpecificItem(slotWithItem.EmptyAndTakeItem());      
+        }
+    }
+
+    public ShelfItemSlot FindItemOnShelf(FoodQuality qualityToLookFor)
+    {
+        for (int i = 0; i < this.shelves.Count; i++)
+        {        
+            Shelf shelfController = shelves[i].GetComponent<Shelf>();
+            if (shelfController.CheckIfContainsFoodQuality(qualityToLookFor))
+            {
+                ShelfItemSlot slotWithMyItem = shelfController.GetSlotWithItemQuality(qualityToLookFor);
+                // Take item out and put it in the character's hands
+                return slotWithMyItem;
+            }
+        }
+        return null;
     }
 
     public virtual void ApplyPlayerCarriedItem()

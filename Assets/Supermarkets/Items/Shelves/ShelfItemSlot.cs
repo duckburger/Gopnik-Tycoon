@@ -7,7 +7,7 @@ public class ShelfItemSlot : MonoBehaviour
 
     [SerializeField] SpriteRenderer mySpriteRenderer;
 
-    FoodQuality myItemQuality = FoodQuality.None;
+    FoodQuality myItemQuality;
     public FoodQuality MyItemQuality
     {
         get
@@ -16,6 +16,7 @@ public class ShelfItemSlot : MonoBehaviour
         }
     }
 
+    FoodItem myItem;
     bool isOccupied = false;
     public bool IsOccupied
     {
@@ -32,9 +33,29 @@ public class ShelfItemSlot : MonoBehaviour
 
     public void Populate(FoodItem item)
     {
+        this.myItem = item;
         this.mySpriteRenderer.sprite = item.GetRandomShelfAppearanceSprite();
         this.myItemQuality = item.ContainedQuality;
         this.isOccupied = true;
+    }
+
+    public void Empty()
+    {
+        this.myItem = null;
+        this.mySpriteRenderer.sprite = null;
+        this.myItemQuality = FoodQuality.None;
+        this.isOccupied = false;
+    }
+
+    public FoodItem EmptyAndTakeItem()
+    {
+        if (this.myItem != null)
+        {
+            FoodItem itemToTakeOut = this.myItem;
+            Empty();
+            return itemToTakeOut;
+        }
+       return null;
     }
 
     public void Clear() { }

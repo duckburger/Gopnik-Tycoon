@@ -88,7 +88,7 @@ public class BuildingTracker : MonoBehaviour
         return pos;
     }
 
-    public Shelf FindShelfByFoodQuality(FoodQuality qualityToCheck)
+    public StoreShelf FindShelfByFoodQuality(FoodQuality qualityToCheck)
     {
         if (this.allShelves == null || this.allShelves.Count <= 0)
         {
@@ -98,7 +98,7 @@ public class BuildingTracker : MonoBehaviour
         List<Building> eligibleBuildings = new List<Building>();
         foreach (Building building in this.allShelves)
         {
-            Shelf shelfController = building.gameObject.GetComponent<Shelf>();
+            StoreShelf shelfController = building.gameObject.GetComponent<StoreShelf>();
             if (shelfController != null && shelfController.CheckIfContainsFoodQuality(qualityToCheck))
             {
                 return shelfController;
