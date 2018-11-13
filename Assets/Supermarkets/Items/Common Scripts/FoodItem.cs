@@ -29,12 +29,12 @@ public class FoodItem : Pickuppable
     public TextMeshProUGUI stockAmtText;
 
     [Space(10)]
-    [SerializeField] protected FoodQuality containedQuality;
-    public FoodQuality ContainedQuality
+    [SerializeField] protected FoodQuality foodQuality;
+    public FoodQuality FoodQuality
     {
         get
         {
-            return this.containedQuality;
+            return this.foodQuality;
         }
     }
     [SerializeField] protected FoodType containedType;
@@ -47,7 +47,6 @@ public class FoodItem : Pickuppable
     }
     [Range(3, 25)]
     [SerializeField] protected int foodQuantity; // 3 - little, 6 - medium, 12 - large, 25 - huge(?)
-
     [SerializeField] protected Sprite worldFoodAppearance;
 
     [SerializeField] protected List<Sprite> onShelfAppearances = new List<Sprite>();
@@ -73,24 +72,5 @@ public class FoodItem : Pickuppable
         }
     }
 
-    public int ProvideFoodStock()
-    {
-        int amtToProvide = 3;
-        if (this.foodQuantity - amtToProvide < 0)
-        {
-            return -1;
-        }
-        this.foodQuantity -= amtToProvide;
-        UpdateStockUI();
-        return amtToProvide;
-
-    }
-
-    protected virtual void UpdateStockUI()
-    {
-        if (this.stockAmtText != null)
-        {
-            this.stockAmtText.text = this.foodQuantity.ToString();
-        }
-    }
+   
 }

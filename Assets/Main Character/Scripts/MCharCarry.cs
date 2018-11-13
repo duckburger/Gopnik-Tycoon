@@ -6,9 +6,6 @@ using UnityEngine;
 public class MCharCarry : MonoBehaviour
 {
     [SerializeField] Transform carryTransform;
-
-    [SerializeField] float throwDistance;
-
     [SerializeField] Pickuppable currentItem;
 
     bool isPlayer = false;

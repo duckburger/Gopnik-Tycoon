@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WoodenFoodBox : FoodItem
+public class WoodenFoodBox : FoodContainer
 {
 
     [SerializeField] SpriteRenderer foodGraphic;

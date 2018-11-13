@@ -117,7 +117,7 @@ public class BuildingSlotUICell : MonoBehaviour
                     currentSlot.CurrentBuilding = buildingData;
                     this.menuController.Close();
                 }
-                BuildingTracker.Instance.AddBuildingToTracker(buildingData);
+                
                
             });
         }

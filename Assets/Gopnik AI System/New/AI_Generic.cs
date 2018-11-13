@@ -74,6 +74,8 @@ public class AI_Generic : MonoBehaviour
             return;
         }
         this.target = new Vector2(shelfToShop.gameObject.transform.position.x, shelfToShop.gameObject.transform.position.y - 1.5f);
+        this.navAgent.SetDestination(target, null);
+        this.animator.Play("Walk");
         Task.current.Succeed();
         return;
     }
@@ -107,6 +109,7 @@ public class AI_Generic : MonoBehaviour
         if (this.myTargetShelf != null && this.myTargetShelf.CheckIfContainsFoodQuality(myPreferredFoodQuality))
         {
             this.myTargetShelf.TakeFoodOut(this.gameObject, myPreferredFoodQuality);
+            Task.current.Succeed();
         }
     }
 }

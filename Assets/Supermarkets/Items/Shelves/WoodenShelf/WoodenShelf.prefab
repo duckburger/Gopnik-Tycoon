@@ -92,6 +92,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18c72e61a697f8849afb35ec2dc5da63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mySpriteRenderer: {fileID: 0}
 --- !u!1 &216931450421242672
 GameObject:
   m_ObjectHideFlags: 0
@@ -138,7 +139,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12ab32bafb06f9f4294ef72152124265, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myShelfItems: []
+  myShelfItems:
+  - {fileID: 7798618687232923333}
+  - {fileID: 2431822471149025497}
+  - {fileID: 842478036125966594}
   isOccupied: 0
 --- !u!1 &290234890789385251
 GameObject:
@@ -232,6 +236,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18c72e61a697f8849afb35ec2dc5da63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mySpriteRenderer: {fileID: 0}
 --- !u!1 &518942607918566323
 GameObject:
   m_ObjectHideFlags: 0
@@ -399,6 +404,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18c72e61a697f8849afb35ec2dc5da63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mySpriteRenderer: {fileID: 0}
 --- !u!1 &953838505956533578
 GameObject:
   m_ObjectHideFlags: 0
@@ -509,11 +515,13 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_text: F
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 912cb5947c4888f46a18db580e52d5d0, type: 2}
-  m_sharedMaterial: {fileID: 21785222905032602, guid: 912cb5947c4888f46a18db580e52d5d0, type: 2}
+  m_sharedMaterial: {fileID: 21785222905032602, guid: 912cb5947c4888f46a18db580e52d5d0,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -651,7 +659,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12ab32bafb06f9f4294ef72152124265, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myShelfItems: []
+  myShelfItems:
+  - {fileID: 6011769080773161106}
+  - {fileID: 3539029879799079244}
+  - {fileID: 8207331112785104679}
   isOccupied: 0
 --- !u!1 &1392346973004804736
 GameObject:
@@ -745,6 +756,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18c72e61a697f8849afb35ec2dc5da63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mySpriteRenderer: {fileID: 0}
 --- !u!1 &1412960476588304114
 GameObject:
   m_ObjectHideFlags: 0
@@ -808,7 +820,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Texture: {fileID: 2800000, guid: 50dc78222186c4b468c90a0b0353d791, type: 3}
   m_UVRect:
     serializedVersion: 2
@@ -896,7 +909,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12ab32bafb06f9f4294ef72152124265, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myShelfItems: []
+  myShelfItems:
+  - {fileID: 1350628318523907301}
+  - {fileID: 4527375463450580431}
+  - {fileID: 6250717556345976889}
   isOccupied: 0
 --- !u!1 &2395555531396012378
 GameObject:
@@ -990,6 +1006,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18c72e61a697f8849afb35ec2dc5da63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mySpriteRenderer: {fileID: 0}
 --- !u!1 &2442166761039712764
 GameObject:
   m_ObjectHideFlags: 0
@@ -1082,6 +1099,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18c72e61a697f8849afb35ec2dc5da63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mySpriteRenderer: {fileID: 0}
 --- !u!1 &2672423421932803796
 GameObject:
   m_ObjectHideFlags: 0
@@ -1174,6 +1192,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18c72e61a697f8849afb35ec2dc5da63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mySpriteRenderer: {fileID: 0}
 --- !u!1 &2818804006265774389
 GameObject:
   m_ObjectHideFlags: 0
@@ -1220,7 +1239,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12ab32bafb06f9f4294ef72152124265, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myShelfItems: []
+  myShelfItems:
+  - {fileID: 2790975540526661053}
+  - {fileID: 8245556824677097959}
+  - {fileID: 4334706277172322952}
   isOccupied: 0
 --- !u!1 &3072642979280722954
 GameObject:
@@ -1314,6 +1336,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18c72e61a697f8849afb35ec2dc5da63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mySpriteRenderer: {fileID: 0}
 --- !u!1 &3106085848971767378
 GameObject:
   m_ObjectHideFlags: 0
@@ -1360,7 +1383,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12ab32bafb06f9f4294ef72152124265, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myShelfItems: []
+  myShelfItems:
+  - {fileID: 7150625987281548450}
+  - {fileID: 6242831537414145793}
+  - {fileID: 1625942741499791067}
   isOccupied: 0
 --- !u!1 &3479422770632480609
 GameObject:
@@ -1454,6 +1480,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18c72e61a697f8849afb35ec2dc5da63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mySpriteRenderer: {fileID: 0}
 --- !u!1 &3517051518064163680
 GameObject:
   m_ObjectHideFlags: 0
@@ -1545,7 +1572,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12ab32bafb06f9f4294ef72152124265, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myShelfItems: []
+  myShelfItems:
+  - {fileID: 3978076256017195464}
+  - {fileID: 3659827532320499178}
+  - {fileID: 1384333548815256520}
   isOccupied: 0
 --- !u!1 &3593145187386908022
 GameObject:
@@ -1639,6 +1669,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18c72e61a697f8849afb35ec2dc5da63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mySpriteRenderer: {fileID: 0}
 --- !u!1 &3661553445101105534
 GameObject:
   m_ObjectHideFlags: 0
@@ -1731,6 +1762,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18c72e61a697f8849afb35ec2dc5da63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mySpriteRenderer: {fileID: 0}
 --- !u!1 &3671338500532856666
 GameObject:
   m_ObjectHideFlags: 0
@@ -1823,6 +1855,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18c72e61a697f8849afb35ec2dc5da63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mySpriteRenderer: {fileID: 0}
 --- !u!1 &4354851705128939907
 GameObject:
   m_ObjectHideFlags: 0
@@ -1915,6 +1948,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18c72e61a697f8849afb35ec2dc5da63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mySpriteRenderer: {fileID: 0}
 --- !u!1 &4405339479931043158
 GameObject:
   m_ObjectHideFlags: 0
@@ -2007,6 +2041,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18c72e61a697f8849afb35ec2dc5da63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mySpriteRenderer: {fileID: 0}
 --- !u!1 &4405866564472806530
 GameObject:
   m_ObjectHideFlags: 0
@@ -2099,6 +2134,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18c72e61a697f8849afb35ec2dc5da63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mySpriteRenderer: {fileID: 0}
 --- !u!1 &4491672647263945858
 GameObject:
   m_ObjectHideFlags: 0
@@ -2191,6 +2227,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18c72e61a697f8849afb35ec2dc5da63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mySpriteRenderer: {fileID: 0}
 --- !u!1 &4495833209398166262
 GameObject:
   m_ObjectHideFlags: 0
@@ -2237,7 +2274,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12ab32bafb06f9f4294ef72152124265, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myShelfItems: []
+  myShelfItems:
+  - {fileID: 1912503662981548691}
+  - {fileID: 1946650836723016106}
+  - {fileID: 489975684007583377}
   isOccupied: 0
 --- !u!1 &5591929827549423760
 GameObject:
@@ -2285,7 +2325,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12ab32bafb06f9f4294ef72152124265, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myShelfItems: []
+  myShelfItems:
+  - {fileID: 8328080337858344782}
+  - {fileID: 3833331554109301579}
+  - {fileID: 9026961763908530500}
   isOccupied: 0
 --- !u!1 &5762909825004477175
 GameObject:
@@ -2379,6 +2422,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18c72e61a697f8849afb35ec2dc5da63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mySpriteRenderer: {fileID: 0}
 --- !u!1 &5887039888840219369
 GameObject:
   m_ObjectHideFlags: 0
@@ -2471,6 +2515,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18c72e61a697f8849afb35ec2dc5da63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mySpriteRenderer: {fileID: 0}
 --- !u!1 &5952167606411873780
 GameObject:
   m_ObjectHideFlags: 0
@@ -2563,6 +2608,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18c72e61a697f8849afb35ec2dc5da63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mySpriteRenderer: {fileID: 0}
 --- !u!1 &6323617313439681207
 GameObject:
   m_ObjectHideFlags: 0
@@ -2655,6 +2701,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18c72e61a697f8849afb35ec2dc5da63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mySpriteRenderer: {fileID: 0}
 --- !u!1 &6815810824556887847
 GameObject:
   m_ObjectHideFlags: 0
@@ -2781,6 +2828,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18c72e61a697f8849afb35ec2dc5da63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mySpriteRenderer: {fileID: 0}
 --- !u!1 &6914713682180893366
 GameObject:
   m_ObjectHideFlags: 0
@@ -2873,6 +2921,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18c72e61a697f8849afb35ec2dc5da63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mySpriteRenderer: {fileID: 0}
 --- !u!1 &7010615496497427009
 GameObject:
   m_ObjectHideFlags: 0
@@ -2965,6 +3014,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18c72e61a697f8849afb35ec2dc5da63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mySpriteRenderer: {fileID: 0}
 --- !u!1 &7052464699714586920
 GameObject:
   m_ObjectHideFlags: 0
@@ -3060,7 +3110,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
   toggleAction: 0
   triggerItemList:
   - {fileID: 5234229865471731920, guid: f6c22e4c0ed19b641807e53f737bef83, type: 3}
@@ -3170,6 +3221,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18c72e61a697f8849afb35ec2dc5da63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mySpriteRenderer: {fileID: 0}
 --- !u!1 &7556094863429247509
 GameObject:
   m_ObjectHideFlags: 0
@@ -3262,6 +3314,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18c72e61a697f8849afb35ec2dc5da63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mySpriteRenderer: {fileID: 0}
 --- !u!1 &7705698182514392720
 GameObject:
   m_ObjectHideFlags: 0
@@ -3325,11 +3378,13 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_text: 0/10
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 77fa3e95112d51e4482f38e9bbbbf662, type: 2}
-  m_sharedMaterial: {fileID: 21573983726408332, guid: 77fa3e95112d51e4482f38e9bbbbf662, type: 2}
+  m_sharedMaterial: {fileID: 21573983726408332, guid: 77fa3e95112d51e4482f38e9bbbbf662,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3681,7 +3736,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12ab32bafb06f9f4294ef72152124265, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myShelfItems: []
+  myShelfItems:
+  - {fileID: 7188396975211416883}
+  - {fileID: 6645271747028831568}
+  - {fileID: 7828219274079593158}
   isOccupied: 0
 --- !u!1 &7842637947268196314
 GameObject:
@@ -3809,6 +3867,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18c72e61a697f8849afb35ec2dc5da63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mySpriteRenderer: {fileID: 0}
 --- !u!1 &8373688326162992179
 GameObject:
   m_ObjectHideFlags: 0
@@ -3901,6 +3960,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18c72e61a697f8849afb35ec2dc5da63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mySpriteRenderer: {fileID: 0}
 --- !u!1 &8451608134176933450
 GameObject:
   m_ObjectHideFlags: 0
@@ -3993,6 +4053,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18c72e61a697f8849afb35ec2dc5da63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mySpriteRenderer: {fileID: 0}
 --- !u!1 &8674756031567639324
 GameObject:
   m_ObjectHideFlags: 0
@@ -4085,6 +4146,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18c72e61a697f8849afb35ec2dc5da63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mySpriteRenderer: {fileID: 0}
 --- !u!1 &8776888011630554977
 GameObject:
   m_ObjectHideFlags: 0
@@ -4131,7 +4193,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12ab32bafb06f9f4294ef72152124265, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myShelfItems: []
+  myShelfItems:
+  - {fileID: 2837378134492180033}
+  - {fileID: 6396529826573069012}
+  - {fileID: 644877157639936226}
   isOccupied: 0
 --- !u!1 &8831361413915086415
 GameObject:
@@ -4225,6 +4290,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18c72e61a697f8849afb35ec2dc5da63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mySpriteRenderer: {fileID: 0}
 --- !u!1 &8832506751974824563
 GameObject:
   m_ObjectHideFlags: 0
@@ -4317,6 +4383,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18c72e61a697f8849afb35ec2dc5da63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mySpriteRenderer: {fileID: 0}
 --- !u!1 &8869893337514594389
 GameObject:
   m_ObjectHideFlags: 0
@@ -4363,7 +4430,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12ab32bafb06f9f4294ef72152124265, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myShelfItems: []
+  myShelfItems:
+  - {fileID: 4656209553393839526}
+  - {fileID: 6714969914504981891}
+  - {fileID: 9133758460070977102}
   isOccupied: 0
 --- !u!1 &8930121478967252447
 GameObject:
@@ -4538,7 +4608,8 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.Slider+SliderEvent, UnityEngine.UI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+    m_TypeName: UnityEngine.UI.Slider+SliderEvent, UnityEngine.UI, Version=1.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!1 &8983517379528017567
 GameObject:
   m_ObjectHideFlags: 0
@@ -4631,6 +4702,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18c72e61a697f8849afb35ec2dc5da63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mySpriteRenderer: {fileID: 0}
 --- !u!1 &8996416757882362166
 GameObject:
   m_ObjectHideFlags: 0
@@ -4723,6 +4795,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18c72e61a697f8849afb35ec2dc5da63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mySpriteRenderer: {fileID: 0}
 --- !u!1 &9012485209822444246
 GameObject:
   m_ObjectHideFlags: 0
@@ -4815,6 +4888,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18c72e61a697f8849afb35ec2dc5da63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mySpriteRenderer: {fileID: 0}
 --- !u!1 &9054959630695392553
 GameObject:
   m_ObjectHideFlags: 0
@@ -4907,6 +4981,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18c72e61a697f8849afb35ec2dc5da63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mySpriteRenderer: {fileID: 0}
 --- !u!1 &9061239139055872694
 GameObject:
   m_ObjectHideFlags: 0
@@ -4953,7 +5028,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12ab32bafb06f9f4294ef72152124265, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myShelfItems: []
+  myShelfItems:
+  - {fileID: 5596358328293998980}
+  - {fileID: 2545429931934067494}
+  - {fileID: 8266259334025123746}
   isOccupied: 0
 --- !u!1 &9162847472698140576
 GameObject:
@@ -5047,3 +5125,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18c72e61a697f8849afb35ec2dc5da63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mySpriteRenderer: {fileID: 0}

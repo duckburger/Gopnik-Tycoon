@@ -11,21 +11,24 @@ public class Shelf : MonoBehaviour
 
     private void Start()
     {
-        foreach (Transform obj in this.transform)
+        //PopulateShelfSlots();
+    }
+
+    private void PopulateShelfSlots()
+    {
+        myShelfItems.Clear();
+        foreach (Transform child in this.transform)
         {
-            SpriteRenderer renderer = obj.GetComponent<SpriteRenderer>();
-            if (renderer != null)
-            {
-                this.myShelfItems.Add(obj.gameObject.GetComponent<ShelfItemSlot>());
-            }
+            SpriteRenderer renderer = child.GetComponent<SpriteRenderer>();
+            this.myShelfItems.Add(child.GetComponent<ShelfItemSlot>());
         }
     }
 
     public bool CheckIfContainsFoodQuality(FoodQuality qualityToCheck)
     {
-        foreach (ShelfItemSlot slot in this.myShelfItems)
+        for (int i = 0; i < this.myShelfItems.Count; i++)
         {
-            if (slot.MyItemQuality == qualityToCheck)
+            if (this.myShelfItems[i].MyItemQuality == qualityToCheck)
             {
                 return true;
             }

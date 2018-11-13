@@ -1,5 +1,35 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &934652226503382480
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5946872603825856750}
+  m_Layer: 8
+  m_Name: ItemCarrySpot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5946872603825856750
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 934652226503382480}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.64, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3389606292381677883}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3389606292381677881
 GameObject:
   m_ObjectHideFlags: 0
@@ -21,8 +51,10 @@ GameObject:
   - component: {fileID: 5362470427454308043}
   - component: {fileID: 65439200}
   - component: {fileID: 5728930657587322491}
-  - component: {fileID: 347480597881961206}
   - component: {fileID: 5580294267951834883}
+  - component: {fileID: 5071045544369216888}
+  - component: {fileID: 6058775654053657681}
+  - component: {fileID: 8172561903950047856}
   m_Layer: 8
   m_Name: Pedestrian_def
   m_TagString: Civilian
@@ -42,6 +74,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 9192656417800713384}
+  - {fileID: 5946872603825856750}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -292,14 +325,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentHealth: 0
   maxHealth: 100
-  deadBody: {fileID: 7401058789525270420, guid: fdfce11c7db345e40a942bae557ffcf4, type: 3}
+  deadBody: {fileID: 7401058789525270420, guid: fdfce11c7db345e40a942bae557ffcf4,
+    type: 3}
   myAudioSource: {fileID: 5341818563212822864}
   deathSounds:
   - {fileID: 8300000, guid: 18a20955bcc82064c8072d75e8df7e50, type: 3}
   onAttacked:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 347480597881961206}
+      - m_Target: {fileID: 0}
         m_MethodName: ReactToAttack
         m_Mode: 0
         m_Arguments:
@@ -310,7 +344,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: OnCharAttacked, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+    m_TypeName: OnCharAttacked, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
 --- !u!114 &3897031527708002354
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -341,7 +376,8 @@ MonoBehaviour:
   balanceChagedEvent:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: WalletBalanceChanged_Event, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+    m_TypeName: WalletBalanceChanged_Event, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
 --- !u!114 &65439200
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -368,54 +404,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _map: {fileID: 0}
-  maxSpeed: 5
-  mass: 95
-  stoppingDistance: 0.01
-  slowingDistance: 0.05
+  maxSpeed: 3
+  mass: 5
+  stoppingDistance: 0.1
+  slowingDistance: 0.01
   accelerationRate: 5
-  decelerationRate: 5
+  decelerationRate: 10
   lookAheadDistance: 1
-  avoidRadius: 0
-  avoidanceConsiderStuckedTime: 3
+  avoidRadius: 1
+  avoidanceConsiderStuckedTime: 4
   avoidanceConsiderReachedDistance: 1
   rotateTransform: 0
-  rotateSpeed: 3500
-  centerOffset: {x: 0, y: -0.65}
+  rotateSpeed: 2500
+  centerOffset: {x: 0, y: 0.24}
   repath: 1
-  restrict: 0
+  restrict: 1
   closerPointOnInvalid: 1
   debugPath: 1
---- !u!114 &347480597881961206
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3389606292381677881}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e40f6331956a82b41af97cb9886ae7a3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  actionParent: {fileID: 7487866590672392856}
-  healthController: {fileID: 1702984482}
-  walletController: {fileID: 5362470427454308043}
-  staminaController: {fileID: 3897031527708002354}
-  globalBalance: {fileID: 0}
-  navAgent: {fileID: 5728930657587322491}
-  charName: Mr. Vlad
-  charPortrait: {fileID: 0}
-  charisma: 70
-  cunning: 70
-  strength: 70
-  fightToDeath: 0
-  stateChangedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: OnStateChanged_Event, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-  currentAction: {fileID: 0}
-  myAnimator: {fileID: 0}
-  dialBubbleDisplay: {fileID: 5580294267951834883}
 --- !u!114 &5580294267951834883
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -428,7 +433,60 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c083ef5215133f41af9c033c72905a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bubblePrefab: {fileID: 5053888229733043055, guid: be48c270d2245be4a824b7054896d65a, type: 3}
+  bubblePrefab: {fileID: 5053888229733043055, guid: be48c270d2245be4a824b7054896d65a,
+    type: 3}
+--- !u!114 &5071045544369216888
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3389606292381677881}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e66cb65e5a937e743a81db2ce660a33a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {x: 0, y: 0}
+  myIntentions: 0
+  myPreferredFoodQuality: 1
+--- !u!114 &6058775654053657681
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3389606292381677881}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17e43e7170fb45b4b81dcd16d0ff55d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scripts:
+  - {fileID: 4900000, guid: bd5ff273f2282dc40b3fa9da6082dc06, type: 3}
+  autoReset: 1
+  tickOn: 0
+  sourceInfos:
+  - isFoldout: 1
+    breakPoints: 
+    breakPointStatuses: 
+    collapsedLines: 
+    btScript: 
+--- !u!114 &8172561903950047856
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3389606292381677881}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a89f89395b7a92a48a5453772d3c68c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  carryTransform: {fileID: 5946872603825856750}
+  throwDistance: 0
+  currentItem: {fileID: 0}
 --- !u!1 &7487866590672392856
 GameObject:
   m_ObjectHideFlags: 0
@@ -438,8 +496,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9192656417800713384}
-  - component: {fileID: 2524951335588523010}
-  - component: {fileID: 3904262080169948190}
   m_Layer: 8
   m_Name: ActionParent
   m_TagString: Untagged
@@ -461,41 +517,3 @@ Transform:
   m_Father: {fileID: 3389606292381677883}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2524951335588523010
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7487866590672392856}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7b941fdbcfad80d4191774227903f58a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  actionType: 0
-  actionName: Idle
-  actionIcon: {fileID: 0}
-  phrasePack: {fileID: 0}
-  reqTargetProximity: 0.7
-  waitTime: 3
---- !u!114 &3904262080169948190
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7487866590672392856}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b5c9ca2b4dc307d4c818af7f27bbeecf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  actionType: 1
-  actionName: Fight
-  actionIcon: {fileID: 0}
-  phrasePack: {fileID: 0}
-  reqTargetProximity: 0.7
-  availableAttacks:
-  - {fileID: 11400000, guid: 0514b91b948326742845f2ded6fe5a92, type: 2}
-  - {fileID: 11400000, guid: c05eeb10c59625c47a5fd4e4a48f3427, type: 2}

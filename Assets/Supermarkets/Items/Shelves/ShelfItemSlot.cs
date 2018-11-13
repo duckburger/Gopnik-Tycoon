@@ -35,16 +35,8 @@ public class ShelfItemSlot : MonoBehaviour
     {
         this.myItem = item;
         this.mySpriteRenderer.sprite = item.GetRandomShelfAppearanceSprite();
-        this.myItemQuality = item.ContainedQuality;
+        this.myItemQuality = item.FoodQuality;
         this.isOccupied = true;
-    }
-
-    public void Empty()
-    {
-        this.myItem = null;
-        this.mySpriteRenderer.sprite = null;
-        this.myItemQuality = FoodQuality.None;
-        this.isOccupied = false;
     }
 
     public FoodItem EmptyAndTakeItem()
@@ -57,6 +49,15 @@ public class ShelfItemSlot : MonoBehaviour
         }
        return null;
     }
+
+    public void Empty()
+    {
+        this.myItem = null;
+        this.mySpriteRenderer.sprite = null;
+        this.myItemQuality = FoodQuality.None;
+        this.isOccupied = false;
+    }
+
 
     public void Clear() { }
 }

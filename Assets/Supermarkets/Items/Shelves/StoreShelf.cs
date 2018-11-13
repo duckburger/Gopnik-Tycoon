@@ -15,7 +15,7 @@ public class StoreShelf : Building
     public int perShelfCapacity;
     public int maxStockAmount;
     public int currentFoodStock;
-    public List<Transform> shelves;
+    public List<Transform> shelves = new List<Transform>();
     public FoodType foodTypeIAccept;
 
     protected FoodItem lastStockedItem = null;
@@ -79,8 +79,8 @@ public class StoreShelf : Building
         if (carryController != null && carryController.CurrentItem != null && carryController.CurrentItem.GetType() == typeof(FoodItem))
         {
             ShowStockCount();
-            FoodItem carriedFoodItem = carryController.CurrentItem.GetComponent<FoodItem>();
-            if (this.foodTypeIAccept == carriedFoodItem.ContainedType)
+            FoodContainer carriedFoodItem = carryController.CurrentItem.GetComponent<FoodContainer>();
+            if (this.foodTypeIAccept == carriedFoodItem.ContainedItem.ContainedType)
             {
                 int amtToStock = carriedFoodItem.ProvideFoodStock();
                 Restock(amtToStock);
