@@ -16,7 +16,7 @@ public class ShelfItemSlot : MonoBehaviour
         }
     }
 
-    FoodItem myItem;
+    FoodItemData myItem;
     bool isOccupied = false;
     public bool IsOccupied
     {
@@ -31,19 +31,19 @@ public class ShelfItemSlot : MonoBehaviour
         this.mySpriteRenderer = GetComponent<SpriteRenderer>();
     }
 
-    public void Populate(FoodItem item)
+    public void Populate(FoodItemData item)
     {
         this.myItem = item;
         this.mySpriteRenderer.sprite = item.GetRandomShelfAppearanceSprite();
-        this.myItemQuality = item.FoodQuality;
+        this.myItemQuality = item.Quality;
         this.isOccupied = true;
     }
 
-    public FoodItem EmptyAndTakeItem()
+    public FoodItemData EmptyAndTakeItem()
     {
         if (this.myItem != null)
         {
-            FoodItem itemToTakeOut = this.myItem;
+            FoodItemData itemToTakeOut = this.myItem;
             Empty();
             return itemToTakeOut;
         }

@@ -18,7 +18,7 @@ public class StoreShelf : Building
     public List<Transform> shelves = new List<Transform>();
     public FoodType foodTypeIAccept;
 
-    protected FoodItem lastStockedItem = null;
+    protected FoodItemData lastStockedItem = null;
 
 
     public virtual void InitializeStockAmount()
@@ -80,7 +80,7 @@ public class StoreShelf : Building
         {
             ShowStockCount();
             FoodContainer carriedFoodItem = carryController.CurrentItem.GetComponent<FoodContainer>();
-            if (this.foodTypeIAccept == carriedFoodItem.ContainedItem.ContainedType)
+            if (this.foodTypeIAccept == carriedFoodItem.ContainedItem.FoodType)
             {
                 int amtToStock = carriedFoodItem.ProvideFoodStock();
                 Restock(amtToStock);
@@ -103,7 +103,7 @@ public class StoreShelf : Building
         {
             ShowStockCount();
             ShelfItemSlot slotWithItem = FindItemOnShelf(preferredQuality);
-            carryController.PickUpSpecificItem(slotWithItem.EmptyAndTakeItem());      
+            //carryController.PickUpSpecificItem(slotWithItem.EmptyAndTakeItem());      
         }
     }
 
@@ -135,12 +135,12 @@ public class StoreShelf : Building
             return;
         }
 
-        if (ExternalPlayerController.Instance.PlayerCarryController.CurrentItem != null && ExternalPlayerController.Instance.PlayerCarryController.CurrentItem.GetType().BaseType == typeof(FoodItem))
+        if (ExternalPlayerController.Instance.PlayerCarryController.CurrentItem != null && ExternalPlayerController.Instance.PlayerCarryController.CurrentItem.GetType().BaseType == typeof(FoodContainer))
         {
-            FoodItem carriedFoodItem = ExternalPlayerController.Instance.PlayerCarryController.CurrentItem.GetComponent<FoodItem>();
-            if (carriedFoodItem.ContainedType == this.foodTypeIAccept)
+            FoodContainer carriedFoodContainer = ExternalPlayerController.Instance.PlayerCarryController.CurrentItem.GetComponent<FoodContainer>();
+            if (carriedFoodContainer.ContainedItem.FoodType == this.foodTypeIAccept)
             {
-                int amtToStock = carriedFoodItem.ProvideFoodStock();
+                int amtToStock = carriedFoodContainer.ProvideFoodStock();
                 if (amtToStock == -1)
                 {
                     Debug.Log("The item is empty!");
@@ -148,7 +148,7 @@ public class StoreShelf : Building
                     FloatingTextDisplay.SpawnFloatingText(floatingTextScreenPos, "The " + ExternalPlayerController.Instance.PlayerCarryController.CurrentItem.name + " is empty!");
                     return;
                 }
-                this.lastStockedItem = carriedFoodItem;
+                this.lastStockedItem = carriedFoodContainer.ContainedItem;
                 Restock(amtToStock);
             }
             else

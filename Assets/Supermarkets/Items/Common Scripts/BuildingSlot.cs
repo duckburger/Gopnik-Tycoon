@@ -53,9 +53,10 @@ public class BuildingSlot : MonoBehaviour
     // This will take over the screen
     public void ShowBuildingMenu()
     {
-        Debug.Log("Showing the building menu on command!");
+       
         if (this.buildingMenuEvent != null)
         {
+            Debug.Log("Showing the building menu on command!");
             this.buildingMenuEvent.Open(this);
         }
     }

@@ -9,8 +9,8 @@ public class FoodContainer : Pickuppable
     [Header("UI Elements")]
     public TextMeshProUGUI stockAmtText;
 
-    [SerializeField] FoodItem containedItem;
-    public FoodItem ContainedItem
+    [SerializeField] FoodItemData containedItem;
+    public FoodItemData ContainedItem
     {
         get
         {

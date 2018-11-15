@@ -48,7 +48,7 @@ public class Shelf : MonoBehaviour
         return null;
     }
 
-    public void Occupy(FoodItem item)
+    public void Occupy(FoodItemData item)
     {
         foreach (ShelfItemSlot shelfItemSlot in this.myShelfItems)
         {

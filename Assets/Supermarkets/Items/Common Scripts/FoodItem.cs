@@ -22,7 +22,7 @@ public enum FoodType
     Fresh
 }
 
-public class FoodItem : Pickuppable
+public class FoodItem 
 {
     [Space(10)]
     [Header("UI Elements")]
@@ -67,7 +67,6 @@ public class FoodItem : Pickuppable
         }
         else
         {
-            Debug.Log("On shelf appearance sprite list is empty on " + this.gameObject.name);
             return null;
         }
     }
