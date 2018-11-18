@@ -4,15 +4,29 @@ using UnityEngine;
 using System;
 using TMPro;
 using UnityEngine.UI;
+using UnityEditor;
 
 [Serializable]
+[Flags]
 public enum FoodQuality
 {
-    None = 0,
-    Low,
-    Medium,
-    High
+    Low = 1,
+    Medium = 2,
+    High = 4
 }
+
+#if UNITY_EDITOR
+[CustomPropertyDrawer(typeof(FoodQuality))]
+public class FoodQualityDrawer : PropertyDrawer
+{
+    public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
+    {
+        label = EditorGUI.BeginProperty(position, label, property);
+        property.intValue = (int)(FoodQuality)EditorGUI.EnumFlagsField(position, label, (FoodQuality)property.intValue);
+        EditorGUI.EndProperty();
+    }
+}
+#endif
 
 [Serializable]
 public enum FoodType

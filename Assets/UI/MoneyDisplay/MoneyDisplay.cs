@@ -11,6 +11,7 @@ public class MoneyDisplay : MonoBehaviour {
     private void Start()
     {
         this.moneyVar.Reset();
+        UpdateMoneyUIText(this.moneyVar.value);
     }
 
     public void UpdateMoneyUIText(float newValue)

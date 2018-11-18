@@ -8,6 +8,8 @@ public class MCharCarry : MonoBehaviour
     [SerializeField] Transform carryTransform;
     [SerializeField] Pickuppable currentItem;
 
+    bool isCarryingShoppingBag = false;
+
     bool isPlayer = false;
     public Pickuppable CurrentItem
     {
@@ -82,9 +84,11 @@ public class MCharCarry : MonoBehaviour
 
     public void PickUpNearestItem()
     {
+        Pickuppable itemToPickup = FindNearestItem();
         if (this.currentItem != null)
         {
-            DropItem();
+            DropItem(); 
+
         }
         if (this.nearItems.Count <= 0)
         {
@@ -92,7 +96,7 @@ public class MCharCarry : MonoBehaviour
             return;
         }
         Debug.Log("Picking up an item");
-        Pickuppable itemToPickup = FindNearestItem();
+       
         
 
         itemToPickup.transform.parent = this.carryTransform;
@@ -100,23 +104,66 @@ public class MCharCarry : MonoBehaviour
         this.currentItem.transform.localPosition = Vector2.zero;
     }
 
-    public void PickUpSpecificItem(Pickuppable itemToPickUp)
+    public void PickUpSpecificItem(PickuppableItemData itemToPickUp)
     {
         if (itemToPickUp == null)
         {
             Debug.Log("No pickuppable item specified");
             return;
         }
+
         if (this.currentItem != null)
         {
             DropItem();
         }
-           
-        itemToPickUp.transform.parent = this.carryTransform;
-        this.currentItem = itemToPickUp;
+
+        //generatedGeneric.transform.parent = this.carryTransform;
+        // this.currentItem =
         this.currentItem.transform.localPosition = Vector2.zero;
     }
-    
+
+    public void PickUpFoodItem(FoodItemData foodItemToPickUp)
+    {
+        if (foodItemToPickUp == null)
+        {
+            Debug.Log("No pickuppable item specified");
+            return;
+        }
+
+        if (this.currentItem != null)
+        {
+            if (this.isCarryingShoppingBag)
+            {
+                ShoppingBag bag = this.currentItem.gameObject.GetComponent<ShoppingBag>();
+                bag.AddToBag(foodItemToPickUp);
+                return;
+            }
+            else
+            {
+                DropItem();
+                CreateNewBagWithItem(foodItemToPickUp);
+                this.isCarryingShoppingBag = true;
+                return;
+            }
+
+        }
+
+        CreateNewBagWithItem(foodItemToPickUp);
+        this.isCarryingShoppingBag = true;
+        this.currentItem.transform.localPosition = Vector2.zero;
+    }
+
+    private void CreateNewBagWithItem(FoodItemData foodItemToPickUp)
+    {
+        GameObject newBag = ItemLibrary.Instance.CreateShoppingBag();
+        newBag.transform.SetParent(this.carryTransform);
+        ShoppingBag bagScript = newBag.GetComponent<ShoppingBag>();
+        List<FoodItemData> itemList = new List<FoodItemData>();
+        itemList.Add(foodItemToPickUp);
+        bagScript.PopulateNewBag(itemList);
+        this.currentItem = bagScript;
+        this.currentItem.transform.localPosition = Vector2.zero;
+    }
 
     public void DropItem()
     {
@@ -125,6 +172,7 @@ public class MCharCarry : MonoBehaviour
             this.currentItem.transform.parent = LevelData.CurrentLevel.Floor;
             this.currentItem.transform.position = this.transform.position;
             this.currentItem = null;
+            this.isCarryingShoppingBag = false;
         }
     }
 

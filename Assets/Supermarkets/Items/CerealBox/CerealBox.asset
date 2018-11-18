@@ -12,8 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5e0dde2d6f283b4c9621323d886a7e7, type: 3}
   m_Name: CerealBox
   m_EditorClassIdentifier: 
+  name: Cereal Box
+  worldAppearance: {fileID: 21300000, guid: 53516bd197740c34ca41f23733cbdaef, type: 3}
+  stackable: 0
   quality: 1
   foodType: 1
-  worldAppearance: {fileID: 21300000, guid: 53516bd197740c34ca41f23733cbdaef, type: 3}
+  pricePerUnit: 5
   onShelfAppearances:
   - {fileID: 21300000, guid: 53516bd197740c34ca41f23733cbdaef, type: 3}

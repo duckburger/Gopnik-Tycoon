@@ -2,11 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CarryGenericItem : MonoBehaviour
+public class SecretInventory : MonoBehaviour
 {
-
-    [SerializeField] SpriteRenderer mySpriteRenderer;
-    [SerializeField] FoodItemData myCarriedFood;
     // Start is called before the first frame update
     void Start()
     {

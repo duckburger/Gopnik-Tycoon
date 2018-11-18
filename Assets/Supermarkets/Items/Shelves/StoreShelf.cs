@@ -101,9 +101,11 @@ public class StoreShelf : Building
         AI_Generic charAIController = character.GetComponent<AI_Generic>();
         if (carryController != null && charAIController != null)
         {
-            ShowStockCount();
             ShelfItemSlot slotWithItem = FindItemOnShelf(preferredQuality);
-            //carryController.PickUpSpecificItem(slotWithItem.EmptyAndTakeItem());      
+            carryController.PickUpFoodItem(slotWithItem.EmptyAndTakeItem());
+            this.currentFoodStock--;
+            UpdateStockUI();
+            ShowStockCount();
         }
     }
 

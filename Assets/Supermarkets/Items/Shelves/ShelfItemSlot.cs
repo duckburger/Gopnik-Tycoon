@@ -54,7 +54,7 @@ public class ShelfItemSlot : MonoBehaviour
     {
         this.myItem = null;
         this.mySpriteRenderer.sprite = null;
-        this.myItemQuality = FoodQuality.None;
+        this.myItemQuality = (FoodQuality)(0);
         this.isOccupied = false;
     }
 

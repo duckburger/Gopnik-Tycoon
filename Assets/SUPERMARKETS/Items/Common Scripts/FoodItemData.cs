@@ -5,12 +5,14 @@ using System;
 
 [Serializable]
 [CreateAssetMenu(menuName = "Gopnik/FoodItem")]
-public class FoodItemData : ScriptableObject
+public class FoodItemData : PickuppableItemData
 {
-    [SerializeField] FoodQuality quality;
-    [SerializeField] FoodType foodType;
+    [Header("Food item specific")]
+    [SerializeField] FoodQuality quality = FoodQuality.Low;
+    [SerializeField] FoodType foodType = FoodType.Regular;
+    [SerializeField] float pricePerUnit = 0;
 
-    [SerializeField] Sprite worldAppearance;
+  
     [SerializeField] List<Sprite> onShelfAppearances = new List<Sprite>();
 
 

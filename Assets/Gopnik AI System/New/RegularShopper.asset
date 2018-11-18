@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 09dae67a9760f6643ac6d18a6bc13420, type: 3}
-  m_Name: Money
+  m_Script: {fileID: 11500000, guid: 96e177f130906894ab2bdec61bc0aa3e, type: 3}
+  m_Name: RegularShopper
   m_EditorClassIdentifier: 
-  value: 9450
-  defValue: 10000
-  myListeners: []
+  designatedIntentions: 0
+  itemsWanted: 0
+  qualityWanted: 2
