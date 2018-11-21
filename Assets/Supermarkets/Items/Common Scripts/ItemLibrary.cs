@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class ItemLibrary : MonoBehaviour
 {
-
     public static ItemLibrary Instance;
+
     [Header("Shopping Bag Sprites")]
     [SerializeField] List<Sprite> paperBagAppearances;
     [Space(10)]

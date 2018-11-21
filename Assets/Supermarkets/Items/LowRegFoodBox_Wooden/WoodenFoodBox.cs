@@ -26,8 +26,16 @@ public class WoodenFoodBox : FoodContainer
         }
         else
         {
-            this.foodGraphic.enabled = true;
-            this.foodGraphic.sprite = this.worldFoodAppearance;
+            if (this.ContainedItem != null)
+            {
+                this.foodGraphic.gameObject.SetActive(true);
+                this.foodGraphic.sprite = this.ContainedItem.GetRandomShelfAppearanceSprite();
+            }
+            else
+            {
+                this.foodGraphic.gameObject.SetActive(false);
+            }
+            
         }
     }
 

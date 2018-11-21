@@ -283,7 +283,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 72980018}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.3752507, y: 0.01188755, z: -9.9485}
+  m_LocalPosition: {x: -0.37525105, y: 0.01188755, z: -9.9485}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 900080296}
@@ -639,6 +639,26 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 315200756}
   m_CullTransparentMesh: 0
+--- !u!1 &318540432 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3389606292381677881, guid: daf8e30f0749de74fbded1cc29d98602,
+    type: 3}
+  m_PrefabInstance: {fileID: 2143157486179808526}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &318540433
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 318540432}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 312642daadfe43448bd698c904fb33b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  preferredQuality: 0
+  itemsWanted: 0
 --- !u!61 &389347265 stripped
 BoxCollider2D:
   m_CorrespondingSourceObject: {fileID: 4789485251282448154, guid: 912b8772bbdd634478caa9682df24f60,
@@ -862,6 +882,112 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 4789485251342465116}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &645453251
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 775381635}
+    m_Modifications:
+    - target: {fileID: 5234229865471731922, guid: f6c22e4c0ed19b641807e53f737bef83,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.112
+      objectReference: {fileID: 0}
+    - target: {fileID: 8010001331251283859, guid: f6c22e4c0ed19b641807e53f737bef83,
+        type: 3}
+      propertyPath: m_havePropertiesChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8010001331251283859, guid: f6c22e4c0ed19b641807e53f737bef83,
+        type: 3}
+      propertyPath: m_isInputParsingRequired
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5234229865471731920, guid: f6c22e4c0ed19b641807e53f737bef83,
+        type: 3}
+      propertyPath: containedItem
+      value: 
+      objectReference: {fileID: 11400000, guid: ef841ab357fd5754bb6b99cf63db6514,
+        type: 2}
+    - target: {fileID: 5234229865471731920, guid: f6c22e4c0ed19b641807e53f737bef83,
+        type: 3}
+      propertyPath: worldFoodAppearance
+      value: 
+      objectReference: {fileID: 21300000, guid: 53516bd197740c34ca41f23733cbdaef,
+        type: 3}
+    - target: {fileID: 5234229865471731921, guid: f6c22e4c0ed19b641807e53f737bef83,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5234229865471731922, guid: f6c22e4c0ed19b641807e53f737bef83,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5234229865471731922, guid: f6c22e4c0ed19b641807e53f737bef83,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5234229865471731922, guid: f6c22e4c0ed19b641807e53f737bef83,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5234229865471731922, guid: f6c22e4c0ed19b641807e53f737bef83,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8871161692920070767, guid: f6c22e4c0ed19b641807e53f737bef83,
+        type: 3}
+      propertyPath: m_SortingLayerID
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1834946986615710233, guid: f6c22e4c0ed19b641807e53f737bef83,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5234229865471731923, guid: f6c22e4c0ed19b641807e53f737bef83,
+        type: 3}
+      propertyPath: m_Name
+      value: LowRegFoodBox_Wooden (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3427797336055521120, guid: f6c22e4c0ed19b641807e53f737bef83,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.007
+      objectReference: {fileID: 0}
+    - target: {fileID: 3427797336055521120, guid: f6c22e4c0ed19b641807e53f737bef83,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.385
+      objectReference: {fileID: 0}
+    - target: {fileID: 5234229865471731922, guid: f6c22e4c0ed19b641807e53f737bef83,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -9.99
+      objectReference: {fileID: 0}
+    - target: {fileID: 3427797336055521120, guid: f6c22e4c0ed19b641807e53f737bef83,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3427797336055521120, guid: f6c22e4c0ed19b641807e53f737bef83,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3427797336055521120, guid: f6c22e4c0ed19b641807e53f737bef83,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f6c22e4c0ed19b641807e53f737bef83, type: 3}
 --- !u!1 &651845365
 GameObject:
   m_ObjectHideFlags: 0
@@ -928,6 +1054,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &775381635 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 832717065, guid: 912b8772bbdd634478caa9682df24f60,
+    type: 3}
+  m_PrefabInstance: {fileID: 4789485251342465116}
+  m_PrefabAsset: {fileID: 0}
 --- !u!61 &786671909 stripped
 BoxCollider2D:
   m_CorrespondingSourceObject: {fileID: 1301205871, guid: 912b8772bbdd634478caa9682df24f60,
@@ -1007,7 +1139,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0.000061035156, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 200, y: 200}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &977589880
@@ -1113,6 +1245,27 @@ MonoBehaviour:
   m_Spacing: {x: 25, y: 25}
   m_Constraint: 0
   m_ConstraintCount: 2
+--- !u!1 &1145923221 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6539571388132527724, guid: f6c22e4c0ed19b641807e53f737bef83,
+    type: 3}
+  m_PrefabInstance: {fileID: 645453251}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1145923223
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1145923221}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e667484d7c843a4fbb0584212d03cac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  runOnce: 0
+  baseSortNumber: 5000
+  refreshRateInSecs: 0.3
 --- !u!61 &1264450257 stripped
 BoxCollider2D:
   m_CorrespondingSourceObject: {fileID: 1584732749345438345, guid: 912b8772bbdd634478caa9682df24f60,
@@ -1451,6 +1604,133 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 13b08aa733ce01645a6a58b958348fc3, type: 3}
+--- !u!1001 &1546996904
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 775381635}
+    m_Modifications:
+    - target: {fileID: 5234229865471731922, guid: f6c22e4c0ed19b641807e53f737bef83,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -2.053
+      objectReference: {fileID: 0}
+    - target: {fileID: 8010001331251283859, guid: f6c22e4c0ed19b641807e53f737bef83,
+        type: 3}
+      propertyPath: m_havePropertiesChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8010001331251283859, guid: f6c22e4c0ed19b641807e53f737bef83,
+        type: 3}
+      propertyPath: m_isInputParsingRequired
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5234229865471731920, guid: f6c22e4c0ed19b641807e53f737bef83,
+        type: 3}
+      propertyPath: containedItem
+      value: 
+      objectReference: {fileID: 11400000, guid: c9f7590df6708bb4793b7aa64646b50f,
+        type: 2}
+    - target: {fileID: 5234229865471731920, guid: f6c22e4c0ed19b641807e53f737bef83,
+        type: 3}
+      propertyPath: worldFoodAppearance
+      value: 
+      objectReference: {fileID: 21300000, guid: 53516bd197740c34ca41f23733cbdaef,
+        type: 3}
+    - target: {fileID: 5234229865471731921, guid: f6c22e4c0ed19b641807e53f737bef83,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5234229865471731922, guid: f6c22e4c0ed19b641807e53f737bef83,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5234229865471731922, guid: f6c22e4c0ed19b641807e53f737bef83,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5234229865471731922, guid: f6c22e4c0ed19b641807e53f737bef83,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5234229865471731922, guid: f6c22e4c0ed19b641807e53f737bef83,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8871161692920070767, guid: f6c22e4c0ed19b641807e53f737bef83,
+        type: 3}
+      propertyPath: m_SortingLayerID
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1834946986615710233, guid: f6c22e4c0ed19b641807e53f737bef83,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5234229865471731923, guid: f6c22e4c0ed19b641807e53f737bef83,
+        type: 3}
+      propertyPath: m_Name
+      value: LowRegFoodBox_Wooden (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3427797336055521120, guid: f6c22e4c0ed19b641807e53f737bef83,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.007
+      objectReference: {fileID: 0}
+    - target: {fileID: 3427797336055521120, guid: f6c22e4c0ed19b641807e53f737bef83,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.385
+      objectReference: {fileID: 0}
+    - target: {fileID: 5234229865471731922, guid: f6c22e4c0ed19b641807e53f737bef83,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -9.99
+      objectReference: {fileID: 0}
+    - target: {fileID: 3427797336055521120, guid: f6c22e4c0ed19b641807e53f737bef83,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3427797336055521120, guid: f6c22e4c0ed19b641807e53f737bef83,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3427797336055521120, guid: f6c22e4c0ed19b641807e53f737bef83,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f6c22e4c0ed19b641807e53f737bef83, type: 3}
+--- !u!1 &1546996905 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6539571388132527724, guid: f6c22e4c0ed19b641807e53f737bef83,
+    type: 3}
+  m_PrefabInstance: {fileID: 1546996904}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1546996906
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1546996905}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e667484d7c843a4fbb0584212d03cac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  runOnce: 0
+  baseSortNumber: 5000
+  refreshRateInSecs: 0.3
 --- !u!1 &1644607346
 GameObject:
   m_ObjectHideFlags: 0
@@ -1562,6 +1842,7 @@ GameObject:
   - component: {fileID: 1676498247}
   - component: {fileID: 1676498248}
   - component: {fileID: 1676498249}
+  - component: {fileID: 1676498250}
   m_Layer: 5
   m_Name: MainCanvas
   m_TagString: Untagged
@@ -1715,6 +1996,18 @@ MonoBehaviour:
     type: 3}
   shopppingBagPrefab: {fileID: 9053871370992096994, guid: 3a0f9584a05c13a44ae48347f2c0ef5f,
     type: 3}
+--- !u!114 &1676498250
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1676498241}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa7d06b833291384f8c1bad83971ae8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1684086912
 GameObject:
   m_ObjectHideFlags: 0
@@ -1938,7 +2231,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2140377125}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.3752507, y: 0.01188755, z: -9.9485}
+  m_LocalPosition: {x: -0.37525105, y: 0.01188755, z: -9.9485}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 459604676}
@@ -2032,7 +2325,13 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 1.85
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 5362470427454308043, guid: daf8e30f0749de74fbded1cc29d98602,
+        type: 3}
+      propertyPath: currentBalance
+      value: 200
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 7446133877586695586, guid: daf8e30f0749de74fbded1cc29d98602, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: daf8e30f0749de74fbded1cc29d98602, type: 3}
 --- !u!1001 &4789485251342465116
 PrefabInstance:
@@ -3075,6 +3374,25 @@ PrefabInstance:
         type: 3}
       propertyPath: m_ColliderPaths.Array.data[6].m_ColliderPaths.Array.data[0].Array.data[3].Y
       value: -36500000
+      objectReference: {fileID: 0}
+    - target: {fileID: 74002748, guid: 912b8772bbdd634478caa9682df24f60, type: 3}
+      propertyPath: m_Name
+      value: LowRegFoodBox_Wooden (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7436080497687086735, guid: 912b8772bbdd634478caa9682df24f60,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7436080497687086735, guid: 912b8772bbdd634478caa9682df24f60,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7436080497687086735, guid: 912b8772bbdd634478caa9682df24f60,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 912b8772bbdd634478caa9682df24f60, type: 3}

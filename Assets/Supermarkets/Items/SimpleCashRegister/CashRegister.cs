@@ -5,9 +5,11 @@ using UnityEngine;
 public class CashRegister : Building
 {
 
-    public void CountCurrentShopper()
-    {
+    Queue<GameObject> lineup = new Queue<GameObject>();
 
+    public Vector2 ProvideQueueSpot()
+    {
+        return Vector2.zero;
     }
     
 

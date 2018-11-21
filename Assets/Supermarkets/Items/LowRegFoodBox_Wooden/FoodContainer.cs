@@ -18,7 +18,6 @@ public class FoodContainer : Pickuppable
         }
     }
     [SerializeField] protected int foodQuantity; // 3 - little, 6 - medium, 12 - large, 25 - huge(?)
-    [SerializeField] protected Sprite worldFoodAppearance;
 
     public int ProvideFoodStock()
     {

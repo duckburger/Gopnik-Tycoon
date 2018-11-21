@@ -8,16 +8,8 @@ public class PickuppableItemData : ScriptableObject
 {
     [Header("Generic properties")]
     [SerializeField] string name;
-    [SerializeField] Sprite worldAppearance;
     [SerializeField] bool stackable = false;
 
-    public Sprite WorldAppearance
-    {
-        get
-        {
-            return this.worldAppearance;
-        }
-    }
 
     public bool Stackable
     {

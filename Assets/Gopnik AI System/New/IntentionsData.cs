@@ -9,5 +9,13 @@ public class IntentionsData : ScriptableObject
 {
     [SerializeField] CharacterIntentions designatedIntentions;
     [SerializeField] float itemsWanted;
-    [SerializeField] FoodQuality qualityWanted;
+    [SerializeField] [EnumFlag] FoodQuality qualityWanted;
+
+    public FoodQuality QualityWanted
+    {
+        get
+        {
+            return this.qualityWanted;
+        }
+    }
 }

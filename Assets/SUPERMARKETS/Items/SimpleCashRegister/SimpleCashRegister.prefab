@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2731493428222191796}
   - component: {fileID: 2731493428222191799}
   m_Layer: 0
-  m_Name: CashRegister
+  m_Name: SimpleCashRegister
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
