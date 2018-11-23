@@ -5,12 +5,9 @@ using UnityEngine;
 public class CashRegister : Building
 {
 
-    Queue<GameObject> lineup = new Queue<GameObject>();
-
-    public Vector2 ProvideQueueSpot()
+    private void Start()
     {
-        return Vector2.zero;
+        BuildingTracker.Instance.AddCashRegisterToTracker(this);
     }
-    
 
 }

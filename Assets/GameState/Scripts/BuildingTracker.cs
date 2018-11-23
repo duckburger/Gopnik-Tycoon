@@ -9,6 +9,7 @@ public class BuildingTracker : MonoBehaviour
 
     public List<Building> allShelves = new List<Building>();
     public List<BuildingSlot> allBuildingSlots = new List<BuildingSlot>();
+    public List<Building> allCashRegisters = new List<Building>();
 
 
     void Awake()
@@ -33,11 +34,11 @@ public class BuildingTracker : MonoBehaviour
         }
     }
 
-    public void AddBuildingToTracker(Building newBuilding)
+    public void AddShelfToTracker(Building newShelf)
     {
-       if (!this.allShelves.Contains(newBuilding))
+       if (!this.allShelves.Contains(newShelf))
         {
-            this.allShelves.Add(newBuilding);
+            this.allShelves.Add(newShelf);
         }
     }
 
@@ -105,5 +106,44 @@ public class BuildingTracker : MonoBehaviour
             }
         }
         return null;
+    }
+
+
+    public void AddCashRegisterToTracker(Building newCashRegister)
+    {
+        if (!this.allCashRegisters.Contains(newCashRegister))
+        {
+            this.allCashRegisters.Add(newCashRegister);
+        }
+    }
+
+    public CashRegisterSlot GetCashRegisterWithShortestLine() // TODO: Add a fluke possibility where this will provide just a random cash register
+    {
+        if (this.allCashRegisters.Count <= 0)
+        {
+            Debug.Log("No registered cash registers, so returning null from the building tracker");
+            return null;
+        }
+
+        int shortestLine = 100;
+        CashRegisterSlot registerWithShortestLine = null;
+        for (int i = 0; i < this.allCashRegisters.Count; i++)
+        {
+            CashRegisterSlot cashSlot = this.allCashRegisters[i].GetComponentInParent<CashRegisterSlot>();
+            if (cashSlot != null && cashSlot.CurrentPeopleInQueue < shortestLine)
+            {
+                registerWithShortestLine = cashSlot;    
+            }
+        }
+        
+        if (registerWithShortestLine != null)
+        {
+            return registerWithShortestLine;
+        }
+
+        Debug.LogError("Didn't find a cash register, returning null");
+        return null;
+
+
     }
 }

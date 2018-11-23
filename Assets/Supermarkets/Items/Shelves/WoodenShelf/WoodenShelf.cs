@@ -8,7 +8,7 @@ public class WoodenShelf : StoreShelf
     private void Start()
     {
         InitializeStockAmount();
-        BuildingTracker.Instance.AddBuildingToTracker(this);
+        BuildingTracker.Instance.AddShelfToTracker(this);
     }
 
 

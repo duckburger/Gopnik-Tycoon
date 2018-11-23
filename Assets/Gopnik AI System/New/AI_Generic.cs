@@ -16,14 +16,17 @@ public enum CharacterIntentions
 public class AI_Generic : MonoBehaviour
 {
     // Add character data
-    [SerializeField] Vector2 target;
-    StoreShelf myTargetShelf;
+
     [SerializeField] CharacterIntentions myIntentions;
     [SerializeField] FoodQuality myPreferredFoodQuality;
 
     PolyNavAgent navAgent;
     Animator animator;
-    
+
+    // Targets
+    [SerializeField] Vector2 target;
+    StoreShelf myTargetShelf;
+    CashRegisterSlot myTargetCashRegisterSlot;
 
     private void Start()
     {
@@ -41,6 +44,34 @@ public class AI_Generic : MonoBehaviour
         }
        
     }
+
+    #region Common Tasks
+
+
+    [Task]
+    void GoToTarget()
+    {
+        if (Task.isInspected)
+        {
+            Task.current.debugInfo = string.Format("t = {0:0.00}", Time.time);
+        }
+
+        if (navAgent.remainingDistance <= navAgent.stoppingDistance && !navAgent.pathPending)
+        {
+            this.animator.Play("Idle");
+            Task.current.Succeed();
+        }
+    }
+
+    [Task]
+    void GoIdle()
+    {
+        this.animator.Play("Idle");
+        Task.current.Succeed();
+    }
+
+
+    #endregion
 
     [Task]
    void ChooseIntentions()
@@ -82,28 +113,6 @@ public class AI_Generic : MonoBehaviour
 
 
     [Task]
-    void GoToTarget()
-    {
-        if (Task.isInspected)
-        {
-            Task.current.debugInfo = string.Format("t = {0:0.00}", Time.time);
-        }
-
-        if (navAgent.remainingDistance <= navAgent.stoppingDistance && !navAgent.pathPending)
-        {
-            this.animator.Play("Idle");
-            Task.current.Succeed();
-        }
-    }
-
-    [Task]
-    void GoIdle()
-    {
-        this.animator.Play("Idle");
-        Task.current.Succeed();
-    }
-
-    [Task]
     void PickUpItemFromShelf()
     {
         if (this.myTargetShelf != null && this.myTargetShelf.CheckIfContainsFoodQuality(myPreferredFoodQuality))
@@ -112,4 +121,44 @@ public class AI_Generic : MonoBehaviour
             Task.current.Succeed();
         }
     }
+
+    [Task]
+    void FindCashRegister()
+    {
+        if (BuildingTracker.Instance != null)
+        {
+
+            CashRegisterSlot foundCashRegisterSlot = BuildingTracker.Instance.GetCashRegisterWithShortestLine();
+            if (foundCashRegisterSlot != null)
+            {
+                if (!foundCashRegisterSlot.AddToQueue(this.gameObject))
+                {
+                    Task.current.Fail();
+                    return;
+                }
+                // Get the target to go to
+                Vector2 queueSpot = foundCashRegisterSlot.ProvideQueueSpot();
+                if (queueSpot == Vector2.zero)
+                {
+                    Task.current.Fail();
+                    Debug.Log("Cash register slot gave " + this.gameObject.name + " no slot for some reason. Abandoning task.");
+                    return;
+                }
+
+                this.myTargetCashRegisterSlot = foundCashRegisterSlot;
+                this.navAgent.SetDestination(queueSpot, null);
+                this.animator.Play("Walk");
+                Task.current.Succeed();
+                return;
+            }
+        }
+    }
+
+    [Task]
+    void WaitInLine()
+    {
+
+    }
 }
+
+
