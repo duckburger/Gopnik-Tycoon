@@ -19,5 +19,9 @@ tree("Root")
 						GoToTarget
 						GoIdle
 						PickUpItemFromShelf
-						
+						FindCashRegister
+						GoToTarget
+						LineUp
+						GoToTarget
+						WaitInLine
 			

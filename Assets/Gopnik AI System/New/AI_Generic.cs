@@ -16,17 +16,21 @@ public enum CharacterIntentions
 public class AI_Generic : MonoBehaviour
 {
     // Add character data
-
+    [Header("Nav agent settings")]
+    [SerializeField] float defaultNavStoppingDistance = 0.1f;
+    [Space(10)]
     [SerializeField] CharacterIntentions myIntentions;
     [SerializeField] FoodQuality myPreferredFoodQuality;
 
     PolyNavAgent navAgent;
     Animator animator;
 
+    QueueNumber myQueueNumber = null;
+
     // Targets
     [SerializeField] Vector2 target;
     StoreShelf myTargetShelf;
-    CashRegisterSlot myTargetCashRegisterSlot;
+    DeQueue myTargetCashRegisterSlot;
 
     private void Start()
     {
@@ -128,25 +132,21 @@ public class AI_Generic : MonoBehaviour
         if (BuildingTracker.Instance != null)
         {
 
-            CashRegisterSlot foundCashRegisterSlot = BuildingTracker.Instance.GetCashRegisterWithShortestLine();
+            DeQueue foundCashRegisterSlot = BuildingTracker.Instance.GetCashRegisterWithShortestLine();
             if (foundCashRegisterSlot != null)
             {
-                if (!foundCashRegisterSlot.AddToQueue(this.gameObject))
-                {
-                    Task.current.Fail();
-                    return;
-                }
                 // Get the target to go to
-                Vector2 queueSpot = foundCashRegisterSlot.ProvideQueueSpot();
-                if (queueSpot == Vector2.zero)
+                Vector2 registerLocation = foundCashRegisterSlot.ProvideGeneralBuildingLocation();
+                if (registerLocation == Vector2.zero)
                 {
                     Task.current.Fail();
-                    Debug.Log("Cash register slot gave " + this.gameObject.name + " no slot for some reason. Abandoning task.");
+                    Debug.Log("Cash register slot gave " + this.gameObject.name + " no general location for some reason. Abandoning task.");
                     return;
                 }
 
                 this.myTargetCashRegisterSlot = foundCashRegisterSlot;
-                this.navAgent.SetDestination(queueSpot, null);
+                this.navAgent.stoppingDistance = 1f;
+                this.navAgent.SetDestination(registerLocation, (bool success) => ResetNavAgent());
                 this.animator.Play("Walk");
                 Task.current.Succeed();
                 return;
@@ -154,10 +154,64 @@ public class AI_Generic : MonoBehaviour
         }
     }
 
+    void ResetNavAgent()
+    {
+        this.navAgent.stoppingDistance = this.defaultNavStoppingDistance;
+    }
+
+    [Task]
+    void LineUp()
+    {
+        if (this.myTargetCashRegisterSlot == null)
+        {
+            Task.current.Fail();
+            return;
+        }
+
+        if (!this.myTargetCashRegisterSlot.AddToQueue(this.gameObject))
+        {
+            Task.current.Fail();
+            return;
+        }
+        this.myQueueNumber = this.GetComponent<QueueNumber>();
+        Vector2 positionInQueue = this.myTargetCashRegisterSlot.ProvideQueueSpot();
+        if (positionInQueue == Vector2.zero)
+        {
+            Task.current.Fail();
+            return;
+        }
+
+        this.navAgent.SetDestination(positionInQueue, null);
+
+        Task.current.Succeed();
+    }
+
     [Task]
     void WaitInLine()
     {
+        if (this.myQueueNumber == null)
+        {
+            Debug.LogError("Couldn't find queue number on the queing NPC " + gameObject.name);
+            Task.current.Fail();
+            return;
+        }
 
+        if (this.myQueueNumber.CurrentNumberInQueue == 0)
+        {
+            // Pay and leave
+        }
+
+        if (this.myQueueNumber.CurrentNumberInQueue != this.myQueueNumber.LastNumberInQueue)
+        {
+            // Advance to the new position!
+
+            
+            // Equalize the numbers
+        }
+
+
+
+        this.myQueueNumber.LastNumberInQueue = this.myQueueNumber.CurrentNumberInQueue;
     }
 }
 

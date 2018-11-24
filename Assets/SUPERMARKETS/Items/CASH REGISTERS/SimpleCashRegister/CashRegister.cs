@@ -5,9 +5,16 @@ using UnityEngine;
 public class CashRegister : Building
 {
 
+
+
     private void Start()
     {
         BuildingTracker.Instance.AddCashRegisterToTracker(this);
     }
 
+
+    public void AcceptPayment(float amount)
+    {
+
+    }
 }

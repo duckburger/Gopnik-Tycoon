@@ -117,7 +117,7 @@ public class BuildingTracker : MonoBehaviour
         }
     }
 
-    public CashRegisterSlot GetCashRegisterWithShortestLine() // TODO: Add a fluke possibility where this will provide just a random cash register
+    public DeQueue GetCashRegisterWithShortestLine() // TODO: Add a fluke possibility where this will provide just a random cash register
     {
         if (this.allCashRegisters.Count <= 0)
         {
@@ -126,10 +126,10 @@ public class BuildingTracker : MonoBehaviour
         }
 
         int shortestLine = 100;
-        CashRegisterSlot registerWithShortestLine = null;
+        DeQueue registerWithShortestLine = null;
         for (int i = 0; i < this.allCashRegisters.Count; i++)
         {
-            CashRegisterSlot cashSlot = this.allCashRegisters[i].GetComponentInParent<CashRegisterSlot>();
+            DeQueue cashSlot = this.allCashRegisters[i].GetComponentInParent<DeQueue>();
             if (cashSlot != null && cashSlot.CurrentPeopleInQueue < shortestLine)
             {
                 registerWithShortestLine = cashSlot;    

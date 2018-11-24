@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CashRegisterSlot : MonoBehaviour
+public class DeQueue : MonoBehaviour
 {
     [SerializeField] ScriptableEvent onLineAdvanced;
     [Space(10)]
@@ -30,10 +30,29 @@ public class CashRegisterSlot : MonoBehaviour
         if (!this.peopleInQueue.Contains(newPersonInQueue))
         {
             this.peopleInQueue.Add(newPersonInQueue);
+
+            QueueNumber newNumber = newPersonInQueue.AddComponent<QueueNumber>();
+            int numberInQueue = this.peopleInQueue.IndexOf(newPersonInQueue);
+            newNumber.CurrentNumberInQueue = numberInQueue;
+            newNumber.LastNumberInQueue = numberInQueue;
             return true;
         }
 
         return false;
+    }
+
+    public void RemoveFromQueue(GameObject personToRemove)
+    {
+        if (this.peopleInQueue.Contains(personToRemove))
+        {
+            this.peopleInQueue.Remove(personToRemove);
+            Destroy(personToRemove.GetComponent<QueueNumber>());
+        }
+    }
+
+    public Vector2 ProvideGeneralBuildingLocation()
+    {
+        return this.transform.position;
     }
 
     public Vector2 ProvideQueueSpot()
@@ -87,5 +106,20 @@ public class CashRegisterSlot : MonoBehaviour
         float randomModifier = Random.Range(0.1f, 0.3f);
         float lastInLineY = this.peopleInQueue[peopleInQueue.Count - 1].transform.position.y;
         return lastInLineY - randomModifier;
+    }
+
+    public void AcceptPayment(float amount)
+    {
+        if (this.myBuildingSlot == null)
+        {
+            Debug.LogError("No building slot connected to the cash register slot");
+            return;
+        }
+
+        CashRegister registerInMySlot = this.myBuildingSlot.GetComponentInChildren<CashRegister>();
+        if (registerInMySlot != null)
+        {
+            registerInMySlot.AcceptPayment(amount);
+        }
     }
 }
