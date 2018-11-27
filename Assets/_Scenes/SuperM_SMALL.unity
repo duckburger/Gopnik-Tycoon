@@ -283,7 +283,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 72980018}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.3752507, y: 0.01188755, z: -9.9485}
+  m_LocalPosition: {x: -0.37525082, y: 0.01188755, z: -9.9485}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 900080296}
@@ -1589,10 +1589,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb209c8f82f92084e985e6a4bed2614d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onLineAdvanced: {fileID: 11400000, guid: e9b1032328037d94d86a4bd4a2fc0088, type: 2}
+  onLineAdvanced: {fileID: 0}
   maxInQueue: 5
   peopleInQueue: []
-  firstQueueSlot: {fileID: 733747188}
+  firstQueueSlot: {fileID: 0}
 --- !u!1001 &1510020374
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2290,7 +2290,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2140377125}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.3752507, y: 0.01188755, z: -9.9485}
+  m_LocalPosition: {x: -0.37525082, y: 0.01188755, z: -9.9485}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 459604676}
@@ -2387,7 +2387,7 @@ PrefabInstance:
     - target: {fileID: 5362470427454308043, guid: daf8e30f0749de74fbded1cc29d98602,
         type: 3}
       propertyPath: currentBalance
-      value: 200
+      value: 1000
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 7446133877586695586, guid: daf8e30f0749de74fbded1cc29d98602, type: 3}

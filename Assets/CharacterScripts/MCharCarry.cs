@@ -34,6 +34,25 @@ public class MCharCarry : MonoBehaviour
     {
         
     }
+    
+    public float GetCostOfCarriedGoods()
+    {
+        if (!this.isCarryingShoppingBag)
+        {
+            Debug.LogError("Trying to get value of non food items (character " + this.gameObject.name + " has no shopping bag");
+            return -1;
+        }
+
+        float cost = -1;
+        ShoppingBag bag = this.currentItem.GetComponent<ShoppingBag>();
+        if (bag != null)
+        {
+            cost = bag.GetCostOfContainedGoods();
+        }
+        return cost;
+    }
+
+    #region Adding/Removing items from field of view
 
     public void AddToNearItem(Pickuppable newItem)
     {
@@ -51,6 +70,7 @@ public class MCharCarry : MonoBehaviour
         }
     }
 
+    #endregion
 
     Pickuppable FindNearestItem()
     {

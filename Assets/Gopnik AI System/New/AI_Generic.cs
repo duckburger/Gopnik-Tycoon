@@ -22,20 +22,26 @@ public class AI_Generic : MonoBehaviour
     [SerializeField] CharacterIntentions myIntentions;
     [SerializeField] FoodQuality myPreferredFoodQuality;
 
+    Wallet myWallet;
+    MCharCarry myCarryController;
     PolyNavAgent navAgent;
     Animator animator;
 
-    QueueNumber myQueueNumber = null;
+    QueueNumber myQueueTicket = null;
 
     // Targets
     [SerializeField] Vector2 target;
     StoreShelf myTargetShelf;
-    DeQueue myTargetCashRegisterSlot;
+    CashRegisterSlot myTargetCashRegisterSlot;
+
+    
 
     private void Start()
     {
         this.navAgent = this.GetComponent<PolyNavAgent>();
         this.animator = this.GetComponent<Animator>();
+        this.myWallet = this.GetComponent<Wallet>();
+        this.myCarryController = this.GetComponent<MCharCarry>();
     }
 
 
@@ -132,12 +138,12 @@ public class AI_Generic : MonoBehaviour
         if (BuildingTracker.Instance != null)
         {
 
-            DeQueue foundCashRegisterSlot = BuildingTracker.Instance.GetCashRegisterWithShortestLine();
+            CashRegisterSlot foundCashRegisterSlot = BuildingTracker.Instance.GetCashRegisterWithShortestLine();
             if (foundCashRegisterSlot != null)
             {
                 // Get the target to go to
-                Vector2 registerLocation = foundCashRegisterSlot.ProvideGeneralBuildingLocation();
-                if (registerLocation == Vector2.zero)
+                Vector2 cashRegisterLocation = foundCashRegisterSlot.ProvideGeneralBuildingLocation();
+                if (cashRegisterLocation == Vector2.zero)
                 {
                     Task.current.Fail();
                     Debug.Log("Cash register slot gave " + this.gameObject.name + " no general location for some reason. Abandoning task.");
@@ -145,8 +151,9 @@ public class AI_Generic : MonoBehaviour
                 }
 
                 this.myTargetCashRegisterSlot = foundCashRegisterSlot;
+
                 this.navAgent.stoppingDistance = 1f;
-                this.navAgent.SetDestination(registerLocation, (bool success) => ResetNavAgent());
+                this.navAgent.SetDestination(cashRegisterLocation, (bool success) => ResetNavAgent());
                 this.animator.Play("Walk");
                 Task.current.Succeed();
                 return;
@@ -162,21 +169,25 @@ public class AI_Generic : MonoBehaviour
     [Task]
     void LineUp()
     {
+        Debug.Log("<color=green>Attempting to line up! </color>" + this.gameObject.name);
         if (this.myTargetCashRegisterSlot == null)
         {
+            Debug.LogError("Couldn't find attached cash register on " + gameObject.name);
             Task.current.Fail();
             return;
         }
 
         if (!this.myTargetCashRegisterSlot.AddToQueue(this.gameObject))
         {
+            Debug.LogError("Couldn't add " + gameObject.name + " to the cash register queue");
             Task.current.Fail();
             return;
         }
-        this.myQueueNumber = this.GetComponent<QueueNumber>();
+        this.myQueueTicket = this.GetComponent<QueueNumber>();
         Vector2 positionInQueue = this.myTargetCashRegisterSlot.ProvideQueueSpot();
         if (positionInQueue == Vector2.zero)
         {
+            this.myTargetCashRegisterSlot.RemoveFromQueue(this.gameObject);
             Task.current.Fail();
             return;
         }
@@ -187,32 +198,72 @@ public class AI_Generic : MonoBehaviour
     }
 
     [Task]
-    void WaitInLine()
+    bool WaitingInLine()
     {
-        if (this.myQueueNumber == null)
+        Debug.Log("Starting to wait in line");
+        if (this.myQueueTicket == null)
         {
             Debug.LogError("Couldn't find queue number on the queing NPC " + gameObject.name);
-            Task.current.Fail();
-            return;
+            return false;
         }
 
-        if (this.myQueueNumber.CurrentNumberInQueue == 0)
+        if (this.myQueueTicket.CurrentNumberInQueue == 0)
         {
             // Pay and leave
+
+            float costOfAllMyFood = this.myCarryController.GetCostOfCarriedGoods();
+            if (costOfAllMyFood == -1)
+            {
+                return false;
+            }
+
+            return true;
+
+           
         }
 
-        if (this.myQueueNumber.CurrentNumberInQueue != this.myQueueNumber.LastNumberInQueue)
+        return false;
+
+        if (this.myQueueTicket.CurrentNumberInQueue != this.myQueueTicket.LastNumberInQueue)
         {
             // Advance to the new position!
 
             
-            // Equalize the numbers
+           
+            
         }
 
 
-
-        this.myQueueNumber.LastNumberInQueue = this.myQueueNumber.CurrentNumberInQueue;
+        // Equalize the numbers
+        this.myQueueTicket.LastNumberInQueue = this.myQueueTicket.CurrentNumberInQueue;
     }
+
+    [Task]
+    bool PayAtCash()
+    {
+        float costOfAllMyFood = this.myCarryController.GetCostOfCarriedGoods();
+        if (this.myWallet.AdjustBalance(-costOfAllMyFood))
+        {
+            this.myTargetCashRegisterSlot.AcceptPayment(costOfAllMyFood);
+            FloatingTextDisplay.SpawnFloatingText(this.transform.position, "+$" + costOfAllMyFood);
+            Destroy(this.myQueueTicket);
+            return true;
+        }
+        return false;
+    }
+
+    [Task]
+    void WalkOutOfStore()
+    {
+        Vector2 exitPos = LevelData.CurrentLevel.EntranceExitPoint.position;
+        if (this.navAgent != null)
+        {
+            this.navAgent.SetDestination(exitPos, (bool success) => Destroy(this.gameObject));
+            Task.current.Succeed();
+            return;
+        }
+    }
+
 }
 
 

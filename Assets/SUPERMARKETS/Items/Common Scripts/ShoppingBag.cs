@@ -17,6 +17,21 @@ public class ShoppingBag : Pickuppable
         }
     }
 
+    public float GetCostOfContainedGoods()
+    {
+        if (this.allContainedItems.Count <= 0)
+        {
+            Debug.LogError("Trying to calculate cost of contained items in an empty shopping bag");
+            return -1;
+        }
+        float cost = -1;
+        for (int i = 0; i < this.allContainedItems.Count; i++)
+        {
+            cost += this.allContainedItems[i].PricePerUnit;
+        }
+        return cost;
+    }
+
     public void PopulateNewBag(List<FoodItemData> newItems)
     {
         // Creating the bag

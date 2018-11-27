@@ -38,6 +38,14 @@ public class FoodItemData : PickuppableItemData
         }
     }
 
+    public float PricePerUnit
+    {
+        get
+        {
+            return this.pricePerUnit;
+        }
+    }
+
     public Sprite GetRandomShelfAppearanceSprite()
     {
         if (this.onShelfAppearances != null && this.onShelfAppearances.Count > 0)

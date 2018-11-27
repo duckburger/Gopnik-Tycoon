@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerCashController : MonoBehaviour {
 
     public static PlayerCashController Instance;
-    [SerializeField] ScriptableFloatVar cashDataFile;
+    [SerializeField] ScriptableFloatVar globalBalance;
 
     private void Awake()
     {
@@ -18,14 +18,14 @@ public class PlayerCashController : MonoBehaviour {
             Destroy(this.gameObject);
         }
 
-        this.cashDataFile.Reset();
+        this.globalBalance.Reset();
     }
 
     public void AdjustBalance(float amount)
     {
-        if (this.cashDataFile != null)
+        if (this.globalBalance != null)
         {
-            this.cashDataFile.AdjustFloatValue(amount);
+            this.globalBalance.AdjustFloatValue(amount);
         }
     }
 

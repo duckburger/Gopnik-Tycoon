@@ -23,5 +23,9 @@ tree("Root")
 						GoToTarget
 						LineUp
 						GoToTarget
-						WaitInLine
+						while 
+							WaitingInLine
+							while
+								PayAtCash
+								WalkOutOfStore		
 			

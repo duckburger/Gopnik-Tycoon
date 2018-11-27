@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Sliced Bread
   stackable: 0
-  quality: 2
+  quality: 1
   foodType: 1
   pricePerUnit: 3
   onShelfAppearances:

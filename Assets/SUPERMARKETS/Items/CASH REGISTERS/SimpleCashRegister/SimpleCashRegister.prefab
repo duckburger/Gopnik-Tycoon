@@ -98,6 +98,7 @@ MonoBehaviour:
   mainUIImage: {fileID: 21300000, guid: 64adc43da1aa92643b1603dba61368fb, type: 3}
   purchasePrice: 150
   listOfNearbyChars: []
+  globalBalance: {fileID: 11400000, guid: fc85fcfda1ea83540b06fc8ece01a3b1, type: 2}
 --- !u!114 &2731493428222191799
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -48,15 +48,16 @@ public class Wallet : MonoBehaviour {
         this.charStats = this.GetComponent<ICharStats>();
     }
 
-    public void AdjustBalance(float amount)
+    public bool AdjustBalance(float amount)
     {
         if ((this.currentBalance += amount) < 0)
         {
             Debug.LogError("Cannot take this much, there isn't enough in this wallet");
-            return;
+            return false;
         }
         this.currentBalance += amount;
         this.balanceChagedEvent.Invoke(this.currentBalance);
+        return true;
     }
 	
     public float Rob()

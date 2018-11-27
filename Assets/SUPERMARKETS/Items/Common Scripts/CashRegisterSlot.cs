@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DeQueue : MonoBehaviour
+public class CashRegisterSlot : MonoBehaviour
 {
     [SerializeField] ScriptableEvent onLineAdvanced;
     [Space(10)]
@@ -27,6 +27,13 @@ public class DeQueue : MonoBehaviour
 
     public bool AddToQueue(GameObject newPersonInQueue)
     {
+
+        if (this.peopleInQueue.Count >= this.maxInQueue)
+        {
+            Debug.Log("Can't queue up as there are already too many in queue, will just wander or leave");
+            return false;
+        }
+
         if (!this.peopleInQueue.Contains(newPersonInQueue))
         {
             this.peopleInQueue.Add(newPersonInQueue);
@@ -38,7 +45,7 @@ public class DeQueue : MonoBehaviour
             return true;
         }
 
-        return false;
+        return true;
     }
 
     public void RemoveFromQueue(GameObject personToRemove)
@@ -65,7 +72,7 @@ public class DeQueue : MonoBehaviour
 
         if (this.peopleInQueue.Count >= this.maxInQueue)
         {
-            Debug.Log("Can't queue up as there are already too many in queue, will just wonder or leave");
+            Debug.Log("Can't queue up as there are already too many in queue, will just wander or leave");
             return Vector2.zero;
         }
 

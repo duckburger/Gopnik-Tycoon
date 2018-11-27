@@ -22,8 +22,9 @@ public class FloatingTextDisplay : MonoBehaviour
         }
     }
 
-   public static void SpawnFloatingText(Vector2 screenPos, string textToInclude)
+   public static void SpawnFloatingText(Vector2 worldPos, string textToInclude)
    {
+        Vector2 screenPos = Camera.main.WorldToScreenPoint(worldPos);
         GameObject newText = Instantiate(FloatingTextDisplay.Instance.textObjPrefab, screenPos, Quaternion.identity, FloatingTextDisplay.Instance.transform);
         newText.GetComponent<FloatingTextObj>().text.text = textToInclude;
    }
