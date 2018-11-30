@@ -193,17 +193,12 @@ public class AI_Generic : MonoBehaviour
                 this.myTargetCashRegisterSlot = foundCashRegisterSlot;
 
                 //this.navAgent.stoppingDistance = 0f;
-                this.navAgent.SetDestination(cashRegisterLocation, (bool success) => ResetNavAgent());
+                this.navAgent.SetDestination(cashRegisterLocation, null);
                 this.animator.Play("Walk");
                 Task.current.Succeed();
                 return;
             }
         }
-    }
-
-    void ResetNavAgent()
-    {
-        this.navAgent.stoppingDistance = this.defaultNavStoppingDistance;
     }
 
     [Task]

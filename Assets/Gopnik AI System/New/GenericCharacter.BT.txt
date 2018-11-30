@@ -36,6 +36,7 @@ tree "WanderAroundShopping"
 							Wait(1)
 							tree "TakeWantedItem"
 
+
 tree "TakeWantedItem"
 	sequence
 		ChooseFullShelfToShopAt
@@ -44,17 +45,17 @@ tree "TakeWantedItem"
 
 
 tree "GoToCash"
-	while
-		HasPickedUpEnoughItems
-		sequence
-			FindCashRegister
-			GoToTarget
-			GoToQueuePosition
+	while HasPickedUpEnoughItems
+		while not HasQueueTicket
+			sequence
+				FindCashRegister
+				GoToTarget
+				GoToQueuePosition
+				tree "WaitInLine"
 
 	
 tree "WaitInLine"
-	while 
-		HasQueueTicket
+	while HasQueueTicket
 		while not HasLineAdvanced
 			GoIdle
 
