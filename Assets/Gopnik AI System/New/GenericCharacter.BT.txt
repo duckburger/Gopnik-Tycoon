@@ -1,31 +1,69 @@
-tree("Root")
+tree "Root"
 	sequence
-		repeat 2
+		ChooseIntentions
+		fallback
+			tree "Shopping"
+			tree "CausingTrouble"
+			tree "Shoplifting"
+	
+	
+tree "Shopping"
+	fallback
+		tree "WanderAroundShopping"
+		tree "GoToCash"
+		tree "WaitInLine"
+		tree "Pay"
+
+
+tree "WanderAroundShopping"
+	while not HasPickedUpEnoughItems
+		repeat
 			sequence
-				ChooseIntentions
 				ChooseRandomPointNearAShelf
 				GoToTarget
 				GoIdle
-				WaitRandom(2.0, 5.0)
-				random (1,3)
-					sequence
-						ChooseIntentions
-						ChooseRandomPointNearAShelf
-						GoToTarget
-						GoIdle
-						WaitRandom(2.0, 5.0)
-					sequence
-						ChooseFullShelfToShopAt
-						GoToTarget
-						GoIdle
-						PickUpItemFromShelf
-						FindCashRegister
-						GoToTarget
-						LineUp
-						GoToTarget
-						while 
-							WaitingInLine
-							while
-								PayAtCash
-								WalkOutOfStore		
-			
+				WaitRandom(1.0, 3.0)
+				repeat (1, 2)
+					random
+						sequence
+							Succeed
+						sequence 
+							ChooseRandomPointNearAShelf
+							GoToTarget
+							GoIdle
+						sequence
+							GoIdle
+							Wait(1)
+							tree "TakeWantedItem"
+
+tree "TakeWantedItem"
+	sequence
+		ChooseFullShelfToShopAt
+		GoToTarget
+		PickUpItemFromShelf
+
+
+tree "GoToCash"
+	while
+		HasPickedUpEnoughItems
+		sequence
+			FindCashRegister
+			GoToTarget
+			GoToQueuePosition
+
+	
+tree "WaitInLine"
+	while 
+		HasQueueTicket
+		while not HasLineAdvanced
+			GoIdle
+
+
+tree "Pay"
+	Fail
+
+
+tree "CausingTrouble"
+	Fail
+tree "Shoplifting"
+	Fail

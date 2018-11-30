@@ -17,7 +17,7 @@ public class AI_Generic : MonoBehaviour
 {
     // Add character data
     [Header("Nav agent settings")]
-    [SerializeField] float defaultNavStoppingDistance = 0.1f;
+    [SerializeField] float defaultNavStoppingDistance = 0.2f;
     [Space(10)]
     [SerializeField] CharacterIntentions myIntentions;
     [SerializeField] FoodQuality myPreferredFoodQuality;
@@ -26,6 +26,7 @@ public class AI_Generic : MonoBehaviour
     MCharCarry myCarryController;
     PolyNavAgent navAgent;
     Animator animator;
+    CharacterStats myStats;
 
     QueueNumber myQueueTicket = null;
 
@@ -42,11 +43,13 @@ public class AI_Generic : MonoBehaviour
         this.animator = this.GetComponent<Animator>();
         this.myWallet = this.GetComponent<Wallet>();
         this.myCarryController = this.GetComponent<MCharCarry>();
+        this.myStats = this.GetComponent<CharacterStats>();
     }
 
 
     private void Update()
     {
+        //Setting directions for the animator
         if (this.navAgent.hasPath)
         {
             this.animator.SetFloat("xInput", this.navAgent.movingDirection.x);
@@ -80,17 +83,6 @@ public class AI_Generic : MonoBehaviour
         Task.current.Succeed();
     }
 
-
-    #endregion
-
-    [Task]
-   void ChooseIntentions()
-    {
-        // For now always choose shop
-        this.myIntentions = CharacterIntentions.Shop;
-        Task.current.Succeed();
-    }
-
     [Task]
     void ChooseRandomPointNearAShelf()
     {
@@ -100,10 +92,26 @@ public class AI_Generic : MonoBehaviour
         Task.current.Succeed();
     }
 
+    #endregion
+
+    #region Starting Actions
+
+    [Task]
+   void ChooseIntentions()
+    {
+        // For now always choose shop
+        this.myIntentions = CharacterIntentions.Shop;
+        Task.current.Succeed();
+    }
+
+    #endregion
+
+    #region Shopping Actions
+
     [Task]
     void ChooseFullShelfToShopAt()
     {
-        // Choosing a product to buy logic goes here
+        // Choosing a product    to buy logic goes here
         StoreShelf shelfToShop = BuildingTracker.Instance.FindShelfByFoodQuality(myPreferredFoodQuality);
         if (shelfToShop != null)
         {
@@ -121,6 +129,24 @@ public class AI_Generic : MonoBehaviour
         return;
     }
 
+    [Task]
+    bool HasPickedUpEnoughItems()
+    {
+        if (this.myStats != null && this.myCarryController != null)
+        {
+            int neededItems = this.myStats.ItemsWanted;
+            int currentItems = this.myCarryController.GetCountOfCarriedGoods();
+            if (neededItems > currentItems)
+            {
+                return false;
+            }
+            else if (neededItems == currentItems || neededItems < currentItems)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
 
     [Task]
     void PickUpItemFromShelf()
@@ -128,7 +154,21 @@ public class AI_Generic : MonoBehaviour
         if (this.myTargetShelf != null && this.myTargetShelf.CheckIfContainsFoodQuality(myPreferredFoodQuality))
         {
             this.myTargetShelf.TakeFoodOut(this.gameObject, myPreferredFoodQuality);
-            Task.current.Succeed();
+            if (this.myStats != null && this.myCarryController != null)
+            {
+                int neededItems = this.myStats.ItemsWanted;
+                int currentItems = this.myCarryController.GetCountOfCarriedGoods();
+                if (neededItems > currentItems)
+                {
+                    Task.current.Fail();
+                    return;
+                }
+                else if (neededItems == currentItems || neededItems < currentItems)
+                {
+                    Task.current.Succeed();
+                } 
+            }
+            
         }
     }
 
@@ -152,7 +192,7 @@ public class AI_Generic : MonoBehaviour
 
                 this.myTargetCashRegisterSlot = foundCashRegisterSlot;
 
-                this.navAgent.stoppingDistance = 1f;
+                //this.navAgent.stoppingDistance = 0f;
                 this.navAgent.SetDestination(cashRegisterLocation, (bool success) => ResetNavAgent());
                 this.animator.Play("Walk");
                 Task.current.Succeed();
@@ -167,22 +207,24 @@ public class AI_Generic : MonoBehaviour
     }
 
     [Task]
-    void LineUp()
+    void GoToQueuePosition()
     {
         Debug.Log("<color=green>Attempting to line up! </color>" + this.gameObject.name);
-        if (this.myTargetCashRegisterSlot == null)
-        {
-            Debug.LogError("Couldn't find attached cash register on " + gameObject.name);
-            Task.current.Fail();
-            return;
-        }
+        //if (this.myTargetCashRegisterSlot == null)
+        //{
+        //    Debug.LogError("Couldn't find attached cash register on " + gameObject.name);
+        //    Task.current.Fail();
+        //    return;
+        //}
 
-        if (!this.myTargetCashRegisterSlot.AddToQueue(this.gameObject))
-        {
-            Debug.LogError("Couldn't add " + gameObject.name + " to the cash register queue");
-            Task.current.Fail();
-            return;
-        }
+        //if (!this.myTargetCashRegisterSlot.AddToQueue(this.gameObject))
+        //{
+        //    Debug.LogError("Couldn't add " + gameObject.name + " to the cash register queue");
+        //    Task.current.Fail();
+        //    return;
+        //}
+
+        this.myTargetCashRegisterSlot.AddToQueue(this.gameObject);
         this.myQueueTicket = this.GetComponent<QueueNumber>();
         Vector2 positionInQueue = this.myTargetCashRegisterSlot.ProvideQueueSpot();
         if (positionInQueue == Vector2.zero)
@@ -193,7 +235,7 @@ public class AI_Generic : MonoBehaviour
         }
 
         this.navAgent.SetDestination(positionInQueue, null);
-
+        this.animator.Play("Walk");
         Task.current.Succeed();
     }
 
@@ -224,18 +266,29 @@ public class AI_Generic : MonoBehaviour
 
         return false;
 
+        
+    }
+
+    [Task]
+    bool HasLineAdvanced()
+    {
         if (this.myQueueTicket.CurrentNumberInQueue != this.myQueueTicket.LastNumberInQueue)
         {
-            // Advance to the new position!
-
-            
-           
-            
+            this.myQueueTicket.LastNumberInQueue = this.myQueueTicket.CurrentNumberInQueue;
+            return true;
         }
-
-
         // Equalize the numbers
-        this.myQueueTicket.LastNumberInQueue = this.myQueueTicket.CurrentNumberInQueue;
+        return false;
+    }
+
+    [Task]
+    bool HasQueueTicket()
+    {
+        if (this.myQueueTicket != null)
+        {
+            return true;
+        }
+        return false;
     }
 
     [Task]
@@ -247,10 +300,13 @@ public class AI_Generic : MonoBehaviour
             this.myTargetCashRegisterSlot.AcceptPayment(costOfAllMyFood);
             FloatingTextDisplay.SpawnFloatingText(this.transform.position, "+$" + costOfAllMyFood);
             Destroy(this.myQueueTicket);
+            this.myTargetCashRegisterSlot.RemoveFromQueue(this.gameObject);
             return true;
         }
         return false;
     }
+
+    #endregion
 
     [Task]
     void WalkOutOfStore()

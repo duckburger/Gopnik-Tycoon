@@ -7,10 +7,17 @@ public class CharacterStats : MonoBehaviour
 {
     [SerializeField] [EnumFlag] FoodQuality preferredQuality;
     [SerializeField] int itemsWanted;
+    public int ItemsWanted
+    {
+        get
+        {
+            return this.itemsWanted;
+        }
+    }
 
     private void Start()
     {
-        this.itemsWanted = UnityEngine.Random.Range(1, 5);
+        this.itemsWanted = 1/*UnityEngine.Random.Range(1, 5)*/;
 
         // Randomizing the wanted food quality
         int[] values = Enum.GetValues(typeof(FoodQuality)) as int[];

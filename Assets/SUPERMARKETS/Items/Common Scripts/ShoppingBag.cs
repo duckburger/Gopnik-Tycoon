@@ -17,6 +17,14 @@ public class ShoppingBag : Pickuppable
         }
     }
 
+    public List<FoodItemData> AllContainedItems
+    {
+        get
+        {
+            return this.allContainedItems;
+        }
+    }
+
     public float GetCostOfContainedGoods()
     {
         if (this.allContainedItems.Count <= 0)

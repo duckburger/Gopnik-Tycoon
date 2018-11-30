@@ -52,6 +52,24 @@ public class MCharCarry : MonoBehaviour
         return cost;
     }
 
+    public int GetCountOfCarriedGoods()
+    {
+        if (!this.isCarryingShoppingBag && this.currentItem != null)
+        {
+            return 1;
+        }
+        if (this.currentItem == null)
+        {
+            return 0;
+        }
+        ShoppingBag bag = this.currentItem.GetComponent<ShoppingBag>();
+        if (bag != null)
+        {
+            return bag.AllContainedItems.Count;
+        }
+        return 0;
+    }
+
     #region Adding/Removing items from field of view
 
     public void AddToNearItem(Pickuppable newItem)
