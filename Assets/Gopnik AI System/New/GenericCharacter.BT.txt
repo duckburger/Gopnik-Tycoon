@@ -48,16 +48,19 @@ tree "GoToCash"
 	while HasPickedUpEnoughItems
 		while not HasQueueTicket
 			sequence
-				FindCashRegister
+				FindAndGoToCashRegister
 				GoToTarget
 				GoToQueuePosition
 				tree "WaitInLine"
 
 	
 tree "WaitInLine"
-	while HasQueueTicket
+	sequence
+		while HasQueueTicket
+			TurnToCashRegister	
 		while not HasLineAdvanced
-			GoIdle
+				GoIdle
+		
 
 
 tree "Pay"

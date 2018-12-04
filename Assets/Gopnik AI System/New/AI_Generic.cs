@@ -173,7 +173,7 @@ public class AI_Generic : MonoBehaviour
     }
 
     [Task]
-    void FindCashRegister()
+    void FindAndGoToCashRegister()
     {
         if (BuildingTracker.Instance != null)
         {
@@ -191,9 +191,8 @@ public class AI_Generic : MonoBehaviour
                 }
 
                 this.myTargetCashRegisterSlot = foundCashRegisterSlot;
-
-                //this.navAgent.stoppingDistance = 0f;
-                this.navAgent.SetDestination(cashRegisterLocation, null);
+                this.navAgent.stoppingDistance = 2f;
+                this.navAgent.SetDestination(cashRegisterLocation, (bool success) => ResetNavAgent());
                 this.animator.Play("Walk");
                 Task.current.Succeed();
                 return;
@@ -201,23 +200,28 @@ public class AI_Generic : MonoBehaviour
         }
     }
 
+    private void ResetNavAgent()
+    {
+        this.navAgent.stoppingDistance = 0.3f;
+    }
+
     [Task]
     void GoToQueuePosition()
     {
         Debug.Log("<color=green>Attempting to line up! </color>" + this.gameObject.name);
-        //if (this.myTargetCashRegisterSlot == null)
-        //{
-        //    Debug.LogError("Couldn't find attached cash register on " + gameObject.name);
-        //    Task.current.Fail();
-        //    return;
-        //}
+        if (this.myTargetCashRegisterSlot == null)
+        {
+            Debug.LogError("Couldn't find attached cash register on " + gameObject.name);
+            Task.current.Fail();
+            return;
+        }
 
-        //if (!this.myTargetCashRegisterSlot.AddToQueue(this.gameObject))
-        //{
-        //    Debug.LogError("Couldn't add " + gameObject.name + " to the cash register queue");
-        //    Task.current.Fail();
-        //    return;
-        //}
+        if (!this.myTargetCashRegisterSlot.AddToQueue(this.gameObject))
+        {
+            Debug.LogError("Couldn't add " + gameObject.name + " to the cash register queue");
+            Task.current.Fail();
+            return;
+        }
 
         this.myTargetCashRegisterSlot.AddToQueue(this.gameObject);
         this.myQueueTicket = this.GetComponent<QueueNumber>();
@@ -234,34 +238,23 @@ public class AI_Generic : MonoBehaviour
         Task.current.Succeed();
     }
 
+   
     [Task]
-    bool WaitingInLine()
+    void TurnToCashRegister()
     {
-        Debug.Log("Starting to wait in line");
-        if (this.myQueueTicket == null)
+        Vector3 dirToCash = this.transform.InverseTransformVector(this.myTargetCashRegisterSlot.transform.position);
+        if (dirToCash.x > 0)
         {
-            Debug.LogError("Couldn't find queue number on the queing NPC " + gameObject.name);
-            return false;
+            // Turn right
+            this.animator.SetFloat("xInput", 1);
+        }
+        else
+        {
+            // Turn left
+            this.animator.SetFloat("xInput", -1);
         }
 
-        if (this.myQueueTicket.CurrentNumberInQueue == 0)
-        {
-            // Pay and leave
-
-            float costOfAllMyFood = this.myCarryController.GetCostOfCarriedGoods();
-            if (costOfAllMyFood == -1)
-            {
-                return false;
-            }
-
-            return true;
-
-           
-        }
-
-        return false;
-
-        
+        Task.current.Succeed();
     }
 
     [Task]

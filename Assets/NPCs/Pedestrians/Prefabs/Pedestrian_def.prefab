@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 934652226503382480}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.9, z: 0}
+  m_LocalPosition: {x: 0, y: 1.85, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3389606292381677883}
@@ -45,7 +45,6 @@ GameObject:
   - component: {fileID: 5341818563212822864}
   - component: {fileID: 2931109207965213656}
   - component: {fileID: 4086454611381580232}
-  - component: {fileID: 7446133877586695586}
   - component: {fileID: 1702984482}
   - component: {fileID: 3897031527708002354}
   - component: {fileID: 5362470427454308043}
@@ -55,6 +54,7 @@ GameObject:
   - component: {fileID: 5071045544369216888}
   - component: {fileID: 6058775654053657681}
   - component: {fileID: 8172561903950047856}
+  - component: {fileID: 1760339592}
   m_Layer: 8
   m_Name: Pedestrian_def
   m_TagString: Civilian
@@ -292,24 +292,6 @@ MonoBehaviour:
   runOnce: 0
   baseSortNumber: 5000
   refreshRateInSecs: 0.3
---- !u!114 &7446133877586695586
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3389606292381677881}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec4eef2083fd0af47b362c4f21fec5b9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  name: Mr Vlad
-  isAgressive: 0
-  stat_strength: 50
-  stat_charisma: 25
-  stat_cunning: 35
-  myPortrait: {fileID: 0}
 --- !u!114 &1702984482
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -371,7 +353,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cf186eb0bb01eb468955fd706fce91f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentBalance: 25
+  currentBalance: 1000
   balanceChagedEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -403,16 +385,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _map: {fileID: 0}
-  maxSpeed: 3
+  maxSpeed: 1.8
   mass: 5
-  stoppingDistance: 0.1
+  stoppingDistance: 0.3
   slowingDistance: 0.01
   accelerationRate: 5
   decelerationRate: 10
   lookAheadDistance: 1
-  avoidRadius: 1
-  avoidanceConsiderStuckedTime: 4
-  avoidanceConsiderReachedDistance: 1
+  avoidRadius: 0.2
+  avoidanceConsiderStuckedTime: 2
+  avoidanceConsiderReachedDistance: 0.2
   rotateTransform: 0
   rotateSpeed: 2500
   centerOffset: {x: 0, y: 0.24}
@@ -446,9 +428,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e66cb65e5a937e743a81db2ce660a33a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {x: 0, y: 0}
+  defaultNavStoppingDistance: 0.2
   myIntentions: 0
   myPreferredFoodQuality: 1
+  target: {x: 0, y: 0}
 --- !u!114 &6058775654053657681
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -485,3 +468,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   carryTransform: {fileID: 5946872603825856750}
   currentItem: {fileID: 0}
+--- !u!114 &1760339592
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3389606292381677881}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 312642daadfe43448bd698c904fb33b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  preferredQuality: 0
+  itemsWanted: 0
