@@ -11,6 +11,8 @@ public class CashRegisterSlot : MonoBehaviour
     [SerializeField] List<GameObject> peopleInQueue = new List<GameObject>();
     [SerializeField] GameObject firstQueueSlot;
 
+    List<Transform> queueSlots = new List<Transform>();
+
     BuildingSlot myBuildingSlot;
     public int CurrentPeopleInQueue
     {
@@ -23,6 +25,7 @@ public class CashRegisterSlot : MonoBehaviour
     private void Start()
     {
         this.myBuildingSlot = this.GetComponent<BuildingSlot>();
+        GenerateAllAvailableQueueSlots();
     }
 
     public bool AddToQueue(GameObject newPersonInQueue)
@@ -62,7 +65,19 @@ public class CashRegisterSlot : MonoBehaviour
         return this.transform.position;
     }
 
-    public Vector2 ProvideQueueSpot()
+    void GenerateAllAvailableQueueSlots()
+    {
+        this.queueSlots.Add(this.firstQueueSlot.transform);
+        for (int i = 1; i < this.maxInQueue; i++)
+        {
+            Vector3 newPos = new Vector3(CreateXQueuePos(i), this.firstQueueSlot.transform.position.y, this.firstQueueSlot.transform.position.z);
+            GameObject newSpot = Instantiate(new GameObject(), newPos, Quaternion.identity, this.transform);
+            newSpot.name = "QueueSlot " + (i + 2).ToString();
+            this.queueSlots.Add(newSpot.transform);
+        }
+    }
+
+    public Vector2 ProvideQueueSpot(GameObject personAsking)
     {
         if (this.myBuildingSlot.CurrentBuilding == null)
         {
@@ -80,7 +95,7 @@ public class CashRegisterSlot : MonoBehaviour
         {
             return ProvideFirstQueuePosition();
         }
-        return ProvideQueuePosition();
+        return ProvideQueuePosition(personAsking);
 
     }
 
@@ -93,31 +108,26 @@ public class CashRegisterSlot : MonoBehaviour
         return new Vector2(this.transform.position.x, this.transform.position.y + 0.3f);
     }
 
-    Vector2 ProvideQueuePosition()
+    Vector2 ProvideQueuePosition(GameObject personAsking)
     {
         // Add to queue and provide the next calculated position offset from the last provided one
-        float xPos = CreateXQueuePos();
-        float yPos = CreateYQueuePos();
-        Debug.Log("Provided this position to the customer in line: <color=green> x: " + xPos + " y: " + yPos);
-        return new Vector2(xPos, yPos);
+        return this.queueSlots[this.peopleInQueue.IndexOf(personAsking)].transform.position;
     }
 
-    float CreateXQueuePos()
+    float CreateXQueuePos(int i)
     {
-        float randomModifier = Random.Range(2f, 2.7f);
-        float lastInLineX = 0;
-        lastInLineX = this.peopleInQueue[peopleInQueue.Count - 2].transform.position.x;
-  
-        return lastInLineX - randomModifier;
+        float randomModifier = Random.Range(0.1f, 0.4f);
+        float newX = 0;
+        newX = this.firstQueueSlot.transform.position.x - i + randomModifier;
+        return newX - randomModifier;
     }
 
     float CreateYQueuePos()
     {
-        float randomModifier = Random.Range(0.1f, 0.3f);
-        float lastInLineY = 0;
-        lastInLineY = this.peopleInQueue[peopleInQueue.Count - 2].transform.position.y;
-       
-        return lastInLineY/* - randomModifier*/;
+        float randomModifier = Random.Range(-0.1f, 0.2f);
+        float newY = 0;
+        newY = this.firstQueueSlot.transform.position.y + randomModifier;
+        return newY/* - randomModifier*/;
     }
 
     public void AcceptPayment(float amount)

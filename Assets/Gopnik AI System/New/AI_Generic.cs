@@ -29,7 +29,7 @@ public class AI_Generic : MonoBehaviour
     CharacterStats myStats;
 
     QueueNumber myQueueTicket = null;
-
+    bool isLiningUp = false;
     // Targets
     [SerializeField] Vector2 target;
     StoreShelf myTargetShelf;
@@ -191,24 +191,25 @@ public class AI_Generic : MonoBehaviour
                 }
 
                 this.myTargetCashRegisterSlot = foundCashRegisterSlot;
-                this.navAgent.stoppingDistance = 2f;
-                this.navAgent.SetDestination(cashRegisterLocation, (bool success) => ResetNavAgent());
+                this.navAgent.SetDestination(cashRegisterLocation, null);
                 this.animator.Play("Walk");
+            }
+
+            if (this.navAgent.remainingDistance <= 3)
+            {
                 Task.current.Succeed();
-                return;
+                this.animator.Play("Idle");
             }
         }
     }
 
-    private void ResetNavAgent()
-    {
-        this.navAgent.stoppingDistance = 0.3f;
-    }
+
 
     [Task]
     void GoToQueuePosition()
     {
         Debug.Log("<color=green>Attempting to line up! </color>" + this.gameObject.name);
+        this.animator.Play("Walk");
         if (this.myTargetCashRegisterSlot == null)
         {
             Debug.LogError("Couldn't find attached cash register on " + gameObject.name);
@@ -225,7 +226,7 @@ public class AI_Generic : MonoBehaviour
 
         this.myTargetCashRegisterSlot.AddToQueue(this.gameObject);
         this.myQueueTicket = this.GetComponent<QueueNumber>();
-        Vector2 positionInQueue = this.myTargetCashRegisterSlot.ProvideQueueSpot();
+        Vector2 positionInQueue = this.myTargetCashRegisterSlot.ProvideQueueSpot(this.gameObject);
         if (positionInQueue == Vector2.zero)
         {
             this.myTargetCashRegisterSlot.RemoveFromQueue(this.gameObject);
@@ -233,12 +234,19 @@ public class AI_Generic : MonoBehaviour
             return;
         }
 
-        this.navAgent.SetDestination(positionInQueue, null);
-        this.animator.Play("Walk");
+        this.navAgent.SetDestination(positionInQueue, HasReachedQueuePosition);
         Task.current.Succeed();
     }
 
-   
+    private void HasReachedQueuePosition(bool success)
+    {
+        if (success)
+        {
+            this.animator.Play("Idle");
+            this.isLiningUp = true;
+        }
+    }
+
     [Task]
     void TurnToCashRegister()
     {
@@ -270,13 +278,9 @@ public class AI_Generic : MonoBehaviour
     }
 
     [Task]
-    bool HasQueueTicket()
+    bool IsLiningUp()
     {
-        if (this.myQueueTicket != null)
-        {
-            return true;
-        }
-        return false;
+        return this.isLiningUp;
     }
 
     [Task]

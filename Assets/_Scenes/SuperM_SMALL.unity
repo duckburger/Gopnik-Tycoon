@@ -997,7 +997,7 @@ PrefabInstance:
     - target: {fileID: 5728930657587322491, guid: daf8e30f0749de74fbded1cc29d98602,
         type: 3}
       propertyPath: stoppingDistance
-      value: 0.3
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 5728930657587322491, guid: daf8e30f0749de74fbded1cc29d98602,
         type: 3}
@@ -1289,7 +1289,7 @@ PrefabInstance:
     - target: {fileID: 5728930657587322491, guid: daf8e30f0749de74fbded1cc29d98602,
         type: 3}
       propertyPath: stoppingDistance
-      value: 0.3
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 5728930657587322491, guid: daf8e30f0749de74fbded1cc29d98602,
         type: 3}
@@ -1860,6 +1860,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Andrew
+      objectReference: {fileID: 0}
+    - target: {fileID: 5728930657587322491, guid: daf8e30f0749de74fbded1cc29d98602,
+        type: 3}
+      propertyPath: stoppingDistance
+      value: 0.2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: daf8e30f0749de74fbded1cc29d98602, type: 3}
@@ -2739,7 +2744,7 @@ PrefabInstance:
     - target: {fileID: 5728930657587322491, guid: daf8e30f0749de74fbded1cc29d98602,
         type: 3}
       propertyPath: stoppingDistance
-      value: 0.3
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 5728930657587322491, guid: daf8e30f0749de74fbded1cc29d98602,
         type: 3}
