@@ -182,7 +182,7 @@ public class AI_Generic : MonoBehaviour
             if (foundCashRegisterSlot != null)
             {
                 // Get the target to go to
-                Vector2 cashRegisterLocation = foundCashRegisterSlot.ProvideGeneralBuildingLocation();
+                Vector2 cashRegisterLocation = foundCashRegisterSlot.ProvideLastPersonInQueueLocation();
                 if (cashRegisterLocation == Vector2.zero)
                 {
                     Task.current.Fail();
@@ -198,7 +198,6 @@ public class AI_Generic : MonoBehaviour
             if (this.navAgent.remainingDistance <= 3)
             {
                 Task.current.Succeed();
-                this.animator.Play("Idle");
             }
         }
     }

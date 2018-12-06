@@ -60,9 +60,13 @@ public class CashRegisterSlot : MonoBehaviour
         }
     }
 
-    public Vector2 ProvideGeneralBuildingLocation()
+    public Vector2 ProvideLastPersonInQueueLocation()
     {
-        return this.transform.position;
+        if (this.peopleInQueue.Count <= 0)
+        {
+            return this.transform.position;
+        }
+        return this.peopleInQueue[this.peopleInQueue.Count - 1].transform.position;
     }
 
     void GenerateAllAvailableQueueSlots()
