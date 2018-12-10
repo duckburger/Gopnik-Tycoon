@@ -30,10 +30,6 @@ public class MCharCarry : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        
-    }
     
     public float GetCostOfCarriedGoods()
     {
@@ -103,6 +99,10 @@ public class MCharCarry : MonoBehaviour
                 index = i;
             }
         }
+        if (nearItems == null || nearItems.Count <= 0)
+        {
+            return null;
+        }
         return nearItems[index];
     }
 
@@ -135,7 +135,10 @@ public class MCharCarry : MonoBehaviour
         }
         Debug.Log("Picking up an item");
        
-        
+        if (nearItems.Count <= 0)
+        {
+            return;
+        }
 
         itemToPickup.transform.parent = this.carryTransform;
         this.currentItem = itemToPickup;

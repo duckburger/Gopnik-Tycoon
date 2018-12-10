@@ -22,6 +22,7 @@ public class CashRegisterSlot : MonoBehaviour
         }
     }
 
+
     private void Start()
     {
         this.myBuildingSlot = this.GetComponent<BuildingSlot>();
@@ -134,18 +135,14 @@ public class CashRegisterSlot : MonoBehaviour
         return newY/* - randomModifier*/;
     }
 
-    public void AcceptPayment(float amount)
+    public CashRegister GetCurrentCashRegister()
     {
         if (this.myBuildingSlot == null)
         {
-            Debug.LogError("No building slot connected to the cash register slot");
-            return;
+            return null;
         }
 
-        CashRegister registerInMySlot = this.myBuildingSlot.GetComponentInChildren<CashRegister>();
-        if (registerInMySlot != null)
-        {
-            registerInMySlot.AcceptPayment(amount);
-        }
+        CashRegister register = this.myBuildingSlot.CurrentBuilding.GetComponent<CashRegister>();
+        return register;
     }
 }

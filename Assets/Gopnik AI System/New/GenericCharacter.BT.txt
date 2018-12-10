@@ -12,7 +12,7 @@ tree "Shopping"
 		tree "WanderAroundShopping"
 		tree "GoToCash"
 		tree "WaitInLine"
-		tree "Pay"
+		tree "LeaveAfterPaying"
 
 
 tree "WanderAroundShopping"
@@ -58,13 +58,23 @@ tree "WaitInLine"
 		while IsLiningUp
 			sequence
 				TurnToCashRegister	
+				while not HasLineAdvanced
+					GoIdle
+				fallback
+					while FirstInLine
+						sequence
+							TurnDownwards
+							RegisterForPayment
+					
 
 						
-		
+ tree "LeaveAfterPaying"
+	while HasPaidForGroceries
+		sequence
+			WalkOutOfStore
+			GoToTarget
 
 
-tree "Pay"
-	Fail
 
 
 tree "CausingTrouble"

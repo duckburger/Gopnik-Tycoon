@@ -30,6 +30,7 @@ public class AI_Generic : MonoBehaviour
 
     QueueNumber myQueueTicket = null;
     bool isLiningUp = false;
+    bool hasPaidForGroceries = false;
     // Targets
     [SerializeField] Vector2 target;
     StoreShelf myTargetShelf;
@@ -265,6 +266,36 @@ public class AI_Generic : MonoBehaviour
     }
 
     [Task]
+    void TurnDownwards()
+    {
+        this.animator.SetFloat("yInput", -1);
+        this.animator.SetFloat("xInput", 0);
+        Task.current.Succeed();
+    }
+
+    /// <summary>
+    /// Makes the customer let the cash register know that they will be the next one paying
+    /// </summary>
+    [Task]
+    void RegisterForPayment()
+    {
+        if (this.myTargetCashRegisterSlot == null)
+        {
+            Task.current.Fail();
+            return;
+        }
+
+        CashRegister currentRegisterInSlot = this.myTargetCashRegisterSlot.GetCurrentCashRegister();
+        if (currentRegisterInSlot == null)
+        {
+            return;
+        }
+
+        currentRegisterInSlot.RegisterAsNextPayingCustomer(this);
+
+    }
+
+    [Task]
     bool HasLineAdvanced()
     {
         if (this.myQueueTicket.CurrentNumberInQueue != this.myQueueTicket.LastNumberInQueue)
@@ -272,7 +303,28 @@ public class AI_Generic : MonoBehaviour
             this.myQueueTicket.LastNumberInQueue = this.myQueueTicket.CurrentNumberInQueue;
             return true;
         }
-        // Equalize the numbers
+        return false;
+    }
+
+    [Task]
+    bool HasPaidForGroceries()
+    {
+        return this.hasPaidForGroceries;
+    }
+
+    [Task]
+    bool FirstInLine()
+    {
+        {
+            if (this.myQueueTicket != null && this.myQueueTicket.CurrentNumberInQueue == 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
         return false;
     }
 
@@ -283,15 +335,15 @@ public class AI_Generic : MonoBehaviour
     }
 
     [Task]
-    bool PayAtCash()
+    public bool PayAtCash()
     {
         float costOfAllMyFood = this.myCarryController.GetCostOfCarriedGoods();
         if (this.myWallet.AdjustBalance(-costOfAllMyFood))
         {
-            this.myTargetCashRegisterSlot.AcceptPayment(costOfAllMyFood);
             FloatingTextDisplay.SpawnFloatingText(this.transform.position, "+$" + costOfAllMyFood);
             Destroy(this.myQueueTicket);
             this.myTargetCashRegisterSlot.RemoveFromQueue(this.gameObject);
+            this.hasPaidForGroceries = true;
             return true;
         }
         return false;
@@ -306,6 +358,7 @@ public class AI_Generic : MonoBehaviour
         if (this.navAgent != null)
         {
             this.navAgent.SetDestination(exitPos, (bool success) => Destroy(this.gameObject));
+            this.animator.Play("Walk");
             Task.current.Succeed();
             return;
         }

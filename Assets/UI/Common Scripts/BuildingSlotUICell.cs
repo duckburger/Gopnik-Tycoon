@@ -56,7 +56,7 @@ public class BuildingSlotUICell : MonoBehaviour
 
     private void MarkAsCurrent(GameObject buildingToDisplay, BuildingSlot currentSlot, Building buildingData, ScriptableFloatVar money)
     {
-        this.myBuilding = buildingData;
+        this.myBuilding = buildingToDisplay.GetComponent<Building>();
         if (this.titleText != null)
         {
             this.titleText.text = buildingData.buildingName;
@@ -101,9 +101,9 @@ public class BuildingSlotUICell : MonoBehaviour
                 if (currentSlot.CurrentBuilding == null)
                 {
                     // Spawn the prefab of the building into the slot
-                    Instantiate(buildingToDisplay, this.menuController.SelectedSlot.transform.position, Quaternion.identity, this.menuController.SelectedSlot);
+                    GameObject newBuilding = Instantiate(buildingToDisplay, this.menuController.SelectedSlot.transform.position, Quaternion.identity, this.menuController.SelectedSlot);
                     money.AdjustFloatValue(-this.myBuilding.purchasePrice);
-                    currentSlot.CurrentBuilding = buildingData;
+                    currentSlot.CurrentBuilding = newBuilding.GetComponent<Building>();
                     
                     this.menuController.Close();
                 }
@@ -112,9 +112,9 @@ public class BuildingSlotUICell : MonoBehaviour
                     Destroy(currentSlot.CurrentBuilding.gameObject);
                     currentSlot.CurrentBuilding = null;
 
-                    Instantiate(buildingToDisplay, this.menuController.SelectedSlot.transform.position, Quaternion.identity, this.menuController.SelectedSlot);
+                    GameObject newBuilding = Instantiate(buildingToDisplay, this.menuController.SelectedSlot.transform.position, Quaternion.identity, this.menuController.SelectedSlot);
                     money.AdjustFloatValue(-this.myBuilding.purchasePrice);
-                    currentSlot.CurrentBuilding = buildingData;
+                    currentSlot.CurrentBuilding = newBuilding.GetComponent<Building>();
                     this.menuController.Close();
                 }
                 
