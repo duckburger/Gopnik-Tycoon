@@ -6,7 +6,7 @@ public class CashRegister : Building
 {
 
     [SerializeField] ScriptableFloatVar globalBalance;
-
+    [SerializeField] ScriptableEvent onAdvancedInLine;
     AI_Generic nextPayingCustomer;
 
     private void Start()
@@ -28,5 +28,10 @@ public class CashRegister : Building
         }
 
         this.nextPayingCustomer.PayAtCash();
+        this.nextPayingCustomer = null;
+        if (this.onAdvancedInLine != null)
+        {
+            this.onAdvancedInLine.RaiseWithData(this);
+        }
     }
 }

@@ -24,6 +24,19 @@ public class ScriptableEvent : ScriptableObject
         }
     }
 
+    public void RaiseWithData(object obj)
+    {
+        if (listeners.Count <= 0)
+        {
+            Debug.LogError("Trying to raise an event - " + this.name + " - without any listeners");
+            return;
+        }
+        for (int i = listeners.Count - 1; i >= 0; i--)
+        {
+            listeners[i].RaiseWithData(obj);
+        }
+    }
+
     public void Open()
     {
         if (listeners.Count <= 0)

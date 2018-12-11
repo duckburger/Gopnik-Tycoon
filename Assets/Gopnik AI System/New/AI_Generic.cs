@@ -34,8 +34,8 @@ public class AI_Generic : MonoBehaviour
     // Targets
     [SerializeField] Vector2 target;
     StoreShelf myTargetShelf;
-    CashRegisterSlot myTargetCashRegisterSlot;
-
+    CashRegisterSlot myTargetCashRegisterSlot = null;
+    CashRegister myCashRegister = null;
     
 
     private void Start()
@@ -60,7 +60,6 @@ public class AI_Generic : MonoBehaviour
     }
 
     #region Common Tasks
-
 
     [Task]
     void GoToTarget()
@@ -192,6 +191,7 @@ public class AI_Generic : MonoBehaviour
                 }
 
                 this.myTargetCashRegisterSlot = foundCashRegisterSlot;
+                this.myCashRegister = this.myTargetCashRegisterSlot.GetCurrentCashRegister();
                 this.navAgent.SetDestination(cashRegisterLocation, null);
                 this.animator.Play("Walk");
             }
@@ -343,6 +343,8 @@ public class AI_Generic : MonoBehaviour
             FloatingTextDisplay.SpawnFloatingText(this.transform.position, "+$" + costOfAllMyFood);
             Destroy(this.myQueueTicket);
             this.myTargetCashRegisterSlot.RemoveFromQueue(this.gameObject);
+            this.myTargetCashRegisterSlot = null;
+            this.myCashRegister = null;
             this.hasPaidForGroceries = true;
             return true;
         }
@@ -364,6 +366,28 @@ public class AI_Generic : MonoBehaviour
         }
     }
 
+
+    #region Accepting Events
+
+    public void AdvanceInLine(object obj)
+    {
+        if (this.myQueueTicket == null || this.myCashRegister == null)
+        {
+            return;
+        }
+
+        CashRegister registerToCompare = obj as CashRegister;
+        if (registerToCompare != null && registerToCompare == this.myCashRegister)
+        {
+            // Advance in line
+            Vector2 myNewSpot = this.myTargetCashRegisterSlot.ProvideQueueSpot(this.gameObject);
+            this.navAgent.SetDestination(myNewSpot, null);
+            this.animator.Play("Walk");
+        }
+        
+    }
+
+    #endregion
 }
 
 

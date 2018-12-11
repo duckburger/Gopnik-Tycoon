@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using System;
+
+[Serializable]
+public class EventWithData : UnityEvent<object> { }
 
 public class ScriptableEventListener : MonoBehaviour
 {
@@ -9,6 +13,7 @@ public class ScriptableEventListener : MonoBehaviour
     [Space(10)]
     [Header("Responses")]
     [SerializeField] UnityEvent raiseResponse;
+    [SerializeField] EventWithData raisedWithData;
     [SerializeField] UnityEvent openResponse;
     [SerializeField] UnityEvent closeResponse;
 
@@ -45,6 +50,11 @@ public class ScriptableEventListener : MonoBehaviour
     public void Raise()
     {
         this.raiseResponse.Invoke();
+    }
+
+    public void RaiseWithData(object obj)
+    {
+        this.raisedWithData.Invoke(obj);
     }
 
     public void Open()

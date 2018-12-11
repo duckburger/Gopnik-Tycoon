@@ -1,5 +1,11 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!4 &6941027441446953238 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8458372421803186072, guid: 2199209b7b0d2db46a70201a317a9621,
+    type: 3}
+  m_PrefabInstance: {fileID: 1527097723795617422}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2731493428222191803
 GameObject:
   m_ObjectHideFlags: 0
@@ -100,6 +106,7 @@ MonoBehaviour:
   purchasePrice: 150
   listOfNearbyChars: []
   globalBalance: {fileID: 11400000, guid: fc85fcfda1ea83540b06fc8ece01a3b1, type: 2}
+  onAdvancedInLine: {fileID: 11400000, guid: ccc02dbe690b5734f9ca17de69616168, type: 2}
 --- !u!114 &2731493428222191799
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -115,6 +122,8 @@ MonoBehaviour:
   runOnce: 1
   baseSortNumber: 5001
   refreshRateInSecs: 0.3
+  childrenSorters: []
+  acceptParentSettings: 1
 --- !u!1 &2731493429043512534
 GameObject:
   m_ObjectHideFlags: 0
@@ -145,12 +154,6 @@ Transform:
   m_Father: {fileID: 2731493428222191802}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &6941027441446953238 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8458372421803186072, guid: 2199209b7b0d2db46a70201a317a9621,
-    type: 3}
-  m_PrefabInstance: {fileID: 1527097723795617422}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1527097723795617422
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -307,6 +310,11 @@ PrefabInstance:
         type: 3}
       propertyPath: actionResponder.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: AcceptPayment
+      objectReference: {fileID: 0}
+    - target: {fileID: 2070420837871960075, guid: 2199209b7b0d2db46a70201a317a9621,
+        type: 3}
+      propertyPath: toggleAction
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2199209b7b0d2db46a70201a317a9621, type: 3}

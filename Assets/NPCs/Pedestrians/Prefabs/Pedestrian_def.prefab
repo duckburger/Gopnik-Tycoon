@@ -55,6 +55,7 @@ GameObject:
   - component: {fileID: 6058775654053657681}
   - component: {fileID: 8172561903950047856}
   - component: {fileID: 1760339592}
+  - component: {fileID: 6290479668748829236}
   m_Layer: 8
   m_Name: Pedestrian_def
   m_TagString: Civilian
@@ -292,6 +293,8 @@ MonoBehaviour:
   runOnce: 0
   baseSortNumber: 5000
   refreshRateInSecs: 0.3
+  childrenSorters: []
+  acceptParentSettings: 1
 --- !u!114 &1702984482
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -482,3 +485,47 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   preferredQuality: 0
   itemsWanted: 0
+--- !u!114 &6290479668748829236
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3389606292381677881}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 100cc780881299b42bbe78d8d2931e23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  trackedEvent: {fileID: 11400000, guid: ccc02dbe690b5734f9ca17de69616168, type: 2}
+  raiseResponse:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  raisedWithData:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5071045544369216888}
+        m_MethodName: AdvanceInLine
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: EventWithData, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  openResponse:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  closeResponse:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
