@@ -177,7 +177,6 @@ public class AI_Generic : MonoBehaviour
     {
         if (BuildingTracker.Instance != null)
         {
-
             CashRegisterSlot foundCashRegisterSlot = BuildingTracker.Instance.GetCashRegisterWithShortestLine();
             if (foundCashRegisterSlot != null)
             {
@@ -292,7 +291,7 @@ public class AI_Generic : MonoBehaviour
         }
 
         currentRegisterInSlot.RegisterAsNextPayingCustomer(this);
-
+        Task.current.Succeed();
     }
 
     [Task]
@@ -346,6 +345,7 @@ public class AI_Generic : MonoBehaviour
             this.myTargetCashRegisterSlot = null;
             this.myCashRegister = null;
             this.hasPaidForGroceries = true;
+            this.isLiningUp = false;
             return true;
         }
         return false;
@@ -380,6 +380,10 @@ public class AI_Generic : MonoBehaviour
         if (registerToCompare != null && registerToCompare == this.myCashRegister)
         {
             // Advance in line
+            if (this.myQueueTicket.CurrentNumberInQueue > 0)
+            {
+                this.myQueueTicket.CurrentNumberInQueue--;
+            }
             Vector2 myNewSpot = this.myTargetCashRegisterSlot.ProvideQueueSpot(this.gameObject);
             this.navAgent.SetDestination(myNewSpot, null);
             this.animator.Play("Walk");

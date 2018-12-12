@@ -46,25 +46,27 @@ tree "TakeWantedItem"
 
 tree "GoToCash"
 	while HasPickedUpEnoughItems
-		while not IsLiningUp
-			sequence
-				FindAndGoToCashRegister
-				GoToQueuePosition
-				GoToTarget
+		while not HasPaidForGroceries
+			while not IsLiningUp
+				sequence
+					FindAndGoToCashRegister
+					GoToQueuePosition
+					GoToTarget
 
 	
 tree "WaitInLine"
 	sequence
 		while IsLiningUp
-			sequence
-				TurnToCashRegister	
-				while not HasLineAdvanced
-					GoIdle
-				fallback
-					while FirstInLine
-						sequence
-							TurnDownwards
-							RegisterForPayment
+			while not HasPaidForGroceries
+				sequence
+					TurnToCashRegister	
+					while not HasLineAdvanced
+						GoIdle
+					fallback
+						while FirstInLine
+							sequence
+								TurnDownwards
+								RegisterForPayment
 					
 
 						
