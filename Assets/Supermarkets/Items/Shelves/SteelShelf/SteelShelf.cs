@@ -15,12 +15,7 @@ public class SteelShelf : StoreShelf
         throw new System.NotImplementedException();
     }
 
-    public override void DepleteStock()
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public override void UpdateShelfAppearance(bool isAdding)
+    public override void UpdateShelfAppearance(bool isAdding, int restockAmount)
     {
         throw new System.NotImplementedException();
     }

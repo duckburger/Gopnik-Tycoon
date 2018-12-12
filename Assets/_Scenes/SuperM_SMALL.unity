@@ -2162,7 +2162,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 100cc780881299b42bbe78d8d2931e23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trackedEvent: {fileID: 0}
+  trackedEvent: {fileID: 11400000, guid: ccc02dbe690b5734f9ca17de69616168, type: 2}
   raiseResponse:
     m_PersistentCalls:
       m_Calls: []
@@ -2170,7 +2170,18 @@ MonoBehaviour:
       Culture=neutral, PublicKeyToken=null
   raisedWithData:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1630244998}
+        m_MethodName: AdvanceInLine
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: EventWithData, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   openResponse:
@@ -2183,6 +2194,18 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &1630244998 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5071045544369216888, guid: daf8e30f0749de74fbded1cc29d98602,
+    type: 3}
+  m_PrefabInstance: {fileID: 605412178}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1630244994}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e66cb65e5a937e743a81db2ce660a33a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1644607346
 GameObject:
   m_ObjectHideFlags: 0

@@ -38,10 +38,11 @@ tree "WanderAroundShopping"
 
 
 tree "TakeWantedItem"
-	sequence
-		ChooseFullShelfToShopAt
-		GoToTarget
-		PickUpItemFromShelf
+	while CheckForExistenceOfCashRegisters
+		sequence
+			ChooseFullShelfToShopAt
+			GoToTarget
+			PickUpItemFromShelf
 
 
 tree "GoToCash"
@@ -75,8 +76,6 @@ tree "WaitInLine"
 		sequence
 			WalkOutOfStore
 			GoToTarget
-
-
 
 
 tree "CausingTrouble"

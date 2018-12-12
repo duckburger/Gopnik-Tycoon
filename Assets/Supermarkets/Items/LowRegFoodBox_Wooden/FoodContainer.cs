@@ -24,6 +24,10 @@ public class FoodContainer : Pickuppable
         int amtToProvide = 3;
         if (this.foodQuantity - amtToProvide < 0)
         {
+            amtToProvide = 1;
+        }
+        if (this.foodQuantity - amtToProvide < 0)
+        {
             return -1;
         }
         this.foodQuantity -= amtToProvide;

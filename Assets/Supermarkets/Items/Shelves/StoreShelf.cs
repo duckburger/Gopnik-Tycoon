@@ -179,30 +179,28 @@ public class StoreShelf : Building
             }
 
             UpdateStockUI();
-            UpdateShelfAppearance(true);
+            UpdateShelfAppearance(true, restockAmount);
             ShowStockCount();
             StopAllCoroutines();
             StartCoroutine(StockShowTimer());
         }
     }
 
-    public virtual void DepleteStock()
-    {
-
-    }
-
-
-    public virtual void UpdateShelfAppearance(bool isAdding)
+    public virtual void UpdateShelfAppearance(bool isAdding, int amountToRestock)
     {
         if (isAdding)
         {
+            int leftToStock = amountToRestock;
             for (int i = 0; i < this.shelves.Count; i++)
             {
                 Shelf shelfController = shelves[i].GetComponent<Shelf>();
-                if (shelfController != null && !shelfController.isOccupied)
+                if (shelfController != null && !shelfController.isFullyOccupied)
                 {
-                    shelfController.Occupy(this.lastStockedItem);
-                    return;
+                    leftToStock -= shelfController.Occupy(this.lastStockedItem, leftToStock);
+                    if (leftToStock == 0)
+                    {
+                        return;
+                    }
                 }
             }
         }
@@ -211,7 +209,7 @@ public class StoreShelf : Building
             for (int i = this.shelves.Count - 1; i >= 0; i--)
             {
                 Shelf shelfController = shelves[i].GetComponent<Shelf>();
-                if (shelfController != null && !shelfController.isOccupied)
+                if (shelfController != null && !shelfController.isFullyOccupied)
                 {
                     shelfController.Clear();
                     return;

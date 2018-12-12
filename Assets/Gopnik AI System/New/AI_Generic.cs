@@ -173,6 +173,12 @@ public class AI_Generic : MonoBehaviour
     }
 
     [Task]
+    bool CheckForExistenceOfCashRegisters()
+    {
+        return BuildingTracker.Instance.CheckIfThereAreCashRegisters();
+    }
+
+    [Task]
     void FindAndGoToCashRegister()
     {
         if (BuildingTracker.Instance != null)

@@ -139,10 +139,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12ab32bafb06f9f4294ef72152124265, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myShelfItems:
-  - {fileID: 7798618687232923333}
-  - {fileID: 2431822471149025497}
-  - {fileID: 842478036125966594}
+  myShelfSlots: []
   isOccupied: 0
 --- !u!1 &290234890789385251
 GameObject:
@@ -312,6 +309,8 @@ MonoBehaviour:
   runOnce: 1
   baseSortNumber: 5000
   refreshRateInSecs: 0.3
+  childrenSorters: []
+  acceptParentSettings: 1
 --- !u!1 &798964740955155422
 GameObject:
   m_ObjectHideFlags: 0
@@ -659,10 +658,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12ab32bafb06f9f4294ef72152124265, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myShelfItems:
-  - {fileID: 6011769080773161106}
-  - {fileID: 3539029879799079244}
-  - {fileID: 8207331112785104679}
+  myShelfSlots: []
   isOccupied: 0
 --- !u!1 &1392346973004804736
 GameObject:
@@ -909,10 +905,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12ab32bafb06f9f4294ef72152124265, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myShelfItems:
-  - {fileID: 1350628318523907301}
-  - {fileID: 4527375463450580431}
-  - {fileID: 6250717556345976889}
+  myShelfSlots: []
   isOccupied: 0
 --- !u!1 &2395555531396012378
 GameObject:
@@ -1239,10 +1232,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12ab32bafb06f9f4294ef72152124265, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myShelfItems:
-  - {fileID: 2790975540526661053}
-  - {fileID: 8245556824677097959}
-  - {fileID: 4334706277172322952}
+  myShelfSlots: []
   isOccupied: 0
 --- !u!1 &3072642979280722954
 GameObject:
@@ -1383,10 +1373,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12ab32bafb06f9f4294ef72152124265, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myShelfItems:
-  - {fileID: 7150625987281548450}
-  - {fileID: 6242831537414145793}
-  - {fileID: 1625942741499791067}
+  myShelfSlots: []
   isOccupied: 0
 --- !u!1 &3479422770632480609
 GameObject:
@@ -1572,10 +1559,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12ab32bafb06f9f4294ef72152124265, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myShelfItems:
-  - {fileID: 3978076256017195464}
-  - {fileID: 3659827532320499178}
-  - {fileID: 1384333548815256520}
+  myShelfSlots: []
   isOccupied: 0
 --- !u!1 &3593145187386908022
 GameObject:
@@ -2274,10 +2258,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12ab32bafb06f9f4294ef72152124265, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myShelfItems:
-  - {fileID: 1912503662981548691}
-  - {fileID: 1946650836723016106}
-  - {fileID: 489975684007583377}
+  myShelfSlots: []
   isOccupied: 0
 --- !u!1 &5591929827549423760
 GameObject:
@@ -2325,10 +2306,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12ab32bafb06f9f4294ef72152124265, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myShelfItems:
-  - {fileID: 8328080337858344782}
-  - {fileID: 3833331554109301579}
-  - {fileID: 9026961763908530500}
+  myShelfSlots: []
   isOccupied: 0
 --- !u!1 &5762909825004477175
 GameObject:
@@ -3612,7 +3590,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   runOnce: 1
   baseSortNumber: 5000
-  refreshRateInSecs: 0.3
+  refreshRateInSecs: 0.001
+  childrenSorters: []
+  acceptParentSettings: 1
 --- !u!60 &8871048507659614373
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -3736,10 +3716,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12ab32bafb06f9f4294ef72152124265, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myShelfItems:
-  - {fileID: 7188396975211416883}
-  - {fileID: 6645271747028831568}
-  - {fileID: 7828219274079593158}
+  myShelfSlots: []
   isOccupied: 0
 --- !u!1 &7842637947268196314
 GameObject:
@@ -4193,10 +4170,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12ab32bafb06f9f4294ef72152124265, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myShelfItems:
-  - {fileID: 2837378134492180033}
-  - {fileID: 6396529826573069012}
-  - {fileID: 644877157639936226}
+  myShelfSlots: []
   isOccupied: 0
 --- !u!1 &8831361413915086415
 GameObject:
@@ -4430,10 +4404,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12ab32bafb06f9f4294ef72152124265, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myShelfItems:
-  - {fileID: 4656209553393839526}
-  - {fileID: 6714969914504981891}
-  - {fileID: 9133758460070977102}
+  myShelfSlots: []
   isOccupied: 0
 --- !u!1 &8930121478967252447
 GameObject:
@@ -5028,10 +4999,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12ab32bafb06f9f4294ef72152124265, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myShelfItems:
-  - {fileID: 5596358328293998980}
-  - {fileID: 2545429931934067494}
-  - {fileID: 8266259334025123746}
+  myShelfSlots: []
   isOccupied: 0
 --- !u!1 &9162847472698140576
 GameObject:

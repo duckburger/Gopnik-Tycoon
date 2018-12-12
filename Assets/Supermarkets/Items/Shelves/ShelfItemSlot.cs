@@ -54,6 +54,11 @@ public class ShelfItemSlot : MonoBehaviour
         this.myItem = null;
         this.mySpriteRenderer.sprite = null;
         this.isOccupied = false;
+        Shelf myShelf = GetComponentInParent<Shelf>();
+        if (myShelf != null)
+        {
+            myShelf.DoSlotCheck();
+        }
     }
 
 

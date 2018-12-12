@@ -143,7 +143,14 @@ public class BuildingTracker : MonoBehaviour
 
         Debug.LogError("Didn't find a cash register, returning null");
         return null;
+    }
 
-
+    public bool CheckIfThereAreCashRegisters()
+    {
+        if (this.allCashRegisters != null && this.allCashRegisters.Count > 0)
+        {
+            return true;
+        }
+        return false;
     }
 }

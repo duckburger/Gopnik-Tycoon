@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class Shelf : MonoBehaviour
 {
     public List<ShelfItemSlot> myShelfSlots = new List<ShelfItemSlot>();
-    public bool isOccupied = false;
+    public bool isFullyOccupied = false;
     
 
     private void Start()
@@ -56,13 +56,43 @@ public class Shelf : MonoBehaviour
         return null;
     }
 
-    public void Occupy(FoodItemData item)
+    public int Occupy(FoodItemData item, int slotsToOccupy)
     {
+        int occupiedSlots = 0;
         foreach (ShelfItemSlot shelfItemSlot in this.myShelfSlots)
         {
-            shelfItemSlot.Populate(item);
+            if (!shelfItemSlot.IsOccupied)
+            {
+                shelfItemSlot.Populate(item);
+                occupiedSlots++;
+                if (occupiedSlots == slotsToOccupy)
+                {
+                    DoSlotCheck();
+                    return slotsToOccupy;
+                }
+            }
         }
-        this.isOccupied = true;
+        return occupiedSlots;
+    }
+
+    public void DoSlotCheck()
+    {
+        bool allSlotsFull = true;
+        for (int i = 0; i < this.myShelfSlots.Count; i++)
+        {
+            if (!this.myShelfSlots[i].IsOccupied)
+            {
+                allSlotsFull = false;
+            }
+        }
+        if (allSlotsFull)
+        {
+            this.isFullyOccupied = true;
+        }
+        else
+        {
+            this.isFullyOccupied = false;
+        }
     }
 
     public void Clear()
@@ -71,6 +101,6 @@ public class Shelf : MonoBehaviour
         {
             shelfSlot.Clear();
         }
-        this.isOccupied = false;
+        this.isFullyOccupied = false;
     }
 }
