@@ -2,98 +2,114 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class DrawOrderSorter : MonoBehaviour {
 
     [SerializeField] bool runOnce = true;
     [SerializeField] float baseSortNumber = 5000;
     [SerializeField] float refreshRateInSecs = 0.3f;
+    [SerializeField] SortingGroup mySortingGroup;
     Renderer myRenderer;
     Canvas myCanvas;
 
-
     int currentSortingLayer = 0;
-    public List<DrawOrderSorter> childrenSorters = new List<DrawOrderSorter>();
-    public bool acceptParentSettings = true;
 
     // Use this for initialization
-    void Start () {
+    void Start ()
+    {
+        this.mySortingGroup = GetComponent<SortingGroup>();
         this.myRenderer = GetComponent<Renderer>();
         this.myCanvas = GetComponent<Canvas>();
         Launch();
-        CollectChildren(this.transform);
-	}
-
-    private void CollectChildren(Transform trans)
-    {
-        foreach (Transform child in trans)
-        {
-            DrawOrderSorter sortOrderer = child.GetComponent<DrawOrderSorter>();
-            if (sortOrderer != null)
-            {
-                this.childrenSorters.Add(sortOrderer);
-                CollectChildren(child);
-            }
-        }
     }
+
 
     public void Launch()
     {
         StartCoroutine(ChangeRenderOrder());
     }
 
+    public void Stop()
+    {
+        StopAllCoroutines();
+    }
+
     IEnumerator ChangeRenderOrder()
     {
-        if (this.myRenderer != null)
+        double yPos = GetYPos();
+        if (this.mySortingGroup != null)
         {
             if (!this.runOnce)
             {
                 while (true)
                 {
-                    currentSortingLayer = (int)(baseSortNumber - this.transform.position.y);
+                    yPos = GetYPos();
+                    currentSortingLayer = (int)(baseSortNumber - yPos);
+                    this.mySortingGroup.sortingOrder = currentSortingLayer;
+                    yield return new WaitForSeconds(refreshRateInSecs);
+                }
+            }
+            else
+            {
+                yPos = GetYPos();
+                currentSortingLayer = (int)(baseSortNumber - yPos);
+                this.mySortingGroup.sortingOrder = currentSortingLayer;
+                yield break;
+            }
+        }
+
+        if (this.myRenderer != null) // If you have a renderer
+        {
+            if (!this.runOnce)
+            {
+                while (true)
+                {
+                    yPos = GetYPos();
+                    currentSortingLayer = (int)(baseSortNumber - yPos);
                     this.myRenderer.sortingOrder = currentSortingLayer;
                     yield return new WaitForSeconds(refreshRateInSecs);
                 }
             }
             else
             {
-                currentSortingLayer = (int)(baseSortNumber - this.transform.position.y);
+                yPos = GetYPos();
+                currentSortingLayer = (int)(baseSortNumber - yPos);
                 this.myRenderer.sortingOrder = currentSortingLayer;
                 yield break;
             }
-            
+
         }
-        else if (this.myCanvas != null)
+        else if (this.myCanvas != null) // If you have a canvas
         {
             if (!this.runOnce)
             {
                 while (true)
                 {
+                    yPos = GetYPos();
                     this.myCanvas.overrideSorting = true;
-                    currentSortingLayer = (int)(baseSortNumber - this.transform.position.y);
+                    currentSortingLayer = (int)(baseSortNumber - yPos);
                     this.myCanvas.sortingOrder = currentSortingLayer;
                     yield return new WaitForSeconds(refreshRateInSecs);
                 }
             }
             else
             {
+                yPos = GetYPos();
                 this.myCanvas.overrideSorting = true;
-                currentSortingLayer = (int)(baseSortNumber - this.transform.position.y);
+                currentSortingLayer = (int)(baseSortNumber - yPos);
                 this.myCanvas.sortingOrder = currentSortingLayer;
                 yield break;
-            }   
-        }
-    }
-
-
-    void ApplyToChildren()
-    {
-        foreach (DrawOrderSorter item in this.childrenSorters)
-        {
-            if (item.acceptParentSettings)
-            {
-                item.Launch();
             }
         }
     }
+
+    private float GetYPos()
+    {
+        return (this.transform.position.y * 10);
+    }
+
+
+
+
 }

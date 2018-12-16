@@ -345,6 +345,10 @@ public class AI_Generic : MonoBehaviour
         float costOfAllMyFood = this.myCarryController.GetCostOfCarriedGoods();
         if (this.myWallet.AdjustBalance(-costOfAllMyFood))
         {
+            if (MoneyController.Instance != null)
+            {
+                MoneyController.AdjustMainBalance(costOfAllMyFood);
+            }
             FloatingTextDisplay.SpawnFloatingText(this.transform.position, "+$" + costOfAllMyFood);
             Destroy(this.myQueueTicket);
             this.myTargetCashRegisterSlot.RemoveFromQueue(this.gameObject);

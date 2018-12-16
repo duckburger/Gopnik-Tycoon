@@ -56,7 +56,7 @@ public class Wallet : MonoBehaviour {
             return false;
         }
         this.currentBalance += amount;
-        this.balanceChagedEvent.Invoke(this.currentBalance);
+        this.balanceChagedEvent.Invoke(amount);
         return true;
     }
 	

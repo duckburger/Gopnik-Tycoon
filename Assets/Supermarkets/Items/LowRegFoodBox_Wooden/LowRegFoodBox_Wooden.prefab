@@ -93,6 +93,7 @@ GameObject:
   - component: {fileID: 5234229865471731887}
   - component: {fileID: 5234229865471731886}
   - component: {fileID: 3709021824733072894}
+  - component: {fileID: 6895955740482723673}
   m_Layer: 0
   m_Name: LowRegFoodBox_Wooden
   m_TagString: Untagged
@@ -177,12 +178,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stockAmtText: {fileID: 8010001331251283859}
-  containedQuality: 1
-  containedType: 1
+  containedItem: {fileID: 0}
   foodQuantity: 25
-  worldFoodAppearance: {fileID: 0}
-  onShelfAppearances:
-  - {fileID: 21300000, guid: 53516bd197740c34ca41f23733cbdaef, type: 3}
   foodGraphic: {fileID: 1834946986615710233}
 --- !u!61 &5234229865471731887
 BoxCollider2D:
@@ -246,6 +243,18 @@ MonoBehaviour:
   runOnce: 0
   baseSortNumber: 5000
   refreshRateInSecs: 0.3
+  mySortingGroup: {fileID: 6895955740482723673}
+--- !u!210 &6895955740482723673
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5234229865471731923}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 5000
 --- !u!1 &6539571388132527724
 GameObject:
   m_ObjectHideFlags: 0
@@ -256,7 +265,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1463674765096168192}
   - component: {fileID: 8871161692920070767}
-  - component: {fileID: 9181186952946097829}
   - component: {fileID: 6274470012193460522}
   m_Layer: 0
   m_Name: Stock
@@ -306,21 +314,6 @@ Canvas:
   m_SortingLayerID: -1253588641
   m_SortingOrder: 2
   m_TargetDisplay: 0
---- !u!114 &9181186952946097829
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6539571388132527724}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6e667484d7c843a4fbb0584212d03cac, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  runOnce: 0
-  baseSortNumber: 5000
-  refreshRateInSecs: 0.3
 --- !u!222 &6274470012193460522
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -392,11 +385,13 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_text: 0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 77fa3e95112d51e4482f38e9bbbbf662, type: 2}
-  m_sharedMaterial: {fileID: 21573983726408332, guid: 77fa3e95112d51e4482f38e9bbbbf662, type: 2}
+  m_sharedMaterial: {fileID: 21573983726408332, guid: 77fa3e95112d51e4482f38e9bbbbf662,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

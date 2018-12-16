@@ -55,7 +55,8 @@ GameObject:
   - component: {fileID: 6058775654053657681}
   - component: {fileID: 8172561903950047856}
   - component: {fileID: 1760339592}
-  - component: {fileID: 6290479668748829236}
+  - component: {fileID: 1630244996}
+  - component: {fileID: 1630244995}
   m_Layer: 8
   m_Name: Pedestrian_def
   m_TagString: Civilian
@@ -292,9 +293,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   runOnce: 0
   baseSortNumber: 5000
-  refreshRateInSecs: 0.3
-  childrenSorters: []
-  acceptParentSettings: 1
+  refreshRateInSecs: 0
+  mySortingGroup: {fileID: 0}
 --- !u!114 &1702984482
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -390,7 +390,7 @@ MonoBehaviour:
   _map: {fileID: 0}
   maxSpeed: 1.8
   mass: 5
-  stoppingDistance: 0.3
+  stoppingDistance: 0.2
   slowingDistance: 0.01
   accelerationRate: 5
   decelerationRate: 10
@@ -485,7 +485,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   preferredQuality: 0
   itemsWanted: 0
---- !u!114 &6290479668748829236
+--- !u!210 &1630244996
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3389606292381677881}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 5000
+--- !u!114 &1630244995
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

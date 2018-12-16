@@ -168,6 +168,7 @@ GameObject:
   - component: {fileID: 9053871370992096993}
   - component: {fileID: 9053871370992096998}
   - component: {fileID: 9053871370992096999}
+  - component: {fileID: 7306559195835718116}
   m_Layer: 0
   m_Name: ShoppingBag
   m_TagString: Untagged
@@ -254,3 +255,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &7306559195835718116
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9053871370992096994}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e667484d7c843a4fbb0584212d03cac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  runOnce: 1
+  baseSortNumber: 5000
+  refreshRateInSecs: 0.1
+  childrenSorters: []
+  acceptParentSettings: 1
