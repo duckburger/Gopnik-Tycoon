@@ -55,8 +55,8 @@ GameObject:
   - component: {fileID: 6058775654053657681}
   - component: {fileID: 8172561903950047856}
   - component: {fileID: 1760339592}
-  - component: {fileID: 1630244996}
   - component: {fileID: 1630244995}
+  - component: {fileID: 1870242810}
   m_Layer: 8
   m_Name: Pedestrian_def
   m_TagString: Civilian
@@ -485,17 +485,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   preferredQuality: 0
   itemsWanted: 0
---- !u!210 &1630244996
-SortingGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3389606292381677881}
-  m_Enabled: 1
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 5000
 --- !u!114 &1630244995
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -540,3 +529,14 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!210 &1870242810
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3389606292381677881}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 5000

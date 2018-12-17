@@ -1,11 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!4 &6941027441446953238 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8458372421803186072, guid: 2199209b7b0d2db46a70201a317a9621,
-    type: 3}
-  m_PrefabInstance: {fileID: 1527097723795617422}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2731493428222191803
 GameObject:
   m_ObjectHideFlags: 0
@@ -18,6 +12,7 @@ GameObject:
   - component: {fileID: 2731493428222191797}
   - component: {fileID: 2731493428222191796}
   - component: {fileID: 2731493428222191799}
+  - component: {fileID: 6668309241617736978}
   m_Layer: 0
   m_Name: SimpleCashRegister
   m_TagString: Untagged
@@ -122,8 +117,18 @@ MonoBehaviour:
   runOnce: 1
   baseSortNumber: 5001
   refreshRateInSecs: 0.3
-  childrenSorters: []
-  acceptParentSettings: 1
+  mySortingGroup: {fileID: 0}
+--- !u!210 &6668309241617736978
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2731493428222191803}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 5000
 --- !u!1 &2731493429043512534
 GameObject:
   m_ObjectHideFlags: 0
@@ -161,6 +166,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2731493428222191802}
     m_Modifications:
+    - target: {fileID: 7839545480945380958, guid: 2199209b7b0d2db46a70201a317a9621,
+        type: 3}
+      propertyPath: m_Name
+      value: ButtonBadgeSlot
+      objectReference: {fileID: 0}
     - target: {fileID: 8458372421803186072, guid: 2199209b7b0d2db46a70201a317a9621,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -215,16 +225,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7839545480945380958, guid: 2199209b7b0d2db46a70201a317a9621,
-        type: 3}
-      propertyPath: m_Name
-      value: ButtonBadgeSlot
-      objectReference: {fileID: 0}
-    - target: {fileID: 2070420837871960075, guid: 2199209b7b0d2db46a70201a317a9621,
-        type: 3}
-      propertyPath: actionKey
-      value: 101
       objectReference: {fileID: 0}
     - target: {fileID: 695518832825214757, guid: 2199209b7b0d2db46a70201a317a9621,
         type: 3}
@@ -303,6 +303,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2070420837871960075, guid: 2199209b7b0d2db46a70201a317a9621,
         type: 3}
+      propertyPath: actionKey
+      value: 101
+      objectReference: {fileID: 0}
+    - target: {fileID: 2070420837871960075, guid: 2199209b7b0d2db46a70201a317a9621,
+        type: 3}
       propertyPath: actionResponder.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 2731493428222191796}
@@ -318,3 +323,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2199209b7b0d2db46a70201a317a9621, type: 3}
+--- !u!4 &6941027441446953238 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8458372421803186072, guid: 2199209b7b0d2db46a70201a317a9621,
+    type: 3}
+  m_PrefabInstance: {fileID: 1527097723795617422}
+  m_PrefabAsset: {fileID: 0}

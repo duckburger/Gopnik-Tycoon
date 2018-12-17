@@ -15,7 +15,9 @@ public class ScriptableEventListener : MonoBehaviour
     [SerializeField] UnityEvent raiseResponse;
     [SerializeField] EventWithData raisedWithData;
     [SerializeField] UnityEvent openResponse;
+    [SerializeField] EventWithData openWithDataReponse;
     [SerializeField] UnityEvent closeResponse;
+    [SerializeField] EventWithData closeWithDataResponse;
 
     #region Registration
 
@@ -62,9 +64,19 @@ public class ScriptableEventListener : MonoBehaviour
         this.openResponse.Invoke();
     }
 
+    public void Open(object o)
+    {
+        this.openWithDataReponse.Invoke(o);
+    }
+
     public void Close()
     {
         this.closeResponse.Invoke();
+    }
+
+    public void Close(object o)
+    {
+        this.closeWithDataResponse.Invoke(o);
     }
 
     #endregion

@@ -50,7 +50,7 @@ public class Wallet : MonoBehaviour {
 
     public bool AdjustBalance(float amount)
     {
-        if ((this.currentBalance += amount) < 0)
+        if ((this.currentBalance + amount) < 0)
         {
             Debug.LogError("Cannot take this much, there isn't enough in this wallet");
             return false;

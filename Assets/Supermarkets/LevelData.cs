@@ -8,6 +8,7 @@ public class LevelData : MonoBehaviour
 
     [SerializeField] Transform floor;
     [SerializeField] Transform entranceExitPoint;
+    //[SerializeField] 
 
     public Transform Floor
     {

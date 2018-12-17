@@ -50,6 +50,20 @@ public class ScriptableEvent : ScriptableObject
         }
     }
 
+    public void OpenWithData(object o)
+    {
+        if (listeners.Count <= 0)
+        {
+            Debug.LogError("Trying to raise an event - " + this.name + " - without any listeners");
+            return;
+        }
+        for (int i = listeners.Count - 1; i >= 0; i--)
+        {
+            listeners[i].Open(o);
+        }
+    }
+
+
     public void Close()
     {
         if (listeners.Count <= 0)
@@ -62,6 +76,20 @@ public class ScriptableEvent : ScriptableObject
             listeners[i].Close();
         }
     }
+
+    public void CloseWithData(object o)
+    {
+        if (listeners.Count <= 0)
+        {
+            Debug.LogError("Trying to raise an event - " + this.name + " - without any listeners");
+            return;
+        }
+        for (int i = listeners.Count - 1; i >= 0; i--)
+        {
+            listeners[i].Close(o);
+        }
+    }
+
 
     #endregion
 
