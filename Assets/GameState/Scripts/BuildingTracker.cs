@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using PolyNav;
 
 public class BuildingTracker : MonoBehaviour
 { 
@@ -58,10 +59,14 @@ public class BuildingTracker : MonoBehaviour
                 RaycastHit2D[] hitList = Physics2D.RaycastAll(pos, Vector3.forward, 1000);
                 foreach (RaycastHit2D hit in hitList)
                 {
-                    if (hit.collider.gameObject.GetComponent<PolyNav.PolyNavObstacle>())
+                    if (hit.collider.gameObject.GetComponent<PolyNavObstacle>())
                     {
                         // Recalculate the pos
                         pos = new Vector2(pos.x + xAdjustment, pos.y + yADjustment);
+                        if (!CheckIfPosInMainLvlMesh(pos))
+                        {
+                            pos = NavmeshPortalManager.Instance.GetMainMeshPos();
+                        }
                     }
                 }
                 //Debug.Log("Picked a spot: " + pos);
@@ -87,6 +92,16 @@ public class BuildingTracker : MonoBehaviour
             }
         }
         return pos;
+    }
+
+    bool CheckIfPosInMainLvlMesh(Vector2 pointToCheck)
+    {
+        PolyNav2D mainNavMesh = NavmeshPortalManager.Instance.mainNavMesh;
+        if (mainNavMesh != null)
+        {
+            return mainNavMesh.PointIsValid(pointToCheck);
+        }
+        return false;
     }
 
     public StoreShelf FindShelfByFoodQuality(FoodQuality qualityToCheck)

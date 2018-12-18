@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using PolyNav;
 
 public class NavmeshPortalManager : MonoBehaviour
 {
@@ -14,6 +15,8 @@ public class NavmeshPortalManager : MonoBehaviour
             return this.allNavPortals;
         }
     }
+    public PolyNav2D mainNavMesh;
+
 
     private void Awake()
     {
@@ -47,4 +50,34 @@ public class NavmeshPortalManager : MonoBehaviour
         }
     }
 
+
+    public NavMeshPortal FindNavPortalWithDestinationForPoint(Vector2 pointToCheck)
+    {
+        if (this.allNavPortals.Count <= 0)
+        {
+            return null;
+        }
+
+        for (int i = 0; i < this.allNavPortals.Count; i++)
+        {
+            PolyNav2D destMap = this.allNavPortals[i].destinationMesh;
+            if (destMap.PointIsValid(pointToCheck))
+            {
+                return this.allNavPortals[i];
+            }
+        }
+
+        return null;
+    }
+
+
+    public Vector2 GetMainMeshPos()
+    {
+        if (this.mainNavMesh == null)
+        {
+            return Vector2.zero;
+        }
+
+        return this.mainNavMesh.transform.position;
+    }
 }

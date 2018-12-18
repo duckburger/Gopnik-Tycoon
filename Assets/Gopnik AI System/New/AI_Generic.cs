@@ -33,10 +33,29 @@ public class AI_Generic : MonoBehaviour
     bool hasPaidForGroceries = false;
     // Targets
     [SerializeField] Vector2 target;
+    public Vector2 Target
+    {
+        get
+        {
+            return this.target;
+        }
+        set
+        {
+            this.target = value;
+        }
+    }
+    Vector2 savedTarget;
     StoreShelf myTargetShelf;
     CashRegisterSlot myTargetCashRegisterSlot = null;
     CashRegister myCashRegister = null;
-    
+    NavMeshPortal myTargetNavPortal = null;
+    public NavMeshPortal MyTargetNavPortal
+    {
+        get
+        {
+            return this.myTargetNavPortal;
+        }
+    }
 
     private void Start()
     {
@@ -67,6 +86,32 @@ public class AI_Generic : MonoBehaviour
         if (Task.isInspected)
         {
             Task.current.debugInfo = string.Format("t = {0:0.00}", Time.time);
+        }
+        if (this.target != null && !this.navAgent.map.PointIsValid(this.target))
+        {
+            PolyNav2D newMap = null;
+            if (NavmeshPortalManager.Instance.FindNavPortalWithDestinationForPoint(this.target) != null && this.myTargetNavPortal == null)
+            {
+                NavMeshPortal portal = NavmeshPortalManager.Instance.FindNavPortalWithDestinationForPoint(this.target);
+                this.savedTarget = this.target;
+                this.target = portal.transform.position;
+                this.myTargetNavPortal = portal;
+            }
+        }
+
+        if (this.myTargetNavPortal != null)
+        {
+            this.target = this.myTargetNavPortal.transform.position;
+            this.navAgent.SetDestination(this.target, null);
+            if (this.navAgent.remainingDistance <= 0.15f)
+            {
+                this.navAgent.map = this.myTargetNavPortal.destinationMesh;
+                this.target = this.savedTarget;
+                this.savedTarget = Vector2.zero;
+                this.myTargetNavPortal = null;
+                this.navAgent.SetDestination(this.target, null);
+                return;
+            }
         }
 
         if (navAgent.remainingDistance <= navAgent.stoppingDistance && !navAgent.pathPending)

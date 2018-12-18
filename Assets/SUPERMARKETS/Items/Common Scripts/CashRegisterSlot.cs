@@ -10,6 +10,7 @@ public class CashRegisterSlot : MonoBehaviour
     [Space(10)]
     [SerializeField] List<GameObject> peopleInQueue = new List<GameObject>();
     [SerializeField] GameObject firstQueueSlot;
+    [SerializeField] GameObject queueSpotPrefab;
 
     List<Transform> queueSlots = new List<Transform>();
 
@@ -76,7 +77,7 @@ public class CashRegisterSlot : MonoBehaviour
         for (int i = 1; i < this.maxInQueue; i++)
         {
             Vector3 newPos = new Vector3(CreateXQueuePos(i), this.firstQueueSlot.transform.position.y, this.firstQueueSlot.transform.position.z);
-            GameObject newSpot = Instantiate(new GameObject(), newPos, Quaternion.identity, this.transform);
+            GameObject newSpot = Instantiate(this.queueSpotPrefab, newPos, Quaternion.identity, this.transform);
             newSpot.name = "QueueSlot " + (i + 2).ToString();
             this.queueSlots.Add(newSpot.transform);
         }
