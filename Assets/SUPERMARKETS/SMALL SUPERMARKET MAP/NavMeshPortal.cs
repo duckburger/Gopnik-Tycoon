@@ -6,7 +6,8 @@ using PolyNav;
 public class NavMeshPortal : MonoBehaviour
 {
     [SerializeField] ScriptableEvent onRegistered;
-    public PolyNav2D destinationMesh;
+    public PolyNav2D mesh1;
+    public PolyNav2D mesh2;
 
     private void Start()
     {
@@ -29,9 +30,20 @@ public class NavMeshPortal : MonoBehaviour
             AI_Generic npc = collider.gameObject.GetComponent<AI_Generic>();
             if (npc.MyTargetNavPortal == this)
             {
-                // Switch the NPC's nav mesh to the destination
-                npc.GetComponent<PolyNavAgent>().map = this.destinationMesh;
+                // Let the npc know that they reached their target portal and let them advance to their actual target
+                if (npc.NavAgent.map == this.mesh1)
+                {
+                    npc.NavAgent.map = this.mesh2;
+                }
+                else if (npc.NavAgent.map == this.mesh2)
+                {
+                    npc.NavAgent.map = this.mesh1;
+                }
+                npc.AdvanceToTargetAfterReachingPortal();
             }
         }
     }
+
 }
+
+

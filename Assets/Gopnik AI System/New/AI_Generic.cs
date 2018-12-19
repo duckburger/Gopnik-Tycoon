@@ -25,6 +25,18 @@ public class AI_Generic : MonoBehaviour
     Wallet myWallet;
     MCharCarry myCarryController;
     PolyNavAgent navAgent;
+    public PolyNavAgent NavAgent 
+    {
+         get
+         {
+             return this.navAgent;
+         }
+          
+          set
+          {
+              this.navAgent = value;
+          }
+    }
     Animator animator;
     CharacterStats myStats;
 
@@ -90,9 +102,9 @@ public class AI_Generic : MonoBehaviour
         if (this.target != null && !this.navAgent.map.PointIsValid(this.target))
         {
             PolyNav2D newMap = null;
-            if (NavmeshPortalManager.Instance.FindNavPortalWithDestinationForPoint(this.target) != null && this.myTargetNavPortal == null)
+            if (NavmeshPortalManager.Instance.FindNavPortalWithDestinationForPoint(this.target, this.navAgent.map) != null && this.myTargetNavPortal == null)
             {
-                NavMeshPortal portal = NavmeshPortalManager.Instance.FindNavPortalWithDestinationForPoint(this.target);
+                NavMeshPortal portal = NavmeshPortalManager.Instance.FindNavPortalWithDestinationForPoint(this.target, this.navAgent.map);
                 this.savedTarget = this.target;
                 this.target = portal.transform.position;
                 this.myTargetNavPortal = portal;
@@ -103,15 +115,7 @@ public class AI_Generic : MonoBehaviour
         {
             this.target = this.myTargetNavPortal.transform.position;
             this.navAgent.SetDestination(this.target, null);
-            if (this.navAgent.remainingDistance <= 0.15f)
-            {
-                this.navAgent.map = this.myTargetNavPortal.destinationMesh;
-                this.target = this.savedTarget;
-                this.savedTarget = Vector2.zero;
-                this.myTargetNavPortal = null;
-                this.navAgent.SetDestination(this.target, null);
-                return;
-            }
+            return;
         }
 
         if (navAgent.remainingDistance <= navAgent.stoppingDistance && !navAgent.pathPending)
@@ -119,6 +123,14 @@ public class AI_Generic : MonoBehaviour
             this.animator.Play("Idle");
             Task.current.Succeed();
         }
+    }
+
+    public void AdvanceToTargetAfterReachingPortal()
+    {
+        this.target = this.savedTarget;
+        this.savedTarget = Vector2.zero;
+        this.myTargetNavPortal = null;
+        this.navAgent.SetDestination(this.target, null);
     }
 
     [Task]

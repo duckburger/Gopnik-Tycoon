@@ -51,7 +51,7 @@ public class NavmeshPortalManager : MonoBehaviour
     }
 
 
-    public NavMeshPortal FindNavPortalWithDestinationForPoint(Vector2 pointToCheck)
+    public NavMeshPortal FindNavPortalWithDestinationForPoint(Vector2 pointToCheck, PolyNav2D currentMesh)
     {
         if (this.allNavPortals.Count <= 0)
         {
@@ -60,8 +60,9 @@ public class NavmeshPortalManager : MonoBehaviour
 
         for (int i = 0; i < this.allNavPortals.Count; i++)
         {
-            PolyNav2D destMap = this.allNavPortals[i].destinationMesh;
-            if (destMap.PointIsValid(pointToCheck))
+            PolyNav2D destMap1 = this.allNavPortals[i].mesh1;
+            PolyNav2D destMap2 = this.allNavPortals[i].mesh2;
+            if (destMap1.PointIsValid(pointToCheck) && destMap2 == currentMesh || destMap2.PointIsValid(pointToCheck) && destMap1 == currentMesh)
             {
                 return this.allNavPortals[i];
             }
