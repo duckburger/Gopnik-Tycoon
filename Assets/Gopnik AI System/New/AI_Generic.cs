@@ -99,7 +99,7 @@ public class AI_Generic : MonoBehaviour
         {
             Task.current.debugInfo = string.Format("t = {0:0.00}", Time.time);
         }
-        if (this.target != null && !this.navAgent.map.PointIsValid(this.target))
+        if (this.target != null && this.navAgent.map != null && !this.navAgent.map.PointIsValid(this.target))
         {
             PolyNav2D newMap = null;
             if (NavmeshPortalManager.Instance.FindNavPortalWithDestinationForPoint(this.target, this.navAgent.map) != null && this.myTargetNavPortal == null)

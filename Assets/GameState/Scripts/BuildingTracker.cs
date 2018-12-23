@@ -45,29 +45,36 @@ public class BuildingTracker : MonoBehaviour
 
     public Vector2 GetRandomNearShelfLocation()
     {
-        float xAdjustment = Random.Range(3, 3.5f);
-        float yADjustment = Random.Range(-3.5f, 3);
+        float xAdjustment = Random.Range(1.5f, 2.0f);
+        float yAdjustment = Random.Range(-1.5f, -2.0f);
         Vector2 pos = Vector2.zero;
         if (this.allShelves.Count <= 0)
         {
-            Debug.Log("No shelve to pick from");
+            Debug.Log("No shelf to pick from");
             // Choose a random spot inside the store instead
             if (this.allBuildingSlots.Count > 0)
             {
                 int randomSlotIndex = Random.Range(0, this.allBuildingSlots.Count - 1);
-                pos = new Vector2(this.allBuildingSlots[randomSlotIndex].transform.position.x + xAdjustment, this.allBuildingSlots[randomSlotIndex].transform.position.y + yADjustment);
+                Vector2 slotPos = this.allBuildingSlots[randomSlotIndex].transform.position;
+                pos = new Vector2(slotPos.x + xAdjustment, slotPos.y + yAdjustment);
+                
                 RaycastHit2D[] hitList = Physics2D.RaycastAll(pos, Vector3.forward, 1000);
                 foreach (RaycastHit2D hit in hitList)
                 {
                     if (hit.collider.gameObject.GetComponent<PolyNavObstacle>())
                     {
                         // Recalculate the pos
-                        pos = new Vector2(pos.x + xAdjustment, pos.y + yADjustment);
+                        Debug.Log("<color=red>Hit an obstacle</color> while raycsting at the chosen random waypoint. Choosing another one");
+                        pos = new Vector2(pos.x + xAdjustment, pos.y + yAdjustment);
                         if (!CheckIfPosInMainLvlMesh(pos))
                         {
-                            pos = NavmeshPortalManager.Instance.GetMainMeshPos();
+                            pos = AdjustWaypointUntilValid(pos);
                         }
                     }
+                }
+                if (!CheckIfPosInMainLvlMesh(pos))
+                {
+                    pos = AdjustWaypointUntilValid(pos);
                 }
                 //Debug.Log("Picked a spot: " + pos);
                 return pos;
@@ -80,7 +87,7 @@ public class BuildingTracker : MonoBehaviour
         }
 
         int randomShelfIndex = Random.Range(0, this.allShelves.Count - 1);
-        pos = new Vector2(this.allShelves[randomShelfIndex].transform.position.x + xAdjustment, this.allShelves[randomShelfIndex].transform.position.y + yADjustment);
+        pos = new Vector2(this.allShelves[randomShelfIndex].transform.position.x + xAdjustment, this.allShelves[randomShelfIndex].transform.position.y + yAdjustment);
 
         RaycastHit2D[] hits = Physics2D.RaycastAll(pos, Vector3.forward, 1000);
         foreach (RaycastHit2D hit in hits)
@@ -88,7 +95,7 @@ public class BuildingTracker : MonoBehaviour
             if (hit.collider.gameObject.GetComponent<PolyNav.PolyNavObstacle>())
             {
                 // Recalculate the pos
-                pos = new Vector2(pos.x + xAdjustment, pos.y + yADjustment);
+                pos = new Vector2(pos.x + xAdjustment, pos.y + yAdjustment);
             }
         }
         return pos;
@@ -102,6 +109,23 @@ public class BuildingTracker : MonoBehaviour
             return mainNavMesh.PointIsValid(pointToCheck);
         }
         return false;
+    }
+
+    Vector2 AdjustWaypointUntilValid(Vector2 pos)
+    {
+        float xAdjustment = Random.Range(1f, 1.5f);
+        float yAdjustment = Random.Range(-1f, -1.5f);
+        Vector2 adjustedPos = new Vector2(pos.x + xAdjustment, pos.y + yAdjustment);
+        if (NavmeshPortalManager.Instance.mainNavMesh != null && NavmeshPortalManager.Instance.mainNavMesh.PointIsValid(adjustedPos))
+        {
+            return adjustedPos;
+        }
+        else
+        {
+            float x = NavmeshPortalManager.Instance.mainNavMesh.gameObject.transform.position.x;
+            float y = NavmeshPortalManager.Instance.mainNavMesh.gameObject.transform.position.y;
+            return new Vector2(x + xAdjustment, y + yAdjustment);
+        }
     }
 
     public StoreShelf FindShelfByFoodQuality(FoodQuality qualityToCheck)

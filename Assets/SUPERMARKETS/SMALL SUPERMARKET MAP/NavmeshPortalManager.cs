@@ -57,20 +57,81 @@ public class NavmeshPortalManager : MonoBehaviour
         {
             return null;
         }
+       
+        NavMeshPortal foundDirectPortal = CheckIfCanReachDirectly(pointToCheck, currentMesh);
+        if (foundDirectPortal != null)
+        {
+            return foundDirectPortal;
+        }
+        else
+        {
+           // Do search through the chain
+            return DoSearchThroughChain(pointToCheck);
+        }
+    }
 
+
+    NavMeshPortal CheckIfCanReachDirectly(Vector2 point, PolyNav2D currentMesh)
+    {
+        NavMeshPortal foundDirectPortal = null;
         for (int i = 0; i < this.allNavPortals.Count; i++)
         {
             PolyNav2D destMap1 = this.allNavPortals[i].mesh1;
             PolyNav2D destMap2 = this.allNavPortals[i].mesh2;
-            if (destMap1.PointIsValid(pointToCheck) && destMap2 == currentMesh || destMap2.PointIsValid(pointToCheck) && destMap1 == currentMesh)
+            if (destMap1.PointIsValid(point) && destMap2 == currentMesh || destMap2.PointIsValid(point) && destMap1 == currentMesh)
             {
-                return this.allNavPortals[i];
+               foundDirectPortal = this.allNavPortals[i];
+            }
+        }
+        return foundDirectPortal;
+    }
+
+    NavMeshPortal DoSearchThroughChain(Vector2 pointToCheck)
+    {
+        NavMeshPortal finalPortal = null;
+        PolyNav2D meshToCheckNext = null;
+        for (int i = 0; i < this.allNavPortals.Count; i++)
+        {
+            PolyNav2D destMap1 = this.allNavPortals[i].mesh1;
+            PolyNav2D destMap2 = this.allNavPortals[i].mesh2;
+            if (destMap1.PointIsValid(pointToCheck))
+            {
+                // Found the destination portal, now follow the thread
+                finalPortal = this.allNavPortals[i];
+                meshToCheckNext = destMap2;
+                break;
+            }
+            else if (destMap2.PointIsValid(pointToCheck))
+            {
+                finalPortal = this.allNavPortals[i];
+                meshToCheckNext = destMap1;
+                break;
             }
         }
 
-        return null;
+        // TODO: Add contingency for when the point couldn't be placed in any of the meshes!
+        
+        NavMeshPortal portalToNextMapInLine = CheckIfCanReachDirectly(pointToCheck, meshToCheckNext);
+        
+        
+        if (portalToNextMapInLine != null)
+        {
+            return portalToNextMapInLine;
+        }
+        else
+        {
+            pointToCheck = meshToCheckNext.gameObject.transform.position;
+            finalPortal = CheckIfCanReachDirectly(pointToCheck, meshToCheckNext);
+            if (finalPortal != null)
+            {
+                return finalPortal;
+            }
+            else
+            {
+                return DoSearchThroughChain(pointToCheck);
+            }
+        }
     }
-
 
     public Vector2 GetMainMeshPos()
     {
