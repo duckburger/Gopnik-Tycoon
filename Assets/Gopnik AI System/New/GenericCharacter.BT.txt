@@ -6,6 +6,18 @@ tree "Root"
 			tree "CausingTrouble"
 			tree "Shoplifting"
 	
+
+tree "GoToTarget"
+	fallback
+	tree "GoDirectlyToTarget"
+
+
+tree "GoDirectlyToTarget"
+	while TargetInCurrentNavMap
+		GoToTarget
+
+
+	
 	
 tree "Shopping"
 	fallback

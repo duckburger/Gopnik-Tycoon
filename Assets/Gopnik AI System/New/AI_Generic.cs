@@ -44,6 +44,7 @@ public class AI_Generic : MonoBehaviour
     bool isLiningUp = false;
     bool hasPaidForGroceries = false;
     // Targets
+    Queue<Vector2> targetQueue = new Queue<Vector2>();
     [SerializeField] Vector2 target;
     public Vector2 Target
     {
@@ -91,6 +92,12 @@ public class AI_Generic : MonoBehaviour
     }
 
     #region Common Tasks
+
+    [Task]
+    bool TargetInCurrentNavMap()
+    {
+        return this.navAgent.map.PointIsValid(this.target);
+    }
 
     [Task]
     void GoToTarget()

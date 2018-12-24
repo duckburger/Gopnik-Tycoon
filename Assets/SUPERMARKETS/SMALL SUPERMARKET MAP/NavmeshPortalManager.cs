@@ -51,34 +51,36 @@ public class NavmeshPortalManager : MonoBehaviour
     }
 
 
-    public NavMeshPortal FindNavPortalWithDestinationForPoint(Vector2 pointToCheck, PolyNav2D currentMesh)
+    public NavMeshPortal FindNavPortalWithDestinationForPoint(Vector2 pointToCheck, PolyNav2D currentCharMap)
     {
+        // No nav portals to provide
         if (this.allNavPortals.Count <= 0)
         {
             return null;
         }
        
-        NavMeshPortal foundDirectPortal = CheckIfCanReachDirectly(pointToCheck, currentMesh);
-        if (foundDirectPortal != null)
+        NavMeshPortal discoveredDirectPortal = GetPortalIfAdjacentMap(pointToCheck, currentCharMap);
+        if (discoveredDirectPortal != null)
         {
-            return foundDirectPortal;
+            return discoveredDirectPortal;
         }
         else
         {
            // Do search through the chain
-            return DoSearchThroughChain(pointToCheck);
+            return FindDestinationInClosestMesh(pointToCheck, currentCharMap);
         }
     }
 
 
-    NavMeshPortal CheckIfCanReachDirectly(Vector2 point, PolyNav2D currentMesh)
+    NavMeshPortal GetPortalIfAdjacentMap(Vector2 point, PolyNav2D currentMesh)
     {
         NavMeshPortal foundDirectPortal = null;
         for (int i = 0; i < this.allNavPortals.Count; i++)
         {
-            PolyNav2D destMap1 = this.allNavPortals[i].mesh1;
-            PolyNav2D destMap2 = this.allNavPortals[i].mesh2;
-            if (destMap1.PointIsValid(point) && destMap2 == currentMesh || destMap2.PointIsValid(point) && destMap1 == currentMesh)
+            PolyNav2D connectedMap1 = this.allNavPortals[i].mesh1;
+            PolyNav2D connectedMap2 = this.allNavPortals[i].mesh2;
+            // Checking whether the 2 meshes (current and connected) are directly tied with this portal
+            if (connectedMap1.PointIsValid(point) && connectedMap2 == currentMesh || connectedMap2.PointIsValid(point) && connectedMap1 == currentMesh)
             {
                foundDirectPortal = this.allNavPortals[i];
             }
@@ -86,33 +88,37 @@ public class NavmeshPortalManager : MonoBehaviour
         return foundDirectPortal;
     }
 
-    NavMeshPortal DoSearchThroughChain(Vector2 pointToCheck)
+    NavMeshPortal FindDestinationInClosestMesh(Vector2 pointToCheck, PolyNav2D currentCharNav)
     {
         NavMeshPortal finalPortal = null;
         PolyNav2D meshToCheckNext = null;
+
         for (int i = 0; i < this.allNavPortals.Count; i++)
         {
-            PolyNav2D destMap1 = this.allNavPortals[i].mesh1;
-            PolyNav2D destMap2 = this.allNavPortals[i].mesh2;
-            if (destMap1.PointIsValid(pointToCheck))
+            PolyNav2D connectedMap1 = this.allNavPortals[i].mesh1;
+            PolyNav2D connectedMap2 = this.allNavPortals[i].mesh2;
+            if (connectedMap1.PointIsValid(pointToCheck))
             {
-                // Found the destination portal, now follow the thread
+                // Found the destination portal, now find a portal that leads to the other navmesh that didn't match
                 finalPortal = this.allNavPortals[i];
-                meshToCheckNext = destMap2;
+                meshToCheckNext = connectedMap2;
                 break;
             }
-            else if (destMap2.PointIsValid(pointToCheck))
+            else if (connectedMap2.PointIsValid(pointToCheck))
             {
                 finalPortal = this.allNavPortals[i];
-                meshToCheckNext = destMap1;
+                meshToCheckNext = connectedMap1;
                 break;
             }
         }
 
-        // TODO: Add contingency for when the point couldn't be placed in any of the meshes!
-        
-        NavMeshPortal portalToNextMapInLine = CheckIfCanReachDirectly(pointToCheck, meshToCheckNext);
-        
+        if (finalPortal == null)
+        {
+            // Couldn't find a matching mesh (something is wrong)
+            return null;
+        }
+
+        NavMeshPortal portalToNextMapInLine = GetPortalIfAdjacentMap(meshToCheckNext.transform.position, currentCharNav);
         
         if (portalToNextMapInLine != null)
         {
@@ -121,14 +127,14 @@ public class NavmeshPortalManager : MonoBehaviour
         else
         {
             pointToCheck = meshToCheckNext.gameObject.transform.position;
-            finalPortal = CheckIfCanReachDirectly(pointToCheck, meshToCheckNext);
+            finalPortal = GetPortalIfAdjacentMap(pointToCheck, meshToCheckNext);
             if (finalPortal != null)
             {
                 return finalPortal;
             }
             else
             {
-                return DoSearchThroughChain(pointToCheck);
+                return FindDestinationInClosestMesh(pointToCheck, currentCharNav);
             }
         }
     }
