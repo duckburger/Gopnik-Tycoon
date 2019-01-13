@@ -6,8 +6,8 @@ using PolyNav;
 public class NavMeshPortal : MonoBehaviour
 {
     [SerializeField] ScriptableEvent onRegistered;
-    public PolyNav2D mesh1;
-    public PolyNav2D mesh2;
+    public PolyNav2D map1;
+    public PolyNav2D map2;
 
     private void Start()
     {
@@ -31,13 +31,13 @@ public class NavMeshPortal : MonoBehaviour
             if (npc.MyTargetNavPortal == this)
             {
                 // Let the npc know that they reached their target portal and let them advance to their actual target
-                if (npc.NavAgent.map == this.mesh1)
+                if (npc.NavAgent.map == this.map1)
                 {
-                    npc.NavAgent.map = this.mesh2;
+                    npc.NavAgent.map = this.map2;
                 }
-                else if (npc.NavAgent.map == this.mesh2)
+                else if (npc.NavAgent.map == this.map2)
                 {
-                    npc.NavAgent.map = this.mesh1;
+                    npc.NavAgent.map = this.map1;
                 }
                 npc.AdvanceToTargetAfterReachingPortal();
             }

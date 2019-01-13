@@ -221,7 +221,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 708565808}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.82, y: -13.28, z: 0}
+  m_LocalPosition: {x: -7.65, y: -19.55, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4789485251859220879}
@@ -3904,45 +3904,55 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: -14.675
       objectReference: {fileID: 0}
-    - target: {fileID: 3890018712555592814, guid: 10339137b3a577e4681265e60b750524,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -19.138
-      objectReference: {fileID: 0}
     - target: {fileID: 1613793136320040885, guid: 10339137b3a577e4681265e60b750524,
         type: 3}
       propertyPath: mainNavMesh
       value: 
       objectReference: {fileID: 1975707348}
+    - target: {fileID: 1918198852685462888, guid: 10339137b3a577e4681265e60b750524,
+        type: 3}
+      propertyPath: m_Name
+      value: corridor_to_delbay
+      objectReference: {fileID: 0}
+    - target: {fileID: 1613793137467486947, guid: 10339137b3a577e4681265e60b750524,
+        type: 3}
+      propertyPath: m_Offset.y
+      value: -0.00799036
+      objectReference: {fileID: 0}
+    - target: {fileID: 1613793137467486947, guid: 10339137b3a577e4681265e60b750524,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 0.55
+      objectReference: {fileID: 0}
     - target: {fileID: 1613793137467486948, guid: 10339137b3a577e4681265e60b750524,
         type: 3}
-      propertyPath: mesh1
+      propertyPath: map1
       value: 
       objectReference: {fileID: 1975707348}
     - target: {fileID: 1613793137467486948, guid: 10339137b3a577e4681265e60b750524,
         type: 3}
-      propertyPath: mesh2
+      propertyPath: map2
       value: 
       objectReference: {fileID: 4789485251676177711}
     - target: {fileID: 1470840418498408572, guid: 10339137b3a577e4681265e60b750524,
         type: 3}
-      propertyPath: mesh1
+      propertyPath: map1
       value: 
       objectReference: {fileID: 4789485251676177711}
     - target: {fileID: 1470840418498408572, guid: 10339137b3a577e4681265e60b750524,
         type: 3}
-      propertyPath: mesh2
+      propertyPath: map2
       value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 2307499324559230698, guid: 10339137b3a577e4681265e60b750524,
+      objectReference: {fileID: 4571406391167972456}
+    - target: {fileID: 6692357665691712159, guid: 10339137b3a577e4681265e60b750524,
         type: 3}
-      propertyPath: mesh1
-      value: 
+      propertyPath: m_Offset.y
+      value: -0.00799036
       objectReference: {fileID: 0}
-    - target: {fileID: 2307499324559230698, guid: 10339137b3a577e4681265e60b750524,
+    - target: {fileID: 6692357665691712159, guid: 10339137b3a577e4681265e60b750524,
         type: 3}
-      propertyPath: mesh2
-      value: 
+      propertyPath: m_Size.y
+      value: 0.55
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 10339137b3a577e4681265e60b750524, type: 3}
@@ -3963,11 +3973,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Delivery_Bay
-      objectReference: {fileID: 0}
-    - target: {fileID: 7509750821851431856, guid: 1a477472485dd0644903e492adebb189,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7509750821851431857, guid: 1a477472485dd0644903e492adebb189,
         type: 3}
@@ -4024,9 +4029,7 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 8487887592813757482, guid: 1a477472485dd0644903e492adebb189, type: 3}
-    - {fileID: 4946568922648228546, guid: 1a477472485dd0644903e492adebb189, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1a477472485dd0644903e492adebb189, type: 3}
 --- !u!4 &4789485250877838685 stripped
 Transform:
@@ -4227,11 +4230,6 @@ PrefabInstance:
         type: 3}
       propertyPath: refreshRateInSecs
       value: 0.01
-      objectReference: {fileID: 0}
-    - target: {fileID: 8010001331251283859, guid: f6c22e4c0ed19b641807e53f737bef83,
-        type: 3}
-      propertyPath: m_isInputParsingRequired
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1834946986615710233, guid: f6c22e4c0ed19b641807e53f737bef83,
         type: 3}
@@ -4646,11 +4644,6 @@ PrefabInstance:
       propertyPath: refreshRateInSecs
       value: 0.01
       objectReference: {fileID: 0}
-    - target: {fileID: 8010001331251283859, guid: f6c22e4c0ed19b641807e53f737bef83,
-        type: 3}
-      propertyPath: m_isInputParsingRequired
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1834946986615710233, guid: f6c22e4c0ed19b641807e53f737bef83,
         type: 3}
       propertyPath: m_SortingOrder
@@ -4782,11 +4775,6 @@ PrefabInstance:
         type: 3}
       propertyPath: mySortingGroup
       value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 8010001331251283859, guid: f6c22e4c0ed19b641807e53f737bef83,
-        type: 3}
-      propertyPath: m_isInputParsingRequired
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1834946986615710233, guid: f6c22e4c0ed19b641807e53f737bef83,
         type: 3}

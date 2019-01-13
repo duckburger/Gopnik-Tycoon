@@ -7,6 +7,7 @@ public class NavmeshPortalManager : MonoBehaviour
 {
     public static NavmeshPortalManager Instance;
 
+    
     [SerializeField] List<NavMeshPortal> allNavPortals = new List<NavMeshPortal>();
     public List<NavMeshPortal> AllNavPortals
     {
@@ -15,8 +16,8 @@ public class NavmeshPortalManager : MonoBehaviour
             return this.allNavPortals;
         }
     }
-    public PolyNav2D mainNavMesh;
-
+    public PolyNav2D mainNavMap;
+    List<PolyNav2D> allNavMapsInScene = new List<PolyNav2D>();
 
     private void Awake()
     {
@@ -30,6 +31,23 @@ public class NavmeshPortalManager : MonoBehaviour
         }
     }
 
+    public void AddNavMapToList(object o)
+    {
+        PolyNav2D newMap = o as PolyNav2D;
+        if (newMap != null && !this.allNavMapsInScene.Contains(newMap))
+        {
+            this.allNavMapsInScene.Add(newMap);
+        }
+    }
+
+    public void RemoveNavMapFromList(object o)
+    {
+        PolyNav2D mapToDelete = o as PolyNav2D;
+        if (mapToDelete != null && this.allNavMapsInScene.Contains(mapToDelete))
+        {
+            this.allNavMapsInScene.Remove(mapToDelete);
+        }
+    }
 
     public void AddNavPortalToList(object o)
     {
@@ -51,23 +69,23 @@ public class NavmeshPortalManager : MonoBehaviour
     }
 
 
-    public NavMeshPortal FindNavPortalWithDestinationForPoint(Vector2 pointToCheck, PolyNav2D currentCharMap)
+    public NavMeshPortal FindNextNavPortal(Vector2 pointToCheck, PolyNav2D currentCharMap)
     {
         // No nav portals to provide
         if (this.allNavPortals.Count <= 0)
         {
             return null;
         }
-       
+        
+        // Finding a nav portal where current and destination maps connect directly together
         NavMeshPortal discoveredDirectPortal = GetPortalIfAdjacentMap(pointToCheck, currentCharMap);
         if (discoveredDirectPortal != null)
         {
             return discoveredDirectPortal;
         }
         else
-        {
-           // Do search through the chain
-            return FindDestinationInClosestMesh(pointToCheck, currentCharMap);
+        {          
+           return FindDestinationInClosestMap(pointToCheck, currentCharMap); // Do a deeper search
         }
     }
 
@@ -77,9 +95,9 @@ public class NavmeshPortalManager : MonoBehaviour
         NavMeshPortal foundDirectPortal = null;
         for (int i = 0; i < this.allNavPortals.Count; i++)
         {
-            PolyNav2D connectedMap1 = this.allNavPortals[i].mesh1;
-            PolyNav2D connectedMap2 = this.allNavPortals[i].mesh2;
-            // Checking whether the 2 meshes (current and connected) are directly tied with this portal
+            PolyNav2D connectedMap1 = this.allNavPortals[i].map1;
+            PolyNav2D connectedMap2 = this.allNavPortals[i].map2;
+            // Checking whether the 2 meshes (current and connected) are directly tied within this portal
             if (connectedMap1.PointIsValid(point) && connectedMap2 == currentMesh || connectedMap2.PointIsValid(point) && connectedMap1 == currentMesh)
             {
                foundDirectPortal = this.allNavPortals[i];
@@ -88,64 +106,71 @@ public class NavmeshPortalManager : MonoBehaviour
         return foundDirectPortal;
     }
 
-    NavMeshPortal FindDestinationInClosestMesh(Vector2 pointToCheck, PolyNav2D currentCharNav)
+    NavMeshPortal FindDestinationInClosestMap(Vector2 pointToCheck, PolyNav2D currentCharMap)
     {
-        NavMeshPortal finalPortal = null;
-        PolyNav2D meshToCheckNext = null;
+        PolyNav2D mapWithTarget = FindMapContainingPoint(pointToCheck);
+        List<NavMeshPortal> allTargetConnectingPortals = FindConnectingPortals(mapWithTarget);
+        List<NavMeshPortal> allCurrMapPortals = FindConnectingPortals(currentCharMap);
+        NavMeshPortal portalToNextMap = FindPortalToMutualMap(allTargetConnectingPortals, allCurrMapPortals);
+        return portalToNextMap;
+    }
 
+    PolyNav2D FindMapContainingPoint(Vector2 point)
+    {
+        PolyNav2D matchingMap = null;
+        for (int i = 0; i < this.allNavMapsInScene.Count; i++)
+        {
+            if (this.allNavMapsInScene[i].PointIsValid(point))
+            {
+                matchingMap = this.allNavMapsInScene[i];
+            }
+        }
+        return matchingMap;
+    }
+
+
+    List<NavMeshPortal> FindConnectingPortals(PolyNav2D map)
+    {
+        List<NavMeshPortal> portals = new List<NavMeshPortal>();
         for (int i = 0; i < this.allNavPortals.Count; i++)
         {
-            PolyNav2D connectedMap1 = this.allNavPortals[i].mesh1;
-            PolyNav2D connectedMap2 = this.allNavPortals[i].mesh2;
-            if (connectedMap1.PointIsValid(pointToCheck))
+            if (this.allNavPortals[i].map1.gameObject == map.gameObject || this.allNavPortals[i].map2.gameObject == map.gameObject)
             {
-                // Found the destination portal, now find a portal that leads to the other navmesh that didn't match
-                finalPortal = this.allNavPortals[i];
-                meshToCheckNext = connectedMap2;
-                break;
+                portals.Add(this.allNavPortals[i]);
             }
-            else if (connectedMap2.PointIsValid(pointToCheck))
+        }
+        return portals;
+    }
+
+    NavMeshPortal FindPortalToMutualMap(List<NavMeshPortal> targetPortalList, List<NavMeshPortal> charPortalList)
+    {
+        List<NavMeshPortal> eligiblePortalsOnCharMap = new List<NavMeshPortal>();
+        foreach (NavMeshPortal targetPortal in targetPortalList)
+        {
+            foreach (NavMeshPortal charPortal in charPortalList)
             {
-                finalPortal = this.allNavPortals[i];
-                meshToCheckNext = connectedMap1;
-                break;
+                if (targetPortal.map1.gameObject == charPortal.map1.gameObject || targetPortal.map1.gameObject == charPortal.map2.gameObject
+                    || targetPortal.map2.gameObject == charPortal.map1.gameObject || targetPortal.map2.gameObject == charPortal.map2.gameObject)
+                {
+                    eligiblePortalsOnCharMap.Add(charPortal);
+                }
             }
         }
 
-        if (finalPortal == null)
+        if (eligiblePortalsOnCharMap.Count > 0)
         {
-            // Couldn't find a matching mesh (something is wrong)
-            return null;
+            return eligiblePortalsOnCharMap[0];
         }
-
-        NavMeshPortal portalToNextMapInLine = GetPortalIfAdjacentMap(meshToCheckNext.transform.position, currentCharNav);
-        
-        if (portalToNextMapInLine != null)
-        {
-            return portalToNextMapInLine;
-        }
-        else
-        {
-            pointToCheck = meshToCheckNext.gameObject.transform.position;
-            finalPortal = GetPortalIfAdjacentMap(pointToCheck, meshToCheckNext);
-            if (finalPortal != null)
-            {
-                return finalPortal;
-            }
-            else
-            {
-                return FindDestinationInClosestMesh(pointToCheck, currentCharNav);
-            }
-        }
+        return null;
     }
 
     public Vector2 GetMainMeshPos()
     {
-        if (this.mainNavMesh == null)
+        if (this.mainNavMap == null)
         {
             return Vector2.zero;
         }
 
-        return this.mainNavMesh.transform.position;
+        return this.mainNavMap.transform.position;
     }
 }

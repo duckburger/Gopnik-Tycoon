@@ -57,7 +57,7 @@ public class AI_Generic : MonoBehaviour
             this.target = value;
         }
     }
-    Vector2 savedTarget;
+    Vector2 savedTarget; // Used for continuous pathing
     StoreShelf myTargetShelf;
     CashRegisterSlot myTargetCashRegisterSlot = null;
     CashRegister myCashRegister = null;
@@ -94,26 +94,20 @@ public class AI_Generic : MonoBehaviour
     #region Common Tasks
 
     [Task]
-    bool TargetInCurrentNavMap()
-    {
-        return this.navAgent.map.PointIsValid(this.target);
-    }
-
-    [Task]
     void GoToTarget()
     {
         if (Task.isInspected)
         {
             Task.current.debugInfo = string.Format("t = {0:0.00}", Time.time);
         }
-        if (this.target != null && this.navAgent.map != null && !this.navAgent.map.PointIsValid(this.target))
+
+        // If the given target is not on the current nav map..
+        if (this.target != null && this.navAgent.map != null && !this.navAgent.map.PointIsValid(this.target) && this.savedTarget == Vector2.zero)
         {
-            PolyNav2D newMap = null;
-            if (NavmeshPortalManager.Instance.FindNavPortalWithDestinationForPoint(this.target, this.navAgent.map) != null && this.myTargetNavPortal == null)
+            if (NavmeshPortalManager.Instance.FindNextNavPortal(this.target, this.navAgent.map) != null)
             {
-                NavMeshPortal portal = NavmeshPortalManager.Instance.FindNavPortalWithDestinationForPoint(this.target, this.navAgent.map);
-                this.savedTarget = this.target;
-                this.target = portal.transform.position;
+                NavMeshPortal portal = NavmeshPortalManager.Instance.FindNextNavPortal(this.target, this.navAgent.map);
+                this.savedTarget = this.target; // Heading to the portal first
                 this.myTargetNavPortal = portal;
             }
         }
@@ -134,6 +128,7 @@ public class AI_Generic : MonoBehaviour
 
     public void AdvanceToTargetAfterReachingPortal()
     {
+        // TODO: Check whether the saved target is on the newly assigned navmap
         this.target = this.savedTarget;
         this.savedTarget = Vector2.zero;
         this.myTargetNavPortal = null;

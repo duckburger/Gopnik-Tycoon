@@ -103,7 +103,7 @@ public class BuildingTracker : MonoBehaviour
 
     bool CheckIfPosInMainLvlMesh(Vector2 pointToCheck)
     {
-        PolyNav2D mainNavMesh = NavmeshPortalManager.Instance.mainNavMesh;
+        PolyNav2D mainNavMesh = NavmeshPortalManager.Instance.mainNavMap;
         if (mainNavMesh != null)
         {
             return mainNavMesh.PointIsValid(pointToCheck);
@@ -116,14 +116,14 @@ public class BuildingTracker : MonoBehaviour
         float xAdjustment = Random.Range(1f, 1.5f);
         float yAdjustment = Random.Range(-1f, -1.5f);
         Vector2 adjustedPos = new Vector2(pos.x + xAdjustment, pos.y + yAdjustment);
-        if (NavmeshPortalManager.Instance.mainNavMesh != null && NavmeshPortalManager.Instance.mainNavMesh.PointIsValid(adjustedPos))
+        if (NavmeshPortalManager.Instance.mainNavMap != null && NavmeshPortalManager.Instance.mainNavMap.PointIsValid(adjustedPos))
         {
             return adjustedPos;
         }
         else
         {
-            float x = NavmeshPortalManager.Instance.mainNavMesh.gameObject.transform.position.x;
-            float y = NavmeshPortalManager.Instance.mainNavMesh.gameObject.transform.position.y;
+            float x = NavmeshPortalManager.Instance.mainNavMap.gameObject.transform.position.x;
+            float y = NavmeshPortalManager.Instance.mainNavMap.gameObject.transform.position.y;
             return new Vector2(x + xAdjustment, y + yAdjustment);
         }
     }

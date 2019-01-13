@@ -7,17 +7,6 @@ tree "Root"
 			tree "Shoplifting"
 	
 
-tree "GoToTarget"
-	fallback
-	tree "GoDirectlyToTarget"
-
-
-tree "GoDirectlyToTarget"
-	while TargetInCurrentNavMap
-		GoToTarget
-
-
-	
 	
 tree "Shopping"
 	fallback
@@ -25,7 +14,6 @@ tree "Shopping"
 		tree "GoToCash"
 		tree "WaitInLine"
 		tree "LeaveAfterPaying"
-
 
 tree "WanderAroundShopping"
 	while not HasPickedUpEnoughItems
