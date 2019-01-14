@@ -100,12 +100,13 @@ public class AI_Generic : MonoBehaviour
         {
             Task.current.debugInfo = string.Format("t = {0:0.00}", Time.time);
         }
-
+    
         // If the given target is not on the current nav map..
         if (this.target != null && this.navAgent.map != null && !this.navAgent.map.PointIsValid(this.target) && this.savedTarget == Vector2.zero)
         {
             if (NavmeshPortalManager.Instance.FindNextNavPortal(this.target, this.navAgent.map) != null)
             {
+                this.animator.Play("Walk");
                 NavMeshPortal portal = NavmeshPortalManager.Instance.FindNextNavPortal(this.target, this.navAgent.map);
                 this.savedTarget = this.target; // Heading to the portal first
                 this.myTargetNavPortal = portal;

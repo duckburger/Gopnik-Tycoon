@@ -1090,26 +1090,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &911457303 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4789485250877838684, guid: 912b8772bbdd634478caa9682df24f60,
-    type: 3}
-  m_PrefabInstance: {fileID: 4789485251342465116}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &911457304
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 911457303}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1bf914379b6be534f86e5e09dda40268, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  onEnabledScriptableEvent: {fileID: 11400000, guid: e3355a6e8792cd64894f031294dad442,
-    type: 2}
 --- !u!1 &941090347
 GameObject:
   m_ObjectHideFlags: 0
@@ -1395,38 +1375,6 @@ MonoBehaviour:
   m_Spacing: {x: 25, y: 25}
   m_Constraint: 0
   m_ConstraintCount: 2
---- !u!1 &1211273769 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4789485251859220878, guid: 912b8772bbdd634478caa9682df24f60,
-    type: 3}
-  m_PrefabInstance: {fileID: 4789485251342465116}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1211273770 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1975707348, guid: 912b8772bbdd634478caa9682df24f60,
-    type: 3}
-  m_PrefabInstance: {fileID: 4789485251342465116}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1211273769}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f01b895e078212419b3a7c52085d19e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1211273774
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1211273769}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1bf914379b6be534f86e5e09dda40268, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  onEnabledScriptableEvent: {fileID: 11400000, guid: e3355a6e8792cd64894f031294dad442,
-    type: 2}
 --- !u!1001 &1420270647
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1543,26 +1491,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 605412178}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1453755009 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4789485251676177715, guid: 912b8772bbdd634478caa9682df24f60,
-    type: 3}
-  m_PrefabInstance: {fileID: 4789485251342465116}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1453755014
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1453755009}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1bf914379b6be534f86e5e09dda40268, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  onEnabledScriptableEvent: {fileID: 11400000, guid: e3355a6e8792cd64894f031294dad442,
-    type: 2}
 --- !u!1001 &1510020374
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1632,89 +1560,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 13b08aa733ce01645a6a58b958348fc3, type: 3}
---- !u!1 &1530057713 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1557496442, guid: 912b8772bbdd634478caa9682df24f60,
-    type: 3}
-  m_PrefabInstance: {fileID: 4789485251342465116}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1530057716 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1557496445, guid: 912b8772bbdd634478caa9682df24f60,
-    type: 3}
-  m_PrefabInstance: {fileID: 4789485251342465116}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1530057713}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 30267e306caca004ea323394dfec236d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1530057717
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1530057713}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 100cc780881299b42bbe78d8d2931e23, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  trackedEvent: {fileID: 11400000, guid: e3355a6e8792cd64894f031294dad442, type: 2}
-  raiseResponse:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  raisedWithData:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: EventWithData, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-      PublicKeyToken=null
-  openResponse:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  openWithDataReponse:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1530057716}
-        m_MethodName: AddNavMapToList
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_TypeName: EventWithData, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-      PublicKeyToken=null
-  closeResponse:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  closeWithDataResponse:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1530057716}
-        m_MethodName: RemoveNavMapFromList
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_TypeName: EventWithData, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-      PublicKeyToken=null
 --- !u!1 &1644607346
 GameObject:
   m_ObjectHideFlags: 0
@@ -2348,6 +2193,11 @@ PrefabInstance:
       propertyPath: accelerationRate
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 5071045544369216888, guid: daf8e30f0749de74fbded1cc29d98602,
+        type: 3}
+      propertyPath: defaultNavStoppingDistance
+      value: 0.15
+      objectReference: {fileID: 0}
     - target: {fileID: 6058775654053657681, guid: daf8e30f0749de74fbded1cc29d98602,
         type: 3}
       propertyPath: scripts.Array.data[0]
@@ -2422,14 +2272,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 708565809, guid: 912b8772bbdd634478caa9682df24f60, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -3.56
-      objectReference: {fileID: 0}
-    - target: {fileID: 708565809, guid: 912b8772bbdd634478caa9682df24f60, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -16.67
-      objectReference: {fileID: 0}
     - target: {fileID: 2849236572214419068, guid: 912b8772bbdd634478caa9682df24f60,
         type: 3}
       propertyPath: m_havePropertiesChanged
@@ -2458,30 +2300,6 @@ PrefabInstance:
     - target: {fileID: 3269216062522766183, guid: 912b8772bbdd634478caa9682df24f60,
         type: 3}
       propertyPath: m_isInputParsingRequired
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4789485250877838684, guid: 912b8772bbdd634478caa9682df24f60,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1557496445, guid: 912b8772bbdd634478caa9682df24f60, type: 3}
-      propertyPath: mainNavMap
-      value: 
-      objectReference: {fileID: 1211273770}
-    - target: {fileID: 4571406391167972456, guid: 912b8772bbdd634478caa9682df24f60,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4571406391167972456, guid: 912b8772bbdd634478caa9682df24f60,
-        type: 3}
-      propertyPath: invertMasterPolygon
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6884698895917568710, guid: 912b8772bbdd634478caa9682df24f60,
-        type: 3}
-      propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
