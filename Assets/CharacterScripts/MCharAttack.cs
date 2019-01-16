@@ -58,10 +58,10 @@ public class MCharAttack : MonoBehaviour
         this.isAttacking = false;
 
         Collider2D[] hits = Physics2D.OverlapCircleAll(this.meleePoint.position, this.attRadius);
-        Debug.Log("Hit " + hits.Length + " objects");
+        //Debug.Log("Hit " + hits.Length + " objects");
         foreach (Collider2D collider in hits)
         {
-            Debug.Log("Hit " + collider.gameObject.name);
+            //Debug.Log("Hit " + collider.gameObject.name);
             Health healthController = collider.gameObject.GetComponent<Health>();
             if (collider.gameObject != this.gameObject )
             {

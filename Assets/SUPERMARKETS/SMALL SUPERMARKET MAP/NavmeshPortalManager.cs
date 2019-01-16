@@ -17,7 +17,7 @@ public class NavmeshPortalManager : MonoBehaviour
         }
     }
     public PolyNav2D mainNavMap;
-    List<PolyNav2D> allNavMapsInScene = new List<PolyNav2D>();
+    [SerializeField] List<PolyNav2D> allNavMapsInScene = new List<PolyNav2D>();
 
     private void Awake()
     {
@@ -97,6 +97,10 @@ public class NavmeshPortalManager : MonoBehaviour
         {
             PolyNav2D connectedMap1 = this.allNavPortals[i].map1;
             PolyNav2D connectedMap2 = this.allNavPortals[i].map2;
+            if (this.allNavPortals[i].map1 == null || this.allNavPortals[i].map2 == null)
+            {
+                Debug.LogError("The " + this.allNavPortals[i].gameObject.name + " has one or more empty maps!");
+            }
             // Checking whether the 2 meshes (current and connected) are directly tied within this portal
             if (connectedMap1.PointIsValid(point) && connectedMap2 == currentMesh || connectedMap2.PointIsValid(point) && connectedMap1 == currentMesh)
             {

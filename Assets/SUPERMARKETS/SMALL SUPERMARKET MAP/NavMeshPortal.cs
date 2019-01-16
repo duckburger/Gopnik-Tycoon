@@ -39,7 +39,7 @@ public class NavMeshPortal : MonoBehaviour
                 {
                     npc.NavAgent.map = this.map1;
                 }
-                npc.AdvanceToTargetAfterReachingPortal();
+                npc.AdvanceToTarget();
             }
         }
     }
@@ -60,7 +60,7 @@ public class NavMeshPortal : MonoBehaviour
                 {
                     npc.NavAgent.map = this.map1;
                 }
-                npc.AdvanceToTargetAfterReachingPortal();
+                npc.AdvanceToTarget();
             }
         }
     }

@@ -15,6 +15,12 @@ public class MapRegistrator : MonoBehaviour
         {
             this.myMap = this.GetComponent<PolyNav2D>();
         }
+        StartCoroutine(RegisterWithDelay());
+    }
+
+    IEnumerator RegisterWithDelay()
+    {
+        yield return new WaitForSeconds(0.1f);
         if (this.myMap != null && this.onEnabledScriptableEvent != null)
         {
             this.onEnabledScriptableEvent.OpenWithData(this.myMap);

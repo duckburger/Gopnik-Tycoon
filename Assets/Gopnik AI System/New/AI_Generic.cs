@@ -112,6 +112,15 @@ public class AI_Generic : MonoBehaviour
                 this.myTargetNavPortal = portal;
             }
         }
+        else if (this.target != null && this.navAgent.map != null && this.navAgent.map.PointIsValid(this.target))
+        {
+            this.animator.Play("Walk");
+            this.navAgent.SetDestination(this.target, null);
+            if (CheckIfReachedTarget())
+            {
+                return;
+            }
+        }
 
         if (this.myTargetNavPortal != null)
         {
@@ -120,14 +129,21 @@ public class AI_Generic : MonoBehaviour
             return;
         }
 
+        CheckIfReachedTarget();
+    }
+
+    private bool CheckIfReachedTarget()
+    {
         if (navAgent.remainingDistance <= navAgent.stoppingDistance && !navAgent.pathPending)
         {
             this.animator.Play("Idle");
             Task.current.Succeed();
+            return true;
         }
+        return false;
     }
 
-    public void AdvanceToTargetAfterReachingPortal()
+    public void AdvanceToTarget()
     {
         // TODO: Check whether the saved target is on the newly assigned navmap
         this.target = this.savedTarget;

@@ -384,6 +384,10 @@ namespace PolyNav{
 			}
 			return true;
 	*/
+            if (this.map == null)
+            {
+                Debug.LogError($"Didn't find a map on this polynav mesh! ({this.gameObject.name})" );
+            }
 			for (int i = 0; i < map.allPolygons.Length; i++){
 				if (i == 0? !PointInsidePolygon(map.allPolygons[i].points, point) : PointInsidePolygon(map.allPolygons[i].points, point)){
 					return false;
