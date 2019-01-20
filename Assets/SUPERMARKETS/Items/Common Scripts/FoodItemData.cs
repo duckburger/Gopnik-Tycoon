@@ -4,12 +4,31 @@ using UnityEngine;
 using System;
 
 [Serializable]
+[Flags]
+public enum FoodQuality
+{
+    Low = 1,
+    Medium = 2,
+    High = 4
+}
+
+[Serializable]
+public enum FoodType
+{
+    None = 0,
+    General,
+    Fresh,
+    Frozen
+}
+
+
+[Serializable]
 [CreateAssetMenu(menuName = "Gopnik/FoodItem")]
 public class FoodItemData : PickuppableItemData
 {
     [Header("Food item specific")]
     [SerializeField] FoodQuality quality = FoodQuality.Low;
-    [SerializeField] FoodType foodType = FoodType.Regular;
+    [SerializeField] FoodType foodType = FoodType.General;
     [SerializeField] float pricePerUnit = 0;
 
   

@@ -8,6 +8,7 @@ public class MenuControlLayer : MonoBehaviour
     [SerializeField] GameObject slotBuildingMenu;
     bool isAMenuOpen = false;
 
+    [SerializeField] GameObject storeManagementMenu;
   
 
     public void CloseAllMenus()
@@ -40,5 +41,23 @@ public class MenuControlLayer : MonoBehaviour
             this.isAMenuOpen = false;
         }
     }
+
+    public void OpenStoreManagementMenu()
+    {
+        Debug.Log("Opening the store management menu!");
+
+        this.storeManagementMenu?.SetActive(true);
+        ExternalPlayerController.Instance.TurnOffAllPlayerSystems();
+        this.isAMenuOpen = true;
+    }
+
+    public void CloseStoreManagementMenu()
+    {
+        Debug.Log("Closing store management menu!");
+        ExternalPlayerController.Instance.TurnOnAllPlayerSystems();
+        this.storeManagementMenu?.SendMessage("Close", SendMessageOptions.DontRequireReceiver);
+        this.isAMenuOpen = false;
+    }
+
 
 }

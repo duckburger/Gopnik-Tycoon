@@ -7,9 +7,10 @@ using System;
 public class PickuppableItemData : ScriptableObject
 {
     [Header("Generic properties")]
-    [SerializeField] string name;
-    [SerializeField] bool stackable = false;
-
+    public string name;
+    public bool stackable = false;
+    [TextArea(3, 10)]
+    public string description;
 
     public bool Stackable
     {

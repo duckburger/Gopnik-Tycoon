@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1bf66bfa77ab5d44d9de3596bdbaad54, type: 3}
+  m_Name: SmallStoreFoodDatabase
+  m_EditorClassIdentifier: 
+  deliverableItems:
+  - {fileID: 11400000, guid: 9e266b01e4236b94bbaed864ac3acb70, type: 2}
+  - {fileID: 11400000, guid: ef841ab357fd5754bb6b99cf63db6514, type: 2}
+  - {fileID: 11400000, guid: c9f7590df6708bb4793b7aa64646b50f, type: 2}

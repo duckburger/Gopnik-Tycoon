@@ -6,22 +6,6 @@ using TMPro;
 using UnityEngine.UI;
 using UnityEditor;
 
-[Serializable]
-[Flags]
-public enum FoodQuality
-{
-    Low = 1,
-    Medium = 2,
-    High = 4
-}
-
-[Serializable]
-public enum FoodType
-{
-    None = 0,
-    Regular, 
-    Fresh
-}
 
 public class FoodItem 
 {
