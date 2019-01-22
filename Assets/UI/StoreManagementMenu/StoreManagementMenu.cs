@@ -8,7 +8,6 @@ public class StoreManagementMenu : MonoBehaviour
     [SerializeField] Button firstEnabledButton;
 
 
-
     private void Start()
     {
         this.firstEnabledButton?.onClick.Invoke();
