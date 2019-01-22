@@ -1595,3 +1595,75 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5f3409bc0a23a0043a7ea0857ca47f0f, type: 3}
+--- !u!1 &8795772006777648262 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7577912829900813747, guid: 5f3409bc0a23a0043a7ea0857ca47f0f,
+    type: 3}
+  m_PrefabInstance: {fileID: 5587009580920326208}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8795772006777648263 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8795772006777648263, guid: 5f3409bc0a23a0043a7ea0857ca47f0f,
+    type: 3}
+  m_PrefabInstance: {fileID: 5587009580920326208}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8795772006777648262}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b595432f023abe4f870dc6aef12a497, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8795772006777648267
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8795772006777648262}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 100cc780881299b42bbe78d8d2931e23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  trackedEvent: {fileID: 11400000, guid: 9b82dc7436a61a94d9d95ff345ba23d4, type: 2}
+  raiseResponse:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  raisedWithData:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8795772006777648263}
+        m_MethodName: StartTimerForNextDelivery
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 120
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: EventWithData, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  openResponse:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  openWithDataReponse:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: EventWithData, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  closeResponse:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  closeWithDataResponse:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: EventWithData, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null

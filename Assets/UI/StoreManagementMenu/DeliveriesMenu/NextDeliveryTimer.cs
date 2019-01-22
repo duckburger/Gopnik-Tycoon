@@ -7,6 +7,7 @@ public class NextDeliveryTimer : MonoBehaviour
 {
     [SerializeField] UnityEvent onTimerExpired;
     [Space]
+    [Tooltip("In seconds")]
     [SerializeField] TextMeshProUGUI timerText;
 
 
@@ -23,10 +24,10 @@ public class NextDeliveryTimer : MonoBehaviour
 
     public void StartTimerForNextDelivery(float timerAmount)
     {
-        if (this.currentTimer <= 0)
-        {
-            StartCoroutine(StartTimer());
-        }
+        this.currentTimer = timerAmount;
+        StopAllCoroutines();
+        StartCoroutine(StartTimer());
+        
     }
 
     IEnumerator StartTimer()
@@ -34,6 +35,7 @@ public class NextDeliveryTimer : MonoBehaviour
         while (this.currentTimer > 0)
         {
             this.currentTimer--;
+            this.timerText.text = $"Time until next food delivery:\n{this.currentTimer} secs";
             yield return delay;
         }
     }

@@ -3,14 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
+using System;
 
-[System.Serializable]
+[Serializable]
 public class UnityEventInt : UnityEvent<int> { }
 
-[System.Serializable]
+[Serializable]
 public class UnityEventFloat : UnityEvent<float> { }
 
-[System.Serializable]
+[Serializable]
 public class DeliveryFoodCart
 {
     public void AddItemToCart(FoodItemData newItem)
@@ -146,7 +147,7 @@ public class DeliveriesMenu : MonoBehaviour
     {
         if (this.cartItemParent != null && this.cartItemParent.childCount > 0)
         {
-            for (int i = this.cartItemParent.childCount; i >= 0; i--)
+            for (int i = this.cartItemParent.childCount - 1; i >= 0; i--)
             {
                 Destroy(this.cartItemParent.GetChild(i).gameObject);
             }
@@ -220,8 +221,15 @@ public class DeliveriesMenu : MonoBehaviour
         }
         if (this.onCartSubmitted != null && this.onCartSubmittedModal != null)
         {
+            Action newAction = () =>
+            {
+                this.onCartSubmitted.RaiseWithData(currentFoodDeliveryCart.foodItemsInCart);
+                ClearCartList();
+                ClearChoicesList();
+                MenuControlLayer.Instance.CloseStoreManagementMenu();
+            };
             this.onCartSubmittedModal.bodyText = $"Would you like to confirm this order for {currentFoodDeliveryCart.GetItemCount()} items at a value of ${currentFoodDeliveryCart.GetItemCost()}?";
-            GlobalModal.Instance.ShowModal(() => this.onCartSubmitted.RaiseWithData(currentFoodDeliveryCart.foodItemsInCart), null, this.onCartSubmittedModal);
+            GlobalModal.Instance.ShowModal(newAction, null, this.onCartSubmittedModal);
         }
         
     }

@@ -5,11 +5,24 @@ using UnityEngine;
 public class MenuControlLayer : MonoBehaviour
 {
 
+    public static MenuControlLayer Instance;
+
     [SerializeField] GameObject slotBuildingMenu;
     bool isAMenuOpen = false;
 
     [SerializeField] GameObject storeManagementMenu;
-  
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else if (Instance != this)
+        {
+            Destroy(this.gameObject);
+        }
+    }
 
     public void CloseAllMenus()
     {
