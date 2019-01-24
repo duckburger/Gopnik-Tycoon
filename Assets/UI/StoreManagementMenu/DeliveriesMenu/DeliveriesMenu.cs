@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 using System;
+using TMPro;
 
 [Serializable]
 public class UnityEventInt : UnityEvent<int> { }
@@ -56,6 +57,7 @@ public class DeliveriesMenu : MonoBehaviour
     public ModalWindowData onCartSubmittedModal;
     [Space]
     public DeliverableFoodDatabase currentFoodDatabase;
+    public DeliveryFoodCart currentFoodDeliveryCart = new DeliveryFoodCart();
 
     [SerializeField] CanvasGroup choiceMenuCanvasGroup;
     [SerializeField] GameObject deliveryItemPrefab;
@@ -65,7 +67,13 @@ public class DeliveriesMenu : MonoBehaviour
     [SerializeField] GameObject cartItemPrefab;
     [SerializeField] RectTransform cartItemParent;
 
-    public DeliveryFoodCart currentFoodDeliveryCart = new DeliveryFoodCart();
+    [SerializeField] Button backButton;
+    [SerializeField] Button submitButton;
+    [SerializeField] Button cartButton;
+
+    [SerializeField] GameObject unavailableScreen;
+
+    ActiveDeliveries activeDeliveries;
 
     private void Start()
     {
@@ -77,6 +85,8 @@ public class DeliveriesMenu : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
+
+        this.activeDeliveries = this.GetComponent<ActiveDeliveries>();
     }
 
     private void OnEnable()
@@ -86,6 +96,15 @@ public class DeliveriesMenu : MonoBehaviour
 
     public void PopulateAvailableItems()
     {
+        if (this.activeDeliveries?.activeDeliveries.Count > 0)
+        {
+            // We have pending deliveries so don't allow new ones for now
+            this.backButton.interactable = this.submitButton.interactable = this.cartButton.interactable = false;
+            this.unavailableScreen.SetActive(true);
+            return;
+        }
+        this.backButton.interactable = this.submitButton.interactable = this.cartButton.interactable = true;
+        this.unavailableScreen.SetActive(false);
         if (this.currentFoodDatabase == null || this.itemParent == null || this.deliveryItemPrefab == null)
         {
             return;
@@ -101,6 +120,7 @@ public class DeliveriesMenu : MonoBehaviour
             cellController.myDeliveriesMenu = this;
             cellController?.Populate(delFoodItem);
         }
+        UpdateBuyButton();
         SwitchToChoicesMenu();
     }
 
@@ -162,6 +182,7 @@ public class DeliveriesMenu : MonoBehaviour
         this.currentFoodDeliveryCart.AddItemToCart(newItem);
         this.onCartCountUpdated.Invoke(this.currentFoodDeliveryCart.GetItemCount());
         this.onCartValueUpdated.Invoke(this.currentFoodDeliveryCart.GetItemCost());
+        UpdateBuyButton();
     }
 
     public void RemoveItemFromCar(FoodItemData itemToRemove)
@@ -169,10 +190,10 @@ public class DeliveriesMenu : MonoBehaviour
         this.currentFoodDeliveryCart.RemoveItemFromCart(itemToRemove);
         this.onCartCountUpdated.Invoke(this.currentFoodDeliveryCart.GetItemCount());
         this.onCartValueUpdated.Invoke(this.currentFoodDeliveryCart.GetItemCost());
+        UpdateBuyButton();
     }
 
     #endregion
-
 
     #region Switch to Cart
 
@@ -235,4 +256,26 @@ public class DeliveriesMenu : MonoBehaviour
     }
 
     #endregion
+
+
+    void UpdateBuyButton()
+    {
+        if (currentFoodDeliveryCart.GetItemCost() <= 0)
+        {
+            this.submitButton.interactable = false;
+            this.submitButton.GetComponentInChildren<TextMeshProUGUI>().text = "EMPTY CART";
+            return;
+        }
+        if (currentFoodDeliveryCart.GetItemCost() > MoneyController.Instance.MainBalance.value)
+        {
+            // Not enough money to buy this cart turn off the button
+            this.submitButton.interactable = false;
+            this.submitButton.GetComponentInChildren<TextMeshProUGUI>().text = "NO MONEY";
+        }
+        else
+        {
+            this.submitButton.interactable = true;
+            this.submitButton.GetComponentInChildren<TextMeshProUGUI>().text = "SUBMIT";
+        }
+    }
 }

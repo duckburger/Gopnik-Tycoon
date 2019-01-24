@@ -16,8 +16,12 @@ public class FoodContainer : Pickuppable
         {
             return this.containedItem;
         }
+        set
+        {
+            this.containedItem = value;
+        }
     }
-    [SerializeField] protected int foodQuantity; // 3 - little, 6 - medium, 12 - large, 25 - huge(?)
+    public int foodQuantity; // 3 - little, 6 - medium, 12 - large, 25 - huge(?)
 
     public int ProvideFoodStock()
     {
@@ -42,6 +46,29 @@ public class FoodContainer : Pickuppable
         {
             this.stockAmtText.text = this.foodQuantity.ToString();
         }
+    }
+
+    public virtual void Populate(FoodItemData itemToLoad, int amountToLoad)
+    {
+        if (itemToLoad == null)
+        {
+            return;
+        }
+        this.containedItem = itemToLoad;
+        this.foodQuantity = amountToLoad;
+        UpdateStockUI();
+    }
+
+    public virtual void Populate(List<FoodItemData> itemsToLoad)
+    {
+        // Make sure the list passed in is of the same type
+        if (itemsToLoad == null || itemsToLoad.Count <= 0)
+        {
+            return;
+        }
+        this.containedItem = itemsToLoad[0];
+        this.foodQuantity = itemsToLoad.Count;
+        UpdateStockUI();
     }
 
 }

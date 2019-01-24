@@ -9,7 +9,7 @@ public class NextDeliveryTimer : MonoBehaviour
     [Space]
     [Tooltip("In seconds")]
     [SerializeField] TextMeshProUGUI timerText;
-
+    [SerializeField] CanvasGroup cg;
 
     float currentTimer = 0;
     WaitForSeconds delay = new WaitForSeconds(1f);
@@ -24,10 +24,13 @@ public class NextDeliveryTimer : MonoBehaviour
 
     public void StartTimerForNextDelivery(float timerAmount)
     {
+        if (this.cg != null)
+        {
+            LeanTween.alphaCanvas(this.cg, 1, 0.23f);
+        }
         this.currentTimer = timerAmount;
         StopAllCoroutines();
         StartCoroutine(StartTimer());
-        
     }
 
     IEnumerator StartTimer()
@@ -37,6 +40,11 @@ public class NextDeliveryTimer : MonoBehaviour
             this.currentTimer--;
             this.timerText.text = $"Time until next food delivery:\n{this.currentTimer} secs";
             yield return delay;
+        }
+        onTimerExpired.Invoke();
+        if (this.cg != null)
+        {
+            LeanTween.alphaCanvas(this.cg, 0, 0.17f);
         }
     }
 }

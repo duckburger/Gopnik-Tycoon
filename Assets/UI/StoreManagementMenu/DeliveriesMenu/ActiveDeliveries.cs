@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class ActiveDeliveries : MonoBehaviour
 {
-    public Dictionary<List<FoodItemData>, int> activeDeliveries = new Dictionary<List<FoodItemData>, int>();
+    public ScriptableEvent deliveryDeployed;
+    [Space]
+    public Dictionary<int, List<FoodItemData>> activeDeliveries = new Dictionary<int, List<FoodItemData>>();
     int lastAddedDelivery = 0;
 
     public void AddActiveDelivery(object cartContents)
@@ -14,17 +16,25 @@ public class ActiveDeliveries : MonoBehaviour
         {
             return;
         }
-        if (!this.activeDeliveries.ContainsKey(list))
+        if (!this.activeDeliveries.ContainsValue(list))
         {
-            this.activeDeliveries[list] = this.lastAddedDelivery + 1;
+            if (this.lastAddedDelivery == 0)
+            {
+                this.activeDeliveries[this.lastAddedDelivery] = list;
+            }
+            else
+            {
+                this.activeDeliveries[this.lastAddedDelivery + 1] = list;
+            }
         }
+            
     }
 
     public void DeployDelivery(int index)
     {
-        if (this.activeDeliveries.ContainsValue(index))
+        if (this.activeDeliveries.ContainsKey(index) && this.deliveryDeployed != null)
         {
-            // Activate the delivery
+            this.deliveryDeployed.RaiseWithData(this.activeDeliveries[index]);
 
         }
     }

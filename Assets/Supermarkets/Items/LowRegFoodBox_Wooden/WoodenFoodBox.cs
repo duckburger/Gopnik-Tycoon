@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class WoodenFoodBox : FoodContainer
 {
-
     [SerializeField] SpriteRenderer foodGraphic;
 
     public Transform ReturnMyTransform()
@@ -39,5 +38,16 @@ public class WoodenFoodBox : FoodContainer
         }
     }
 
+    public override void Populate(FoodItemData itemToLoad, int amountToLoad)
+    {
+        base.Populate(itemToLoad, amountToLoad);
+        UpdateStockUI();
+    }
+
+    public override void Populate(List<FoodItemData> itemsToLoad)
+    {
+        base.Populate(itemsToLoad);
+        UpdateStockUI();
+    }
 
 }
