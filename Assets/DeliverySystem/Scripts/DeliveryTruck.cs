@@ -34,7 +34,7 @@ public class DeliveryTruck : MonoBehaviour
         for (int i = 0; i < uniquesList.Count; i++)
         {
             List<FoodItemData> listOfThisFoodType = new List<FoodItemData>();
-            listOfThisFoodType = uniquesList.FindAll(x => uniquesList[i].name == x.name);
+            listOfThisFoodType = this.deliveryLoad.FindAll(x => uniquesList[i].name == x.name);
             // TODO: Make a way to deploy different types of boxes
             WoodenFoodBox newBox = Instantiate(this.foodBoxPrefab, currentUnloadArea).GetComponent<WoodenFoodBox>();
             Vector2 initialPos = new Vector2(newBox.transform.localPosition.x + Random.Range(-0.35f, 0.35f), newBox.transform.localPosition.y + Random.Range(-0.35f, 0.35f));
