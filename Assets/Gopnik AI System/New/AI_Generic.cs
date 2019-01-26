@@ -145,7 +145,6 @@ public class AI_Generic : MonoBehaviour
 
     public void AdvanceToTarget()
     {
-        // TODO: Check whether the saved target is on the newly assigned navmap
         this.target = this.savedTarget;
         this.savedTarget = Vector2.zero;
         this.myTargetNavPortal = null;
@@ -188,7 +187,7 @@ public class AI_Generic : MonoBehaviour
     void ChooseFullShelfToShopAt()
     {
         // Choosing a product    to buy logic goes here
-        StoreShelf shelfToShop = BuildingTracker.Instance.FindShelfByFoodQuality(myPreferredFoodQuality);
+        StoreShelf shelfToShop = BuildingTracker.Instance.FindShelfByFoodQuality(this.myStats.PreferredFoodQuality);
         if (shelfToShop != null)
         {
             this.myTargetShelf = shelfToShop;

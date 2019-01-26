@@ -11,7 +11,7 @@ public class BuildingTracker : MonoBehaviour
     public List<Building> allShelves = new List<Building>();
     public List<BuildingSlot> allBuildingSlots = new List<BuildingSlot>();
     public List<Building> allCashRegisters = new List<Building>();
-
+    public LayerMask mapRaycastMask;
 
     void Awake()
     {
@@ -45,23 +45,25 @@ public class BuildingTracker : MonoBehaviour
 
     public Vector2 GetRandomNearShelfLocation()
     {
-        float xAdjustment = Random.Range(1.5f, 2.0f);
-        float yAdjustment = Random.Range(-1.5f, -2.0f);
+        float xAdjustment = Random.Range(-2.3f, 2.3f);
+        float yAdjustment = Random.Range(-2f, -1f);
+
+
         Vector2 pos = Vector2.zero;
-        if (this.allShelves.Count <= 0)
+        float choice = Random.Range(-1f, 1f);
+        if (choice > 0 || this.allShelves.Count <= 0) // Choose to walk to a shelf
         {
-            Debug.Log("No shelf to pick from");
+            Debug.Log("No shelf to pick from, picking from slots instead");
             // Choose a random spot inside the store instead
             if (this.allBuildingSlots.Count > 0)
             {
                 int randomSlotIndex = Random.Range(0, this.allBuildingSlots.Count - 1);
                 Vector2 slotPos = this.allBuildingSlots[randomSlotIndex].transform.position;
                 pos = new Vector2(slotPos.x + xAdjustment, slotPos.y + yAdjustment);
-                
                 RaycastHit2D[] hitList = Physics2D.RaycastAll(pos, Vector3.forward, 1000);
                 foreach (RaycastHit2D hit in hitList)
                 {
-                    if (hit.collider.gameObject.GetComponent<PolyNavObstacle>())
+                    if (hit.collider.gameObject.GetComponent<PolyNavObstacle>() || !CheckIfPosInMainLvlMesh(hit.point))
                     {
                         // Recalculate the pos
                         Debug.Log("<color=red>Hit an obstacle</color> while raycsting at the chosen random waypoint. Choosing another one");
@@ -76,7 +78,6 @@ public class BuildingTracker : MonoBehaviour
                 {
                     pos = AdjustWaypointUntilValid(pos);
                 }
-                //Debug.Log("Picked a spot: " + pos);
                 return pos;
             }
             else
@@ -85,14 +86,13 @@ public class BuildingTracker : MonoBehaviour
                 return Vector2.zero;
             }
         }
-
-        int randomShelfIndex = Random.Range(0, this.allShelves.Count - 1);
-        pos = new Vector2(this.allShelves[randomShelfIndex].transform.position.x + xAdjustment, this.allShelves[randomShelfIndex].transform.position.y + yAdjustment);
-
-        RaycastHit2D[] hits = Physics2D.RaycastAll(pos, Vector3.forward, 1000);
-        foreach (RaycastHit2D hit in hits)
+        else if (choice <= 0 && this.allShelves.Count > 0 || this.allShelves.Count > 0)
         {
-            if (hit.collider.gameObject.GetComponent<PolyNav.PolyNavObstacle>())
+            int randomShelfIndex = Random.Range(0, this.allShelves.Count - 1);
+            pos = new Vector2(this.allShelves[randomShelfIndex].transform.position.x + xAdjustment, this.allShelves[randomShelfIndex].transform.position.y + yAdjustment);
+
+            RaycastHit2D hitVar = Physics2D.Raycast(pos, Vector3.forward, 1000, mapRaycastMask.value);
+            if (hitVar && hitVar.collider.gameObject.GetComponent<PolyNav.PolyNavObstacle>())
             {
                 // Recalculate the pos
                 pos = new Vector2(pos.x + xAdjustment, pos.y + yAdjustment);
@@ -113,8 +113,8 @@ public class BuildingTracker : MonoBehaviour
 
     Vector2 AdjustWaypointUntilValid(Vector2 pos)
     {
-        float xAdjustment = Random.Range(1f, 1.5f);
-        float yAdjustment = Random.Range(-1f, -1.5f);
+        float xAdjustment = Random.Range(-1.5f, 1.5f);
+        float yAdjustment = Random.Range(-1.5f, 1.5f);
         Vector2 adjustedPos = new Vector2(pos.x + xAdjustment, pos.y + yAdjustment);
         if (NavmeshPortalManager.Instance.mainNavMap != null && NavmeshPortalManager.Instance.mainNavMap.PointIsValid(adjustedPos))
         {

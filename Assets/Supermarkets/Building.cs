@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Building : MonoBehaviour
 {
+
     public string buildingName;
     public Sprite mainUIImage;
     public int purchasePrice;

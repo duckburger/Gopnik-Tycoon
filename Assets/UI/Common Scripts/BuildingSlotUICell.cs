@@ -43,10 +43,10 @@ public class BuildingSlotUICell : MonoBehaviour
         Building buildingData = buildingToDisplay.GetComponent<Building>();
         ScriptableFloatVar money = this.GetComponent<ScriptableFloatListener>().VarToTrack;
 
-        if (currentSlot.CurrentBuilding == buildingData)
+        if (currentSlot.CurrentBuilding != null && currentSlot.CurrentBuilding.buildingName == buildingData.buildingName)
         {
             // Turn off this slot and set it to current, because this is an already owned building
-            // All the previous buildings should be marked as off as well
+            // TODO: All the previous buildings should be marked as off as well - if that's how the progression will work
             MarkAsCurrent(buildingToDisplay, currentSlot, buildingData, money);
             return;
         }

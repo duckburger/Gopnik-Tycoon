@@ -15,6 +15,14 @@ public class CharacterStats : MonoBehaviour
         }
     }
 
+    public FoodQuality PreferredFoodQuality
+    {
+        get
+        {
+            return this.preferredQuality;
+        }
+    }
+
     private void Start()
     {
         this.itemsWanted = 1/*UnityEngine.Random.Range(1, 5)*/;

@@ -32,7 +32,7 @@ public class Shelf : MonoBehaviour
             {
                 continue;
             }
-            if (this.myShelfSlots[i].MyItem.Quality == qualityToCheck)
+            if (this.myShelfSlots[i].MyItem.Quality.HasFlag(qualityToCheck))
             {
                 return true;
             }

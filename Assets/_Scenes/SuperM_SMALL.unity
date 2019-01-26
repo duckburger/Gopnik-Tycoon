@@ -740,6 +740,10 @@ PrefabInstance:
       propertyPath: decelerationRate
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1760339592, guid: daf8e30f0749de74fbded1cc29d98602, type: 3}
+      propertyPath: preferredQuality
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: daf8e30f0749de74fbded1cc29d98602, type: 3}
 --- !u!1 &1425904158
@@ -1048,80 +1052,12 @@ PrefabInstance:
       propertyPath: scripts.Array.data[0]
       value: 
       objectReference: {fileID: 4900000, guid: c73f0d3ffe051ff4b98e21ccb02732a6, type: 3}
+    - target: {fileID: 1760339592, guid: daf8e30f0749de74fbded1cc29d98602, type: 3}
+      propertyPath: preferredQuality
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: daf8e30f0749de74fbded1cc29d98602, type: 3}
---- !u!1 &3265715601450892119 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3265715601450892119, guid: 912b8772bbdd634478caa9682df24f60,
-    type: 3}
-  m_PrefabInstance: {fileID: 4789485251342465116}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &3265715601450892120 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 244021722984824755, guid: 912b8772bbdd634478caa9682df24f60,
-    type: 3}
-  m_PrefabInstance: {fileID: 4789485251342465116}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3265715601450892119}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1071a14c664e3214380f112cc86f5f12, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &3265715601450892121
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3265715601450892119}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 100cc780881299b42bbe78d8d2931e23, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  trackedEvent: {fileID: 11400000, guid: 1d93f9807d4f95e49bc7a9dfd66981aa, type: 2}
-  raiseResponse:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  raisedWithData:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 3265715601450892120}
-        m_MethodName: DeployDeliveryTruck
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_TypeName: EventWithData, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-      PublicKeyToken=null
-  openResponse:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  openWithDataReponse:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: EventWithData, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-      PublicKeyToken=null
-  closeResponse:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  closeWithDataResponse:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: EventWithData, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-      PublicKeyToken=null
 --- !u!1001 &4789485251342465116
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1412,6 +1348,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_isInputParsingRequired
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5587009580335406344, guid: 5f3409bc0a23a0043a7ea0857ca47f0f,
+        type: 3}
+      propertyPath: mapRaycastMask.m_Bits
+      value: 2147485239
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5f3409bc0a23a0043a7ea0857ca47f0f, type: 3}

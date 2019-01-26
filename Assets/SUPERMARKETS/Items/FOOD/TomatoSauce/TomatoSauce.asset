@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Tomato Sauce
   stackable: 0
-  quality: 1
+  description: 
+  quality: 4
   foodType: 1
   pricePerUnit: 15
   onShelfAppearances:

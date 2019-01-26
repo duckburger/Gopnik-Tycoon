@@ -8,7 +8,6 @@ using UnityEngine.UI;
 
 public class StoreShelf : Building
 {
-    
     public TextMeshProUGUI stockAmtText;
     public Slider stockAmtSlider;
 
