@@ -30,14 +30,15 @@ public class MenuControlLayer : MonoBehaviour
         // Add other menus later
     }
 
-    public void OpenSlotBuildingMenu(BuildingSlot slotToShow)
+    public void OpenSlotBuildingMenu(object slotToShow)
     {
+        BuildingSlotRow slotRowSent = slotToShow as BuildingSlotRow;
         if (this.slotBuildingMenu != null)
         {
             Debug.Log("Opening building slot menu!");
 
             this.slotBuildingMenu.SetActive(true);
-            this.slotBuildingMenu.SendMessage("Populate", slotToShow);
+            this.slotBuildingMenu.SendMessage("Populate", slotRowSent);
             ExternalPlayerController.Instance.TurnOffAllPlayerSystems();
             this.isAMenuOpen = true;
         }

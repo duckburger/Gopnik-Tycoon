@@ -19,6 +19,7 @@ public class StoreShelf : Building
 
     protected FoodItemData lastStockedItem = null;
 
+    public bool registerInTracker = true;
 
     public virtual void InitializeStockAmount()
     {

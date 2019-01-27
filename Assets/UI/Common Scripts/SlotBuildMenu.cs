@@ -29,9 +29,9 @@ public class SlotBuildMenu : Menu
         this.titleText.text = slotToShow.name;
         foreach (GameObject building in slotToShow.AvailableBuildings)
         {
-            BuildingSlotUICell newCell = Instantiate(this.itemPrefab, this.itemParent).GetComponent<BuildingSlotUICell>();
-            newCell.menuController = this;
-            newCell.Populate(building);
+            //BuildingSlotUICell newCell = Instantiate(this.itemPrefab, this.itemParent).GetComponent<BuildingSlotUICell>();
+            //newCell.menuController = this;
+            //newCell.Populate(building);
         }
     }
 

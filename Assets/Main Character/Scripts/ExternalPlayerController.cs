@@ -8,6 +8,15 @@ public class ExternalPlayerController : MonoBehaviour
 
     public static ExternalPlayerController Instance;
 
+    [SerializeField] Animator playerAnimator;
+    public Animator PlayerAnimator
+    {
+        get
+        {
+            return this.playerAnimator;
+        }
+    }
+
     [SerializeField] MCharAttack playerAttackController;
     public MCharAttack PlayerAttackController
     {
@@ -37,6 +46,22 @@ public class ExternalPlayerController : MonoBehaviour
 
     GameObject playerGO;
 
+    public GameObject PlayerGO
+    {
+        get
+        {
+            return this.playerGO;
+        }
+    }
+
+    public Transform PlayerTransform
+    {
+        get
+        {
+            return this.playerGO.transform;
+        }
+    }
+
     private void Awake()
     {
         if (Instance == null)
@@ -54,6 +79,7 @@ public class ExternalPlayerController : MonoBehaviour
             this.playerAttackController = this.playerGO.GetComponent<MCharAttack>();
             this.playerWalkController = this.playerGO.GetComponent<MCharWalk>();
             this.playerCarryController = this.playerGO.GetComponent<MCharCarry>();
+            this.playerAnimator = this.PlayerGO.GetComponent<Animator>();
         }
     }
 
@@ -62,6 +88,8 @@ public class ExternalPlayerController : MonoBehaviour
         this.playerAttackController.enabled = false;
         this.playerWalkController.enabled = false;
         this.playerCarryController.enabled = false;
+        this.playerAnimator.Play("Idle");
+
     }
 
     public void TurnOnAllPlayerSystems()
