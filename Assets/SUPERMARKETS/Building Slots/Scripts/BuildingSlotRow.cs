@@ -6,19 +6,28 @@ public class BuildingSlotRow : MonoBehaviour
 {
     [SerializeField] ScriptableEvent newBuildMenuOpenedEvent;
     [Space(10)]
-    [SerializeField] List<BuildingCategory> buildingCategories = new List<BuildingCategory>();
     [SerializeField] List<ModularBuildingSlot> allSlots = new List<ModularBuildingSlot>();
     [Space(10)]
     GameObject spawnedArrows = null;
 
+    public List<BuildingCategory> buildingCategories = new List<BuildingCategory>();
     public ModularBuildingSlot currentHighlightedSlot = null;
+
+    public bool registerWithTracker = true;
 
     #region StartUp
 
     // Start is called before the first frame update
     void Start()
     {
-        GatherSlots();
+        if (allSlots.Count <= 0)
+        {
+            GatherSlots();      
+        }
+        if (this.registerWithTracker)
+        {
+            BuildingTracker.Instance.AddBuildingSlotToTracker(this);
+        }
     }
 
     void GatherSlots()

@@ -42,12 +42,12 @@ public class BuildingSlot : MonoBehaviour
         }
     }
 
-    [SerializeField] ScriptableBuildingMenuEvent buildingMenuEvent;
+    [SerializeField] ScriptableEvent buildingMenuEvent;
 
 
     private void Start()
     {
-        BuildingTracker.Instance.AddBuildingSlotToTracker(this);
+        //BuildingTracker.Instance.AddBuildingSlotToTracker(this);
     }
 
     // This will take over the screen
@@ -57,7 +57,7 @@ public class BuildingSlot : MonoBehaviour
         if (this.buildingMenuEvent != null)
         {
             Debug.Log("Showing the building menu on command!");
-            this.buildingMenuEvent.Open(this);
+            this.buildingMenuEvent.RaiseWithData(this);
         }
     }
 

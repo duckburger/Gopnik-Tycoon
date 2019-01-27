@@ -9,7 +9,7 @@ public class BuildingTracker : MonoBehaviour
     public static BuildingTracker Instance;
 
     public List<Building> allShelves = new List<Building>();
-    public List<BuildingSlot> allBuildingSlots = new List<BuildingSlot>();
+    public List<BuildingSlotRow> allBuildingSlots = new List<BuildingSlotRow>();
     public List<Building> allCashRegisters = new List<Building>();
     public LayerMask mapRaycastMask;
 
@@ -25,9 +25,7 @@ public class BuildingTracker : MonoBehaviour
         }
     }
 
-
-
-    public void AddBuildingSlotToTracker(BuildingSlot newSlot)
+    public void AddBuildingSlotToTracker(BuildingSlotRow newSlot)
     {
         if (!this.allBuildingSlots.Contains(newSlot))
         {

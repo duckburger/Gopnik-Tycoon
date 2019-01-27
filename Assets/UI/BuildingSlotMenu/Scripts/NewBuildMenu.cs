@@ -38,17 +38,17 @@ public class NewBuildMenu : MonoBehaviour
         this.selectedRow = rowOfSlots;
         AnimatePanels();
         Transform firstTab = null;
-        for(int i = 0; i < this.buildingCategories.Count; i++)
+        for(int i = 0; i < this.selectedRow.buildingCategories.Count; i++)
         {
             BuildMenuTab newTab = Instantiate(this.tabPrefab, this.tabParent).GetComponent<BuildMenuTab>();
             if (i == 0)
             {
                 firstTab = newTab.transform;
             }
-            newTab.tabBackground.color = this.buildingCategories[i].categoryColor;
-            newTab.mainAreaBackground.color = this.buildingCategories[i].categoryColor;
-            newTab.tabTitle.text = this.buildingCategories[i].categoryName;
-            SpawnCellsForCategory(this.buildingCategories[i], newTab);
+            newTab.tabBackground.color = this.selectedRow.buildingCategories[i].categoryColor;
+            newTab.mainAreaBackground.color = this.selectedRow.buildingCategories[i].categoryColor;
+            newTab.tabTitle.text = this.selectedRow.buildingCategories[i].categoryName;
+            SpawnCellsForCategory(this.selectedRow.buildingCategories[i], newTab);
         }
         firstTab.SetAsLastSibling();
     }
@@ -141,7 +141,11 @@ public class NewBuildMenu : MonoBehaviour
             this.spawnedBuildingSilhouette = null;
             this.spawnedBuildingSilhouette = Instantiate(newBuilding.gameObject, this.selectedRow.currentHighlightedSlot.transform.position, Quaternion.identity);
         }
-        this.spawnedBuildingSilhouette.GetComponent<StoreShelf>().registerInTracker = false;
+        StoreShelf spawnedShelf = this.spawnedBuildingSilhouette.GetComponent<StoreShelf>();
+        if (spawnedShelf != null)
+        {
+            spawnedShelf.registerInTracker = false;
+        }
         Sprite silhouetteSprite = this.spawnedBuildingSilhouette?.GetComponent<SpriteRenderer>().sprite;
 
         if (this.spawnedArrows == null)
@@ -177,7 +181,11 @@ public class NewBuildMenu : MonoBehaviour
     {
         if (this.spawnedBuildingSilhouette != null)
         {
-            this.spawnedBuildingSilhouette.GetComponent<StoreShelf>().registerInTracker = true;
+            StoreShelf spawnedShelf = this.spawnedBuildingSilhouette.GetComponent<StoreShelf>();
+            if (spawnedShelf != null)
+            {
+                spawnedShelf.registerInTracker = true;
+            }
             this.spawnedBuildingSilhouette.SendMessage("RegisterInTracker", SendMessageOptions.DontRequireReceiver);
             ModularBuildingSlot slotToInstallTo = this.selectedRow.currentHighlightedSlot;
             this.spawnedBuildingSilhouette.transform.parent = slotToInstallTo.transform;

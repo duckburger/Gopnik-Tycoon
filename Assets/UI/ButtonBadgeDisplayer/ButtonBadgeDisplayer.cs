@@ -13,7 +13,7 @@ public class ButtonBadgeDisplayer : MonoBehaviour
 
     [SerializeField] UnityEvent actionResponder;
     [SerializeField] bool toggleAction;
-
+    [SerializeField] bool useKeyAsText = true;
     [SerializeField] List<MonoBehaviour> triggerItemList = new List<MonoBehaviour>();
     
     bool IsTriggeredByItemType(Type type)
@@ -121,7 +121,10 @@ public class ButtonBadgeDisplayer : MonoBehaviour
     {
         if (this.buttonBadge != null && !this.buttonBadge.activeSelf)
         {
-            this.buttonText.text = this.actionKey.ToString();
+            if (this.useKeyAsText)
+            {
+                this.buttonText.text = this.actionKey.ToString();
+            }
             this.buttonBadge.SetActive(true);
             this.isActive = true;
         }

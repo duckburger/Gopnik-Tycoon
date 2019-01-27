@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea9bc9a0751a5fb42acda3075695aa2f, type: 3}
+  m_Name: CashRegistersCategory
+  m_EditorClassIdentifier: 
+  categoryName: Cash Registers
+  buildingsInMyCategory:
+  - {fileID: 2731493428222191803, guid: e9b968424644d624a8fad74825a8acf2, type: 3}
+  categoryColor: {r: 0.28627452, g: 0.49019608, b: 0.4745098, a: 1}

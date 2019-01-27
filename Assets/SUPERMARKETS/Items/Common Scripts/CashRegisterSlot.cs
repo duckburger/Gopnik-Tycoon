@@ -14,7 +14,7 @@ public class CashRegisterSlot : MonoBehaviour
 
     List<Transform> queueSlots = new List<Transform>();
 
-    BuildingSlot myBuildingSlot;
+    BuildingSlotRow myBuildingSlot;
     public int CurrentPeopleInQueue
     {
         get
@@ -26,7 +26,7 @@ public class CashRegisterSlot : MonoBehaviour
 
     private void Start()
     {
-        this.myBuildingSlot = this.GetComponent<BuildingSlot>();
+        this.myBuildingSlot = this.GetComponent<BuildingSlotRow> ();
         GenerateAllAvailableQueueSlots();
     }
 
@@ -85,7 +85,7 @@ public class CashRegisterSlot : MonoBehaviour
 
     public Vector2 ProvideQueueSpot(GameObject personAsking)
     {
-        if (this.myBuildingSlot.CurrentBuilding == null)
+        if (this.myBuildingSlot.currentHighlightedSlot.CurrentBuilding == null)
         {
             Debug.Log("No cash register found in this slot");
             return Vector2.zero;
@@ -143,7 +143,7 @@ public class CashRegisterSlot : MonoBehaviour
             return null;
         }
 
-        CashRegister register = this.myBuildingSlot.CurrentBuilding.GetComponent<CashRegister>();
+        CashRegister register = this.myBuildingSlot.currentHighlightedSlot.CurrentBuilding.GetComponent<CashRegister>();
         return register;
     }
 }

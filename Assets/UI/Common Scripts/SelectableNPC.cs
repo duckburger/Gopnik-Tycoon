@@ -11,8 +11,8 @@ public class SelectableNPC : SelectableObject
         return SelectableType.NPC;
     }
 
-    private void OnMouseDown()
-    {
-        SelectionController.Instance.SelectedObj = this;
-    }
+    //private void OnMouseDown()
+    //{
+    //    SelectionController.Instance.SelectedObj = this;
+    //}
 }
