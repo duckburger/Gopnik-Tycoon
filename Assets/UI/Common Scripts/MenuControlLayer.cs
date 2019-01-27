@@ -8,9 +8,16 @@ public class MenuControlLayer : MonoBehaviour
     public static MenuControlLayer Instance;
 
     [SerializeField] GameObject slotBuildingMenu;
-    bool isAMenuOpen = false;
-
     [SerializeField] GameObject storeManagementMenu;
+    bool isAMenuOpen = false;
+    public bool IsAMenuOpen
+    {
+        get
+        {
+            return this.isAMenuOpen;
+        }
+    }
+
 
     private void Awake()
     {
@@ -32,6 +39,10 @@ public class MenuControlLayer : MonoBehaviour
 
     public void OpenSlotBuildingMenu(object slotToShow)
     {
+        if (isAMenuOpen)
+        {
+            return;
+        }
         BuildingSlotRow slotRowSent = slotToShow as BuildingSlotRow;
         if (this.slotBuildingMenu != null)
         {
@@ -58,8 +69,11 @@ public class MenuControlLayer : MonoBehaviour
 
     public void OpenStoreManagementMenu()
     {
+        if (isAMenuOpen)
+        {
+            return;
+        }
         Debug.Log("Opening the store management menu!");
-
         this.storeManagementMenu?.SetActive(true);
         ExternalPlayerController.Instance.TurnOffAllPlayerSystems();
         this.isAMenuOpen = true;

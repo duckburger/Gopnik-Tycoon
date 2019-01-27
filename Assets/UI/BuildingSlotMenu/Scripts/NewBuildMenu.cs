@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class NewBuildMenu : MonoBehaviour
 {
-
     [SerializeField] List<BuildingCategory> buildingCategories = new List<BuildingCategory>();
     [Header("PANELS")]
     [SerializeField] RectTransform topPanel;
@@ -15,14 +14,22 @@ public class NewBuildMenu : MonoBehaviour
     [Space]
     [SerializeField] GameObject buildingCellPrefab;
     [SerializeField] GameObject arrowsPrefab;
-    GameObject spawnedArrows = null;    
 
+    GameObject spawnedArrows = null;
+    BuildingArrows spawnedArrowsScript = null;
     BuildingSlotRow selectedRow = null;
     BuildingMenuCell selectedCell = null;
     Building selectedBuilding = null;
     GameObject spawnedBuildingSilhouette = null;
     Vector2 topPanelOrigPos;
     Vector2 bottomPanelOrigPos;
+
+    Camera mainCam = null;
+
+    private void Awake()
+    {
+        this.mainCam = Camera.main;
+    }
 
     #region Population
 
@@ -98,6 +105,7 @@ public class NewBuildMenu : MonoBehaviour
                 {
                     Destroy(this.spawnedArrows);
                 }
+                CameraController.Instance.ReturnCameraToPlayer();
                 this.gameObject.SetActive(false);
             });
     }
@@ -134,21 +142,33 @@ public class NewBuildMenu : MonoBehaviour
             this.spawnedBuildingSilhouette = Instantiate(newBuilding.gameObject, this.selectedRow.currentHighlightedSlot.transform.position, Quaternion.identity);
         }
         this.spawnedBuildingSilhouette.GetComponent<StoreShelf>().registerInTracker = false;
-        BuildingArrows arrows;
         Sprite silhouetteSprite = this.spawnedBuildingSilhouette?.GetComponent<SpriteRenderer>().sprite;
-        
+
         if (this.spawnedArrows == null)
         {
-            this.spawnedArrows = Instantiate(this.arrowsPrefab, Camera.main.WorldToScreenPoint(this.spawnedBuildingSilhouette.transform.position), Quaternion.identity);
-            arrows = this.spawnedArrows.GetComponent<BuildingArrows>();
-            arrows.container.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, silhouetteSprite.rect.width * 2);
+            this.spawnedArrows = Instantiate(this.arrowsPrefab);
+            this.spawnedArrowsScript = this.spawnedArrows.GetComponent<BuildingArrows>();
+            this.spawnedArrowsScript.target = this.spawnedBuildingSilhouette.transform;
+            this.spawnedArrowsScript.container.transform.position = this.mainCam.WorldToScreenPoint(spawnedBuildingSilhouette.transform.position);
+            this.spawnedArrowsScript.container.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, silhouetteSprite.rect.width * 3 + 88);
         }
         else
         {
-            arrows = this.spawnedArrows.GetComponent<BuildingArrows>();
-            this.spawnedArrows.transform.position = Camera.main.WorldToScreenPoint(this.spawnedBuildingSilhouette.transform.position);
-            arrows.container.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, silhouetteSprite.rect.width * 2);
+            this.spawnedArrowsScript = this.spawnedArrows.GetComponent<BuildingArrows>();
+            this.spawnedArrowsScript.target = this.spawnedBuildingSilhouette.transform;
+            this.spawnedArrows.transform.position = this.mainCam.WorldToScreenPoint(this.spawnedBuildingSilhouette.transform.position);
+            this.spawnedArrowsScript.container.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, silhouetteSprite.rect.width * 3 + 88);
         }
+        if (this.selectedRow.GetSlotToRightOfSelected() == null)
+        {
+            this.spawnedArrowsScript.rightArrow.gameObject.SetActive(false);
+        }
+        if (this.selectedRow.GetSlotToLeftOfSelected() == null)
+        {
+            this.spawnedArrowsScript.leftArrow.gameObject.SetActive(false);
+        }
+        CameraController.Instance.SetFollowObject(this.spawnedBuildingSilhouette.transform);
+
     }
 
     #endregion
@@ -157,7 +177,90 @@ public class NewBuildMenu : MonoBehaviour
 
     public void BuildSelectedBuilding()
     {
+        if (this.spawnedBuildingSilhouette != null)
+        {
+            this.spawnedBuildingSilhouette.GetComponent<StoreShelf>().registerInTracker = true;
+            this.spawnedBuildingSilhouette.SendMessage("RegisterInTracker", SendMessageOptions.DontRequireReceiver);
+            ModularBuildingSlot slotToInstallTo = this.selectedRow.currentHighlightedSlot;
+            this.spawnedBuildingSilhouette.transform.parent = slotToInstallTo.transform;
+            slotToInstallTo.CurrentBuilding = this.spawnedBuildingSilhouette.GetComponent<Building>();
+            this.spawnedBuildingSilhouette = null;
+            MenuControlLayer.Instance.CloseSlotBuildingMenu();
+        }
+    }
 
+    #endregion
+
+    #region Arrow Functions
+
+    public void MoveSilhouetteRight()
+    {
+        if (this.spawnedBuildingSilhouette == null || this.selectedRow == null)
+        {
+            return;
+        }
+        if (this.selectedRow.GetSlotToRightOfSelected() == null)
+        {
+            return;
+        }
+        this.spawnedBuildingSilhouette.transform.position = this.selectedRow.GetSlotToRightOfSelected().transform.position;
+        if (this.spawnedArrowsScript != null)
+        {
+            this.spawnedArrowsScript.container.transform.position = this.mainCam.WorldToScreenPoint(this.spawnedBuildingSilhouette.transform.position);
+            this.selectedRow.MarkSlotAsHighlighted(this.selectedRow.GetSlotToRightOfSelected());        
+        }
+        if (this.selectedRow.GetSlotToRightOfSelected() == null)
+        {
+            this.spawnedArrowsScript.rightArrow.gameObject.SetActive(false);
+        }
+        else
+        {
+            this.spawnedArrowsScript.rightArrow.gameObject.SetActive(true);
+        }
+        if (this.selectedRow.GetSlotToLeftOfSelected() == null)
+        {
+            this.spawnedArrowsScript.leftArrow.gameObject.SetActive(false);
+        }
+        else
+        {
+            this.spawnedArrowsScript.leftArrow.gameObject.SetActive(true);
+        }
+    }
+
+    public void MoveSilhouetteLeft()
+    {
+        if (this.spawnedBuildingSilhouette == null || this.selectedRow == null)
+        {
+            return;
+        }
+        if (this.selectedRow.GetSlotToLeftOfSelected() == null)
+        {
+            return;
+        }
+        this.spawnedBuildingSilhouette.transform.position = this.selectedRow.GetSlotToLeftOfSelected().transform.position;
+        
+        if (this.spawnedArrowsScript != null)
+        {
+            this.spawnedArrowsScript.container.transform.position = this.mainCam.WorldToScreenPoint(this.spawnedBuildingSilhouette.transform.position);
+            this.selectedRow.MarkSlotAsHighlighted(this.selectedRow.GetSlotToLeftOfSelected());
+            
+        }
+        if (this.selectedRow.GetSlotToLeftOfSelected() == null)
+        {
+            this.spawnedArrowsScript.leftArrow.gameObject.SetActive(false);
+        }
+        else
+        {
+            this.spawnedArrowsScript.leftArrow.gameObject.SetActive(true);
+        }
+        if (this.selectedRow.GetSlotToRightOfSelected() == null)
+        {
+            this.spawnedArrowsScript.rightArrow.gameObject.SetActive(false);
+        }
+        else
+        {
+            this.spawnedArrowsScript.rightArrow.gameObject.SetActive(true);
+        }
     }
 
     #endregion

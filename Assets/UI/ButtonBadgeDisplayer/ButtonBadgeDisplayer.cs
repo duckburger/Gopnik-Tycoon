@@ -48,6 +48,10 @@ public class ButtonBadgeDisplayer : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (MenuControlLayer.Instance != null && MenuControlLayer.Instance.IsAMenuOpen)
+        {
+            return;
+        }
         if (this.triggerItemList != null && this.triggerItemList.Count > 0 )
         {
             if (ExternalPlayerController.Instance.PlayerCarryController.CurrentItem == null)
@@ -75,7 +79,10 @@ public class ButtonBadgeDisplayer : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-
+        if (MenuControlLayer.Instance != null && MenuControlLayer.Instance.IsAMenuOpen)
+        {
+            return;
+        }
         if (this.triggerItemList == null || this.triggerItemList.Count <= 0 || ExternalPlayerController.Instance.PlayerCarryController.CurrentItem == null)
         {
             return;

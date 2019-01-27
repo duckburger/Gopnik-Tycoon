@@ -107,10 +107,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e01c754c039940e4cb46c96d76cf58ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  newBuildMenuOpenedEvent: {fileID: 0}
-  buildingCategories: []
+  newBuildMenuOpenedEvent: {fileID: 11400000, guid: 2d76716828291334fa8bcd0bb6b23c56,
+    type: 2}
+  buildingCategories:
+  - {fileID: 11400000, guid: b50ca5a45aa665d499a7952e72939ca1, type: 2}
   allSlots: []
-  movementArrowsPrefab: {fileID: 0}
   currentHighlightedSlot: {fileID: 0}
 --- !u!1001 &347235085833631514
 PrefabInstance:
