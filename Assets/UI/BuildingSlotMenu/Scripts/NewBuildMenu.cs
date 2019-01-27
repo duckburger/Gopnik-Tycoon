@@ -14,6 +14,7 @@ public class NewBuildMenu : MonoBehaviour
     [Space]
     [SerializeField] GameObject buildingCellPrefab;
     [SerializeField] GameObject arrowsPrefab;
+    [SerializeField] GameObject sellButtonPrefab;
 
     GameObject spawnedArrows = null;
     BuildingArrows spawnedArrowsScript = null;
@@ -105,8 +106,8 @@ public class NewBuildMenu : MonoBehaviour
                 {
                     Destroy(this.spawnedArrows);
                 }
-                CameraController.Instance.ReturnCameraToPlayer();
                 this.gameObject.SetActive(false);
+                CameraController.Instance.ReturnCameraToPlayer();
             });
     }
 

@@ -14,7 +14,7 @@ public class BuildingSlotRow : MonoBehaviour
     public ModularBuildingSlot currentHighlightedSlot = null;
 
     public bool registerWithTracker = true;
-
+    public bool allSlotsOccupied = false;
     #region StartUp
 
     // Start is called before the first frame update
@@ -61,30 +61,53 @@ public class BuildingSlotRow : MonoBehaviour
     public void ShowBuildingMode()
     {
         ModularBuildingSlot closestSlotToPlayer = FindSlotClosestToPlayer();
-        closestSlotToPlayer.DisplaySelected();
-        this.currentHighlightedSlot = closestSlotToPlayer;
-        if (this.newBuildMenuOpenedEvent != null)
+        if (closestSlotToPlayer != null) // All slots are occupied, search for the closest one
         {
-            this.newBuildMenuOpenedEvent.RaiseWithData(this);
+            closestSlotToPlayer.DisplaySelected();
+            this.currentHighlightedSlot = closestSlotToPlayer;
+            if (this.newBuildMenuOpenedEvent != null)
+            {
+                this.allSlotsOccupied = false;
+                this.newBuildMenuOpenedEvent.RaiseWithData(this);
+            }
         }
-        
+        else
+        {
+            closestSlotToPlayer = FindSlotClosestToPlayer(false);
+            if (this.newBuildMenuOpenedEvent != null)
+            {
+                this.allSlotsOccupied = true;
+                this.newBuildMenuOpenedEvent.RaiseWithData(this);
+            }
+        }
+            
     }
 
-    ModularBuildingSlot FindSlotClosestToPlayer()
+    ModularBuildingSlot FindSlotClosestToPlayer(bool restrictToEmpty = true)
     {
         ModularBuildingSlot closestSlot = null;
         float shortestDistance = Mathf.Infinity;
         for (int i = 0; i < this.allSlots.Count; i++)
         {
             float dist = Vector2.Distance(ExternalPlayerController.Instance.PlayerTransform.position, this.allSlots[i].transform.position);
-            if (dist < shortestDistance && this.allSlots[i].CurrentBuilding == null)
+            if (dist < shortestDistance && restrictToEmpty && this.allSlots[i].CurrentBuilding == null)
+            {
+                closestSlot = this.allSlots[i];
+                shortestDistance = dist;
+            }
+            else if (dist < shortestDistance && !restrictToEmpty)
             {
                 closestSlot = this.allSlots[i];
                 shortestDistance = dist;
             }
         }
+        if (closestSlot == null)
+        {
+            // All slots are currently occupied, just open the build menu in deletion mode
+        }
         return closestSlot;
     }
+
 
     #region Providing Slots to Menu
 

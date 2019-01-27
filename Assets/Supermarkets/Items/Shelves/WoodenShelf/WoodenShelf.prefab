@@ -913,7 +913,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shapeType: 0
   extraOffset: 0
-  invertPolygon: 1
+  invertPolygon: 0
 --- !u!60 &1785681219463793864
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -1206,6 +1206,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   toggleAction: 0
+  useKeyAsText: 1
   triggerItemList:
   - {fileID: 5234229865471731920, guid: f6c22e4c0ed19b641807e53f737bef83, type: 3}
 --- !u!114 &3655797839458967591
