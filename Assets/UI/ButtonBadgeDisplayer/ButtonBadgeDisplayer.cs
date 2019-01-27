@@ -50,6 +50,7 @@ public class ButtonBadgeDisplayer : MonoBehaviour
     {
         if (MenuControlLayer.Instance != null && MenuControlLayer.Instance.IsAMenuOpen)
         {
+            HideButtonBadge();
             return;
         }
         if (this.triggerItemList != null && this.triggerItemList.Count > 0 )
@@ -81,6 +82,7 @@ public class ButtonBadgeDisplayer : MonoBehaviour
     {
         if (MenuControlLayer.Instance != null && MenuControlLayer.Instance.IsAMenuOpen)
         {
+            HideButtonBadge();
             return;
         }
         if (this.triggerItemList == null || this.triggerItemList.Count <= 0 || ExternalPlayerController.Instance.PlayerCarryController.CurrentItem == null)

@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class Building : MonoBehaviour
 {
-
     public string buildingName;
     public Sprite mainUIImage;
     public int purchasePrice;
+
+    public int slotsRequired = 1;
 
     public List<GameObject> listOfNearbyChars = new List<GameObject>();
 

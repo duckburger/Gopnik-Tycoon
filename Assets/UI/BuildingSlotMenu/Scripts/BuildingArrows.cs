@@ -17,7 +17,7 @@ public class BuildingArrows : MonoBehaviour
         this.mainCam = Camera.main;
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
         if (this.target != null && this.mainCam != null)
         {

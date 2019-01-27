@@ -149,14 +149,12 @@ public class NewBuildMenu : MonoBehaviour
             this.spawnedArrows = Instantiate(this.arrowsPrefab);
             this.spawnedArrowsScript = this.spawnedArrows.GetComponent<BuildingArrows>();
             this.spawnedArrowsScript.target = this.spawnedBuildingSilhouette.transform;
-            this.spawnedArrowsScript.container.transform.position = this.mainCam.WorldToScreenPoint(spawnedBuildingSilhouette.transform.position);
             this.spawnedArrowsScript.container.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, silhouetteSprite.rect.width * 3 + 88);
         }
         else
         {
             this.spawnedArrowsScript = this.spawnedArrows.GetComponent<BuildingArrows>();
             this.spawnedArrowsScript.target = this.spawnedBuildingSilhouette.transform;
-            this.spawnedArrows.transform.position = this.mainCam.WorldToScreenPoint(this.spawnedBuildingSilhouette.transform.position);
             this.spawnedArrowsScript.container.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, silhouetteSprite.rect.width * 3 + 88);
         }
         if (this.selectedRow.GetSlotToRightOfSelected() == null)
