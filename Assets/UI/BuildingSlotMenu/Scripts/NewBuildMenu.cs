@@ -25,6 +25,8 @@ public class NewBuildMenu : MonoBehaviour
     Vector2 topPanelOrigPos;
     Vector2 bottomPanelOrigPos;
 
+
+    List<GameObject> spawnedSellButtons = new List<GameObject>();
     Camera mainCam = null;
 
     private void Awake()
@@ -52,6 +54,7 @@ public class NewBuildMenu : MonoBehaviour
             SpawnCellsForCategory(this.selectedRow.buildingCategories[i], newTab);
         }
         firstTab.SetAsLastSibling();
+        SpawnSellButtons();
     }
 
     void AnimatePanels()
@@ -62,6 +65,35 @@ public class NewBuildMenu : MonoBehaviour
         this.bottomPanel.anchoredPosition = new Vector2(this.bottomPanel.anchoredPosition.x, this.bottomPanel.anchoredPosition.y - this.bottomPanel.rect.height);
         LeanTween.moveY(this.topPanel, 0, 0.23f).setEase(LeanTweenType.easeOutExpo).setDelay(0.1f);
         LeanTween.moveY(this.bottomPanel, 0, 0.23f).setEase(LeanTweenType.easeOutExpo).setDelay(0.1f);
+    }
+
+    void SpawnSellButtons()
+    {
+        if (this.selectedRow == null)
+        {
+            return;
+        }
+        for (int i = 0; i < this.selectedRow.AllSlots.Count; i++)
+        {
+            if (this.selectedRow.AllSlots[i].CurrentBuilding != null)
+            {
+                GameObject newSellButton = Instantiate(this.sellButtonPrefab, this.selectedRow.AllSlots[i].transform);              
+                SellButton buttonScript = newSellButton.GetComponent<SellButton>();
+                buttonScript.sellButton.transform.position = this.selectedRow.AllSlots[i].transform.position + Vector3.up;
+                GameObject goToDestroy = this.selectedRow.AllSlots[i].CurrentBuilding.gameObject;
+                ModularBuildingSlot buildingSlot = this.selectedRow.AllSlots[i];
+                this.spawnedSellButtons.Add(newSellButton);
+                buttonScript.sellButton.onClick.AddListener(() => 
+                {
+                    buildingSlot.CurrentBuilding = null;
+                    this.spawnedSellButtons.Remove(newSellButton);
+                    Destroy(newSellButton);
+                    Destroy(goToDestroy);
+                    CheckLeftDirectionSlot();
+                    CheckRightDirectionSlot();
+                });
+            }
+        }
     }
 
     private void SpawnCellsForCategory(BuildingCategory category, BuildMenuTab newTab)
@@ -106,11 +138,20 @@ public class NewBuildMenu : MonoBehaviour
                 {
                     Destroy(this.spawnedArrows);
                 }
+                DestroyAllSellButtons();
                 this.gameObject.SetActive(false);
                 CameraController.Instance.ReturnCameraToPlayer();
+
             });
     }
 
+    void DestroyAllSellButtons()
+    {
+        for (int i = this.spawnedSellButtons.Count - 1; i >= 0; i--)
+        {
+            Destroy(this.spawnedSellButtons[i]);
+        }
+    }
 
     #endregion
 
@@ -162,14 +203,8 @@ public class NewBuildMenu : MonoBehaviour
             this.spawnedArrowsScript.target = this.spawnedBuildingSilhouette.transform;
             this.spawnedArrowsScript.container.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, silhouetteSprite.rect.width * 3 + 88);
         }
-        if (this.selectedRow.GetSlotToRightOfSelected() == null)
-        {
-            this.spawnedArrowsScript.rightArrow.gameObject.SetActive(false);
-        }
-        if (this.selectedRow.GetSlotToLeftOfSelected() == null)
-        {
-            this.spawnedArrowsScript.leftArrow.gameObject.SetActive(false);
-        }
+        CheckRightDirectionSlot();
+        CheckLeftDirectionSlot();
         CameraController.Instance.SetFollowObject(this.spawnedBuildingSilhouette.transform);
 
     }
@@ -216,6 +251,11 @@ public class NewBuildMenu : MonoBehaviour
             this.spawnedArrowsScript.container.transform.position = this.mainCam.WorldToScreenPoint(this.spawnedBuildingSilhouette.transform.position);
             this.selectedRow.MarkSlotAsHighlighted(this.selectedRow.GetSlotToRightOfSelected());        
         }
+        CheckRightDirectionSlot();
+    }
+
+    void CheckRightDirectionSlot()
+    {
         if (this.selectedRow.GetSlotToRightOfSelected() == null)
         {
             this.spawnedArrowsScript.rightArrow.gameObject.SetActive(false);
@@ -252,6 +292,11 @@ public class NewBuildMenu : MonoBehaviour
             this.selectedRow.MarkSlotAsHighlighted(this.selectedRow.GetSlotToLeftOfSelected());
             
         }
+        CheckLeftDirectionSlot();
+    }
+
+    void CheckLeftDirectionSlot()
+    {
         if (this.selectedRow.GetSlotToLeftOfSelected() == null)
         {
             this.spawnedArrowsScript.leftArrow.gameObject.SetActive(false);

@@ -696,6 +696,8 @@ MonoBehaviour:
     type: 3}
   arrowsPrefab: {fileID: 4168967675023261225, guid: a921abd8c28af5f478d609fd20f8edfa,
     type: 3}
+  sellButtonPrefab: {fileID: 6617198494718850344, guid: cc01224b9fee5cc4ea7d2b935f794315,
+    type: 3}
 --- !u!114 &4236273170869381983
 MonoBehaviour:
   m_ObjectHideFlags: 0

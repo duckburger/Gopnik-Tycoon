@@ -19,5 +19,10 @@ public class WoodenShelf : StoreShelf
         }
     }
 
+    private void OnDestroy()
+    {
+        BuildingTracker.Instance.RemoveShelfFromTracker(this);
+    }
+
 
 }

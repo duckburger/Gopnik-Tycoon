@@ -12,6 +12,13 @@ public class BuildingSlotRow : MonoBehaviour
 
     public List<BuildingCategory> buildingCategories = new List<BuildingCategory>();
     public ModularBuildingSlot currentHighlightedSlot = null;
+    public List<ModularBuildingSlot> AllSlots
+    {
+        get
+        {
+            return this.allSlots;
+        }
+    }
 
     public bool registerWithTracker = true;
     public bool allSlotsOccupied = false;

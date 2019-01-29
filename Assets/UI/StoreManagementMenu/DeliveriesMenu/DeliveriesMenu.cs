@@ -146,6 +146,19 @@ public class DeliveriesMenu : MonoBehaviour
             GameObject newCartItem = Instantiate(this.cartItemPrefab, this.cartItemParent);
             CartCell newCell = newCartItem?.GetComponent<CartCell>();
             alreadyCheckedItemGroups.Add(item);
+
+            newCell.plusButton.onClick.AddListener(() => 
+            {
+                newCell.UpdateAmount(1);
+                AddItemToCart(matchingItems[0]);
+            });
+
+            newCell.minusButton.onClick.AddListener(() => 
+            {
+                newCell.UpdateAmount(-1);
+                RemoveItemFromCart(matchingItems[0]);
+            });
+
             newCell.Populate(countOfSameItem, item);
         }
 
@@ -185,13 +198,21 @@ public class DeliveriesMenu : MonoBehaviour
         UpdateBuyButton();
     }
 
-    public void RemoveItemFromCar(FoodItemData itemToRemove)
+    public void RemoveItemFromCart(FoodItemData itemToRemove)
     {
         this.currentFoodDeliveryCart.RemoveItemFromCart(itemToRemove);
         this.onCartCountUpdated.Invoke(this.currentFoodDeliveryCart.GetItemCount());
         this.onCartValueUpdated.Invoke(this.currentFoodDeliveryCart.GetItemCost());
         UpdateBuyButton();
     }
+
+    //void CheckBalance()
+    //{
+    //    if (this.currentFoodDeliveryCart.GetItemCost() > MoneyController.Instance.MainBalance.value)
+    //    {
+    //        this.submitButton.interactable = false;
+    //    }
+    //}
 
     #endregion
 
@@ -253,6 +274,11 @@ public class DeliveriesMenu : MonoBehaviour
             GlobalModal.Instance.ShowModal(newAction, null, this.onCartSubmittedModal);
         }
         
+    }
+
+    void PayForCart()
+    {
+        MoneyController.AdjustMainBalance(currentFoodDeliveryCart.GetItemCost());
     }
 
     #endregion

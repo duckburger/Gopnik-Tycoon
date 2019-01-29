@@ -41,6 +41,14 @@ public class BuildingTracker : MonoBehaviour
         }
     }
 
+    public void RemoveShelfFromTracker(Building shelfToRemove)
+    {
+        if (this.allShelves.Contains(shelfToRemove))
+        {
+            this.allShelves.Remove(shelfToRemove);
+        }
+    }
+
     public Vector2 GetRandomNearShelfLocation()
     {
         float xAdjustment = Random.Range(-2.3f, 2.3f);
