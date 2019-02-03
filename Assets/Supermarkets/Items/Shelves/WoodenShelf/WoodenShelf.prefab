@@ -1397,6 +1397,7 @@ GameObject:
   - component: {fileID: 7575714439033799923}
   - component: {fileID: 8483048564295694185}
   - component: {fileID: 5829623413394277428}
+  - component: {fileID: 4916966051928371695}
   m_Layer: 0
   m_Name: WoodenShelf
   m_TagString: Untagged
@@ -1558,6 +1559,17 @@ PolygonCollider2D:
       - {x: 0.328125, y: 0.96875}
       - {x: 0.328125, y: 0.8125}
       - {x: -0.3125, y: 0.8125}
+--- !u!210 &4916966051928371695
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7758700385183420044}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
 --- !u!1 &7759335855249074625
 GameObject:
   m_ObjectHideFlags: 0

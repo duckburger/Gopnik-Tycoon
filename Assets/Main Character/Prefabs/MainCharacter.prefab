@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1820401831}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: MeleePoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -80,6 +80,7 @@ GameObject:
   - component: {fileID: 456176441}
   - component: {fileID: 676445930}
   - component: {fileID: 2356458393643910356}
+  - component: {fileID: 8223423294643343556}
   - component: {fileID: 415227662}
   m_Layer: 8
   m_Name: MainCharacter
@@ -370,8 +371,8 @@ MonoBehaviour:
   meleePoint: {fileID: 1820401831}
   attRadius: 0.5
   attackForce: 15
+  attackCoolDownTime: 1.5
   availableAttacks:
-  - {fileID: 11400000, guid: 0514b91b948326742845f2ded6fe5a92, type: 2}
   - {fileID: 11400000, guid: c05eeb10c59625c47a5fd4e4a48f3427, type: 2}
 --- !u!114 &676445930
 MonoBehaviour:
@@ -403,6 +404,18 @@ MonoBehaviour:
   baseSortNumber: 5000
   refreshRateInSecs: 0
   mySortingGroup: {fileID: 415227662}
+--- !u!114 &8223423294643343556
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6438291085347544585}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a06f50db7f572474098549d502535a56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!210 &415227662
 SortingGroup:
   m_ObjectHideFlags: 0

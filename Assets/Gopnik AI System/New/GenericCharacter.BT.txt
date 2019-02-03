@@ -2,9 +2,12 @@ tree "Root"
 	sequence
 		ChooseIntentions
 		fallback
-			tree "Shopping"
-			tree "CausingTrouble"
-			tree "Shoplifting"
+			while not inCombat
+				fallback
+					tree "Shopping"
+					tree "CausingTrouble"
+					tree "Shoplifting"
+			tree "Combat"
 	
 
 	
@@ -33,7 +36,7 @@ tree "WanderAroundShopping"
 							GoIdle
 						sequence
 							GoIdle
-							Wait(1)
+							Wait(1.0)
 							tree "TakeWantedItem"
 
 
@@ -82,3 +85,14 @@ tree "CausingTrouble"
 	Fail
 tree "Shoplifting"
 	Fail
+
+tree "Combat"
+	while CanAttack
+		fallback
+			tree "ChaseCombatTarget"
+			Attack
+
+
+tree "ChaseCombatTarget"
+	while not CombatTargetInRange
+		ChaseCombatTarget

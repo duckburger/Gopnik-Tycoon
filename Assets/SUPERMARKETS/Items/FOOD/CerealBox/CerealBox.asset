@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: CerealBox
   m_EditorClassIdentifier: 
   name: Cereal Box
-  worldAppearance: {fileID: 21300000, guid: 53516bd197740c34ca41f23733cbdaef, type: 3}
   stackable: 0
-  quality: 1
+  description: 
+  quality: 2
   foodType: 1
   pricePerUnit: 5
   onShelfAppearances:

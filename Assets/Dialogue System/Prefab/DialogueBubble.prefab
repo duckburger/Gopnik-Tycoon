@@ -65,11 +65,13 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_text: NO TEXT NO TEXT NO TEXT NO TEXT NO TEXT NO TEXT NO TEXT NO TEXT NO TEXT
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 912cb5947c4888f46a18db580e52d5d0, type: 2}
-  m_sharedMaterial: {fileID: 21785222905032602, guid: 912cb5947c4888f46a18db580e52d5d0, type: 2}
+  m_sharedMaterial: {fileID: 21785222905032602, guid: 912cb5947c4888f46a18db580e52d5d0,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -179,8 +181,8 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
-  m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: -1253588641
+  m_SortingOrder: 100
   m_TargetDisplay: 0
 --- !u!225 &8603745719040032242
 CanvasGroup:

@@ -25,20 +25,10 @@ public class AI_Generic : MonoBehaviour
     Wallet myWallet;
     MCharCarry myCarryController;
     MCharAttack myAttackController;
+    DialogueBubbleDisplayer dialogueBubbleDisplayer;
 
     PolyNavAgent navAgent;
-    public PolyNavAgent NavAgent 
-    {
-         get
-         {
-             return this.navAgent;
-         }
-          
-          set
-          {
-              this.navAgent = value;
-          }
-    }
+
     Animator animator;
     CharacterStats myStats;
 
@@ -48,6 +38,37 @@ public class AI_Generic : MonoBehaviour
     // Targets
     Queue<Vector2> targetQueue = new Queue<Vector2>();
     [SerializeField] Vector2 target;
+    [SerializeField] GameObject combatTarget;
+
+    Vector2 savedTarget; // Used for continuous pathing
+    StoreShelf myTargetShelf;
+    CashRegisterSlot myTargetCashRegisterSlot = null;
+    CashRegister myCashRegister = null;
+    NavMeshPortal myTargetNavPortal = null;
+
+    [Task]
+    public bool inCombat;
+    [Task]
+    public bool CanAttack
+    {
+        get
+        {
+            return this.myAttackController.CanAttackAgain;
+        }
+    }
+
+    public PolyNavAgent NavAgent
+    {
+        get
+        {
+            return this.navAgent;
+        }
+
+        set
+        {
+            this.navAgent = value;
+        }
+    }
     public Vector2 Target
     {
         get
@@ -59,11 +80,6 @@ public class AI_Generic : MonoBehaviour
             this.target = value;
         }
     }
-    Vector2 savedTarget; // Used for continuous pathing
-    StoreShelf myTargetShelf;
-    CashRegisterSlot myTargetCashRegisterSlot = null;
-    CashRegister myCashRegister = null;
-    NavMeshPortal myTargetNavPortal = null;
     public NavMeshPortal MyTargetNavPortal
     {
         get
@@ -78,7 +94,9 @@ public class AI_Generic : MonoBehaviour
         this.animator = this.GetComponent<Animator>();
         this.myWallet = this.GetComponent<Wallet>();
         this.myCarryController = this.GetComponent<MCharCarry>();
+        this.myAttackController = this.GetComponent<MCharAttack>();
         this.myStats = this.GetComponent<CharacterStats>();
+        this.dialogueBubbleDisplayer = this.GetComponent<DialogueBubbleDisplayer>();
     }
 
 
@@ -246,7 +264,7 @@ public class AI_Generic : MonoBehaviour
     [Task]
     void PickUpItemFromShelf()
     {
-        if (this.myTargetShelf != null && this.myTargetShelf.CheckIfContainsFoodQuality(myPreferredFoodQuality))
+        if (this.myTargetShelf != null && this.myTargetShelf.CheckIfContainsFoodQuality(this.myStats.PreferredFoodQuality))
         {
             this.myTargetShelf.TakeFoodOut(this.gameObject, myPreferredFoodQuality);
             if (this.myStats != null && this.myCarryController != null)
@@ -503,6 +521,81 @@ public class AI_Generic : MonoBehaviour
     }
 
     #endregion
+
+
+    #region Combat
+
+    public void ReactToAttack(GameObject attacker)
+    {
+        // TODO: Add decision making logic here to decided whether to flee, or fight back
+        if (!this.inCombat)
+        {
+            this.inCombat = true;
+            this.navAgent.Stop();
+            this.animator.SetTrigger("Idle");
+            this.dialogueBubbleDisplayer?.ShowDialogue("Hey what the fuck, dude!");
+        }
+
+        if (this.combatTarget == null) // TODO: Add an aggro system
+        {
+            this.combatTarget = attacker;
+        }
+        
+    }
+
+    [Task]
+    void Attack()
+    {
+        if (Task.isInspected)
+        {
+            Task.current.debugInfo = string.Format("t = {0:0.00}", Time.time);
+        }
+        if (Task.current.isStarting)
+        {
+            this.animator.SetTrigger("Idle");
+        }
+        this.myAttackController?.AttackExternal();
+    }
+
+    [Task]
+    bool CombatTargetInRange()
+    {
+        if (this.combatTarget == null)
+        {
+            return false;
+        }
+        if (Vector2.Distance(this.transform.position, this.combatTarget.transform.position) <= this.myAttackController?.EffectiveDistance)
+        {
+            return true;
+        }
+        return false;
+    }
+
+    [Task]
+    void ChaseCombatTarget()
+    {
+        if (this.combatTarget == null)
+        {
+            Task.current.Fail();
+            return;
+        }    
+        if (Task.current.isStarting || Task.current.item != null && (Vector3)Task.current.item != this.combatTarget.transform.position)
+        {
+           
+            this.navAgent?.SetDestination(this.combatTarget.transform.position, null);
+            this.animator.Play("Walk");
+            return;
+        }
+        else
+        {
+            this.animator.SetTrigger("Idle");
+            Task.current.Succeed();            
+        }
+        Task.current.item = this.combatTarget.transform.position;
+    }
+
+    #endregion
+
 }
 
 

@@ -48,15 +48,16 @@ GameObject:
   - component: {fileID: 1702984482}
   - component: {fileID: 3897031527708002354}
   - component: {fileID: 5362470427454308043}
-  - component: {fileID: 65439200}
   - component: {fileID: 5728930657587322491}
   - component: {fileID: 5580294267951834883}
   - component: {fileID: 5071045544369216888}
   - component: {fileID: 6058775654053657681}
   - component: {fileID: 8172561903950047856}
+  - component: {fileID: 535044077896906368}
   - component: {fileID: 1760339592}
   - component: {fileID: 1630244995}
   - component: {fileID: 1525937562}
+  - component: {fileID: 1621641749}
   m_Layer: 8
   m_Name: Pedestrian_def
   m_TagString: Civilian
@@ -76,6 +77,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 5946872603825856750}
+  - {fileID: 7790026912532209024}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -351,19 +353,6 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: WalletBalanceChanged_Event, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
---- !u!114 &65439200
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3389606292381677881}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 381ea73d27d881844b7b80a8557f65a6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isSelected: 0
 --- !u!114 &5728930657587322491
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -379,9 +368,9 @@ MonoBehaviour:
   _map: {fileID: 0}
   maxSpeed: 1.8
   mass: 5
-  stoppingDistance: 0.2
+  stoppingDistance: 0.15
   slowingDistance: 0
-  accelerationRate: 5
+  accelerationRate: 2
   decelerationRate: 0
   lookAheadDistance: 1
   avoidRadius: 0.2
@@ -420,10 +409,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e66cb65e5a937e743a81db2ce660a33a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultNavStoppingDistance: 0.2
+  defaultNavStoppingDistance: 0.15
   myIntentions: 0
   myPreferredFoodQuality: 1
   target: {x: 0, y: 0}
+  inCombat: 0
 --- !u!114 &6058775654053657681
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -460,6 +450,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   carryTransform: {fileID: 5946872603825856750}
   currentItem: {fileID: 0}
+--- !u!114 &535044077896906368
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3389606292381677881}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95fa9354e92c4cf4c91a98ec0bc95425, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  meleePoint: {fileID: 7790026912532209024}
+  attRadius: 0.5
+  attackForce: 15
+  attackCoolDownTime: 1.5
+  availableAttacks:
+  - {fileID: 11400000, guid: c05eeb10c59625c47a5fd4e4a48f3427, type: 2}
 --- !u!114 &1760339592
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -539,3 +547,45 @@ SortingGroup:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 5000
+--- !u!114 &1621641749
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3389606292381677881}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a06f50db7f572474098549d502535a56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &7179039582213265137
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7790026912532209024}
+  m_Layer: 8
+  m_Name: MeleePoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7790026912532209024
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7179039582213265137}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.98, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3389606292381677883}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
