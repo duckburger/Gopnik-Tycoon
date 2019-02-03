@@ -65,4 +65,22 @@ public class MCharWalk : MonoBehaviour
         this.myRB.velocity = calculatedDir;
     }
         
+
+    public void Paralyze(float paralysisTime)
+    {
+        if (this.isActive == true)
+        {
+            this.myRB.velocity = Vector2.zero;
+            this.myAnimator.SetTrigger("Idle");
+            this.isActive = false;
+            StartCoroutine(StartParalysisTimer(paralysisTime));
+        }
+    }
+
+
+    IEnumerator StartParalysisTimer(float time)
+    {
+        yield return new WaitForSeconds(time);
+        this.isActive = true;
+    }
 }

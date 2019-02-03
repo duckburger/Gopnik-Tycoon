@@ -552,6 +552,7 @@ public class AI_Generic : MonoBehaviour
         }
         if (Task.current.isStarting)
         {
+            this.navAgent.Stop();
             this.animator.SetTrigger("Idle");
         }
         this.myAttackController?.AttackExternal();

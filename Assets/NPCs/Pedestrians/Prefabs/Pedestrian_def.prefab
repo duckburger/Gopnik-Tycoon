@@ -310,7 +310,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentHealth: 0
-  maxHealth: 100
+  maxHealth: 50000
   deadBody: {fileID: 7401058789525270420, guid: fdfce11c7db345e40a942bae557ffcf4,
     type: 3}
   myAudioSource: {fileID: 5341818563212822864}
@@ -413,6 +413,7 @@ MonoBehaviour:
   myIntentions: 0
   myPreferredFoodQuality: 1
   target: {x: 0, y: 0}
+  combatTarget: {fileID: 0}
   inCombat: 0
 --- !u!114 &6058775654053657681
 MonoBehaviour:
@@ -463,9 +464,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   meleePoint: {fileID: 7790026912532209024}
+  effectiveDistance: 0.7
   attRadius: 0.5
-  attackForce: 15
-  attackCoolDownTime: 1.5
+  attackForce: 10
+  attackCoolDownTime: 1
   availableAttacks:
   - {fileID: 11400000, guid: c05eeb10c59625c47a5fd4e4a48f3427, type: 2}
 --- !u!114 &1760339592

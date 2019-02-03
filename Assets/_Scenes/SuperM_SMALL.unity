@@ -696,6 +696,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7692053746844472691, guid: 13b08aa733ce01645a6a58b958348fc3,
+        type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 13b08aa733ce01645a6a58b958348fc3, type: 3}
 --- !u!114 &1687402334 stripped
@@ -822,15 +827,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 535044077896906368, guid: daf8e30f0749de74fbded1cc29d98602,
+    - target: {fileID: 2084183076782633539, guid: daf8e30f0749de74fbded1cc29d98602,
         type: 3}
-      propertyPath: attRadius
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 535044077896906368, guid: daf8e30f0749de74fbded1cc29d98602,
-        type: 3}
-      propertyPath: attackForce
-      value: 10
+      propertyPath: m_CollisionDetection
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: daf8e30f0749de74fbded1cc29d98602, type: 3}

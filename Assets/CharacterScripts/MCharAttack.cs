@@ -65,7 +65,7 @@ public class MCharAttack : MonoBehaviour
         }
         int attackIndex = Random.Range(0, this.availableAttacks.Count);
         AttackData attackToApply = this.availableAttacks[attackIndex];
-        this.myAnimator.Play(attackToApply.animStateName);
+        this.myAnimator.SetTrigger(attackToApply.animStateName);
         this.isAttacking = true;
         this.myRB.velocity = Vector2.zero;
         StartCoroutine(AttackStateTimer());
@@ -77,22 +77,27 @@ public class MCharAttack : MonoBehaviour
         yield return new WaitForSeconds(animDuration);
         this.isAttacking = false;
         StartCoroutine(StartAttackCooldown());
-        Collider2D[] hits = Physics2D.OverlapCircleAll(this.meleePoint.position, this.attRadius);
+        Collider2D[] hits = new Collider2D[20];
+        Physics2D.OverlapCircleNonAlloc(this.meleePoint.transform.position, this.attRadius, hits);
         //Debug.Log("Hit " + hits.Length + " objects");
         foreach (Collider2D collider in hits)
         {
-            Health healthController = collider.gameObject.GetComponent<Health>();
-            if (collider.gameObject != this.gameObject)
+            if (collider != null && collider.gameObject != null)
             {
-                if (healthController != null)
+                Health healthController = collider.gameObject.GetComponent<Health>();
+                if (collider.gameObject != this.gameObject)
                 {
-                    healthController.AdjustHealth(-15, true); // TODO: Deplete actual amount of health
-                    Vector2 attackDir = collider.gameObject.transform.position - this.gameObject.transform.position;
-                    collider.gameObject.GetComponent<Rigidbody2D>().AddForce(attackDir * this.attackForce, ForceMode2D.Impulse);
-                    AnimTrigger animTrigger = collider.gameObject.GetComponent<AnimTrigger>();
-                    animTrigger?.GetHit(attackDir, this.gameObject);
+                    if (healthController != null)
+                    {
+                        healthController.AdjustHealth(-15, true); // TODO: Deplete actual amount of health
+                        Vector2 attackDir = collider.gameObject.transform.position - this.gameObject.transform.position;
+                        collider.gameObject.GetComponent<Rigidbody2D>().AddForce(attackDir * this.attackForce, ForceMode2D.Impulse);
+                        AnimTrigger animTrigger = collider.gameObject.GetComponent<AnimTrigger>();
+                        animTrigger?.GetHit(attackDir, this.gameObject);
+                    }
                 }
             }
+           
         }
     }
 
