@@ -176,6 +176,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Craig
       objectReference: {fileID: 0}
+    - target: {fileID: 3389606292381677881, guid: daf8e30f0749de74fbded1cc29d98602,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3389606292381677883, guid: daf8e30f0749de74fbded1cc29d98602,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -327,6 +332,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Mark
       objectReference: {fileID: 0}
+    - target: {fileID: 3389606292381677881, guid: daf8e30f0749de74fbded1cc29d98602,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3389606292381677883, guid: daf8e30f0749de74fbded1cc29d98602,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -380,16 +390,6 @@ PrefabInstance:
     - target: {fileID: 3389606292381677883, guid: daf8e30f0749de74fbded1cc29d98602,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5728930657587322491, guid: daf8e30f0749de74fbded1cc29d98602,
-        type: 3}
-      propertyPath: slowingDistance
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5728930657587322491, guid: daf8e30f0749de74fbded1cc29d98602,
-        type: 3}
-      propertyPath: decelerationRate
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -515,6 +515,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Andrew
+      objectReference: {fileID: 0}
+    - target: {fileID: 3389606292381677881, guid: daf8e30f0749de74fbded1cc29d98602,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3389606292381677883, guid: daf8e30f0749de74fbded1cc29d98602,
         type: 3}
@@ -701,15 +706,46 @@ PrefabInstance:
       propertyPath: m_LocalScale.y
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 456176441, guid: 13b08aa733ce01645a6a58b958348fc3, type: 3}
+      propertyPath: availableAttacks.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 456176441, guid: 13b08aa733ce01645a6a58b958348fc3, type: 3}
+      propertyPath: availableAttacks.Array.data[1]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 456176441, guid: 13b08aa733ce01645a6a58b958348fc3, type: 3}
+      propertyPath: availableAttacks.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: c05eeb10c59625c47a5fd4e4a48f3427,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 13b08aa733ce01645a6a58b958348fc3, type: 3}
+--- !u!1 &1621641748 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3389606292381677881, guid: daf8e30f0749de74fbded1cc29d98602,
+    type: 3}
+  m_PrefabInstance: {fileID: 2143157486179808526}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1621641749
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1621641748}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a06f50db7f572474098549d502535a56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1687402334 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5071045544369216888, guid: daf8e30f0749de74fbded1cc29d98602,
     type: 3}
   m_PrefabInstance: {fileID: 2143157486179808526}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1621641748}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e66cb65e5a937e743a81db2ce660a33a, type: 3}
@@ -847,6 +883,10 @@ PrefabInstance:
       propertyPath: accelerationRate
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 1760339592, guid: daf8e30f0749de74fbded1cc29d98602, type: 3}
+      propertyPath: preferredQuality
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5071045544369216888, guid: daf8e30f0749de74fbded1cc29d98602,
         type: 3}
       propertyPath: defaultNavStoppingDistance
@@ -857,10 +897,6 @@ PrefabInstance:
       propertyPath: scripts.Array.data[0]
       value: 
       objectReference: {fileID: 4900000, guid: c73f0d3ffe051ff4b98e21ccb02732a6, type: 3}
-    - target: {fileID: 1760339592, guid: daf8e30f0749de74fbded1cc29d98602, type: 3}
-      propertyPath: preferredQuality
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: daf8e30f0749de74fbded1cc29d98602, type: 3}
 --- !u!1001 &4789485251342465116

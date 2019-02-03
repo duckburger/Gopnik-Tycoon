@@ -24,6 +24,8 @@ public class AI_Generic : MonoBehaviour
 
     Wallet myWallet;
     MCharCarry myCarryController;
+    MCharAttack myAttackController;
+
     PolyNavAgent navAgent;
     public PolyNavAgent NavAgent 
     {
@@ -100,13 +102,19 @@ public class AI_Generic : MonoBehaviour
         {
             Task.current.debugInfo = string.Format("t = {0:0.00}", Time.time);
         }
-    
+        if (!Task.current.isStarting)
+        {
+            CheckIfReachedTarget();
+        }        
         // If the given target is not on the current nav map..
         if (this.target != null && this.navAgent.map != null && !this.navAgent.map.PointIsValid(this.target) && this.savedTarget == Vector2.zero)
         {
             if (NavmeshPortalManager.Instance.FindNextNavPortal(this.target, this.navAgent.map) != null)
             {
-                this.animator.Play("Walk");
+                if (Task.current.isStarting)
+                {
+                    this.animator.Play("Walk");
+                }                
                 NavMeshPortal portal = NavmeshPortalManager.Instance.FindNextNavPortal(this.target, this.navAgent.map);
                 this.savedTarget = this.target; // Heading to the portal first
                 this.myTargetNavPortal = portal;
@@ -114,11 +122,15 @@ public class AI_Generic : MonoBehaviour
         }
         else if (this.target != null && this.navAgent.map != null && this.navAgent.map.PointIsValid(this.target))
         {
-            this.animator.Play("Walk");
             this.navAgent.SetDestination(this.target, null);
             if (CheckIfReachedTarget())
             {
+                Task.current.Succeed();
                 return;
+            }
+            if (Task.current.isStarting)
+            {
+                this.animator.Play("Walk");
             }
         }
 
@@ -136,7 +148,6 @@ public class AI_Generic : MonoBehaviour
     {
         if (navAgent.remainingDistance <= navAgent.stoppingDistance && !navAgent.pathPending)
         {
-            this.animator.Play("Idle");
             Task.current.Succeed();
             return true;
         }
@@ -154,7 +165,10 @@ public class AI_Generic : MonoBehaviour
     [Task]
     void GoIdle()
     {
-        this.animator.Play("Idle");
+        if (Task.current.isStarting && !this.animator.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
+        {
+            this.animator.SetTrigger("Idle");
+        }
         Task.current.Succeed();
     }
 
@@ -163,7 +177,10 @@ public class AI_Generic : MonoBehaviour
     {
         this.target = BuildingTracker.Instance.GetRandomNearShelfLocation();
         this.navAgent.SetDestination(target, null);
-        this.animator.Play("Walk");
+        if (Task.current.isStarting)
+        {
+            this.animator.Play("Walk");
+        }
         Task.current.Succeed();
     }
 
@@ -199,7 +216,10 @@ public class AI_Generic : MonoBehaviour
         }
         this.target = new Vector2(shelfToShop.gameObject.transform.position.x, shelfToShop.gameObject.transform.position.y - 1.5f);
         this.navAgent.SetDestination(target, null);
-        this.animator.Play("Walk");
+        if (Task.current.isStarting)
+        {
+            this.animator.Play("Walk");
+        }
         Task.current.Succeed();
         return;
     }
@@ -273,7 +293,10 @@ public class AI_Generic : MonoBehaviour
                 this.myTargetCashRegisterSlot = foundCashRegisterSlot;
                 this.myCashRegister = this.myTargetCashRegisterSlot.GetCurrentCashRegister();
                 this.navAgent.SetDestination(cashRegisterLocation, null);
-                this.animator.Play("Walk");
+                if (Task.current.isStarting)
+                {
+                    this.animator.Play("Walk");
+                }
             }
 
             if (this.navAgent.remainingDistance <= 3)
@@ -322,7 +345,7 @@ public class AI_Generic : MonoBehaviour
     {
         if (success)
         {
-            this.animator.Play("Idle");
+            this.animator.SetTrigger("Idle");
             this.isLiningUp = true;
         }
     }
@@ -445,7 +468,10 @@ public class AI_Generic : MonoBehaviour
         if (this.navAgent != null)
         {
             this.navAgent.SetDestination(exitPos, (bool success) => Destroy(this.gameObject));
-            this.animator.Play("Walk");
+            if (Task.current.isStarting)
+            {
+                this.animator.Play("Walk");
+            }
             Task.current.Succeed();
             return;
         }

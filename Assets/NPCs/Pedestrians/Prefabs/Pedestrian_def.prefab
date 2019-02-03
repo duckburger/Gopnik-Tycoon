@@ -380,9 +380,9 @@ MonoBehaviour:
   maxSpeed: 1.8
   mass: 5
   stoppingDistance: 0.2
-  slowingDistance: 0.01
+  slowingDistance: 0
   accelerationRate: 5
-  decelerationRate: 10
+  decelerationRate: 0
   lookAheadDistance: 1
   avoidRadius: 0.2
   avoidanceConsiderStuckedTime: 2

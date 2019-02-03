@@ -63,7 +63,7 @@ public class Health : MonoBehaviour {
 
     void Die()
     {
-        // Play a sound then spawnt the dead body
+        // Play a sound then spawn the dead body
         int soundIndex = UnityEngine.Random.Range(0, deathSounds.Count);
         AudioSource bodyAudiosource = Instantiate(this.deadBody, this.transform.position, Quaternion.identity, this.transform.parent).GetComponent<AudioSource>();
         bodyAudiosource.clip = this.deathSounds[soundIndex];

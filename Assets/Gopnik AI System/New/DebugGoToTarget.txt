@@ -1,2 +1,5 @@
 tree("Root")
-	GoToTarget
+		sequence
+			GoToTarget
+			GoIdle
+

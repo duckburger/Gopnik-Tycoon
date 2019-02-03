@@ -88,7 +88,7 @@ public class ExternalPlayerController : MonoBehaviour
         this.playerAttackController.enabled = false;
         this.playerWalkController.enabled = false;
         this.playerCarryController.enabled = false;
-        this.playerAnimator.Play("Idle");
+        this.playerAnimator.SetTrigger("Idle");
 
     }
 
