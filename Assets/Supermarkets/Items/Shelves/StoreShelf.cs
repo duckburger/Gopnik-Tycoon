@@ -33,6 +33,7 @@ public class StoreShelf : Building
         {
             this.maxStockAmount += this.perShelfCapacity;
         }
+        this.stockAmtSlider.maxValue = this.maxStockAmount;
     }
 
 
