@@ -33,7 +33,7 @@ public class AI_Generic : MonoBehaviour
     CharacterStats myStats;
 
     QueueNumber myQueueTicket = null;
-    bool isLiningUp = false;
+ 
     bool hasPaidForGroceries = false;
     // Targets
     Queue<Vector2> targetQueue = new Queue<Vector2>();
@@ -47,7 +47,9 @@ public class AI_Generic : MonoBehaviour
     NavMeshPortal myTargetNavPortal = null;
 
     [Task]
-    public bool inCombat;
+    public bool isLiningUp = false;
+    [Task]
+    public bool inCombat = false;
     [Task]
     public bool CanAttack
     {
@@ -266,7 +268,7 @@ public class AI_Generic : MonoBehaviour
     {
         if (this.myTargetShelf != null && this.myTargetShelf.CheckIfContainsFoodQuality(this.myStats.PreferredFoodQuality))
         {
-            this.myTargetShelf.TakeFoodOut(this.gameObject, myPreferredFoodQuality);
+            this.myTargetShelf.TakeFoodOut(this.gameObject, this.myStats.PreferredFoodQuality);
             if (this.myStats != null && this.myCarryController != null)
             {
                 int neededItems = this.myStats.ItemsWanted;
@@ -345,7 +347,7 @@ public class AI_Generic : MonoBehaviour
             return;
         }
 
-        this.myTargetCashRegisterSlot.AddToQueue(this.gameObject);
+        //this.myTargetCashRegisterSlot.AddToQueue(this.gameObject);
         this.myQueueTicket = this.GetComponent<QueueNumber>();
         Vector2 positionInQueue = this.myTargetCashRegisterSlot.ProvideQueueSpot(this.gameObject);
         if (positionInQueue == Vector2.zero)
@@ -356,15 +358,16 @@ public class AI_Generic : MonoBehaviour
         }
 
         this.navAgent.SetDestination(positionInQueue, HasReachedQueuePosition);
-        Task.current.Succeed();
     }
 
+    [Task]
     private void HasReachedQueuePosition(bool success)
     {
         if (success)
         {
             this.animator.SetTrigger("Idle");
             this.isLiningUp = true;
+            Task.current?.Succeed();
         }
     }
 
@@ -449,11 +452,6 @@ public class AI_Generic : MonoBehaviour
         return false;
     }
 
-    [Task]
-    bool IsLiningUp()
-    {
-        return this.isLiningUp;
-    }
 
     [Task]
     public bool PayAtCash()
@@ -485,12 +483,15 @@ public class AI_Generic : MonoBehaviour
         Vector2 exitPos = LevelData.CurrentLevel.EntranceExitPoint.position;
         if (this.navAgent != null)
         {
-            this.navAgent.SetDestination(exitPos, (bool success) => Destroy(this.gameObject));
+            this.navAgent.SetDestination(exitPos, (bool success) =>
+            {
+                Task.current?.Succeed();
+                Destroy(this.gameObject);                
+            });
             if (Task.current.isStarting)
             {
                 this.animator.Play("Walk");
             }
-            Task.current.Succeed();
             return;
         }
     }

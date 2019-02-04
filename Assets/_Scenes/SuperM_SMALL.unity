@@ -827,9 +827,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4086454611381580232, guid: daf8e30f0749de74fbded1cc29d98602,
-        type: 3}
-      propertyPath: baseSortNumber
+    - target: {fileID: 1702984482, guid: daf8e30f0749de74fbded1cc29d98602, type: 3}
+      propertyPath: maxHealth
       value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -1035,6 +1034,34 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 74002749, guid: 912b8772bbdd634478caa9682df24f60, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -6.92
+      objectReference: {fileID: 0}
+    - target: {fileID: 74002749, guid: 912b8772bbdd634478caa9682df24f60, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -2.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 780269669732533581, guid: 912b8772bbdd634478caa9682df24f60,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -3
+      objectReference: {fileID: 0}
+    - target: {fileID: 780269669732533581, guid: 912b8772bbdd634478caa9682df24f60,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -4.69
+      objectReference: {fileID: 0}
+    - target: {fileID: 780269668285209638, guid: 912b8772bbdd634478caa9682df24f60,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -3.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 780269668285209638, guid: 912b8772bbdd634478caa9682df24f60,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -3.32
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2113562688, guid: 912b8772bbdd634478caa9682df24f60, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 912b8772bbdd634478caa9682df24f60, type: 3}
@@ -1048,7 +1075,7 @@ PrefabInstance:
     - target: {fileID: 5587009580335406337, guid: 5f3409bc0a23a0043a7ea0857ca47f0f,
         type: 3}
       propertyPath: m_Name
-      value: MainCanvas
+      value: MainUICanvas
       objectReference: {fileID: 0}
     - target: {fileID: 5587009580335406341, guid: 5f3409bc0a23a0043a7ea0857ca47f0f,
         type: 3}

@@ -81,7 +81,7 @@ public class ScriptableEvent : ScriptableObject
     {
         if (listeners.Count <= 0)
         {
-            Debug.LogError("Trying to raise an event - " + this.name + " - without any listeners");
+            //Debug.LogError("Trying to raise an event - " + this.name + " - without any listeners");
             return;
         }
         for (int i = listeners.Count - 1; i >= 0; i--)

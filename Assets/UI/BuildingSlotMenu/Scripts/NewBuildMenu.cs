@@ -227,6 +227,7 @@ public class NewBuildMenu : MonoBehaviour
             this.spawnedBuildingSilhouette.transform.parent = slotToInstallTo.transform;
             slotToInstallTo.CurrentBuilding = this.spawnedBuildingSilhouette.GetComponent<Building>();
             this.spawnedBuildingSilhouette = null;
+            LevelData.CurrentLevel.mainMapController.GenerateMap(false);
             MenuControlLayer.Instance.CloseSlotBuildingMenu();
         }
     }

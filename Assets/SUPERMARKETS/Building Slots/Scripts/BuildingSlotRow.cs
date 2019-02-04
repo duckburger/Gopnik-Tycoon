@@ -128,7 +128,7 @@ public class BuildingSlotRow : MonoBehaviour
         int selectedIndex = this.allSlots.IndexOf(currentHighlightedSlot);
         if (selectedIndex + 1 > this.allSlots.Count - 1)
         {
-            Debug.Log("No more slots to the right, returning null");
+            //Debug.Log("No more slots to the right, returning null");
             return null;
         }
         return ReturnFreeRightSlot(selectedIndex, 1);
@@ -160,7 +160,7 @@ public class BuildingSlotRow : MonoBehaviour
         int selectedIndex = this.allSlots.IndexOf(currentHighlightedSlot);
         if (selectedIndex - 1 < 0)
         {
-            Debug.Log("No more slots to the left, returning null");
+            //Debug.Log("No more slots to the left, returning null");
             return null;
         }
         return ReturnFreeLeftSlot(selectedIndex, 1);

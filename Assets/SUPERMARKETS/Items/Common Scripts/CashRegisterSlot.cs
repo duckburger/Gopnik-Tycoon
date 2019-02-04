@@ -68,6 +68,10 @@ public class CashRegisterSlot : MonoBehaviour
         {
             return this.transform.position;
         }
+        if (this.peopleInQueue.Count == 1)
+        {
+            return this.firstQueueSlot.transform.position;
+        }
         return this.peopleInQueue[this.peopleInQueue.Count - 1].transform.position;
     }
 

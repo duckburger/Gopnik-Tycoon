@@ -51,7 +51,7 @@ tree "TakeWantedItem"
 tree "GoToCash"
 	while HasPickedUpEnoughItems
 		while not HasPaidForGroceries
-			while not IsLiningUp
+			while not isLiningUp
 				sequence
 					FindAndGoToCashRegister
 					GoToQueuePosition
@@ -60,7 +60,7 @@ tree "GoToCash"
 	
 tree "WaitInLine"
 	sequence
-		while IsLiningUp
+		while isLiningUp
 			while not HasPaidForGroceries
 				sequence
 					TurnToCashRegister	
@@ -78,7 +78,6 @@ tree "WaitInLine"
 	while HasPaidForGroceries
 		sequence
 			WalkOutOfStore
-			GoToTarget
 
 
 tree "CausingTrouble"

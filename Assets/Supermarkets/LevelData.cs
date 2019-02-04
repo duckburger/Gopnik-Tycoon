@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using PolyNav;
 
 public class LevelData : MonoBehaviour
 {
@@ -8,7 +9,7 @@ public class LevelData : MonoBehaviour
 
     [SerializeField] Transform floor;
     [SerializeField] Transform entranceExitPoint;
-    //[SerializeField] 
+    [SerializeField] PolyNav2D navMapController;
 
     public Transform Floor
     {
@@ -24,6 +25,7 @@ public class LevelData : MonoBehaviour
             return this.entranceExitPoint;
         }
     }
+    public PolyNav2D mainMapController => this.navMapController;
 
 
     private void Awake()
@@ -36,5 +38,6 @@ public class LevelData : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
+        this.navMapController = this.GetComponent<PolyNav2D>();
     }
 }
