@@ -372,7 +372,7 @@ MonoBehaviour:
   effectiveDistance: 1
   attRadius: 0.5
   attackForce: 15
-  attackCoolDownTime: 1
+  attackCoolDownTime: 0.5
   availableAttacks:
   - {fileID: 11400000, guid: c05eeb10c59625c47a5fd4e4a48f3427, type: 2}
   - {fileID: 11400000, guid: 0514b91b948326742845f2ded6fe5a92, type: 2}
@@ -418,6 +418,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a06f50db7f572474098549d502535a56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  defaultSpriteMat: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  flashSpriteMat: {fileID: 2100000, guid: a2f13ddbd878f5b45b6378f6f08d5fc5, type: 2}
 --- !u!210 &415227662
 SortingGroup:
   m_ObjectHideFlags: 0
