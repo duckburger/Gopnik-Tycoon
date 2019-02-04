@@ -67,7 +67,7 @@ public class MCharAttack : MonoBehaviour
         AttackData attackToApply = this.availableAttacks[attackIndex];
         this.myAnimator.SetTrigger(attackToApply.animStateName);
         this.isAttacking = true;
-        this.myRB.velocity = Vector2.zero;
+        //this.myRB.velocity = Vector2.zero;
         StartCoroutine(AttackStateTimer());
     }
 
