@@ -581,19 +581,14 @@ public class AI_Generic : MonoBehaviour
             Task.current.Fail();
             return;
         }    
-        if (Task.current.isStarting || Task.current.item != null && (Vector3)Task.current.item != this.combatTarget.transform.position)
+        if (Task.current.isStarting || Task.current.item != null && this.target != (Vector2)this.combatTarget.transform.position)
         {
-           
+            this.target = this.combatTarget.transform.position;
             this.navAgent?.SetDestination(this.combatTarget.transform.position, null);
-            this.animator.Play("Walk");
+            GoToTarget();
+            Task.current.Succeed();
             return;
         }
-        else
-        {
-            this.animator.SetTrigger("Idle");
-            Task.current.Succeed();            
-        }
-        Task.current.item = this.combatTarget.transform.position;
     }
 
     #endregion

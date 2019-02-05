@@ -15,7 +15,7 @@ public class CurrentBalanceText : MonoBehaviour
     {
         if (this.balanceText != null)
         {
-            balanceText.text = "Current Balance:\n$" + newValue.ToString("C0");
+            balanceText.text = "Current Balance:\n" + newValue.ToString("C0");
         } 
     }
     

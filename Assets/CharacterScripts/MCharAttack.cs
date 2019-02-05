@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class MCharAttack : MonoBehaviour
 {
+    [Header("Player Related")]
+    [SerializeField] ScriptableEvent onPlayerAttackCooldownUpdated;
+    [Space(10)]
     [SerializeField] Transform meleePoint;
     [SerializeField] float effectiveDistance = 1f;
     [SerializeField] float attRadius;
@@ -17,6 +20,7 @@ public class MCharAttack : MonoBehaviour
     bool canAttackAgain = true;
     bool isAttacking = false;
 
+    AttackData lastAppliedAttack;
     WaitForSeconds attackCooldown;
 
     public bool IsAttacking => this.isAttacking;
@@ -54,7 +58,13 @@ public class MCharAttack : MonoBehaviour
 
     IEnumerator StartAttackCooldown()
     {
-        yield return this.attackCooldown;
+        float timer = this.lastAppliedAttack.cooldown;
+        while (timer > 0)
+        {
+            this.onPlayerAttackCooldownUpdated?.RaiseWithData(Mathf.InverseLerp(this.lastAppliedAttack.cooldown, 0, timer));
+            timer -= Time.deltaTime;            
+            yield return null;
+        }
         this.canAttackAgain = true;
     }
 
@@ -70,6 +80,7 @@ public class MCharAttack : MonoBehaviour
         int attackIndex = Random.Range(0, this.availableAttacks.Count);
         AttackData attackToApply = this.availableAttacks[attackIndex];
         this.myAnimator.SetTrigger(attackToApply.animStateName);
+        this.lastAppliedAttack = attackToApply;
         this.isAttacking = true;
         //this.myRB.velocity = Vector2.zero;
     }

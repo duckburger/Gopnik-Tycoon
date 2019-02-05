@@ -11,5 +11,6 @@ public class AttackData : ScriptableObject
     public float staminaCost;
     public string animStateName; // Used to pass to the animator
     public float damage;
+    public float cooldown = 1.2f;
     public AttackType type;
 }

@@ -310,7 +310,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentHealth: 0
-  maxHealth: 50000
+  maxHealth: 100
   deadBody: {fileID: 7401058789525270420, guid: fdfce11c7db345e40a942bae557ffcf4,
     type: 3}
   myAudioSource: {fileID: 5341818563212822864}
@@ -414,6 +414,7 @@ MonoBehaviour:
   myPreferredFoodQuality: 1
   target: {x: 0, y: 0}
   combatTarget: {fileID: 0}
+  isLiningUp: 0
   inCombat: 0
 --- !u!114 &6058775654053657681
 MonoBehaviour:
@@ -484,6 +485,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   preferredQuality: 0
   itemsWanted: 0
+  intimidation: 0
 --- !u!114 &1630244995
 MonoBehaviour:
   m_ObjectHideFlags: 0

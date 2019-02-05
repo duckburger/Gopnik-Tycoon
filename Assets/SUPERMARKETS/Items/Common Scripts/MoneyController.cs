@@ -7,13 +7,8 @@ public class MoneyController : MonoBehaviour
     public static MoneyController Instance;
 
     [SerializeField] ScriptableFloatVar mainBalance;
-    public ScriptableFloatVar MainBalance
-    {
-        get
-        {
-            return this.mainBalance;
-        }
-    }
+    public ScriptableFloatVar MainBalance => this.mainBalance;
+    
 
     private void Awake()
     {

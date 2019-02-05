@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class NewBuildMenu : MonoBehaviour
 {
@@ -15,6 +16,9 @@ public class NewBuildMenu : MonoBehaviour
     [SerializeField] GameObject buildingCellPrefab;
     [SerializeField] GameObject arrowsPrefab;
     [SerializeField] GameObject sellButtonPrefab;
+
+    [SerializeField] Button buildButton;
+    [SerializeField] CanvasGroup buildButtonCanvasGroup;
 
     GameObject spawnedArrows = null;
     BuildingArrows spawnedArrowsScript = null;
@@ -105,6 +109,7 @@ public class NewBuildMenu : MonoBehaviour
             if (i == 0)
             {
                 cell.Select();
+                UpdateSubmitButton();
             }
             
         }
@@ -206,7 +211,26 @@ public class NewBuildMenu : MonoBehaviour
         CheckRightDirectionSlot();
         CheckLeftDirectionSlot();
         CameraController.Instance.SetFollowObject(this.spawnedBuildingSilhouette.transform);
+        UpdateSubmitButton();
+    }
 
+    void UpdateSubmitButton()
+    {
+        if (MoneyController.Instance == null || this.buildButton == null || this.buildButtonCanvasGroup == null)
+        {
+            Debug.Log("Didn't find money controller or the submit button");
+            return;
+        }
+        if (MoneyController.Instance.MainBalance.value < this.selectedBuilding.purchasePrice)
+        {
+            this.buildButton.interactable = false;
+            LeanTween.alphaCanvas(this.buildButtonCanvasGroup, 0.4f, 0.18f);
+        }
+        else
+        {
+            this.buildButton.interactable = true;
+            LeanTween.alphaCanvas(this.buildButtonCanvasGroup, 1f, 0.18f);
+        }
     }
 
     #endregion
@@ -215,8 +239,10 @@ public class NewBuildMenu : MonoBehaviour
 
     public void BuildSelectedBuilding()
     {
+        UpdateSubmitButton();
         if (this.spawnedBuildingSilhouette != null)
         {
+            MoneyController.AdjustMainBalance(-this.selectedBuilding.purchasePrice);
             StoreShelf spawnedShelf = this.spawnedBuildingSilhouette.GetComponent<StoreShelf>();
             if (spawnedShelf != null)
             {

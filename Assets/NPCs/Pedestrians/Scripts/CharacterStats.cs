@@ -7,21 +7,11 @@ public class CharacterStats : MonoBehaviour
 {
     [SerializeField] [EnumFlag] FoodQuality preferredQuality;
     [SerializeField] int itemsWanted;
-    public int ItemsWanted
-    {
-        get
-        {
-            return this.itemsWanted;
-        }
-    }
+    [SerializeField] float intimidation;
 
-    public FoodQuality PreferredFoodQuality
-    {
-        get
-        {
-            return this.preferredQuality;
-        }
-    }
+    public FoodQuality PreferredFoodQuality => this.preferredQuality;
+    public int ItemsWanted => this.itemsWanted;
+    public float Intimidation => intimidation;
 
     private void Start()
     {
@@ -32,5 +22,7 @@ public class CharacterStats : MonoBehaviour
         FoodQuality randomizedQuality = (FoodQuality)values[UnityEngine.Random.Range(0, values.Length)];
         this.preferredQuality = randomizedQuality;
     }
+
+
 
 }
