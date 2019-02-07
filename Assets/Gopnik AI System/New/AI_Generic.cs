@@ -51,13 +51,8 @@ public class AI_Generic : MonoBehaviour
     [Task]
     public bool inCombat = false;
     [Task]
-    public bool CanAttack
-    {
-        get
-        {
-            return this.myAttackController.CanAttackAgain;
-        }
-    }
+    public bool CanAttack => this.myAttackController.CanAttackAgain;
+
 
     public PolyNavAgent NavAgent
     {
@@ -357,18 +352,15 @@ public class AI_Generic : MonoBehaviour
             return;
         }
 
-        this.navAgent.SetDestination(positionInQueue, HasReachedQueuePosition);
-    }
-
-    [Task]
-    private void HasReachedQueuePosition(bool success)
-    {
-        if (success)
+        this.navAgent.SetDestination(positionInQueue, (bool success) => 
         {
-            this.animator.SetTrigger("Idle");
-            this.isLiningUp = true;
-            Task.current?.Succeed();
-        }
+            if (success)
+            {
+                this.animator.SetTrigger("Idle");
+                this.isLiningUp = true;
+                Task.current?.Succeed();
+            }
+        });
     }
 
     [Task]
@@ -488,7 +480,7 @@ public class AI_Generic : MonoBehaviour
                 Task.current?.Succeed();
                 Destroy(this.gameObject);                
             });
-            if (Task.current.isStarting)
+            if (Task.current != null && Task.current.isStarting)
             {
                 this.animator.Play("Walk");
             }

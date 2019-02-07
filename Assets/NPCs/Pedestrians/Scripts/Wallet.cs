@@ -62,7 +62,7 @@ public class Wallet : MonoBehaviour {
 	
     public float Rob()
     {
-        // TODO: Make this stat dependent so gopnik with higher intimidation will rob people for more
+        // TODO: Make this is stat dependent so gopnik with higher intimidation will rob people for more
         int amtToSteal = (int)UnityEngine.Random.Range(3, currentBalance - 2);
         if (amtToSteal > this.currentBalance)
         {

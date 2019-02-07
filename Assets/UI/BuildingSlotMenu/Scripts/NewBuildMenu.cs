@@ -38,6 +38,18 @@ public class NewBuildMenu : MonoBehaviour
         this.mainCam = Camera.main;
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A))
+        {
+            MoveSilhouetteLeft();
+        }
+        if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D))
+        {
+            MoveSilhouetteRight();
+        }
+    }
+
     #region Population
 
     public void Populate(BuildingSlotRow rowOfSlots)

@@ -15,7 +15,7 @@ public class CharacterStats : MonoBehaviour
 
     private void Start()
     {
-        this.itemsWanted = 1/*UnityEngine.Random.Range(1, 5)*/;
+        this.itemsWanted = UnityEngine.Random.Range(1, 5);
 
         // Randomizing the wanted food quality
         int[] values = Enum.GetValues(typeof(FoodQuality)) as int[];

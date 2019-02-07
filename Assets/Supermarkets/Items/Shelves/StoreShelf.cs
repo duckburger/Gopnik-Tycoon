@@ -34,6 +34,7 @@ public class StoreShelf : Building
             this.maxStockAmount += this.perShelfCapacity;
         }
         this.stockAmtSlider.maxValue = this.maxStockAmount;
+        this.stockAmtSlider.value = 0;
     }
 
 
@@ -106,7 +107,7 @@ public class StoreShelf : Building
             carryController.PickUpFoodItem(slotWithItem.EmptyAndTakeItem());
             this.currentFoodStock--;
             UpdateStockUI();
-            ShowStockCount();
+            ShowStock();
         }
     }
 
@@ -181,10 +182,15 @@ public class StoreShelf : Building
 
             UpdateStockUI();
             UpdateShelfAppearance(true, restockAmount);
-            ShowStockCount();
-            StopAllCoroutines();
-            StartCoroutine(StockShowTimer());
+            ShowStock();
         }
+    }
+
+    private void ShowStock()
+    {
+        ShowStockCount();
+        StopAllCoroutines();
+        StartCoroutine(StockShowTimer());
     }
 
     public virtual void UpdateShelfAppearance(bool isAdding, int amountToRestock)
