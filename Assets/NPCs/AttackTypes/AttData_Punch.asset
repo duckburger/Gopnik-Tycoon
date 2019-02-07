@@ -16,4 +16,5 @@ MonoBehaviour:
   staminaCost: 10
   animStateName: Punch
   damage: 10
+  cooldown: 0.2
   type: 0

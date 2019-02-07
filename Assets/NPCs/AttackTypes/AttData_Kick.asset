@@ -16,4 +16,5 @@ MonoBehaviour:
   staminaCost: 25
   animStateName: Kick
   damage: 30
+  cooldown: 0.2
   type: 1
