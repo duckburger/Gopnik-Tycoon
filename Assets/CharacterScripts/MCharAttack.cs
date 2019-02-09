@@ -59,12 +59,13 @@ public class MCharAttack : MonoBehaviour
     IEnumerator StartAttackCooldown()
     {
         float timer = this.lastAppliedAttack.cooldown;
-        while (timer > 0)
+        while (timer >= 0)
         {
             this.onPlayerAttackCooldownUpdated?.RaiseWithData(Mathf.InverseLerp(this.lastAppliedAttack.cooldown, 0, timer));
             timer -= Time.deltaTime;            
             yield return null;
         }
+        this.onPlayerAttackCooldownUpdated?.RaiseWithData(1f);
         this.canAttackAgain = true;
     }
 

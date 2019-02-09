@@ -31,10 +31,15 @@ public class HealthBar : MonoBehaviour
     }
 
     public void UpdateBar(float newAmount)
-    {
+    {        
         this.currentVal = newAmount;
         float normalizedVav = newAmount / this.maxVal;
         this.canvasGroup.alpha = 1;
+        if (newAmount <= 0)
+        {
+            AnimateDestruction();
+            return;
+        }
         if (this.shake)
         {
             LeanTween.moveX(this.myRect, this.myRect.localPosition.x + 0.002f, 0.1f).setEase(LeanTweenType.easeInOutBounce).setLoopPingPong(1);
@@ -46,6 +51,12 @@ public class HealthBar : MonoBehaviour
             {
                 LeanTween.alphaCanvas(this.canvasGroup, 0, 0.1f).setDelay(5f);
             });
+    }
+
+    void AnimateDestruction()
+    {
+        LeanTween.scaleY(this.gameObject, 0.2f, 0.23f).setEase(LeanTweenType.easeInOutBounce);
+        LeanTween.alphaCanvas(this.canvasGroup, 0, 0.12f).setDelay(0.2f);
     }
 
 }

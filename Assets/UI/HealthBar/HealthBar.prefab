@@ -223,6 +223,7 @@ GameObject:
   - component: {fileID: 5783460534657537251}
   - component: {fileID: 8895030707458469263}
   - component: {fileID: 3578178378923470857}
+  - component: {fileID: 5295264858219388347}
   m_Layer: 0
   m_Name: HealthBar
   m_TagString: Untagged
@@ -327,3 +328,15 @@ MonoBehaviour:
   maxVal: 0
   currentVal: 0
   shake: 1
+--- !u!225 &5295264858219388347
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8685562472635033457}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0

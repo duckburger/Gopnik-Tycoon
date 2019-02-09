@@ -10,6 +10,8 @@ public class OnCharAttacked : UnityEvent<GameObject> { }
 
 public class Health : MonoBehaviour {
 
+    [SerializeField] HealthBar healthBar;
+    [Space]
     [SerializeField] float currentHealth;
     [SerializeField] float maxHealth = 100;
     [Space(10)]
@@ -35,6 +37,7 @@ public class Health : MonoBehaviour {
     {
         this.currentHealth = this.maxHealth;
         this.myAudioSource = this.GetComponent<AudioSource>();
+        this.healthBar?.Init(this.maxHealth);
     }
 
     public float GetCurrentHealth()
@@ -59,6 +62,8 @@ public class Health : MonoBehaviour {
         {
             this.onAttacked.Invoke(attacker);
         }
+
+        this.healthBar?.UpdateBar(currentHealth);
     }
 
     void Die()
