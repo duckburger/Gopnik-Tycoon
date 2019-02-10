@@ -54,7 +54,10 @@ public class Health : MonoBehaviour {
         if (Mathf.Abs(amount) >= currentHealth)
         {
             currentHealth += amount;
-            Die();
+            this.healthBar?.UpdateBar(currentHealth, () => 
+            {
+                Die();
+            });
             return;
         }
         currentHealth += amount;

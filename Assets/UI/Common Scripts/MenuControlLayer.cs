@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class MenuControlLayer : MonoBehaviour
 {
@@ -62,8 +63,7 @@ public class MenuControlLayer : MonoBehaviour
             Debug.Log("Closing building slot menu!");
 
             this.slotBuildingMenu.SendMessage("Close", SendMessageOptions.DontRequireReceiver);
-            ExternalPlayerController.Instance.TurnOnAllPlayerSystems();
-            this.isAMenuOpen = false;
+            StartCoroutine(DelayedCall(() => { ExternalPlayerController.Instance.TurnOnAllPlayerSystems(); this.isAMenuOpen = false; }, 0.4f));
         }
     }
 
@@ -87,5 +87,9 @@ public class MenuControlLayer : MonoBehaviour
         this.isAMenuOpen = false;
     }
 
-
+    IEnumerator DelayedCall(Action call, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        call.Invoke();
+    }
 }

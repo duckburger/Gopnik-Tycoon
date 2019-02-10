@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System;
 
 public class HealthBar : MonoBehaviour
 {
@@ -30,14 +31,14 @@ public class HealthBar : MonoBehaviour
         this.fgFill.fillAmount = 1;
     }
 
-    public void UpdateBar(float newAmount)
+    public void UpdateBar(float newAmount, Action callback = null)
     {        
         this.currentVal = newAmount;
         float normalizedVav = newAmount / this.maxVal;
         this.canvasGroup.alpha = 1;
         if (newAmount <= 0)
         {
-            AnimateDestruction();
+            AnimateDestruction(callback);
             return;
         }
         if (this.shake)
@@ -53,10 +54,10 @@ public class HealthBar : MonoBehaviour
             });
     }
 
-    void AnimateDestruction()
+    void AnimateDestruction(Action callback = null)
     {
-        LeanTween.scaleY(this.gameObject, 0.2f, 0.23f).setEase(LeanTweenType.easeInOutBounce);
-        LeanTween.alphaCanvas(this.canvasGroup, 0, 0.12f).setDelay(0.2f);
+        LeanTween.scaleY(this.gameObject, this.myRect.localScale.x / 8f, 0.23f).setEase(LeanTweenType.easeInOutBounce);
+        LeanTween.alphaCanvas(this.canvasGroup, 0, 0.12f).setDelay(0.2f).setOnComplete(callback);
     }
 
 }

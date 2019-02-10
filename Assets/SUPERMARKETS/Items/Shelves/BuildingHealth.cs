@@ -29,15 +29,18 @@ public class BuildingHealth : MonoBehaviour
     {
         AdjustBuildingHealth(-damage);
     }
-
+ 
     public void AdjustBuildingHealth(float amount)
     {
-        if (health + amount <= 0)
+        if (this.health + amount <= 0)
         {
+            this.health += amount;
             // Get destroyed or something
-            this.GetComponentInParent<ModularBuildingSlot>().CurrentBuilding = null;
-            Destroy(this.gameObject); // TODO: Add an animation to this + drop everything contained
-            return;
+            TalkToHealthBar(() => 
+            {
+                this.GetComponentInParent<ModularBuildingSlot>().CurrentBuilding = null;
+                Destroy(this.gameObject); // TODO: Add an animation to this + drop everything contained
+            });
         }
         this.health += amount;
         if (this.onHealthUpdated != null)
@@ -46,9 +49,14 @@ public class BuildingHealth : MonoBehaviour
         }
 
         this.myAnimator?.Play("HitShake");
+        TalkToHealthBar();
+    }
+
+    private void TalkToHealthBar(Action callback = null)
+    {
         if (this.healthBar != null)
         {
-            this.healthBar.UpdateBar(this.health);
+            this.healthBar.UpdateBar(this.health, callback);
         }
     }
 }

@@ -162,6 +162,14 @@ public class BuildingTracker : MonoBehaviour
         }
     }
 
+    public void RemoveCashRegusterFromTracker(Building registerToRemove)
+    {
+        if (this.allCashRegisters.Contains(registerToRemove))
+        {
+            this.allCashRegisters.Remove(registerToRemove);
+        }
+    }
+
     public CashRegisterSlot GetCashRegisterWithShortestLine() // TODO: Add a fluke possibility where this will provide just a random cash register
     {
         if (this.allCashRegisters.Count <= 0)

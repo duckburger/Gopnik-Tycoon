@@ -2036,36 +2036,6 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1039588362823347932, guid: f1494937dd821a84d842805d32602b9f,
-        type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1039588362823347932, guid: f1494937dd821a84d842805d32602b9f,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1039588362823347932, guid: f1494937dd821a84d842805d32602b9f,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1039588362823347932, guid: f1494937dd821a84d842805d32602b9f,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1039588362823347932, guid: f1494937dd821a84d842805d32602b9f,
-        type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1039588362823347932, guid: f1494937dd821a84d842805d32602b9f,
-        type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2572196284904504051, guid: f1494937dd821a84d842805d32602b9f,
         type: 3}
       propertyPath: cooldownFill
@@ -2076,16 +2046,16 @@ PrefabInstance:
       propertyPath: weaponIcon
       value: 
       objectReference: {fileID: 753773414250369737}
-    - target: {fileID: 5284210237671458351, guid: f1494937dd821a84d842805d32602b9f,
-        type: 3}
-      propertyPath: m_TargetGraphic
-      value: 
-      objectReference: {fileID: 4245460279244467881}
     - target: {fileID: 1758895746229998158, guid: f1494937dd821a84d842805d32602b9f,
         type: 3}
       propertyPath: raisedWithData.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1575633885982571155}
+    - target: {fileID: 5284210237671458351, guid: f1494937dd821a84d842805d32602b9f,
+        type: 3}
+      propertyPath: m_TargetGraphic
+      value: 
+      objectReference: {fileID: 4245460279244467881}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f1494937dd821a84d842805d32602b9f, type: 3}
 --- !u!224 &6374003533560221512 stripped
@@ -2303,11 +2273,40 @@ PrefabInstance:
         type: 3}
       propertyPath: buildButtonCanvasGroup
       value: 
-      objectReference: {fileID: 5624722919248261793, guid: 5f3409bc0a23a0043a7ea0857ca47f0f,
-        type: 3}
+      objectReference: {fileID: 573733195}
     - target: {fileID: 2642962212194572430, guid: d4f19a4ab0120da4796c24bb663c789f,
         type: 3}
       propertyPath: raiseResponse.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 8431260233622133816}
+    - target: {fileID: 8792160498953449343, guid: d4f19a4ab0120da4796c24bb663c789f,
+        type: 3}
+      propertyPath: m_Colors.m_DisabledColor.r
+      value: 0.45
+      objectReference: {fileID: 0}
+    - target: {fileID: 8792160498953449343, guid: d4f19a4ab0120da4796c24bb663c789f,
+        type: 3}
+      propertyPath: m_Colors.m_DisabledColor.g
+      value: 0.45
+      objectReference: {fileID: 0}
+    - target: {fileID: 8792160498953449343, guid: d4f19a4ab0120da4796c24bb663c789f,
+        type: 3}
+      propertyPath: m_Colors.m_DisabledColor.b
+      value: 0.45
+      objectReference: {fileID: 0}
+    - target: {fileID: 8792160498953449343, guid: d4f19a4ab0120da4796c24bb663c789f,
+        type: 3}
+      propertyPath: m_Colors.m_DisabledColor.a
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8792160498953449343, guid: d4f19a4ab0120da4796c24bb663c789f,
+        type: 3}
+      propertyPath: m_TargetGraphic
+      value: 
+      objectReference: {fileID: 7313263056775010824}
+    - target: {fileID: 8792160498953449343, guid: d4f19a4ab0120da4796c24bb663c789f,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 8431260233622133816}
     - target: {fileID: 4274191653849123732, guid: d4f19a4ab0120da4796c24bb663c789f,
@@ -2405,36 +2404,29 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 8431260233622133816}
-    - target: {fileID: 8792160498953449343, guid: d4f19a4ab0120da4796c24bb663c789f,
+    - target: {fileID: 1032810729250328731, guid: d4f19a4ab0120da4796c24bb663c789f,
         type: 3}
-      propertyPath: m_Colors.m_DisabledColor.r
-      value: 0.45
-      objectReference: {fileID: 0}
-    - target: {fileID: 8792160498953449343, guid: d4f19a4ab0120da4796c24bb663c789f,
-        type: 3}
-      propertyPath: m_Colors.m_DisabledColor.g
-      value: 0.45
-      objectReference: {fileID: 0}
-    - target: {fileID: 8792160498953449343, guid: d4f19a4ab0120da4796c24bb663c789f,
-        type: 3}
-      propertyPath: m_Colors.m_DisabledColor.b
-      value: 0.45
-      objectReference: {fileID: 0}
-    - target: {fileID: 8792160498953449343, guid: d4f19a4ab0120da4796c24bb663c789f,
-        type: 3}
-      propertyPath: m_Colors.m_DisabledColor.a
-      value: 0.4
-      objectReference: {fileID: 0}
-    - target: {fileID: 8792160498953449343, guid: d4f19a4ab0120da4796c24bb663c789f,
-        type: 3}
-      propertyPath: m_TargetGraphic
+      propertyPath: m_textInfo.textComponent
       value: 
-      objectReference: {fileID: 7313263056775010824}
-    - target: {fileID: 8792160498953449343, guid: d4f19a4ab0120da4796c24bb663c789f,
+      objectReference: {fileID: 6033922373290595057}
+    - target: {fileID: 1032810729250328731, guid: d4f19a4ab0120da4796c24bb663c789f,
         type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      propertyPath: m_havePropertiesChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1032810729250328731, guid: d4f19a4ab0120da4796c24bb663c789f,
+        type: 3}
+      propertyPath: m_isInputParsingRequired
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1365648767, guid: d4f19a4ab0120da4796c24bb663c789f, type: 3}
+      propertyPath: onFloatUpdated.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 8431260233622133816}
+      objectReference: {fileID: 6767093363042625514}
+    - target: {fileID: 1365648768, guid: d4f19a4ab0120da4796c24bb663c789f, type: 3}
+      propertyPath: balanceText
+      value: 
+      objectReference: {fileID: 6033922373290595057}
     - target: {fileID: 5322318847192157514, guid: d4f19a4ab0120da4796c24bb663c789f,
         type: 3}
       propertyPath: m_textInfo.textComponent
@@ -2465,29 +2457,6 @@ PrefabInstance:
       propertyPath: m_isInputParsingRequired
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 1032810729250328731, guid: d4f19a4ab0120da4796c24bb663c789f,
-        type: 3}
-      propertyPath: m_textInfo.textComponent
-      value: 
-      objectReference: {fileID: 6033922373290595057}
-    - target: {fileID: 1032810729250328731, guid: d4f19a4ab0120da4796c24bb663c789f,
-        type: 3}
-      propertyPath: m_havePropertiesChanged
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1032810729250328731, guid: d4f19a4ab0120da4796c24bb663c789f,
-        type: 3}
-      propertyPath: m_isInputParsingRequired
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1365648767, guid: d4f19a4ab0120da4796c24bb663c789f, type: 3}
-      propertyPath: onFloatUpdated.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 6767093363042625514}
-    - target: {fileID: 1365648768, guid: d4f19a4ab0120da4796c24bb663c789f, type: 3}
-      propertyPath: balanceText
-      value: 
-      objectReference: {fileID: 6033922373290595057}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d4f19a4ab0120da4796c24bb663c789f, type: 3}
 --- !u!1 &5587009581548786374 stripped

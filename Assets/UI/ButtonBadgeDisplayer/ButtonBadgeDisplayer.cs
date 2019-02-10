@@ -48,31 +48,30 @@ public class ButtonBadgeDisplayer : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (MenuControlLayer.Instance != null && MenuControlLayer.Instance.IsAMenuOpen)
+        if (this.isActive && MenuControlLayer.Instance != null && MenuControlLayer.Instance.IsAMenuOpen)
         {
             HideButtonBadge();
             return;
         }
+
         if (this.triggerItemList != null && this.triggerItemList.Count > 0 )
         {
-            if (ExternalPlayerController.Instance.PlayerCarryController.CurrentItem == null)
+            if (ExternalPlayerController.Instance.PlayerCarryController.CurrentItem != null)
             {
-                return;
-            }
-            Type itemType = ExternalPlayerController.Instance.PlayerCarryController.CurrentItem.GetType();
-            bool hasItem = IsTriggeredByItemType(itemType);
-            bool playerNear = collision.gameObject.tag.Equals("Player");
-            Debug.Log("InTriggerList: " + hasItem + " PlayerNear: " + playerNear);
-            if (hasItem && playerNear)
-            {
-                DisplayButtonBadge();
-                return;
+                Type itemType = ExternalPlayerController.Instance.PlayerCarryController.CurrentItem.GetType();
+                bool hasItem = IsTriggeredByItemType(itemType);
+                bool playerNear = collision.gameObject.tag.Equals("Player");
+                Debug.Log("InTriggerList: " + hasItem + " PlayerNear: " + playerNear);
+                if (hasItem && playerNear)
+                {
+                    DisplayButtonBadge();
+                    return;
+                }
             }
             return;
         }
-        
-  
-        if (collision.gameObject.tag.Equals("Player"))
+          
+        if (!this.isActive && collision.gameObject.tag.Equals("Player") && !MenuControlLayer.Instance.IsAMenuOpen)
         {
             DisplayButtonBadge();
         }
@@ -80,30 +79,34 @@ public class ButtonBadgeDisplayer : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (MenuControlLayer.Instance != null && MenuControlLayer.Instance.IsAMenuOpen)
+        if (this.isActive && MenuControlLayer.Instance != null && MenuControlLayer.Instance.IsAMenuOpen)
         {
             HideButtonBadge();
             return;
         }
-        if (this.triggerItemList == null || this.triggerItemList.Count <= 0 || ExternalPlayerController.Instance.PlayerCarryController.CurrentItem == null)
+        if (!this.isActive && this.triggerItemList != null && this.triggerItemList.Count > 0)
         {
+            if (collision.gameObject.tag.Equals("Player") && ExternalPlayerController.Instance.PlayerCarryController.CurrentItem != null)
+            {
+                Type itemType = ExternalPlayerController.Instance.PlayerCarryController.CurrentItem.GetType();
+                bool hasItem = IsTriggeredByItemType(itemType);
+                if (hasItem)
+                {
+                    DisplayButtonBadge();
+                    return;
+                }
+                else
+                {
+                    HideButtonBadge();
+                }
+            }
             return;
         }
-        if (collision.gameObject.tag.Equals("Player"))
-        {
-            Type itemType = ExternalPlayerController.Instance.PlayerCarryController.CurrentItem.GetType();
-            bool hasItem = IsTriggeredByItemType(itemType);
-            if (hasItem)
-            {
-                DisplayButtonBadge();
-                return;
-            }
-            else
-            {
-                HideButtonBadge();
-            }
-        }
 
+        if (!this.isActive && collision.gameObject.tag.Equals("Player") && !MenuControlLayer.Instance.IsAMenuOpen)
+        {
+            DisplayButtonBadge();
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)

@@ -33,6 +33,8 @@ public class NewBuildMenu : MonoBehaviour
     List<GameObject> spawnedSellButtons = new List<GameObject>();
     Camera mainCam = null;
 
+    bool isOpen = false;
+
     private void Awake()
     {
         this.mainCam = Camera.main;
@@ -75,12 +77,16 @@ public class NewBuildMenu : MonoBehaviour
 
     void AnimatePanels()
     {
+        if (this.isOpen)
+        {
+            return;
+        }
         this.topPanelOrigPos = this.topPanel.anchoredPosition;
         this.bottomPanelOrigPos = this.bottomPanel.anchoredPosition;
         this.topPanel.anchoredPosition = new Vector2(this.topPanel.anchoredPosition.x, this.topPanel.anchoredPosition.y + this.topPanel.rect.height);
         this.bottomPanel.anchoredPosition = new Vector2(this.bottomPanel.anchoredPosition.x, this.bottomPanel.anchoredPosition.y - this.bottomPanel.rect.height);
         LeanTween.moveY(this.topPanel, 0, 0.23f).setEase(LeanTweenType.easeOutExpo).setDelay(0.1f);
-        LeanTween.moveY(this.bottomPanel, 0, 0.23f).setEase(LeanTweenType.easeOutExpo).setDelay(0.1f);
+        LeanTween.moveY(this.bottomPanel, 0, 0.23f).setEase(LeanTweenType.easeOutExpo).setDelay(0.1f).setOnComplete(() => { this.isOpen = true; });
     }
 
     void SpawnSellButtons()
@@ -107,6 +113,7 @@ public class NewBuildMenu : MonoBehaviour
                     Destroy(goToDestroy);
                     CheckLeftDirectionSlot();
                     CheckRightDirectionSlot();
+                    UpdateSubmitButton();
                 });
             }
         }
@@ -158,6 +165,7 @@ public class NewBuildMenu : MonoBehaviour
                 DestroyAllSellButtons();
                 this.gameObject.SetActive(false);
                 CameraController.Instance.ReturnCameraToPlayer();
+                this.isOpen = false;
 
             });
     }
@@ -200,11 +208,7 @@ public class NewBuildMenu : MonoBehaviour
             this.spawnedBuildingSilhouette = null;
             this.spawnedBuildingSilhouette = Instantiate(newBuilding.gameObject, this.selectedRow.currentHighlightedSlot.transform.position, Quaternion.identity);
         }
-        StoreShelf spawnedShelf = this.spawnedBuildingSilhouette.GetComponent<StoreShelf>();
-        if (spawnedShelf != null)
-        {
-            spawnedShelf.registerInTracker = false;
-        }
+
         Sprite silhouetteSprite = this.spawnedBuildingSilhouette?.GetComponent<SpriteRenderer>().sprite;
 
         if (this.spawnedArrows == null)
@@ -226,14 +230,14 @@ public class NewBuildMenu : MonoBehaviour
         UpdateSubmitButton();
     }
 
-    void UpdateSubmitButton()
+    public void UpdateSubmitButton()
     {
         if (MoneyController.Instance == null || this.buildButton == null || this.buildButtonCanvasGroup == null)
         {
             Debug.Log("Didn't find money controller or the submit button");
             return;
         }
-        if (MoneyController.Instance.MainBalance.value < this.selectedBuilding.purchasePrice)
+        if (MoneyController.Instance.MainBalance.value < this.selectedBuilding.purchasePrice || this.selectedRow.currentHighlightedSlot.CurrentBuilding != null)
         {
             this.buildButton.interactable = false;
             LeanTween.alphaCanvas(this.buildButtonCanvasGroup, 0.4f, 0.18f);
@@ -255,18 +259,19 @@ public class NewBuildMenu : MonoBehaviour
         if (this.spawnedBuildingSilhouette != null)
         {
             MoneyController.AdjustMainBalance(-this.selectedBuilding.purchasePrice);
-            StoreShelf spawnedShelf = this.spawnedBuildingSilhouette.GetComponent<StoreShelf>();
-            if (spawnedShelf != null)
-            {
-                spawnedShelf.registerInTracker = true;
-            }
-            this.spawnedBuildingSilhouette.SendMessage("RegisterInTracker", SendMessageOptions.DontRequireReceiver);
+            this.spawnedBuildingSilhouette.SendMessage("Place", SendMessageOptions.DontRequireReceiver);
             ModularBuildingSlot slotToInstallTo = this.selectedRow.currentHighlightedSlot;
             this.spawnedBuildingSilhouette.transform.parent = slotToInstallTo.transform;
             slotToInstallTo.CurrentBuilding = this.spawnedBuildingSilhouette.GetComponent<Building>();
             this.spawnedBuildingSilhouette = null;
             LevelData.CurrentLevel.mainMapController.GenerateMap(false);
-            MenuControlLayer.Instance.CloseSlotBuildingMenu();
+
+            this.selectedRow.currentHighlightedSlot.DisplayDefault();
+
+            Populate(this.selectedRow);
+            if (MoveSilhouetteLeft()) { UpdateSubmitButton(); } else { MoveSilhouetteRight(); UpdateSubmitButton(); }
+
+            ///MenuControlLayer.Instance.CloseSlotBuildingMenu();
         }
     }
 
@@ -274,23 +279,24 @@ public class NewBuildMenu : MonoBehaviour
 
     #region Arrow Functions
 
-    public void MoveSilhouetteRight()
+    public bool MoveSilhouetteRight()
     {
         if (this.spawnedBuildingSilhouette == null || this.selectedRow == null)
         {
-            return;
+            return false;
         }
         if (this.selectedRow.GetSlotToRightOfSelected() == null)
         {
-            return;
+            return false;
         }
         this.spawnedBuildingSilhouette.transform.position = this.selectedRow.GetSlotToRightOfSelected().transform.position;
         if (this.spawnedArrowsScript != null)
         {
             this.spawnedArrowsScript.container.transform.position = this.mainCam.WorldToScreenPoint(this.spawnedBuildingSilhouette.transform.position);
-            this.selectedRow.MarkSlotAsHighlighted(this.selectedRow.GetSlotToRightOfSelected());        
+            this.selectedRow.MarkSlotAsHighlighted(this.selectedRow.GetSlotToRightOfSelected());
         }
         CheckRightDirectionSlot();
+        return true;
     }
 
     void CheckRightDirectionSlot()
@@ -313,15 +319,15 @@ public class NewBuildMenu : MonoBehaviour
         }
     }
 
-    public void MoveSilhouetteLeft()
+    public bool MoveSilhouetteLeft()
     {
         if (this.spawnedBuildingSilhouette == null || this.selectedRow == null)
         {
-            return;
+            return false;
         }
         if (this.selectedRow.GetSlotToLeftOfSelected() == null)
         {
-            return;
+            return false;
         }
         this.spawnedBuildingSilhouette.transform.position = this.selectedRow.GetSlotToLeftOfSelected().transform.position;
         
@@ -332,6 +338,7 @@ public class NewBuildMenu : MonoBehaviour
             
         }
         CheckLeftDirectionSlot();
+        return true;
     }
 
     void CheckLeftDirectionSlot()

@@ -9,9 +9,29 @@ public class CashRegister : Building
     [SerializeField] ScriptableEvent onAdvancedInLine;
     AI_Generic nextPayingCustomer;
 
+
     private void Start()
     {
+        if (this.registerOnStart)
+        {
+            RegisterInTracker();
+        }
+    }
+
+    public override void Place()
+    {
+        RegisterInTracker();
+    }
+
+    public void RegisterInTracker()
+    {
         BuildingTracker.Instance.AddCashRegisterToTracker(this);
+    }
+
+
+    private void OnDestroy()
+    {
+        BuildingTracker.Instance.RemoveCashRegusterFromTracker(this);
     }
 
     public void RegisterAsNextPayingCustomer(AI_Generic customerController)

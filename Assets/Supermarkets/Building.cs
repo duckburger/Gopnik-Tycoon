@@ -20,6 +20,10 @@ public class Building : MonoBehaviour
     BuildingHealth myHealthController;
     SpriteRenderer mySpriteRenderer;
 
+    public bool registerOnStart = false;
+
+    public virtual void Place() { }
+
     private void Awake()
     {
         this.mySpriteRenderer = this.GetComponent<SpriteRenderer>();
