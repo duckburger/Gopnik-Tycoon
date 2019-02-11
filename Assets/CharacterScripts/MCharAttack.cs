@@ -26,6 +26,7 @@ public class MCharAttack : MonoBehaviour
     public bool IsAttacking => this.isAttacking;
     public bool CanAttackAgain => this.canAttackAgain;
     public float EffectiveDistance => this.effectiveDistance;
+    public bool canHurtBuildings = true;
 
     List<Collider2D> itemsHitOnThisSwing = new List<Collider2D>();
 
@@ -112,9 +113,9 @@ public class MCharAttack : MonoBehaviour
         {
             return;
         }
-            if (collider.gameObject != this.gameObject && !this.itemsHitOnThisSwing.Contains(collider))
+
+        if (collider.gameObject != this.gameObject && !this.itemsHitOnThisSwing.Contains(collider))
         {
-           
             this.itemsHitOnThisSwing.Add(collider);
             healthController.AdjustHealth(-15, true); // TODO: Deplete actual amount of health
             Vector2 attackDir = collider.gameObject.transform.position - this.gameObject.transform.position;
@@ -128,6 +129,10 @@ public class MCharAttack : MonoBehaviour
 
     private void CheckForBuildingHits(Collider2D collider)
     {
+        if (!this.canHurtBuildings)
+        {
+            return;
+        }
         BuildingHealth healthController = collider.gameObject.GetComponent<BuildingHealth>();
         if (healthController == null)
         {

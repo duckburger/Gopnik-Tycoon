@@ -190,12 +190,12 @@ public class AI_CharController : MonoBehaviour, ICharStats
     public void ReactToAttack(GameObject attacker)
     {
         // TODO: Add a check to decide whether the character fights back or runs
-        Act_Fight fightAction = this.actionParent.GetComponent<Act_Fight>();
-        if (fightAction != null)
-        {
-            fightAction.Target = attacker;
-            QueueAction(fightAction, false);
-        }
+        //Act_Fight fightAction = this.actionParent.GetComponent<Act_Fight>();
+        //if (fightAction != null)
+        //{
+        //    fightAction.Target = attacker;
+        //    QueueAction(fightAction, false);
+        //}
         
     }
     

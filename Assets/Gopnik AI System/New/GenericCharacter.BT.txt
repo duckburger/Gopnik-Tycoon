@@ -13,11 +13,13 @@ tree "Root"
 
 	
 tree "Shopping"
-	fallback
-		tree "WanderAroundShopping"
-		tree "GoToCash"
-		tree "WaitInLine"
-		tree "LeaveAfterPaying"
+	sequence
+		while isShopping
+			fallback
+				tree "WanderAroundShopping"
+				tree "GoToCash"
+				tree "WaitInLine"
+				tree "LeaveAfterPaying"
 
 tree "WanderAroundShopping"
 	while not HasPickedUpEnoughItems
@@ -80,9 +82,40 @@ tree "WaitInLine"
 		sequence
 			WalkOutOfStore
 
+tree "LeaveStore"
+	sequence
+			WalkOutOfStore
+
 
 tree "CausingTrouble"
-	Fail
+	repeat
+		while isCausingTrouble
+			sequence
+				ChooseRandomPointNearAShelf
+				GoToTarget
+				GoIdle
+				Wait (1.0)
+				repeat (1, 2)
+					random (1,1,3)
+						sequence
+							Succeed
+						sequence 
+							ChooseRandomPointNearAShelf
+							GoToTarget
+							GoIdle
+						sequence
+							GoIdle
+							Wait(1.0)
+							tree "DamageBuilding"
+
+
+tree "DamageBuilding"
+	sequence
+		ChooseBuildingToDamage
+		GoToTarget
+		Attack
+
+
 tree "Shoplifting"
 	Fail
 

@@ -162,6 +162,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 040cfe12f2a90304daafa178dd208e9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  availablePriceTagsSprites: {fileID: 11400000, guid: ad06cc4adb41ec6498bcc78a032431bb,
+    type: 2}
   allShelves: []
   allBuildingSlots: []
   allCashRegisters: []

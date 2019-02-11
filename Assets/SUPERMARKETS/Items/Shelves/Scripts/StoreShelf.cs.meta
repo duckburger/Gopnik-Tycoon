@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 7ca268b8f7348af46a529f78c798b1ae
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - mainUIImage: {instanceID: 0}
+  - regularAppearance: {instanceID: 0}
+  - damagedAppearance: {instanceID: 0}
+  - priceTagsAvailable: {fileID: 11400000, guid: ad06cc4adb41ec6498bcc78a032431bb,
+      type: 2}
+  - stockAmtText: {instanceID: 0}
+  - stockAmtSlider: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -310,7 +310,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 797c7f2dae4acf14d83d69cf7cb68e0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthBar: {fileID: 0}
+  healthBar: {fileID: 3578178380228198312}
   currentHealth: 0
   maxHealth: 100
   deadBody: {fileID: 7401058789525270420, guid: fdfce11c7db345e40a942bae557ffcf4,
@@ -474,6 +474,7 @@ MonoBehaviour:
   attackCoolDownTime: 1
   availableAttacks:
   - {fileID: 11400000, guid: c05eeb10c59625c47a5fd4e4a48f3427, type: 2}
+  canHurtBuildings: 1
 --- !u!114 &1760339592
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -733,6 +734,18 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 1926008737}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &3578178380228198312 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3578178378923470857, guid: 6d39307acd6dcf9458fb4f50badbab76,
+    type: 3}
+  m_PrefabInstance: {fileID: 1926008737}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 731ffea882b973e42871a7d8287bd282, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1785019871340030576 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1785019872727590353, guid: 6d39307acd6dcf9458fb4f50badbab76,

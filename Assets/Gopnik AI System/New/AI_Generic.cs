@@ -15,6 +15,16 @@ public enum CharacterIntentions
 
 public class AI_Generic : MonoBehaviour
 {
+
+    // MAIN STATES
+    [Task]
+    public bool isShopping = false;
+    [Task]
+    public bool isCausingTrouble = false;
+    [Task]
+    public bool isShoplifting = false;
+
+
     // Add character data
     [Header("Nav agent settings")]
     [SerializeField] float defaultNavStoppingDistance = 0.2f;
@@ -108,6 +118,21 @@ public class AI_Generic : MonoBehaviour
        
     }
 
+    #region Starting Actions
+
+    [Task]
+    void ChooseIntentions()
+    {
+        // For now always choose shop
+        this.myIntentions = CharacterIntentions.Trouble;
+        this.isCausingTrouble = true;
+        this.isShoplifting = false;
+        this.isShopping = false;
+        Task.current.Succeed();
+    }
+
+    #endregion
+
     #region Common Tasks
 
     [Task]
@@ -196,18 +221,6 @@ public class AI_Generic : MonoBehaviour
         {
             this.animator.Play("Walk");
         }
-        Task.current.Succeed();
-    }
-
-    #endregion
-
-    #region Starting Actions
-
-    [Task]
-   void ChooseIntentions()
-    {
-        // For now always choose shop
-        this.myIntentions = CharacterIntentions.Shop;
         Task.current.Succeed();
     }
 
@@ -469,6 +482,25 @@ public class AI_Generic : MonoBehaviour
 
     #endregion
 
+    #region Casuing Trouble Actions
+
+    [Task]
+    public void ChooseBuildingToDamage()
+    {
+        if (BuildingTracker.Instance.GetRandomShelf() == null)
+        {
+            Task.current.Fail();
+        }
+        Building chosenBuilding = BuildingTracker.Instance.GetRandomShelf();
+        this.target = chosenBuilding.transform.position + new Vector3(0f, -0.5f, 0f);
+        this.combatTarget = chosenBuilding.gameObject;
+        Task.current.Succeed();
+    }
+
+
+
+    #endregion
+
     [Task]
     void WalkOutOfStore()
     {
@@ -515,7 +547,6 @@ public class AI_Generic : MonoBehaviour
 
     #endregion
 
-
     #region Combat
 
     public void ReactToAttack(GameObject attacker)
@@ -529,11 +560,8 @@ public class AI_Generic : MonoBehaviour
             this.dialogueBubbleDisplayer?.ShowDialogue("Hey what the fuck, dude!");
         }
 
-        if (this.combatTarget == null) // TODO: Add an aggro system
-        {
-            this.combatTarget = attacker;
-        }
-        
+        // TODO: Add an aggro system
+       this.combatTarget = attacker;   
     }
 
     [Task]
@@ -575,7 +603,15 @@ public class AI_Generic : MonoBehaviour
         }    
         if (Task.current.isStarting || Task.current.item != null && this.target != (Vector2)this.combatTarget.transform.position)
         {
-            this.target = this.combatTarget.transform.position;
+            if (this.navAgent.map.PointIsValid(this.combatTarget.transform.position))
+            {
+                this.target = this.combatTarget.transform.position;
+            }
+            else
+            {
+                this.target = this.combatTarget.transform.position + new Vector3(0f, -0.5f, 0f);
+            }
+            
             this.navAgent?.SetDestination(this.combatTarget.transform.position, null);
             GoToTarget();
             Task.current.Succeed();

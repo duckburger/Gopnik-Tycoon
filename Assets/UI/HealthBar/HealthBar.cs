@@ -13,6 +13,7 @@ public class HealthBar : MonoBehaviour
     [SerializeField] float currentVal;
     [Space]
     [SerializeField] bool shake;
+    [SerializeField] bool fadeOnSleep = true;
 
     RectTransform myRect;
     CanvasGroup canvasGroup;
@@ -50,7 +51,8 @@ public class HealthBar : MonoBehaviour
             .setEase(LeanTweenType.easeInOutSine).setDelay(0.2f)
             .setOnComplete(() => 
             {
-                LeanTween.alphaCanvas(this.canvasGroup, 0, 0.1f).setDelay(5f);
+                if (this.fadeOnSleep && this.currentVal != this.maxVal || this.currentVal == this.maxVal)
+                    LeanTween.alphaCanvas(this.canvasGroup, 0, 0.1f).setDelay(5f);
             });
     }
 

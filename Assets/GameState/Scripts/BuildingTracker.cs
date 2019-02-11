@@ -4,8 +4,9 @@ using UnityEngine;
 using PolyNav;
 
 public class BuildingTracker : MonoBehaviour
-{ 
-
+{
+    [SerializeField] ScriptableSpriteList availablePriceTagsSprites;
+    [Space(10)]
     public static BuildingTracker Instance;
 
     public List<Building> allShelves = new List<Building>();
@@ -206,4 +207,29 @@ public class BuildingTracker : MonoBehaviour
         }
         return false;
     }
+
+
+    #region Getting Price Tag Sprites
+
+    public Sprite GetRandomPriceTagSprite()
+    {
+        int index = Random.Range(0, this.availablePriceTagsSprites.sprites.Count);
+        return this.availablePriceTagsSprites.sprites[index];
+    }
+
+    #endregion
+
+    #region Getting a Random Shelf
+
+    public Building GetRandomShelf()
+    {
+        if (this.allShelves.Count <= 0)
+        {
+            return null;
+        }
+        int index = Random.Range(0, this.allShelves.Count);
+        return this.allShelves[index];
+    }
+
+    #endregion
 }

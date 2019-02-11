@@ -379,7 +379,7 @@ MonoBehaviour:
   attackCoolDownTime: 0.5
   availableAttacks:
   - {fileID: 11400000, guid: c05eeb10c59625c47a5fd4e4a48f3427, type: 2}
-  - {fileID: 11400000, guid: 0514b91b948326742845f2ded6fe5a92, type: 2}
+  canHurtBuildings: 0
 --- !u!114 &676445930
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -510,7 +510,7 @@ PrefabInstance:
     - target: {fileID: 160236477389068927, guid: 6d39307acd6dcf9458fb4f50badbab76,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 1.832
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 160236477389068927, guid: 6d39307acd6dcf9458fb4f50badbab76,
         type: 3}
