@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class MCharAttack : MonoBehaviour
 {
@@ -30,6 +31,8 @@ public class MCharAttack : MonoBehaviour
 
     List<Collider2D> itemsHitOnThisSwing = new List<Collider2D>();
 
+    Action attackFinishedCallback = null;
+
     private void Start()
     {
         this.myAnimator = this.GetComponent<Animator>();
@@ -47,10 +50,11 @@ public class MCharAttack : MonoBehaviour
         }
     }
 
-    public void AttackExternal()
+    public void AttackExternal(Action callback = null)
     {
         if (!this.isAttacking && this.canAttackAgain) // Only respond to controls if this is the player
         {
+            this.attackFinishedCallback = callback;
             this.itemsHitOnThisSwing.Clear();
             Attack();
             this.canAttackAgain = false;
@@ -79,7 +83,7 @@ public class MCharAttack : MonoBehaviour
             Debug.LogError(this.name + " couldn't find any attacks to use");
             return;
         }
-        int attackIndex = Random.Range(0, this.availableAttacks.Count);
+        int attackIndex = UnityEngine.Random.Range(0, this.availableAttacks.Count);
         AttackData attackToApply = this.availableAttacks[attackIndex];
         this.myAnimator.SetTrigger(attackToApply.animStateName);
         this.lastAppliedAttack = attackToApply;
@@ -109,7 +113,7 @@ public class MCharAttack : MonoBehaviour
     private void CheckForCharacterHits(Collider2D collider)
     {
         Health healthController = collider.gameObject.GetComponent<Health>();
-        if (healthController == null)
+        if (healthController == null || collider.gameObject.CompareTag("Building"))
         {
             return;
         }
@@ -118,8 +122,10 @@ public class MCharAttack : MonoBehaviour
         {
             this.itemsHitOnThisSwing.Add(collider);
             healthController.AdjustHealth(-15, true); // TODO: Deplete actual amount of health
+            this.attackFinishedCallback?.Invoke();
+            this.attackFinishedCallback = null;
             Vector2 attackDir = collider.gameObject.transform.position - this.gameObject.transform.position;
-            collider.gameObject.GetComponent<Rigidbody2D>().AddForce(attackDir * this.attackForce, ForceMode2D.Impulse);
+            collider.gameObject?.GetComponent<Rigidbody2D>()?.AddForce(attackDir * this.attackForce, ForceMode2D.Impulse);
             AnimTrigger animTrigger = collider.gameObject.GetComponent<AnimTrigger>();
             Debug.Log("<color=magenta>Triggering</color> the hit flash");
             animTrigger?.GetHit(attackDir, this.gameObject);            

@@ -279,7 +279,7 @@ GameObject:
   - component: {fileID: 782922570352667519}
   - component: {fileID: 332741879645876283}
   - component: {fileID: 6780533651726370770}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1398,7 +1398,7 @@ GameObject:
   - component: {fileID: 68298829113414283}
   - component: {fileID: 1274332445332744061}
   - component: {fileID: 3655797839458967591}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: ButtonBadgeSlot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1756,7 +1756,7 @@ GameObject:
   - component: {fileID: 4916966051928371695}
   m_Layer: 0
   m_Name: WoodenShelf
-  m_TagString: Untagged
+  m_TagString: Building
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1892,7 +1892,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthBar: {fileID: 3669100891455212106}
-  health: 100
+  currentHealth: 0
+  maxHealth: 100
+  deadBody: {fileID: 0}
+  myAudioSource: {fileID: 0}
+  deathSounds: []
+  onAttacked:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: OnCharAttacked, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
 --- !u!114 &8483048564295694185
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2213,7 +2222,7 @@ GameObject:
   m_Component:
   - component: {fileID: 338386672114253907}
   - component: {fileID: 1965634734603728297}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: ButtonBadge
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2390,6 +2399,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: HealthBar
       objectReference: {fileID: 0}
+    - target: {fileID: 8685562472635033457, guid: 6d39307acd6dcf9458fb4f50badbab76,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 160236477389068927, guid: 6d39307acd6dcf9458fb4f50badbab76,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2495,9 +2509,24 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 4003751176245187494, guid: 6d39307acd6dcf9458fb4f50badbab76,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3578178378923470857, guid: 6d39307acd6dcf9458fb4f50badbab76,
         type: 3}
       propertyPath: fadeOnSleep
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8665115712664965404, guid: 6d39307acd6dcf9458fb4f50badbab76,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4330802655913471353, guid: 6d39307acd6dcf9458fb4f50badbab76,
+        type: 3}
+      propertyPath: m_Layer
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

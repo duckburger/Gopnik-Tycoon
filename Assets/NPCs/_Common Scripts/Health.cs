@@ -10,10 +10,10 @@ public class OnCharAttacked : UnityEvent<GameObject> { }
 
 public class Health : MonoBehaviour {
 
-    [SerializeField] HealthBar healthBar;
+    public HealthBar healthBar;
     [Space]
-    [SerializeField] float currentHealth;
-    [SerializeField] float maxHealth = 100;
+    [SerializeField] protected float currentHealth;
+    [SerializeField] protected float maxHealth = 100;
     [Space(10)]
     [Header("Death related")]
     [SerializeField] GameObject deadBody;
@@ -24,13 +24,7 @@ public class Health : MonoBehaviour {
     public OnCharAttacked onAttacked;
 
 
-    public float CurrHealthPercentage
-    {
-        get
-        {
-            return (currentHealth / maxHealth) * 100;
-        }
-    }
+    public float CurrHealthPercentage => (currentHealth / maxHealth) * 100;
 
     // Use this for initialization
     void Start()

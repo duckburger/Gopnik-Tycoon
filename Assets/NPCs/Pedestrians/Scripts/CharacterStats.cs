@@ -9,6 +9,7 @@ public class CharacterStats : MonoBehaviour
     [SerializeField] [EnumFlag] FoodQuality preferredQuality;
     [SerializeField] int itemsWanted;
     [SerializeField] float intimidation;
+
     [Header("Causing Trouble")]
     [SerializeField] int buildingsDamagedWanted;
     [SerializeField] int buildingsDestroyedWanted;
@@ -18,6 +19,9 @@ public class CharacterStats : MonoBehaviour
     public FoodQuality PreferredFoodQuality => this.preferredQuality;
     public int ItemsWanted => this.itemsWanted;
     public float Intimidation => intimidation;
+
+    public int BuildingsDamagedWanted => this.buildingsDamagedWanted;
+    public int BuildingsDestroyedWanted => this.buildingsDestroyedWanted;
 
     private void Start()
     {

@@ -351,6 +351,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Gosha
       objectReference: {fileID: 0}
+    - target: {fileID: 3389606292381677881, guid: daf8e30f0749de74fbded1cc29d98602,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3389606292381677883, guid: daf8e30f0749de74fbded1cc29d98602,
         type: 3}
       propertyPath: m_LocalPosition.x

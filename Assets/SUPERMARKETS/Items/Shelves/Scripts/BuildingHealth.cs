@@ -2,11 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
-public class BuildingHealth : MonoBehaviour
+public class BuildingHealth : Health
 {
 
-    [SerializeField] HealthBar healthBar;
-    [SerializeField] float health;
     public Action<float> onHealthUpdated;
 
     Animator myAnimator;
@@ -18,7 +16,7 @@ public class BuildingHealth : MonoBehaviour
 
     public void AssignStartingHealth(float amount)
     {
-        this.health = amount;
+        this.currentHealth = amount;
         if (this.healthBar != null)
         {
             this.healthBar.Init(amount);
@@ -32,20 +30,20 @@ public class BuildingHealth : MonoBehaviour
  
     public void AdjustBuildingHealth(float amount)
     {
-        if (this.health + amount <= 0)
+        if (this.currentHealth + amount <= 0)
         {
-            this.health += amount;
+            this.currentHealth += amount;
             // Get destroyed or something
             TalkToHealthBar(() => 
             {
                 this.GetComponentInParent<ModularBuildingSlot>().CurrentBuilding = null;
-                Destroy(this.gameObject); // TODO: Add an animation to this + drop everything contained
+                Destroy(this.gameObject); // TODO: Add an animation to this + drop everything/some of contained
             });
         }
-        this.health += amount;
+        this.currentHealth += amount;
         if (this.onHealthUpdated != null)
         {
-            this.onHealthUpdated(this.health);
+            this.onHealthUpdated(this.currentHealth);
         }
 
         this.myAnimator?.Play("HitShake");
@@ -56,7 +54,7 @@ public class BuildingHealth : MonoBehaviour
     {
         if (this.healthBar != null)
         {
-            this.healthBar.UpdateBar(this.health, callback);
+            this.healthBar.UpdateBar(this.currentHealth, callback);
         }
     }
 }

@@ -43,14 +43,18 @@ public class AI_Generic : MonoBehaviour
     CharacterStats myStats;
 
     QueueNumber myQueueTicket = null;
- 
+
     bool hasPaidForGroceries = false;
-    // Targets
+    // COMBAT
     Queue<Vector2> targetQueue = new Queue<Vector2>();
     [SerializeField] Vector2 target;
     [SerializeField] GameObject combatTarget;
+    Health combatTargetHealth;
+    [SerializeField] int buildingsDestroyed = 0;
+    int buildingsDamaged = 0;
 
-    Vector2 savedTarget; // Used for continuous pathing
+    // PATHFINDING
+    Vector2 savedTarget;
     StoreShelf myTargetShelf;
     CashRegisterSlot myTargetCashRegisterSlot = null;
     CashRegister myCashRegister = null;
@@ -62,19 +66,15 @@ public class AI_Generic : MonoBehaviour
     public bool inCombat = false;
     [Task]
     public bool CanAttack => this.myAttackController.CanAttackAgain;
-
+    [Task]
+    public bool HasDestroyedEnoughBuildings => this.buildingsDestroyed >= this.myStats.BuildingsDestroyedWanted;
+    [Task]
+    public bool CurrentTargetAlive => this.combatTargetHealth.GetCurrentHealth() > 0;
 
     public PolyNavAgent NavAgent
     {
-        get
-        {
-            return this.navAgent;
-        }
-
-        set
-        {
-            this.navAgent = value;
-        }
+        get => this.navAgent;
+        set => this.navAgent = value;
     }
     public Vector2 Target
     {
@@ -494,6 +494,7 @@ public class AI_Generic : MonoBehaviour
         Building chosenBuilding = BuildingTracker.Instance.GetRandomShelf();
         this.target = chosenBuilding.transform.position + new Vector3(0f, -0.5f, 0f);
         this.combatTarget = chosenBuilding.gameObject;
+        this.combatTargetHealth = this.combatTarget.GetComponent<BuildingHealth>();
         Task.current.Succeed();
     }
 
@@ -552,7 +553,7 @@ public class AI_Generic : MonoBehaviour
     public void ReactToAttack(GameObject attacker)
     {
         // TODO: Add decision making logic here to decided whether to flee, or fight back
-        if (!this.inCombat)
+        if (!this.inCombat || this.combatTarget != attacker)
         {
             this.inCombat = true;
             this.navAgent.Stop();
@@ -561,7 +562,8 @@ public class AI_Generic : MonoBehaviour
         }
 
         // TODO: Add an aggro system
-       this.combatTarget = attacker;   
+       this.combatTarget = attacker;
+       this.combatTargetHealth = this.combatTarget?.GetComponent<Health>();
     }
 
     [Task]
@@ -576,7 +578,29 @@ public class AI_Generic : MonoBehaviour
             this.navAgent.Stop();
             this.animator.SetTrigger("Idle");
         }
-        this.myAttackController?.AttackExternal();
+        this.myAttackController?.AttackExternal(() => CountDestroyedBuildings());
+    }
+
+
+    void CountDestroyedBuildings()
+    {
+        if (HasEnemyDied())
+        {
+            this.buildingsDestroyed++;
+        }
+    }
+
+    bool HasEnemyDied()
+    {
+        if (this.combatTargetHealth != null)
+        {
+            if (this.combatTargetHealth.GetCurrentHealth() <= 0)
+            {
+                return true;
+            }
+            return false;
+        }
+        return false;
     }
 
     [Task]

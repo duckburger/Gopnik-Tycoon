@@ -110,10 +110,15 @@ tree "CausingTrouble"
 
 
 tree "DamageBuilding"
-	sequence
-		ChooseBuildingToDamage
-		GoToTarget
-		Attack
+	fallback
+		while not HasDestroyedEnoughBuildings
+			sequence
+				ChooseBuildingToDamage
+				while CurrentTargetAlive 
+					sequence
+						GoToTarget
+						Attack
+		WalkOutOfStore
 
 
 tree "Shoplifting"

@@ -6,6 +6,7 @@ TagManager:
   tags:
   - GopnikNestParent
   - Civilian
+  - Building
   layers:
   - Default
   - TransparentFX
@@ -18,7 +19,7 @@ TagManager:
   - NPC
   - Selectable
   - FightColliders
-  - 
+  - Buildings
   - 
   - 
   - 
