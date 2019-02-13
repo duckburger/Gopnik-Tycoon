@@ -7,7 +7,6 @@ public class Shelf : MonoBehaviour
 {
     public List<ShelfItemSlot> myShelfSlots = new List<ShelfItemSlot>();
     public bool isFullyOccupied = false;
-    
 
     private void Start()
     {
@@ -40,6 +39,22 @@ public class Shelf : MonoBehaviour
         return false;
     }
 
+    public bool CheckIfContainsAnItem()
+    {
+        for (int i = 0; i < this.myShelfSlots.Count; i++)
+        {
+            if (myShelfSlots[i].MyItem == null)
+            {
+                continue;
+            }
+            if (this.myShelfSlots[i].MyItem != null)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public ShelfItemSlot GetSlotWithItemQuality(FoodQuality qualityToCheck)
     {
         for (int i = 0; i < this.myShelfSlots.Count; i++)
@@ -49,6 +64,22 @@ public class Shelf : MonoBehaviour
                 continue;
             }
             if (this.myShelfSlots[i].MyItem.Quality == qualityToCheck)
+            {
+                return this.myShelfSlots[i];
+            }
+        }
+        return null;
+    }
+
+    public ShelfItemSlot GetSlotWithAnItem()
+    {
+        for (int i = 0; i < this.myShelfSlots.Count; i++)
+        {
+            if (this.myShelfSlots[i].MyItem == null)
+            {
+                continue;
+            }
+            if (this.myShelfSlots[i].MyItem != null)
             {
                 return this.myShelfSlots[i];
             }

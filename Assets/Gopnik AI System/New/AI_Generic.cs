@@ -45,15 +45,19 @@ public class AI_Generic : MonoBehaviour
     QueueNumber myQueueTicket = null;
 
     bool hasPaidForGroceries = false;
+
     // COMBAT
-    Queue<Vector2> targetQueue = new Queue<Vector2>();
-    [SerializeField] Vector2 target;
     [SerializeField] GameObject combatTarget;
     Health combatTargetHealth;
     [SerializeField] int buildingsDestroyed = 0;
     int buildingsDamaged = 0;
 
+    // SHOPLIFTING
+    float amountStolen = 0f;
+
     // PATHFINDING
+    [SerializeField] Vector2 target;
+    Queue<Vector2> targetQueue = new Queue<Vector2>();
     Vector2 savedTarget;
     StoreShelf myTargetShelf;
     CashRegisterSlot myTargetCashRegisterSlot = null;
@@ -69,7 +73,9 @@ public class AI_Generic : MonoBehaviour
     [Task]
     public bool HasDestroyedEnoughBuildings => this.buildingsDestroyed >= this.myStats.BuildingsDestroyedWanted;
     [Task]
-    public bool CurrentTargetAlive => this.combatTargetHealth.GetCurrentHealth() > 0;
+    public bool CurrentTargetAlive => this.combatTargetHealth.CurrHealthPercentage > 0;
+    [Task]
+    public bool HasShopliftedEnough => this.amountStolen >= this.myStats.AmountStolenWanted;
 
     public PolyNavAgent NavAgent
     {

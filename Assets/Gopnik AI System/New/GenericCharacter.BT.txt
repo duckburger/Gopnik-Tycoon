@@ -95,34 +95,60 @@ tree "CausingTrouble"
 				GoToTarget
 				GoIdle
 				Wait (1.0)
-				repeat (1, 2)
-					random (1,1,3)
-						sequence
-							Succeed
-						sequence 
-							ChooseRandomPointNearAShelf
-							GoToTarget
-							GoIdle
-						sequence
-							GoIdle
-							Wait(1.0)
-							tree "DamageBuilding"
+				fallback
+					while not HasDestroyedEnoughBuildings
+						repeat (1, 2)
+							random (1,1,3)
+								sequence
+									Succeed
+								sequence 
+									ChooseRandomPointNearAShelf
+									GoToTarget
+									GoIdle
+								sequence
+									GoIdle
+									Wait(1.0)
+									tree "DamageBuilding"	
+					while HasDestroyedEnoughBuildings
+						WalkOutOfStore
 
 
 tree "DamageBuilding"
-	fallback
-		while not HasDestroyedEnoughBuildings
+	sequence
+		ChooseBuildingToDamage
+		while CurrentTargetAlive 
 			sequence
-				ChooseBuildingToDamage
-				while CurrentTargetAlive 
-					sequence
-						GoToTarget
-						Attack
-		WalkOutOfStore
+				GoToTarget
+				Attack
+		
 
 
 tree "Shoplifting"
-	Fail
+	repeat
+		while isShoplifting
+			sequence
+				ChooseRandomPointNearAShelf
+				GoToTarget
+				GoIdle
+				Wait (1.0)
+				fallback
+					while not HasShopliftedEnough
+						repeat (1, 2)
+							random (1,1,3)
+								sequence
+									Succeed
+								sequence 
+									ChooseRandomPointNearAShelf
+									GoToTarget
+									GoIdle
+								sequence
+									GoIdle
+									Wait(1.0)
+									tree "DamageBuilding"	
+					while HasDestroyedEnoughBuildings
+						WalkOutOfStore
+
+
 
 tree "Combat"
 	while CanAttack

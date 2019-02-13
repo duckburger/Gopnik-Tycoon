@@ -50,11 +50,11 @@ GameObject:
   - component: {fileID: 5362470427454308043}
   - component: {fileID: 5728930657587322491}
   - component: {fileID: 5580294267951834883}
+  - component: {fileID: 1760339592}
   - component: {fileID: 5071045544369216888}
   - component: {fileID: 6058775654053657681}
   - component: {fileID: 8172561903950047856}
   - component: {fileID: 535044077896906368}
-  - component: {fileID: 1760339592}
   - component: {fileID: 1630244995}
   - component: {fileID: 1525937562}
   - component: {fileID: 1621641749}
@@ -399,6 +399,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bubblePrefab: {fileID: 5053888229733043055, guid: be48c270d2245be4a824b7054896d65a,
     type: 3}
+--- !u!114 &1760339592
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3389606292381677881}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 312642daadfe43448bd698c904fb33b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  preferredQuality: 0
+  itemsWanted: 0
+  intimidation: 0
+  buildingsDamagedWanted: 0
+  buildingsDestroyedWanted: 0
+  peopleHurtWanted: 0
 --- !u!114 &5071045544369216888
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -411,11 +429,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e66cb65e5a937e743a81db2ce660a33a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isShopping: 0
+  isCausingTrouble: 0
+  isShoplifting: 0
   defaultNavStoppingDistance: 0.15
   myIntentions: 0
   myPreferredFoodQuality: 1
   target: {x: 0, y: 0}
   combatTarget: {fileID: 0}
+  buildingsDestroyed: 0
   isLiningUp: 0
   inCombat: 0
 --- !u!114 &6058775654053657681
@@ -475,21 +497,6 @@ MonoBehaviour:
   availableAttacks:
   - {fileID: 11400000, guid: c05eeb10c59625c47a5fd4e4a48f3427, type: 2}
   canHurtBuildings: 1
---- !u!114 &1760339592
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3389606292381677881}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 312642daadfe43448bd698c904fb33b6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  preferredQuality: 0
-  itemsWanted: 0
-  intimidation: 0
 --- !u!114 &1630244995
 MonoBehaviour:
   m_ObjectHideFlags: 0

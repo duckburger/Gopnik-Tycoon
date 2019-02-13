@@ -116,9 +116,7 @@ public class MCharCarry : MonoBehaviour
         {
             DropItem();
         }
-
     }
-
 
     public void PickUpNearestItem()
     {

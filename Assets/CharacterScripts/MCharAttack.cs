@@ -148,6 +148,11 @@ public class MCharAttack : MonoBehaviour
         {
             this.itemsHitOnThisSwing.Add(collider);
             healthController.GotHit(15);
+            if (healthController.GetCurrentHealth() <= 0)
+            {
+                this.attackFinishedCallback?.Invoke();
+            }
+            this.attackFinishedCallback = null;
         }
     }
 }

@@ -15,6 +15,9 @@ public class CharacterStats : MonoBehaviour
     [SerializeField] int buildingsDestroyedWanted;
     [SerializeField] int peopleHurtWanted;
 
+    [Header("Shoplifting")]
+    [SerializeField] float amountStolenWanted;
+
 
     public FoodQuality PreferredFoodQuality => this.preferredQuality;
     public int ItemsWanted => this.itemsWanted;
@@ -22,6 +25,8 @@ public class CharacterStats : MonoBehaviour
 
     public int BuildingsDamagedWanted => this.buildingsDamagedWanted;
     public int BuildingsDestroyedWanted => this.buildingsDestroyedWanted;
+
+    public float AmountStolenWanted => this.amountStolenWanted;
 
     private void Start()
     {

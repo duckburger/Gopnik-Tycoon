@@ -97,6 +97,8 @@ public class StoreShelf : Building
         }
     }
 
+    #region Taking Items Out
+
     public void TakeFoodOut(GameObject character, FoodQuality preferredQuality)
     {
         MCharCarry carryController = character.GetComponent<MCharCarry>();
@@ -125,6 +127,41 @@ public class StoreShelf : Building
         }
         return null;
     }
+
+    #endregion
+
+    #region Stealing Items
+
+    public void StealItemFromShelf(GameObject character)
+    {
+        MCharCarry carryController = character.GetComponent<MCharCarry>();
+        AI_Generic charAIController = character.GetComponent<AI_Generic>();
+        if (carryController != null && charAIController != null)
+        {
+            ShelfItemSlot slotWithItem = FindRandomItemOnShelf();
+            carryController.PickUpFoodItem(slotWithItem.EmptyAndTakeItem());
+            this.currentFoodStock--;
+            UpdateStockUI();
+            //ShowStock();
+        }
+    }
+
+    public ShelfItemSlot FindRandomItemOnShelf()
+    {
+        for (int i = 0; i < this.shelves.Count; i++)
+        {
+            Shelf shelfController = shelves[i].GetComponent<Shelf>();
+            if (shelfController.CheckIfContainsAnItem())
+            {
+                ShelfItemSlot slotWithMyItem = shelfController.GetSlotWithAnItem();
+                // Take item out and put it in the character's hands
+                return slotWithMyItem;
+            }
+        }
+        return null;
+    }
+
+    #endregion
 
     public virtual void ApplyPlayerCarriedItem()
     {
