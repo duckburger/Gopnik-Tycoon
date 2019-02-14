@@ -68,7 +68,5 @@ tree "WaitInLine"
 		sequence
 			WalkOutOfStore
 
-tree "LeaveStore"
-	sequence
-			WalkOutOfStore
+
 

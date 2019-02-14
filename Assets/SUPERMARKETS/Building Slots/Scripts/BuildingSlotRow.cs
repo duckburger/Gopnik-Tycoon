@@ -61,7 +61,7 @@ public class BuildingSlotRow : MonoBehaviour
         {
             this.currentHighlightedSlot?.DisplayDefault();
             this.currentHighlightedSlot = newSlot;
-            this.currentHighlightedSlot.DisplaySelected();
+            //this.currentHighlightedSlot.DisplaySelected();
         }
     }
 

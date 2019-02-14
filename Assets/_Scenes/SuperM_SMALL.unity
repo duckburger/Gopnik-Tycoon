@@ -408,64 +408,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6058775654053657681, guid: daf8e30f0749de74fbded1cc29d98602,
         type: 3}
-      propertyPath: scripts.Array.size
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6058775654053657681, guid: daf8e30f0749de74fbded1cc29d98602,
-        type: 3}
-      propertyPath: sourceInfos.Array.size
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6058775654053657681, guid: daf8e30f0749de74fbded1cc29d98602,
-        type: 3}
-      propertyPath: sourceInfos.Array.data[1].isFoldout
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6058775654053657681, guid: daf8e30f0749de74fbded1cc29d98602,
-        type: 3}
-      propertyPath: sourceInfos.Array.data[2].isFoldout
-      value: 0
+      propertyPath: sourceInfos.Array.data[0].isFoldout
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6058775654053657681, guid: daf8e30f0749de74fbded1cc29d98602,
         type: 3}
       propertyPath: sourceInfos.Array.data[3].isFoldout
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 6058775654053657681, guid: daf8e30f0749de74fbded1cc29d98602,
-        type: 3}
-      propertyPath: sourceInfos.Array.data[0].isFoldout
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6058775654053657681, guid: daf8e30f0749de74fbded1cc29d98602,
-        type: 3}
-      propertyPath: scripts.Array.data[0]
-      value: 
-      objectReference: {fileID: 4900000, guid: bd74a502736193742b376b3f38486ec9, type: 3}
-    - target: {fileID: 6058775654053657681, guid: daf8e30f0749de74fbded1cc29d98602,
-        type: 3}
-      propertyPath: scripts.Array.data[1]
-      value: 
-      objectReference: {fileID: 4900000, guid: bd5ff273f2282dc40b3fa9da6082dc06, type: 3}
-    - target: {fileID: 6058775654053657681, guid: daf8e30f0749de74fbded1cc29d98602,
-        type: 3}
-      propertyPath: scripts.Array.data[2]
-      value: 
-      objectReference: {fileID: 4900000, guid: 230fc21c83fc6104da1d5675a6841ca8, type: 3}
-    - target: {fileID: 6058775654053657681, guid: daf8e30f0749de74fbded1cc29d98602,
-        type: 3}
-      propertyPath: scripts.Array.data[3]
-      value: 
-      objectReference: {fileID: 4900000, guid: ab6af7a971a636c4f914b97f27d71e52, type: 3}
-    - target: {fileID: 6058775654053657681, guid: daf8e30f0749de74fbded1cc29d98602,
-        type: 3}
-      propertyPath: sourceInfos.Array.data[4].isFoldout
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6058775654053657681, guid: daf8e30f0749de74fbded1cc29d98602,
-        type: 3}
-      propertyPath: scripts.Array.data[4]
-      value: 
-      objectReference: {fileID: 4900000, guid: 14e6e94ff958efe49945a1c287ed14ad, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: daf8e30f0749de74fbded1cc29d98602, type: 3}
 --- !u!1001 &4789485251342465116

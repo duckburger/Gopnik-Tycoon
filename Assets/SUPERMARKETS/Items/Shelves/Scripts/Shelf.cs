@@ -13,6 +13,8 @@ public class Shelf : MonoBehaviour
         PopulateShelfSlots();
     }
 
+    #region Population
+
     private void PopulateShelfSlots()
     {
         myShelfSlots.Clear();
@@ -22,6 +24,10 @@ public class Shelf : MonoBehaviour
             this.myShelfSlots.Add(child.GetComponent<ShelfItemSlot>());
         }
     }
+
+    #endregion
+
+    #region Checking/Getting Specific Items/Slots From Shelf
 
     public bool CheckIfContainsFoodQuality(FoodQuality qualityToCheck)
     {
@@ -83,6 +89,10 @@ public class Shelf : MonoBehaviour
         return null;
     }
 
+    #endregion
+
+    #region Placing Items in the Shelf
+
     public int Occupy(FoodItemData item, int slotsToOccupy)
     {
         int occupiedSlots = 0;
@@ -122,6 +132,10 @@ public class Shelf : MonoBehaviour
         }
     }
 
+    #endregion
+
+    #region Clearing Shelf
+
     public void Clear()
     {
         foreach (ShelfItemSlot shelfSlot in this.myShelfSlots)
@@ -130,4 +144,23 @@ public class Shelf : MonoBehaviour
         }
         this.isFullyOccupied = false;
     }
+
+    #endregion
+
+    #region Getting Cost of Goods
+
+    public float GetCostOfAllContainedGoods()
+    {
+        float totalCost = 0f;
+        foreach (ShelfItemSlot slot in this.myShelfSlots)
+        {
+            if (slot.MyItem != null)
+            {
+                totalCost += slot.MyItem.pricePerUnit;
+            }
+        }
+        return totalCost;
+    }
+
+    #endregion
 }

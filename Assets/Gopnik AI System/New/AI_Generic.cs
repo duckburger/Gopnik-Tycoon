@@ -53,7 +53,7 @@ public class AI_Generic : MonoBehaviour
     int buildingsDamaged = 0;
 
     // SHOPLIFTING
-    float amountStolen = 0f;
+    [SerializeField] float amountStolen = 0f;
     GameObject shopliftingTarget;
 
     // PATHFINDING
@@ -85,22 +85,10 @@ public class AI_Generic : MonoBehaviour
     }
     public Vector2 Target
     {
-        get
-        {
-            return this.target;
-        }
-        set
-        {
-            this.target = value;
-        }
+        get => this.target;
+        set => this.target = value;
     }
-    public NavMeshPortal MyTargetNavPortal
-    {
-        get
-        {
-            return this.myTargetNavPortal;
-        }
-    }
+    public NavMeshPortal MyTargetNavPortal => this.myTargetNavPortal;
 
     private void Start()
     {
@@ -535,6 +523,12 @@ public class AI_Generic : MonoBehaviour
         shelfController?.StealItemFromShelf(this.gameObject);
         this.amountStolen = this.myCarryController.GetCostOfStolenGoods();
         Task.current.Succeed();
+    }
+
+    [Task]
+    bool StoreHasEnoughToShoplift()
+    {
+        return BuildingTracker.Instance.GetTotalCostOfGoodsOnShelves() >= this.myStats.AmountStolenWanted ? true : false;
     }
 
     #endregion

@@ -262,4 +262,20 @@ public class StoreShelf : Building
         }
 
     }
+
+
+    #region Getting Cost of Goods
+
+    public float GetCostOfAllGoodsOnShelf()
+    {
+        float totalCost = 0f;
+        foreach (Transform shelf in this.shelves)
+        {
+            Shelf shelfController = shelf.GetComponent<Shelf>();
+            totalCost += shelfController.GetCostOfAllContainedGoods();
+        }
+        return totalCost;
+    }
+
+    #endregion
 }

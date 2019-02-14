@@ -19,7 +19,11 @@ tree "Shoplifting"
 								sequence
 									GoIdle
 									Wait(1.0)
-									tree "StealAnItem"	
+									repeat (2,3)
+										sequence
+											tree "StealAnItem"	
+											while not StoreHasEnoughToShoplift
+												tree "LeaveStore"
 					while HasShopliftedEnough
 						WalkOutOfStore
 

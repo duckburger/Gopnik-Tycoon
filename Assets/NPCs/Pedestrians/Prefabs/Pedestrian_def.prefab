@@ -44,15 +44,15 @@ GameObject:
   - component: {fileID: 2084183076782633538}
   - component: {fileID: 5341818563212822864}
   - component: {fileID: 2931109207965213656}
+  - component: {fileID: 6058775654053657681}
+  - component: {fileID: 5071045544369216888}
+  - component: {fileID: 1760339592}
   - component: {fileID: 4086454611381580232}
   - component: {fileID: 1702984482}
   - component: {fileID: 3897031527708002354}
   - component: {fileID: 5362470427454308043}
   - component: {fileID: 5728930657587322491}
   - component: {fileID: 5580294267951834883}
-  - component: {fileID: 1760339592}
-  - component: {fileID: 5071045544369216888}
-  - component: {fileID: 6058775654053657681}
   - component: {fileID: 8172561903950047856}
   - component: {fileID: 535044077896906368}
   - component: {fileID: 1630244995}
@@ -282,6 +282,94 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &6058775654053657681
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3389606292381677881}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17e43e7170fb45b4b81dcd16d0ff55d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scripts:
+  - {fileID: 4900000, guid: bd74a502736193742b376b3f38486ec9, type: 3}
+  - {fileID: 4900000, guid: bd5ff273f2282dc40b3fa9da6082dc06, type: 3}
+  - {fileID: 4900000, guid: 230fc21c83fc6104da1d5675a6841ca8, type: 3}
+  - {fileID: 4900000, guid: ab6af7a971a636c4f914b97f27d71e52, type: 3}
+  - {fileID: 4900000, guid: 14e6e94ff958efe49945a1c287ed14ad, type: 3}
+  autoReset: 1
+  tickOn: 0
+  sourceInfos:
+  - isFoldout: 0
+    breakPoints: 
+    breakPointStatuses: 
+    collapsedLines: 
+    btScript: 
+  - isFoldout: 0
+    breakPoints: 
+    breakPointStatuses: 
+    collapsedLines: 
+    btScript: 
+  - isFoldout: 0
+    breakPoints: 
+    breakPointStatuses: 
+    collapsedLines: 
+    btScript: 
+  - isFoldout: 0
+    breakPoints: 
+    breakPointStatuses: 
+    collapsedLines: 
+    btScript: 
+  - isFoldout: 0
+    breakPoints: 
+    breakPointStatuses: 
+    collapsedLines: 
+    btScript: 
+--- !u!114 &5071045544369216888
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3389606292381677881}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e66cb65e5a937e743a81db2ce660a33a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isShopping: 0
+  isCausingTrouble: 0
+  isShoplifting: 0
+  defaultNavStoppingDistance: 0.15
+  myIntentions: 0
+  myPreferredFoodQuality: 1
+  combatTarget: {fileID: 0}
+  buildingsDestroyed: 0
+  target: {x: 0, y: 0}
+  isLiningUp: 0
+  inCombat: 0
+--- !u!114 &1760339592
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3389606292381677881}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 312642daadfe43448bd698c904fb33b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  preferredQuality: 0
+  itemsWanted: 0
+  intimidation: 0
+  buildingsDamagedWanted: 0
+  buildingsDestroyedWanted: 0
+  peopleHurtWanted: 0
+  amountStolenWanted: 0
 --- !u!114 &4086454611381580232
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -399,69 +487,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bubblePrefab: {fileID: 5053888229733043055, guid: be48c270d2245be4a824b7054896d65a,
     type: 3}
---- !u!114 &1760339592
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3389606292381677881}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 312642daadfe43448bd698c904fb33b6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  preferredQuality: 0
-  itemsWanted: 0
-  intimidation: 0
-  buildingsDamagedWanted: 0
-  buildingsDestroyedWanted: 0
-  peopleHurtWanted: 0
---- !u!114 &5071045544369216888
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3389606292381677881}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e66cb65e5a937e743a81db2ce660a33a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isShopping: 0
-  isCausingTrouble: 0
-  isShoplifting: 0
-  defaultNavStoppingDistance: 0.15
-  myIntentions: 0
-  myPreferredFoodQuality: 1
-  target: {x: 0, y: 0}
-  combatTarget: {fileID: 0}
-  buildingsDestroyed: 0
-  isLiningUp: 0
-  inCombat: 0
---- !u!114 &6058775654053657681
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3389606292381677881}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 17e43e7170fb45b4b81dcd16d0ff55d9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  scripts:
-  - {fileID: 4900000, guid: bd5ff273f2282dc40b3fa9da6082dc06, type: 3}
-  autoReset: 1
-  tickOn: 0
-  sourceInfos:
-  - isFoldout: 1
-    breakPoints: 
-    breakPointStatuses: 
-    collapsedLines: 
-    btScript: 
 --- !u!114 &8172561903950047856
 MonoBehaviour:
   m_ObjectHideFlags: 0

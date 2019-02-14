@@ -50,6 +50,10 @@ public class NewBuildMenu : MonoBehaviour
         {
             MoveSilhouetteRight();
         }
+        if (Input.GetKeyDown(KeyCode.Return))
+        {
+            BuildSelectedBuilding();
+        }
     }
 
     #region Population
@@ -145,7 +149,7 @@ public class NewBuildMenu : MonoBehaviour
 
     public void Close()
     {
-        this.selectedRow.currentHighlightedSlot.DisplayDefault();
+        //this.selectedRow.currentHighlightedSlot.DisplayDefault();
         LeanTween.moveLocalY(this.topPanel.gameObject, this.topPanel.localPosition.y + 100f, 0.13f).setEase(LeanTweenType.easeInExpo).setDelay(0.1f);
         LeanTween.moveLocalY(this.bottomPanel.gameObject, this.bottomPanel.localPosition.y - 200f, 0.14f).setEase(LeanTweenType.easeInExpo).setDelay(0.1f)
             .setOnComplete(() => 
@@ -266,7 +270,7 @@ public class NewBuildMenu : MonoBehaviour
             this.spawnedBuildingSilhouette = null;
             LevelData.CurrentLevel.mainMapController.GenerateMap(false);
 
-            this.selectedRow.currentHighlightedSlot.DisplayDefault();
+            //this.selectedRow.currentHighlightedSlot.DisplayDefault();
 
             Populate(this.selectedRow);
             if (MoveSilhouetteLeft()) { UpdateSubmitButton(); } else { MoveSilhouetteRight(); UpdateSubmitButton(); }

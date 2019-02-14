@@ -268,4 +268,18 @@ public class BuildingTracker : MonoBehaviour
 
     #endregion
 
+    #region Get Total Cost of Goods on Shelves
+
+    public float GetTotalCostOfGoodsOnShelves()
+    {
+        float totalCost = 0f;
+        foreach (Building shelf in this.allShelves)
+        {
+            StoreShelf shelfController = shelf.GetComponent<StoreShelf>();
+            totalCost += shelfController.GetCostOfAllGoodsOnShelf();
+        }
+        return totalCost;
+    }
+
+    #endregion
 }

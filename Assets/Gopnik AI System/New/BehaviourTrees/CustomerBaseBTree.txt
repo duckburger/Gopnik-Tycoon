@@ -11,9 +11,6 @@ tree "Root"
 			tree "Combat"
 	
 
-
-
-
-
-
-
+tree "LeaveStore"
+	sequence
+			WalkOutOfStore
