@@ -29,41 +29,14 @@ public class FoodItemData : PickuppableItemData
     [Header("Food item specific")]
     [SerializeField] FoodQuality quality = FoodQuality.Low;
     [SerializeField] FoodType foodType = FoodType.General;
-    [SerializeField] float pricePerUnit = 0;
 
-  
     [SerializeField] List<Sprite> onShelfAppearances = new List<Sprite>();
 
 
-    public FoodQuality Quality
-    {
-        get
-        {
-            return this.quality;
-        }
-    }
-    public FoodType FoodType
-    {
-        get
-        {
-            return this.foodType;
-        }
-    }
-    public List<Sprite> OnShelfAppearances
-    {
-        get
-        {
-            return this.onShelfAppearances;
-        }
-    }
-
-    public float PricePerUnit
-    {
-        get
-        {
-            return this.pricePerUnit;
-        }
-    }
+    public FoodQuality Quality => this.quality;
+    public FoodType FoodType => this.foodType;
+    public List<Sprite> OnShelfAppearances => this.onShelfAppearances;
+    public float PricePerUnit => this.pricePerUnit;
 
     public Sprite GetRandomShelfAppearanceSprite()
     {

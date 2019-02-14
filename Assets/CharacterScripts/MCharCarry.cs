@@ -20,7 +20,7 @@ public class MCharCarry : MonoBehaviour
     }
 
     List<Pickuppable> nearItems = new List<Pickuppable>();
-
+    List<PickuppableItemData> secretInventoryItems = new List<PickuppableItemData>();
 
     private void Start()
     {
@@ -124,7 +124,6 @@ public class MCharCarry : MonoBehaviour
         if (this.currentItem != null)
         {
             DropItem(); 
-
         }
         if (this.nearItems.Count <= 0)
         {
@@ -160,6 +159,8 @@ public class MCharCarry : MonoBehaviour
         // this.currentItem =
         this.currentItem.transform.localPosition = Vector2.zero;
     }
+
+    #region Regular Item Pickup
 
     public void PickUpFoodItem(FoodItemData foodItemToPickUp)
     {
@@ -203,6 +204,27 @@ public class MCharCarry : MonoBehaviour
         this.currentItem = bagScript;
         this.currentItem.transform.localPosition = Vector2.zero;
     }
+
+    #endregion
+
+    #region Stealing items
+
+    public void StealItem(FoodItemData stolenItem)
+    {
+        this.secretInventoryItems.Add(stolenItem); // TODO: Play a "shady" animation
+    }
+
+    public float GetCostOfStolenGoods()
+    {
+        float totalCost = 0f;
+        foreach (PickuppableItemData item in this.secretInventoryItems)
+        {
+            totalCost += item.pricePerUnit;
+        }
+        return totalCost;
+    }
+
+    #endregion
 
     public void DropItem()
     {

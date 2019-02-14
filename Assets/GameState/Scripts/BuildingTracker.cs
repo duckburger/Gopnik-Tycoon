@@ -26,6 +26,8 @@ public class BuildingTracker : MonoBehaviour
         }
     }
 
+    #region Building Slot
+
     public void AddBuildingSlotToTracker(BuildingSlotRow newSlot)
     {
         if (!this.allBuildingSlots.Contains(newSlot))
@@ -33,6 +35,10 @@ public class BuildingTracker : MonoBehaviour
             this.allBuildingSlots.Add(newSlot);
         }
     }
+
+    #endregion
+
+    #region Shelves
 
     public void AddShelfToTracker(Building newShelf)
     {
@@ -49,6 +55,10 @@ public class BuildingTracker : MonoBehaviour
             this.allShelves.Remove(shelfToRemove);
         }
     }
+
+    #endregion
+
+    #region Pathfinding related
 
     public Vector2 GetRandomNearShelfLocation()
     {
@@ -135,25 +145,9 @@ public class BuildingTracker : MonoBehaviour
         }
     }
 
-    public StoreShelf FindShelfByFoodQuality(FoodQuality qualityToCheck)
-    {
-        if (this.allShelves == null || this.allShelves.Count <= 0)
-        {
-            return null;
-        }
+    #endregion
 
-        List<Building> eligibleBuildings = new List<Building>();
-        foreach (Building building in this.allShelves)
-        {
-            StoreShelf shelfController = building.gameObject.GetComponent<StoreShelf>();
-            if (shelfController != null && shelfController.CheckIfContainsFoodQuality(qualityToCheck))
-            {
-                return shelfController;
-            }
-        }
-        return null;
-    }
-
+    #region Cash Registers
 
     public void AddCashRegisterToTracker(Building newCashRegister)
     {
@@ -208,6 +202,7 @@ public class BuildingTracker : MonoBehaviour
         return false;
     }
 
+    #endregion
 
     #region Getting Price Tag Sprites
 
@@ -219,7 +214,7 @@ public class BuildingTracker : MonoBehaviour
 
     #endregion
 
-    #region Getting a Random Shelf
+    #region Getting Shelves
 
     public Building GetRandomShelf()
     {
@@ -227,9 +222,50 @@ public class BuildingTracker : MonoBehaviour
         {
             return null;
         }
-        int index = Random.Range(0, this.allShelves.Count);
+        int index = Random.Range(0, this.allShelves.Count - 1);
         return this.allShelves[index];
     }
 
+    public StoreShelf FindShelfByFoodQuality(FoodQuality qualityToCheck)
+    {
+        if (this.allShelves == null || this.allShelves.Count <= 0)
+        {
+            return null;
+        }
+
+        List<StoreShelf> eligibleShelves = new List<StoreShelf>();
+        foreach (Building building in this.allShelves)
+        {
+            StoreShelf shelfController = building.gameObject.GetComponent<StoreShelf>();
+            if (shelfController != null && shelfController.CheckIfContainsFoodQuality(qualityToCheck))
+            {
+                eligibleShelves.Add(shelfController);
+            }
+        }
+
+        return eligibleShelves.Count > 0 ? eligibleShelves[Random.Range(0, eligibleShelves.Count - 1)] : null;
+    }
+
+    public StoreShelf FindNonEmptyShelf()
+    {
+        if (this.allShelves == null || this.allShelves.Count <= 0)
+        {
+            return null;
+        }
+
+        List<StoreShelf> eligibleShelves = new List<StoreShelf>();
+        foreach (Building building in this.allShelves)
+        {
+            StoreShelf shelfController = building.gameObject.GetComponent<StoreShelf>();
+            if (shelfController != null && shelfController.currentFoodStock > 0)
+            {
+                eligibleShelves.Add(shelfController);
+            }
+        }
+
+        return eligibleShelves.Count > 0 ? eligibleShelves[Random.Range(0, eligibleShelves.Count - 1)] : null;
+    }
+
     #endregion
+
 }

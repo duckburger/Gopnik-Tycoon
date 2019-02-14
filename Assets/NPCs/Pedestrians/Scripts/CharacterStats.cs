@@ -30,14 +30,17 @@ public class CharacterStats : MonoBehaviour
 
     private void Start()
     {
+        // SHOPPING
         this.itemsWanted = UnityEngine.Random.Range(1, 5);
         // Randomizing the wanted food quality
         int[] values = Enum.GetValues(typeof(FoodQuality)) as int[];
         FoodQuality randomizedQuality = (FoodQuality)values[UnityEngine.Random.Range(0, values.Length)];
         this.preferredQuality = randomizedQuality;
-
+        // CAUSING TROUBLE
         this.buildingsDamagedWanted = UnityEngine.Random.Range(1, 3);
         this.buildingsDestroyedWanted = UnityEngine.Random.Range(1, 3);
+        //SHOPLIFTING
+        this.amountStolenWanted = UnityEngine.Random.Range(5f, 150f);
     }
 
 

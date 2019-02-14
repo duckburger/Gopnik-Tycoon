@@ -54,6 +54,7 @@ public class AI_Generic : MonoBehaviour
 
     // SHOPLIFTING
     float amountStolen = 0f;
+    GameObject shopliftingTarget;
 
     // PATHFINDING
     [SerializeField] Vector2 target;
@@ -130,9 +131,9 @@ public class AI_Generic : MonoBehaviour
     void ChooseIntentions()
     {
         // For now always choose shop
-        this.myIntentions = CharacterIntentions.Trouble;
-        this.isCausingTrouble = true;
-        this.isShoplifting = false;
+        this.myIntentions = CharacterIntentions.Shoplifting;
+        this.isCausingTrouble = false;
+        this.isShoplifting = true;
         this.isShopping = false;
         Task.current.Succeed();
     }
@@ -488,7 +489,7 @@ public class AI_Generic : MonoBehaviour
 
     #endregion
 
-    #region Casuing Trouble Actions
+    #region Causing Trouble Actions
 
     [Task]
     public void ChooseBuildingToDamage()
@@ -508,25 +509,35 @@ public class AI_Generic : MonoBehaviour
 
     #endregion
 
+    #region Shoplifting actions
+
     [Task]
-    void WalkOutOfStore()
+    public void ChooseShelfToStealFrom()
     {
-        Vector2 exitPos = LevelData.CurrentLevel.EntranceExitPoint.position;
-        if (this.navAgent != null)
+        if (BuildingTracker.Instance.FindNonEmptyShelf() == null)
         {
-            this.navAgent.SetDestination(exitPos, (bool success) =>
-            {
-                Task.current?.Succeed();
-                Destroy(this.gameObject);                
-            });
-            if (Task.current != null && Task.current.isStarting)
-            {
-                this.animator.Play("Walk");
-            }
-            return;
+            Task.current.Fail();
         }
+        StoreShelf chosenShelf = BuildingTracker.Instance.FindNonEmptyShelf();
+        this.shopliftingTarget = chosenShelf.gameObject;
+        this.target = chosenShelf.transform.position + new Vector3(0f, -0.5f, 0f);
+        Task.current.Succeed();
     }
 
+    [Task]
+    public void StealFromTarget()
+    {
+        if (this.shopliftingTarget == null)
+        {
+            Task.current.Fail();
+        }
+        StoreShelf shelfController = this.shopliftingTarget.GetComponent<StoreShelf>();
+        shelfController?.StealItemFromShelf(this.gameObject);
+        this.amountStolen = this.myCarryController.GetCostOfStolenGoods();
+        Task.current.Succeed();
+    }
+
+    #endregion
 
     #region Accepting Events
 
@@ -650,6 +661,25 @@ public class AI_Generic : MonoBehaviour
     }
 
     #endregion
+
+    [Task]
+    void WalkOutOfStore()
+    {
+        Vector2 exitPos = LevelData.CurrentLevel.EntranceExitPoint.position;
+        if (this.navAgent != null)
+        {
+            this.navAgent.SetDestination(exitPos, (bool success) =>
+            {
+                Task.current?.Succeed();
+                Destroy(this.gameObject);
+            });
+            if (Task.current != null && Task.current.isStarting)
+            {
+                this.animator.Play("Walk");
+            }
+            return;
+        }
+    }
 
 }
 

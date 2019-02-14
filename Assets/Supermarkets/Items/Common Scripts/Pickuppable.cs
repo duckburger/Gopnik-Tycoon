@@ -5,7 +5,6 @@ using UnityEngine;
 public class Pickuppable : MonoBehaviour
 {
 
-
     protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag.Equals("Player"))

@@ -1,0 +1,19 @@
+tree "Root"
+	sequence
+		ChooseIntentions
+		fallback
+			while not inCombat
+				fallback
+					tree "Shopping"
+					tree "CausingTrouble"
+					tree "Shoplifting"
+					GoIdle
+			tree "Combat"
+	
+
+
+
+
+
+
+

@@ -1,0 +1,34 @@
+tree "Shoplifting"
+	repeat
+		while isShoplifting
+			sequence
+				ChooseRandomPointNearAShelf
+				GoToTarget
+				GoIdle
+				Wait (1.0)
+				fallback
+					while not HasShopliftedEnough
+						repeat (1, 2)
+							random (1,1,3)
+								sequence
+									Succeed
+								sequence 
+									ChooseRandomPointNearAShelf
+									GoToTarget
+									GoIdle
+								sequence
+									GoIdle
+									Wait(1.0)
+									tree "StealAnItem"	
+					while HasShopliftedEnough
+						WalkOutOfStore
+
+
+
+tree "StealAnItem"
+	sequence
+		ChooseShelfToStealFrom
+		GoToTarget
+		Wait(1.5)
+		StealFromTarget
+

@@ -75,10 +75,6 @@ public class Shelf : MonoBehaviour
     {
         for (int i = 0; i < this.myShelfSlots.Count; i++)
         {
-            if (this.myShelfSlots[i].MyItem == null)
-            {
-                continue;
-            }
             if (this.myShelfSlots[i].MyItem != null)
             {
                 return this.myShelfSlots[i];

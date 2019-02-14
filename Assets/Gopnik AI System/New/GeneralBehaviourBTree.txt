@@ -113,6 +113,19 @@ tree "CausingTrouble"
 						WalkOutOfStore
 
 
+tree "Combat"
+	while CanAttack
+		fallback
+			tree "ChaseCombatTarget"
+			Attack
+
+
+tree "ChaseCombatTarget"
+	while not CombatTargetInRange
+		sequence
+			ChaseCombatTarget
+
+
 tree "DamageBuilding"
 	sequence
 		ChooseBuildingToDamage
@@ -144,20 +157,16 @@ tree "Shoplifting"
 								sequence
 									GoIdle
 									Wait(1.0)
-									tree "DamageBuilding"	
-					while HasDestroyedEnoughBuildings
+									tree "StealAnItem"	
+					while HasShopliftedEnough
 						WalkOutOfStore
 
 
 
-tree "Combat"
-	while CanAttack
-		fallback
-			tree "ChaseCombatTarget"
-			Attack
+tree "StealAnItem"
+	sequence
+		ChooseShelfToStealFrom
+		GoToTarget
+		Wait(1.0, 2.0)
+		StealFromTarget
 
-
-tree "ChaseCombatTarget"
-	while not CombatTargetInRange
-		sequence
-			ChaseCombatTarget

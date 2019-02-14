@@ -1,0 +1,13 @@
+tree "Combat"
+	while CanAttack
+		fallback
+			tree "ChaseCombatTarget"
+			Attack
+
+
+tree "ChaseCombatTarget"
+	while not CombatTargetInRange
+		sequence
+			ChaseCombatTarget
+
+

@@ -139,7 +139,7 @@ public class StoreShelf : Building
         if (carryController != null && charAIController != null)
         {
             ShelfItemSlot slotWithItem = FindRandomItemOnShelf();
-            carryController.PickUpFoodItem(slotWithItem.EmptyAndTakeItem());
+            carryController.StealItem(slotWithItem.EmptyAndTakeItem());
             this.currentFoodStock--;
             UpdateStockUI();
             //ShowStock();

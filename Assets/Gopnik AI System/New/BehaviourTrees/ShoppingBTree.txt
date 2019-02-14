@@ -1,0 +1,74 @@
+tree "Shopping"
+	sequence
+		while isShopping
+			fallback
+				tree "WanderAroundShopping"
+				tree "GoToCash"
+				tree "WaitInLine"
+				tree "LeaveAfterPaying"
+
+tree "WanderAroundShopping"
+	while not HasPickedUpEnoughItems
+		repeat
+			sequence
+				ChooseRandomPointNearAShelf
+				GoToTarget
+				GoIdle
+				WaitRandom(1.0, 3.0)
+				repeat (1, 2)
+					random
+						sequence
+							Succeed
+						sequence 
+							ChooseRandomPointNearAShelf
+							GoToTarget
+							GoIdle
+						sequence
+							GoIdle
+							Wait(1.0)
+							tree "TakeWantedItem"
+
+
+tree "TakeWantedItem"
+	while CheckForExistenceOfCashRegisters
+		sequence
+			ChooseFullShelfToShopAt
+			GoToTarget
+			PickUpItemFromShelf
+
+
+tree "GoToCash"
+	while HasPickedUpEnoughItems
+		while not HasPaidForGroceries
+			while not isLiningUp
+				sequence
+					FindAndGoToCashRegister
+					GoToQueuePosition
+					GoToTarget
+
+	
+tree "WaitInLine"
+	sequence
+		while isLiningUp
+			while not HasPaidForGroceries
+				sequence
+					TurnToCashRegister	
+					while not HasLineAdvanced
+						GoIdle
+					fallback
+						while FirstInLine
+							sequence
+								TurnDownwards
+								RegisterForPayment
+					
+
+						
+ tree "LeaveAfterPaying"
+	while HasPaidForGroceries
+		sequence
+			WalkOutOfStore
+
+tree "LeaveStore"
+	sequence
+			WalkOutOfStore
+

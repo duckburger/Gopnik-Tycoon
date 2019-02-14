@@ -9,21 +9,8 @@ public class ShoppingBag : Pickuppable
     [SerializeField] SpriteRenderer bagSpriteRenderer;
     [SerializeField] SpriteRenderer contentsSpriteRenderer;
 
-    public SpriteRenderer BagSpriteRenderer
-    {
-        get
-        {
-            return this.contentsSpriteRenderer;
-        }
-    }
-
-    public List<FoodItemData> AllContainedItems
-    {
-        get
-        {
-            return this.allContainedItems;
-        }
-    }
+    public SpriteRenderer BagSpriteRenderer => this.contentsSpriteRenderer;
+    public List<FoodItemData> AllContainedItems => this.allContainedItems;
 
     public float GetCostOfContainedGoods()
     {

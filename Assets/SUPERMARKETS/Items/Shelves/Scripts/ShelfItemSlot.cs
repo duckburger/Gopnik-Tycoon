@@ -31,23 +31,26 @@ public class ShelfItemSlot : MonoBehaviour
         this.isOccupied = true;
     }
 
-    public FoodItemData EmptyAndTakeItem()
+    public FoodItemData EmptyAndTakeItem(bool stealItem = false)
     {
         if (this.myItem != null)
         {
             FoodItemData itemToTakeOut = this.myItem;
-            Empty();
+            Empty(stealItem);
             return itemToTakeOut;
         }
        return null;
     }
 
-    public void Empty()
+    public void Empty(bool stealItem = false)
     {
         this.myItem = null;
         this.mySpriteRenderer.sprite = null;
-        this.priceTagSpriteRenderer.sprite = null;
-        this.priceTagSpriteRenderer.enabled = false;
+        if (!stealItem)
+        {
+            this.priceTagSpriteRenderer.sprite = null;
+            this.priceTagSpriteRenderer.enabled = false;
+        }
         this.isOccupied = false;
         Shelf myShelf = GetComponentInParent<Shelf>();
         if (myShelf != null)

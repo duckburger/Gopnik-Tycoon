@@ -11,12 +11,6 @@ public class PickuppableItemData : ScriptableObject
     public bool stackable = false;
     [TextArea(3, 10)]
     public string description;
-
-    public bool Stackable
-    {
-        get
-        {
-            return this.stackable;
-        }
-    }
+    public float pricePerUnit = 0;
+    public bool Stackable => this.stackable;
 }
