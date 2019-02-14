@@ -42,6 +42,13 @@ public class NewBuildMenu : MonoBehaviour
 
     private void Update()
     {
+        HandleKeyboardInputs();
+    }
+
+    #region Keyboard Inputs
+
+    private void HandleKeyboardInputs()
+    {
         if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A))
         {
             MoveSilhouetteLeft();
@@ -54,7 +61,13 @@ public class NewBuildMenu : MonoBehaviour
         {
             BuildSelectedBuilding();
         }
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            CloseFromButton();
+        }
     }
+
+    #endregion
 
     #region Population
 

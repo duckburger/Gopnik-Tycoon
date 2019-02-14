@@ -33,6 +33,7 @@ tree "StealAnItem"
 	sequence
 		ChooseShelfToStealFrom
 		GoToTarget
+		GoIdle
 		Wait(1.5)
 		StealFromTarget
 

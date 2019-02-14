@@ -110,7 +110,6 @@ public class AI_Generic : MonoBehaviour
             this.animator.SetFloat("xInput", this.navAgent.movingDirection.x);
             this.animator.SetFloat("yInput", this.navAgent.movingDirection.y);
         }
-       
     }
 
     #region Starting Actions

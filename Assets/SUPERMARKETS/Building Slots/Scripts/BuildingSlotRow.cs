@@ -12,13 +12,7 @@ public class BuildingSlotRow : MonoBehaviour
 
     public List<BuildingCategory> buildingCategories = new List<BuildingCategory>();
     public ModularBuildingSlot currentHighlightedSlot = null;
-    public List<ModularBuildingSlot> AllSlots
-    {
-        get
-        {
-            return this.allSlots;
-        }
-    }
+    public List<ModularBuildingSlot> AllSlots => this.allSlots;
 
     public bool registerWithTracker = true;
     public bool allSlotsOccupied = false;
@@ -70,7 +64,7 @@ public class BuildingSlotRow : MonoBehaviour
         ModularBuildingSlot closestSlotToPlayer = FindSlotClosestToPlayer();
         if (closestSlotToPlayer != null) // All slots are occupied, search for the closest one
         {
-            closestSlotToPlayer.DisplaySelected();
+            //closestSlotToPlayer.DisplaySelected();
             this.currentHighlightedSlot = closestSlotToPlayer;
             if (this.newBuildMenuOpenedEvent != null)
             {
